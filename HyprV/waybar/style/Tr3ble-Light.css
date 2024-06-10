@@ -1,0 +1,174 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    font-size: 16px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(21, 18, 27, 0);
+    color: #11111b;
+}
+
+tooltip {
+    background: #eeeeff;
+    opacity: 0.8;
+    border-radius: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #eeeeff;
+}
+
+tooltip label{
+    color: #11111b;
+}
+
+#workspaces button {
+    padding: 5px;
+    color: #11111b;
+    margin-right: 5px;
+}
+
+#workspaces button.active {
+    color: #eeeeff;
+    background: #11111b;
+    border-radius: 10px;
+}
+
+#workspaces button:hover {
+    background: #11111b;
+    color: #eeeeff;
+    border-radius: 10px;
+}
+
+#custom-launch_wofi,
+#custom-launch_firefox,
+#custom-launch_thunderbird,
+#custom-launch_thunar,
+#custom-launch_kitty,
+#custom-lock_screen,
+#custom-light_dark,
+#custom-power_btn,
+#custom-power_profile,
+#custom-weather,
+#custom-myhyprv,
+#window,
+#cpu,
+#disk,
+#custom-updates,
+#memory,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#tray,
+#temperature,
+#workspaces,
+#idle_inhibitor,
+#language,
+#taskbar,
+/*
+#backlight {
+    background: #1e1e2e;
+    background: rgba(21, 18, 27, 0);
+    opacity: 1;
+    padding: 0px 8px;
+    margin: 0px 3px;
+    border: 0px;
+}
+*/
+#backlight {
+    background: #eeeeff;
+    opacity: 0.8;
+    padding: 0px 10px;
+    margin: 3px 0px;
+    margin-top: 5px;
+    border: 0px;
+}
+
+#custom-power_btn {
+    border-radius: 10px 10px 10px 10px;
+    margin-left: 10px;
+    padding-left: 10px;
+    padding-right: 15px;
+}
+
+#custom-lock_screen{
+    border-radius: 10px 0px 0px 10px;
+    margin-left: 10px;
+}
+
+#idle_inhibitor, #cpu {
+    border-radius: 10px 0px 0px 10px;
+}
+
+#custom-myhyprv, #workspaces, #clock, #disk {
+    border-radius: 0px 10px 10px 0px;
+    padding-left: 10px;
+    padding-right: 22px;
+    margin-right: 10px;
+}
+
+#custom-updates {
+    border-radius: 10px 10px 10px 10px;
+}
+
+tray > .passive {
+    color: #11111b;
+}
+
+#temperature.critical {
+    color: #e92d4d;
+}
+
+#workspaces {
+    padding-right: 0px;
+    padding-left: 5px;
+}
+
+#window {
+    border-radius: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#custom-launch_wofi {
+    margin-left: 10px;
+    padding-left: 10px;
+    font-size: 18px;
+    border-radius: 10px 0px 0px 10px;
+}
+#custom-launch_firefox,
+#custom-launch_thunderbird,
+#custom-launch_kitty {
+    padding-left: 20px;
+    font-size: 18px;
+    border-radius: 0px 0px 0px 0px;
+}
+#custom-launch_thunar {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 18px;
+    border-radius: 0px 10px 10px 0px;
+}
+
+#taskbar{
+    border-radius: 10px 10px 10px 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#custom-weather {
+    margin-left: 0px;
+    border-right: 0px;
+    font-size: 18px;
+    margin-right: 10px;
+    border-radius: 10px 10px 10px 10px;
+}
+
+#custom-launch_firefox, 
+#custom-launch_kitty {
+    font-size: 20px;
+}

@@ -1,0 +1,18 @@
+#!/bin/bash
+#sudo chmod u+x fileName.sh
+
+sudo pacman -Syu
+
+sudo pacman -S bat ranger 
+
+yay icat
+
+ranger --copy-config=all
+
+rm /home/$USER/.config/ranger/rc.conf
+mv rc.conf /home/$USER/.config/ranger/rc.conf
+
+#sudo su <<HERE
+#HERE
+
+#reboot

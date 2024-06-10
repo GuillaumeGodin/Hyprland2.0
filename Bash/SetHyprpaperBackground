@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# setup background with hyprpaper
+mkdir /home$USER/Pictures
+
+cp /home/$USER/Documents/Hyprland/HyprV/backgrounds/v4-background-dark.jpg /home/$USER/Pictures/bg.jpg

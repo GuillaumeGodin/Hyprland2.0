@@ -1,0 +1,24 @@
+#!/bin/bash
+#sudo chmod u+x fileName.sh
+
+sudo pacman -Syu
+
+sudo pacman -S dkms linux-headers cabextract
+yay xone-dkms-git
+yay xone-dongle-firmware
+
+cd /home/$USER/Documents
+git clone https://github.com/medusalix/xone
+cd xone
+sudo ./install.sh --release
+cd install
+chmod +x firmware.sh
+sudo ./firmware.sh
+sudo rm -r /home/$USER/Documents/xone
+
+echo "Don't forget to reboot"
+
+#sudo su <<HERE
+#HERE
+
+#reboot
