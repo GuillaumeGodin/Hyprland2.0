@@ -1,4 +1,5 @@
-# HyprV5
+# Hyprland2.0
+
 This is V5 of the Hyprland install script
 
 It contains a collection of dot config files for hyprland with a simple install script.
@@ -48,12 +49,3 @@ noto-fonts-emoji lxappearance xfce4-settings sddm-git sddm-sugar-candy-git
 ```
 
 Or you can use the attached script "set-hypr" to install everything for you.
-# Hyprland2.0
-# Hyprland2.0
-# Hyprland2.0
-# Hyprland2.0
-# hyprland2.0
-# hyprland2.0
-# hyprland2.0
-# Hyprland2.0
-# Hyprland2.0
