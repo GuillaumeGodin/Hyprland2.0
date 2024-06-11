@@ -100,10 +100,10 @@ install_stage2=(
     realvnc-vnc-viewer #Currently a problem with vnc viewer
     systemd-resolvconf #Needed for wireguard
     openvpn # Needed for privado
-    unzip # Needed for privado
-    resolvconf # Needed for privado
-    rename # Needed for privado
-    wget # Needed for privado
+    #unzip # Needed for privado
+    #resolvconf # Needed for privado
+    #rename # Needed for privado
+    #wget # Needed for privado
     galculator # calculator
 )
 
