@@ -111,6 +111,11 @@ fi
 get_ver
 
 TOOLTIP='Default Keybinds\n'\
+'-------------------------------------\n'\
+'SUPER + # = Change Workspace\n'\
+'SUPER + ALT + # = Move to Workspace\n'\
+'ALT + # = Change/Move to Workspace\n'\
+'-------------------------------------\n'\
 'ALT + T = Terminal (Kitty)\n'\
 'ALT + E = File Manager (Thunar)\n'\
 'ALT + F = Firefox\n'\
@@ -123,12 +128,13 @@ TOOLTIP='Default Keybinds\n'\
 'ALT + C = Calculator (galculator)\n'\
 'ALT + W = Background (waypaper)\n'\
 'ALT + Q = Close Window\n'\
+'-------------------------------------\n'\
 'SUPER + L = Lock Screen\n'\
 'SUPER + M = Logout menu\n'\
 'SUPER + V = Toggle Float\n'\
 'SUPER + S = Screenshot\n'\
 'SUPER + C = Open clipboard manager\n'\
-'SUPER + SPACE = App Launcher\n'\
+'SUPER + SPACE = App Launcher'\
 
 echo '{"text": "'$VER'", "tooltip": "'$TOOLTIP'"}'
 #echo '{"text": "Tr3ble", "tooltip": "'$TOOLTIP'"}'
