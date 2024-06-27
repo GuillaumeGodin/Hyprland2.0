@@ -5,5 +5,5 @@
 cp /home/$USER/Hyprland2.0/HyprV/backgrounds/Tr3ble-Dark-Background.jpg /home/$USER/Pictures/bg.jpg
 
 #sed -i '16s/spash = true/#splash = true/' /home/$USER/.config/hypr/hyprpaper.conf
-sed -i 's/spash = true/#splash = true/g' /home/$USER/.config/hypr/hyprpaper.conf
+sed -i 's/slpash = true/#splash = true/g' /home/$USER/.config/hypr/hyprpaper.conf
 sed -i 's/exec-once = swww init/exec = hyprpaper/g' /home/$USER/.config/hypr/hyprland.conf
