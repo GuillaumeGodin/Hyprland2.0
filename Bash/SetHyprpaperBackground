@@ -2,7 +2,7 @@
 
 # setup background with hyprpaper
 
-cp /home/$USER/Documents/Hyprland2.0/HyprV/backgrounds/Tr3ble-Dark-Background.jpg /home/$USER/Pictures/bg.jpg
+cp /home/$USER/Hyprland2.0/HyprV/backgrounds/Tr3ble-Dark-Background.jpg /home/$USER/Pictures/bg.jpg
 
-echo 'preload = /home/$USER/Pictures/bg.jpg' | tee -a /home/$USER/.config/hypr/hyprpaper.conf
-echo 'splash = true' | tee -a /home/$USER/.config/hypr/hyprpaper.conf
+sed -i '16s/spash = true/#splash = true/' .config/hypr/hyprpaper.conf
+sed -i 's/exec-once = swww init/exec = hyprpaper/g' /home/$USER/.config/hypr/hyprland.conf
