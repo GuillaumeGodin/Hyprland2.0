@@ -42,7 +42,7 @@ install_stage=(
     kitty 
     mako 
     waybar
-    swww
+    swww #Alternative to hyprpaper
     #hyprpaper #Alternative to swww
     swaylock-effects 
     wofi 
@@ -277,7 +277,8 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
 
     # Install the correct hyprland version
     echo -e "$CNT - Installing Hyprland, this may take a while..."   
-    install_software hyprland
+    #install_software hyprland
+    install_software hyprland-git
 
     # Stage 1 - main components
     echo -e "$CNT - Installing main components, this may take a while..."
@@ -399,7 +400,12 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark"
     cp -f ~/.config/HyprV/backgrounds/Tr3ble-Dark-Background.jpg /usr/share/sddm/themes/sdt/wallpaper.jpg
 
-    # setup xbox dongle drivers
+    # Bash scripts---------------------------------------------------------------------------------------------------------
+    bash /home/$USER/Hyprland/bash/CreateDirectories
+    #bash /home/$USER/Hyprland/bash/AutoStartSDDM
+    bash /home/$USER/Hyprland/bash/KittySSH
+    bash /home/$USER/Hyprland/bash/MoveLspApplications
+    #bash /home/$USER/Hyprland/bash/SetHyprpaperBackground
     #bash /home/$USER/Hyprland/bash/XboxDongleDrivers
 fi
 

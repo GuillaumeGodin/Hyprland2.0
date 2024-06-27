@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # setup background with hyprpaper
-mkdir /home$USER/Pictures
 
-cp /home/$USER/Documents/Hyprland/HyprV/backgrounds/v4-background-dark.jpg /home/$USER/Pictures/bg.jpg
+cp /home/$USER/Documents/Hyprland2.0/HyprV/backgrounds/Tr3ble-Dark-Background.jpg /home/$USER/Pictures/bg.jpg
+
+echo 'preload = /home/$USER/Pictures/bg.jpg' | tee -a /home/$USER/.config/hypr/hyprpaper.conf
+echo 'splash = true' | tee -a /home/$USER/.config/hypr/hyprpaper.conf

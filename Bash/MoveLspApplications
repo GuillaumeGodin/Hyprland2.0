@@ -5,8 +5,6 @@
 #From /usr/share/applications/
 #To /usr/share/LSP/
 
-sudo su <<HERE
-
 mkdir /usr/share/LSP
 
 moveApps=(
@@ -182,10 +180,10 @@ moveApps=(
     in.lsp_plug.lsp_plugins_trigger_midi_stereo.desktop
     in.lsp_plug.lsp_plugins_trigger_mono.desktop
     in.lsp_plug.lsp_plugins_trigger_stereo.desktop
+    in.lsp_plug.lsp_plugins_chorus_mono.desktop
+    in.lsp_plug.lsp_plugins_chorus_stereo.desktop
 )
 
 for APPS in ${moveApps[@]}; do
     mv /usr/share/applications/$APPS /usr/share/LSP
 done
-
-HERE

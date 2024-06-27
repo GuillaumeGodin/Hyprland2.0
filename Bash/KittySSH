@@ -1,7 +1,8 @@
 #!/bin/bash
 #sudo chmod u+x fileName.sh
 
-echo "[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"" | tee /home/$USER/.bashrc
+echo '' | tee -a /home/$USER/.bashrc
+echo '[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"' | tee -a /home/$USER/.bashrc
 
 #sudo su <<HERE
 #HERE

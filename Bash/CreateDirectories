@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# setup background with hyprpaper
+mkdir /home/$USER/Downloads
+mkdir /home/$USER/Music
+mkdir /home/$USER/Pictures
+mkdir /home/$USER/Videos
+mkdir /home/$USER/test
