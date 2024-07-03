@@ -42,7 +42,7 @@ install_stage=(
     kitty 
     mako 
     waybar
-    swww #Alternative to hyprpaper
+    #swww #Alternative to hyprpaper
     #hyprpaper #Alternative to swww
     swaylock-effects 
     wofi 
@@ -80,6 +80,8 @@ install_stage=(
     libsecret
     seahorse
     waypaper
+    tk
+    yt-dlp
 )
 
 #Office packages------------------------------------------------------------------------------------------------------
@@ -249,8 +251,6 @@ if [ ! -f /sbin/yay ]; then
     fi
 fi
 
-
-
 ### Install all of the above pacakges ####
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install the packages? (y,n) ' INST
 if [[ $INST == "Y" || $INST == "y" ]]; then
@@ -406,8 +406,19 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     #bash /home/$USER/Hyprland/bash/AutoStartSDDM
     bash /home/$USER/Hyprland/bash/KittySSH
     bash /home/$USER/Hyprland/bash/MoveLspApplications
-    #bash /home/$USER/Hyprland/bash/SetHyprpaperBackground
     #bash /home/$USER/Hyprland/bash/XboxDongleDrivers
+fi
+
+#Install background manager-----------------------------------------------------------------------------------------------------------
+read -rep $'[\e[1;33mACTION\e[0m] - Select a background manager, (s) for swww or (h) for hyprpaper ' INST
+if [[ $INST == "S" || $INST == "s" ]]; then
+    # Stage 4 - Background Manager
+    echo -e "$CNT - Installing swww, this may take a while..."
+    install_software swww
+elif [[ $INST == "H" || $INST == "h" ]]; then
+    echo -e "$CNT - Installing hyprpaper, this may take a while..."
+    install_software hyprpaper
+    bash /home/$USER/Hyprland/bash/SetHyprpaperBackground
 fi
 
 ### Install the starship shell ###
