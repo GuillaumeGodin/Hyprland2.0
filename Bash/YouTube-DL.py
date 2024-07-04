@@ -44,52 +44,36 @@ def Widgets():
 
     # 2nd Row Link------------------------------------------------------------------------------------
     link_label = Label(pane, text="YouTube link :", bg="white", font="Arial")
-
     link_label.grid(row=1, column=0, sticky="enw")
-
     root.linkText = Entry(pane, font="Arial", textvariable=video_Link)
-
     root.linkText.grid(row=1, column=1, sticky="wne", columnspan=2)
 
     # 3rd Row File Name-------------------------------------------------------------------------------
     link_name = Label(pane, text="File Name :", bg="white", font="Arial")
-
     link_name.grid(row=2, column=0, sticky="enw")
-
     root.linkName = Entry(pane, font="Arial", textvariable=video_Name)
-
     root.linkName.insert(0, "%(title)s")
-
     root.linkName.grid(row=2, column=1, sticky="wne", columnspan=2)
 
     # 4th Row Destination-----------------------------------------------------------------------------
     destination_label = Label(pane, text="Destination :", bg="white", font="Arial")
-
     destination_label.grid(row=3, column=0, sticky="enw")
-
     root.destinationText = Entry(pane, font="Arial", textvariable=download_Path)
-
     root.destinationText.insert(0, "/home/$USER/Music/") 
-
     root.destinationText.grid(row=3, column=1, sticky="new")
-
     browse_B = Button(pane, text="Browse", bg="thistle1", font="Arial", command=Browse, pady=0, relief=GROOVE)
-
     browse_B.grid(row=3, column=2, sticky="wne")
     
     # 5th Row Button Video----------------------------------------------------------------------------
     Download_Video = Button(pane, text="Video", bg="thistle1", font="Arial", command=DownloadVideo, relief=GROOVE, pady=0)
-
     Download_Video.grid(row=4, column=0, sticky="enw", padx=30, pady=10)
     
     # 5th Row Button Audio----------------------------------------------------------------------------
     Download_Audio = Button(pane, text="Audio", bg="thistle1", font="Arial", command=DownloadAudio, relief=GROOVE, pady=0)
-
     Download_Audio.grid(row=4, column=1, sticky="new", padx=60, pady=10)
     
     # 5th Row Button Playlist-------------------------------------------------------------------------
     Download_Playlist = Button(pane, text="Playlist", bg="thistle1", font="Arial", command=DownloadPlaylist, relief=GROOVE, pady=0)
-
     Download_Playlist.grid(row=4, column=2, sticky="enw", padx=30, pady=10)
 
 def Browse():
