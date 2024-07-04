@@ -100,6 +100,8 @@ install_stage2=(
     sshfs #Needed for Samba
     gvfs-smb #Needed for Samba
     realvnc-vnc-viewer #Currently a problem with vnc viewer
+    galculator # calculator
+    audacity
     systemd-resolvconf #Needed for wireguard
     wireguard-tools #Needed for wireguard
     openvpn # Needed for privado
@@ -107,7 +109,6 @@ install_stage2=(
     #resolvconf # Needed for privado
     #rename # Needed for privado
     #wget # Needed for privado
-    galculator # calculator
 )
 
 #Game packages--------------------------------------------------------------------------------------------------------
