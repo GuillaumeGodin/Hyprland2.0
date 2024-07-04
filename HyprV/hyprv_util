@@ -116,24 +116,25 @@ TOOLTIP='Default Keybinds\n'\
 'SUPER + ALT + # = Move to Workspace\n'\
 'ALT + # = Change/Move to Workspace\n'\
 '-------------------------------------\n'\
-'ALT + T = Terminal (Kitty)\n'\
-'ALT + E = File Manager (Thunar)\n'\
-'ALT + F = Firefox\n'\
-'ALT + S = Steam\n'\
-'ALT + D = Discord (webcord)\n'\
-'ALT + M = Mail/Calendar (Evolution)\n'\
-'ALT + V = VSCode\n'\
-'ALT + G = Gimp\n'\
+'ALT + A = Audacity\n'\
 'ALT + B = Blender\n'\
 'ALT + C = Calculator (galculator)\n'\
-'ALT + W = Background (waypaper)\n'\
+'ALT + D = Discord (webcord)\n'\
+'ALT + E = File Manager (Thunar)\n'\
+'ALT + F = Firefox\n'\
+'ALT + G = Gimp\n'\
+'ALT + M = Mail/Calendar (Evolution)\n'\
 'ALT + Q = Close Window\n'\
+'ALT + S = Steam\n'\
+'ALT + T = Terminal (Kitty)\n'\
+'ALT + V = VSCode\n'\
+'ALT + W = Background (waypaper)\n'\
 '-------------------------------------\n'\
+'SUPER + C = Open clipboard manager\n'\
 'SUPER + L = Lock Screen\n'\
 'SUPER + M = Logout menu\n'\
-'SUPER + V = Toggle Float\n'\
 'SUPER + S = Screenshot\n'\
-'SUPER + C = Open clipboard manager\n'\
+'SUPER + V = Toggle Float\n'\
 'SUPER + SPACE = App Launcher'\
 
 echo '{"text": "'$VER'", "tooltip": "'$TOOLTIP'"}'
