@@ -45,13 +45,29 @@ def FullRsync():
 
     name=os.path.basename('{}').format(from_Path.get())
     head, tail = os.path.split(name)
-    #print(tail)
+    name=os.path.basename('{}').format(tail)
+    file, ext = os.path.splitext(name)
+    #print(tail) #returns acer.conf
+    #print(file) #returns acer
 
     os.system('nmcli connection import type wireguard file {}'.format(from_Path.get()))
-    os.system("mv {} /etc/wireguard/{}".format(from_Path.get(), tail))
     #print('nmcli connection import type wireguard file {}'.format(from_Path.get()))
+    os.system('nmcli connection modify {} autoconnect no'.format(file))
+
+    #moving doesn't work, needs sudo privilege
+    #os.system("mv {} /etc/wireguard/{}".format(from_Path.get(), tail))
     #print("mv {} /etc/wireguard/{}".format(from_Path.get(), tail))
-     
+
+    #delete .conf
+    os.system("rm {}".format(from_Path.get()))
+
+    #delete (acer.conf profile)
+    #nmcli connection delete acer
+    #chanage autoconnect (acer.conf profile)
+    #nmcli connection modify acer autoconnect no
+    #see profile info for (acer.conf profile)
+    #nmcli connection show acer
+
 # Creating the tkinter Variables
 video_Link = StringVar()
 video_Name = StringVar()

@@ -332,18 +332,6 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     # copy the HyprV directory
     cp -R HyprV ~/.config/
 
-    #set the measuring unit
-    echo -e "$CNT - Attempring to set mesuring unit..."
-    if locale -a | grep -q ^en_US; then
-        echo -e "$COK - Setting mesuring system to imperial..."
-        ln -sf ~/.config/HyprV/waybar/conf/mesu-imp.jsonc ~/.config/HyprV/waybar/conf/mesu.jsonc
-        sed -i 's/SET_MESU=""/SET_MESU="I"/' ~/.config/HyprV/hyprv.conf
-    else
-        echo -e "$COK - Setting mesuring system to metric..."
-        sed -i 's/SET_MESU=""/SET_MESU="M"/' ~/.config/HyprV/hyprv.conf
-        ln -sf ~/.config/HyprV/waybar/conf/mesu-met.jsonc ~/.config/HyprV/waybar/conf/mesu.jsonc
-    fi
-
     # Setup each appliaction
     # check for existing config folders and backup 
     for DIR in hypr kitty mako swaylock waybar wlogout wofi 
@@ -402,14 +390,24 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     cp -f ~/.config/HyprV/backgrounds/Tr3ble-Dark-Background.jpg /usr/share/sddm/themes/sdt/wallpaper.jpg
 fi
 
-# Bash scripts---------------------------------------------------------------------------------------------------------
+# Bash scripts-----------------------------------------------------------------------------------------------------------
 bash /home/$USER/Hyprland2.0/Bash/CreateDirectories
 #bash /home/$USER/Hyprland2.0/Bash/AutoStartSDDM
 bash /home/$USER/Hyprland2.0/Bash/KittySSH
 sudo bash /home/$USER/Hyprland2.0/Bash/MoveLspApplications
 #bash /home/$USER/Hyprland2.0/Bash/XboxDongleDrivers
 
-#Install background manager-----------------------------------------------------------------------------------------------------------
+#Set measurement unit------------------------------------------------------------------------------------------------------
+read -rep $'[\e[1;33mACTION\e[0m] - Select measurement units, (m) for metric or (i) for imperial ' INST
+if [[ $INST == "M" || $INST == "m" ]]; then
+    echo -e "$COK - Setting mesuring system to metric..."
+    ln -sf ~/.config/HyprV/waybar/conf/mesu-met.jsonc ~/.config/HyprV/waybar/conf/mesu.jsonc
+elif [[ $INST == "I" || $INST == "i" ]]; then
+    echo -e "$COK - Setting mesuring system to imperial..."
+    ln -sf ~/.config/HyprV/waybar/conf/mesu-imp.jsonc ~/.config/HyprV/waybar/conf/mesu.jsonc
+fi
+
+#Install background manager-----------------------------------------------------------------------------------------------
 read -rep $'[\e[1;33mACTION\e[0m] - Select a background manager, (s) for swww or (h) for hyprpaper ' INST
 if [[ $INST == "S" || $INST == "s" ]]; then
     # Stage 4 - Background Manager
