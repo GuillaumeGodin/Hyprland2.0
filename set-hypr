@@ -90,6 +90,7 @@ install_stage2=(
     blender
     gimp
     code
+    okular #PDF Viewer
     timeshift
     gparted
     easyeffects
@@ -100,8 +101,8 @@ install_stage2=(
     sshfs #Needed for Samba
     gvfs-smb #Needed for Samba
     realvnc-vnc-viewer #Currently a problem with vnc viewer
-    galculator # calculator
-    audacity
+    galculator # Calculator
+    audacity #Audio Editor
     systemd-resolvconf #Needed for wireguard
     wireguard-tools #Needed for wireguard
     openvpn # Needed for privado
