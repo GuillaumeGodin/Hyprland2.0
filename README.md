@@ -36,8 +36,8 @@
                                                Minimal
         Audio                                  pipewire
         Kernels			        linux (Dont change anything)
-        Additional packages             git vim nano
-        Network configuration           Use NetworkManager
+        Additional packages                    git vim nano
+        Network configuration                   Use NetworkManager
         Timezone                        Canada/Estern
         Automatic time sync (NTP)		True
         Optional repositories           multilib
