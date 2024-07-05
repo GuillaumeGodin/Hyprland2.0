@@ -47,7 +47,7 @@ Unplug the USB drive and select no (no post installation configurations)
 
 reboot
 
-3) Instal Hyprland
+3) Instal Hyprland:
     Login                       user
                                 password
     git clone https://github.com/GuillaumeGodin/Hyprland2.0.git
