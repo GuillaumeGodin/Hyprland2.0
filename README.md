@@ -30,8 +30,8 @@
                                                     user
                                                     password
                                                     password
-                                        yes (make superuser)
-                                        Confirm and exit
+                                               yes (make superuser)
+                                               Confirm and exit
         Profile                         Type
                                             Minimal
         Audio                           pipewire
