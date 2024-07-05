@@ -34,8 +34,8 @@
                                                Confirm and exit
         Profile                                 Type
                                                Minimal
-        Audio                           pipewire
-        Kernels				            linux (Dont change anything)
+        Audio                                   pipewire
+        Kernels			        linux (Dont change anything)
         Additional packages             git vim nano
         Network configuration           Use NetworkManager
         Timezone                        Canada/Estern
