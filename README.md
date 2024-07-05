@@ -1,51 +1,59 @@
 # Hyprland2.0
 
-This is V5 of the Hyprland install script
+1) Update Keys:
+    pacman-key --init
+    pacman-key --populate archlinux
 
-It contains a collection of dot config files for hyprland with a simple install script.
-IMPORTANT - This script is meant to run on a clean fresh Arch install on physical hardware
+2) Installing Arch:
+    archinstall
 
-You can grab the config files and install packages by hand with the command listed below
+        Archinstall language			English (100%)
+        Mirrors
+            Mirror region			    Canada
+            Back				
+        Locales
+            Keyboard layout		        us
+            Locale language		        en_US
+            Locale encoding		        UTF-8
+        Disk configuration              Use a best-effort default partition layout
+                                            (Select main drive)
+                                                ext4
+                                                    no
+        Disk encryption                 (Leave Blank)
+        Bootloader				        Grub or systemd-bootctl
+        Unified Kernel Images		    True (for secure boot)
+        swap					        True
+        Hostname			    	    archlinux
+        Root password                   password
+                                        password
+        User account                    Add a user
+                                            user
+                                            password
+                                            password
+                                        yes (make superuser)
+                                        Confirm and exit
+        Profile                         Type
+                                            Minimal
+        Audio                           pipewire
+        Kernels				            linux (Dont change anything)
+        Additional packages             git vim nano
+        Network configuration           Use NetworkManager
+        Timezone                        Canada/Estern
+        Automatic time sync (NTP)		True
+        Optional repositories           multilib
 
-Do this ONLY if you need Nvidia support (do this first)
-```
-yay -S linux-headers nvidia-dkms qt5-wayland qt5ct libva libva-nvidia-driver-git
+    Install
 
-```
-/etc/mkinitcpio.conf
-```
-MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)
-```
-generate a new initramfs image
-```
-sudo mkinitcpio --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
-```
-Create NVIDIA Configuration
-```
-echo "options nvidia-drm modeset=1" | sudo tee /etc/modprobe.d/nvidia.conf
-```
-verify
-```
-cat /etc/modprobe.d/nvidia.conf
-```
-shoud return: 
-```
-options nvidia-drm modeset=1
-```
-now reboot
-```
+Unplug the USB drive and select no (no post installation configurations)
+
 reboot
-```
 
-Now install the below for Hyprland
+3) Instalyprland
+    Login                               user
+                                        password
+    git clone https://github.com/GuillaumeGodin/Hyprland2.0.git
+    cd Hyprland2.0
+    ./set-hypr
 
-```
-yay -S hyprland kitty jq mako waybar-hyprland swww swaylock-effects \
-wofi wlogout xdg-desktop-portal-hyprland swappy grim slurp thunar \
-polkit-gnome python-requests pamixer pavucontrol brightnessctl bluez \
-bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin \
-file-roller btop pacman-contrib starship ttf-jetbrains-mono-nerd \
-noto-fonts-emoji lxappearance xfce4-settings sddm-git sddm-sugar-candy-git 
-```
-
-Or you can use the attached script "set-hypr" to install everything for you.
+4) Setup Script
+    (To be continued...)
