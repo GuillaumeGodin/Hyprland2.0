@@ -15,10 +15,10 @@
             Keyboard layout		        us
             Locale language		        en_US
             Locale encoding		        UTF-8
-        Disk configuration                  Use a best-effort default partition layout
-                                                (Select main drive)
-                                                    ext4
-                                                        no
+        Disk configuration                      Use a best-effort default partition layout
+                                                    (Select main drive)
+                                                        ext4
+                                                            no
         Disk encryption                     (Leave Blank)
         Bootloader				    Grub or systemd-bootctl
         Unified Kernel Images		    True (for secure boot)
