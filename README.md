@@ -24,8 +24,8 @@
         Unified Kernel Images		        True (for secure boot)
         swap					True
         Hostname			        archlinux
-        Root password                           password
-                                                password
+        Root password                          password
+                                               password
         User account                            Add a user
                                                     user
                                                     password
