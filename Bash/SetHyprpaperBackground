@@ -2,8 +2,19 @@
 
 # setup background with hyprpaper
 
-cp /home/$USER/Hyprland2.0/HyprV/backgrounds/Tr3ble-Dark-Background.jpg /home/$USER/Pictures/bg.jpg
+#Copy images to Pictures/
+cp /home/$USER/Hyprland2.0/HyprV/backgrounds/Tr3ble-Dark-Background.jpg /home/$USER/Pictures/Tr3ble-Dark-Background.jpg
+cp /home/$USER/Hyprland2.0/HyprV/backgrounds/Tr3ble-Light-Background.jpg /home/$USER/Pictures/Tr3ble-Light-Background.jpg
 
+#Modify .config/hypr/hyprpaper.conf
+sed -i 's/wallpaper = eDP-1,~/Pictures/bg.jpg/wallpaper = eDP-1,~/Pictures/Tr3ble-Dark-Background.jpg/g' /home/$USER/.config/hypr/hyprpaper.conf
+sed -i 's/wallpaper = eDP-2,~/Pictures/bg.jpg/wallpaper = eDP-2,~/Pictures/Tr3ble-Dark-Background.jpg/g' /home/$USER/.config/hypr/hyprpaper.conf
+sed -i 's/wallpaper = eDP-3,~/Pictures/bg.jpg/wallpaper = eDP-3,~/Pictures/Tr3ble-Dark-Background.jpg/g' /home/$USER/.config/hypr/hyprpaper.conf
+sed -i 's/wallpaper = DP-1,~/Pictures/bg.jpg/wallpaper = DP-1,~/Pictures/Tr3ble-Dark-Background.jpg/g' /home/$USER/.config/hypr/hyprpaper.conf
+sed -i 's/wallpaper = DP-2,~/Pictures/bg.jpg/wallpaper = DP-2,~/Pictures/Tr3ble-Dark-Background.jpg/g' /home/$USER/.config/hypr/hyprpaper.conf
+sed -i 's/wallpaper = DP-3,~/Pictures/bg.jpg/wallpaper = DP-3,~/Pictures/Tr3ble-Dark-Background.jpg/g' /home/$USER/.config/hypr/hyprpaper.conf
 sed -i 's/splash = true/#splash = true/g' /home/$USER/.config/hypr/hyprpaper.conf
+
+#Switch swww to hyprpaper in .config/hypr/hyprland.conf
 sed -i 's/exec-once = swww init/#exec-once = swww init/g' /home/$USER/.config/hypr/hyprland.conf
 sed -i 's/#exec = hyprpaper/exec = hyprpaper/g' /home/$USER/.config/hypr/hyprland.conf
