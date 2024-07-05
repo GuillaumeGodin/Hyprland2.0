@@ -19,9 +19,9 @@
                                                     (Select main drive)
                                                         ext4
                                                             no
-        Disk encryption                     (Leave Blank)
-        Bootloader				    Grub or systemd-bootctl
-        Unified Kernel Images		    True (for secure boot)
+        Disk encryption                         (Leave Blank)
+        Bootloader		        Grub or systemd-bootctl
+        Unified Kernel Images		        True (for secure boot)
         swap					        True
         Hostname			    	    archlinux
         Root password                   password
