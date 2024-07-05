@@ -5,6 +5,7 @@
     pacman-key --populate archlinux
 
 2) Installing Arch:
+
         archinstall
 
         Archinstall language			English (100%)
@@ -48,6 +49,7 @@ Unplug the USB drive and select no (no post installation configurations)
 reboot
 
 3) Instal Hyprland:
+
         Login                       user
                                     password
         git clone https://github.com/GuillaumeGodin/Hyprland2.0.git
