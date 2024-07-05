@@ -58,4 +58,5 @@ Unplug the USB drive and select no (no post installation configurations)
         ./set-hypr
 
 4) Setup Script
-    (To be continued...)
+
+        (To be continued...)
