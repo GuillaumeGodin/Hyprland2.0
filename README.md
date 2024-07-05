@@ -38,9 +38,9 @@
         Kernels			        linux (Dont change anything)
         Additional packages                    git vim nano
         Network configuration                   Use NetworkManager
-        Timezone                                Canada/Estern
+        Timezone                               Canada/Estern
         Automatic time sync (NTP)		True
-        Optional repositories                   multilib
+        Optional repositories                  multilib
         Install
 
 Unplug the USB drive and select no (no post installation configurations)
