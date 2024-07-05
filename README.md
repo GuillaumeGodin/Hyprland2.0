@@ -9,7 +9,7 @@
 
         Archinstall language			English (100%)
         Mirrors
-            Mirror region			    Canada
+            Mirror region	        Canada
             Back				
         Locales
             Keyboard layout		        us
@@ -41,8 +41,7 @@
         Timezone                        Canada/Estern
         Automatic time sync (NTP)		True
         Optional repositories           multilib
-
-    Install
+        Install
 
 Unplug the USB drive and select no (no post installation configurations)
 
