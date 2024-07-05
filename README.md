@@ -32,7 +32,7 @@
                                                     password
                                                yes (make superuser)
                                                Confirm and exit
-        Profile                         Type
+        Profile                                Type
                                             Minimal
         Audio                           pipewire
         Kernels				            linux (Dont change anything)
