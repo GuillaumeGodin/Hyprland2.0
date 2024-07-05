@@ -1,6 +1,7 @@
 # Hyprland2.0
 
 1) Update Keys:
+
         pacman-key --init
         pacman-key --populate archlinux
 
