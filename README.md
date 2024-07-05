@@ -32,8 +32,8 @@
                                                     password
                                                yes (make superuser)
                                                Confirm and exit
-        Profile                                Type
-                                            Minimal
+        Profile                                 Type
+                                                Minimal
         Audio                           pipewire
         Kernels				            linux (Dont change anything)
         Additional packages             git vim nano
