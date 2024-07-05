@@ -34,7 +34,7 @@
                                                Confirm and exit
         Profile                                 Type
                                                Minimal
-        Audio                                   pipewire
+        Audio                                  pipewire
         Kernels			        linux (Dont change anything)
         Additional packages             git vim nano
         Network configuration           Use NetworkManager
