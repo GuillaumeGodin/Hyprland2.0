@@ -46,7 +46,7 @@
 
 Unplug the USB drive and select no (no post installation configurations)
 
-reboot
+        reboot
 
 3) Instal Hyprland:
 
