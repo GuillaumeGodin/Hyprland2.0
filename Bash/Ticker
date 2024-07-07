@@ -1,0 +1,9 @@
+#!/bin/bash
+#sudo chmod u+x fileName.sh
+
+kitty -e ticker -w SHOP.TO,AC.TO,BB.TO,SU.TOAAPL,TSLA,AMZN,ADSK,AMD,NVDA,NFLX,RIVN,SPOT,TSLA,NKE,ADDYY --show-summary --show-tags --show-fundamentals --sort alpha
+
+#sudo su <<HERE
+#HERE
+
+#reboot
