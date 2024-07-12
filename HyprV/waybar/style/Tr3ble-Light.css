@@ -63,7 +63,8 @@ tooltip label{
 #clock,
 #battery,
 #pulseaudio,
-#network,
+#network, /*Shows IP*/
+#custom-info, /*New Info Tooltip*/
 #tray,
 #temperature,
 #workspaces,
@@ -161,7 +162,8 @@ tray > .passive {
     padding-right: 5px;
 }
 
-#custom-weather {
+#custom-weather,
+#custom-info {
     margin-left: 0px;
     border-right: 0px;
     font-size: 18px;

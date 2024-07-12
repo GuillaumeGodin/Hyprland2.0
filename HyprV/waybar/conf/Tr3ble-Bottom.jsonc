@@ -14,10 +14,14 @@
         "custom/launch_thunar"
     ],
     "modules-center": ["wlr/taskbar"],
-    "modules-right": ["custom/weather"],
+    "modules-right": [
+        "custom/info",
+        "custom/weather"
+    ],
 
     "include": [
-        "~/.config/HyprV/waybar/conf/mesu.jsonc"
+        "~/.config/HyprV/waybar/conf/mesu.jsonc",
+        "~/.config/HyprV/waybar/conf/info.jsonc"
     ],
 
     "custom/launch_firefox": {
@@ -50,6 +54,11 @@
         "tooltip": false
     },
 
+    "custom/info": {
+        "format": "{}"
+    },
+
+    //centre taskbar
     "wlr/taskbar": {
         "format": "{icon}",
         "icon-size": 24,

@@ -155,6 +155,10 @@
         "spacing": 10
     },
 
+    //"network": { //shows ip addr
+    //    "format-ethernet": "{ipaddr}"
+    //},
+
     "custom/updates": {
         "format": "{}",
         "exec": "~/.config/HyprV/waybar/scripts/update-sys",

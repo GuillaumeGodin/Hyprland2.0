@@ -12,6 +12,7 @@ window#waybar {
     color: #f6f7fc;
 }
 
+/*this is the pop up tooltip whenhovering*/
 tooltip {
     background: #222222;
     opacity: 0.8;
@@ -63,6 +64,8 @@ tooltip label{
 #clock,
 #battery,
 #pulseaudio,
+#network, /*Shows IP*/
+#custom-info, /*New Info Tooltip*/
 #tray,
 #temperature,
 #workspaces,
@@ -156,12 +159,12 @@ tooltip label{
     padding-right: 5px;
 }
 
-#custom-weather {
-    margin-left: 0px;
-    border-right: 0px;
+#custom-weather,
+#custom-info {
+    border-radius: 10px 10px 10px 10px;
     font-size: 18px;
     margin-right: 10px;
-    border-radius: 10px 10px 10px 10px;
+    margin-left: 0px;
 }
 
 #custom-launch_firefox, 

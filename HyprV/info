@@ -1,0 +1,44 @@
+#!/bin/bash
+
+privateIP=$(curl ifconfig.co)
+#city=$(curl ipinfo.io/city)
+#region=$(curl ipinfo.io/region)
+#country=$(curl ipinfo.io/country)
+#city=$(curl ipinfo.io/198.84.217.213?token=57f92d8d69a152 | sed -n '4p' | sed 's/^.\{11\}//' | sed 's/.\{2\}$//')
+#region=$(curl ipinfo.io/198.84.217.213?token=57f92d8d69a152 | sed -n '5p' | sed 's/^.\{13\}//' | sed 's/.\{2\}$//')
+#country=$(curl ipinfo.io/198.84.217.213?token=57f92d8d69a152 | sed -n '6p' | sed 's/^.\{14\}//' | sed 's/.\{2\}$//')
+
+url="curl ipinfo.io/$privateIP?token=57f92d8d69a152"
+
+city=$($url | sed -n '/"city"/p' | sed 's/^.\{11\}//' | sed 's/.\{2\}$//')
+region=$($url | sed -n '/"region"/p' | sed 's/^.\{13\}//' | sed 's/.\{2\}$//')
+country=$($url | sed -n '/"country"/p' | sed 's/^.\{14\}//' | sed 's/.\{2\}$//')
+
+#echo curl ipinfo.io/$privateIP?token=57f92d8d69a152 | sed -n '4p' | sed 's/^.\{11\}//' | sed 's/.\{2\}$//'
+
+connectionName=$(nmcli device show | grep -o 'GENERAL.DEVICE.*' | cut -d: -f2 | awk '{print $1}' | head -1)
+connectionIP=$(nmcli device show | grep -o 'IP4.ADDRESS.*' | cut -d: -f2 | awk '{print $1}' | head -1)
+
+#to show all markets
+#curl terminal-stocks.dev/market-summary
+spyPrice=$(curl terminal-stocks.dev/market-summary | sed -n '5p' | awk '{print $5}' | sed 's/^.\{5\}//' | sed 's/.\{5\}$//')
+spyPercent=$(curl terminal-stocks.dev/market-summary | sed -n '5p' | awk '{print $9}' | sed 's/^.\{5\}//' | sed 's/.\{5\}$//')
+dowPrice=$(curl terminal-stocks.dev/market-summary | sed -n '7p' | awk '{print $7}' | sed 's/^.\{5\}//' | sed 's/.\{5\}$//')
+dowPercent=$(curl terminal-stocks.dev/market-summary | sed -n '7p' | awk '{print $11}' | sed 's/^.\{5\}//' | sed 's/.\{5\}$//')
+nasdaqPrice=$(curl terminal-stocks.dev/market-summary | sed -n '9p' | awk '{print $5}' | sed 's/^.\{5\}//' | sed 's/.\{5\}$//')
+nasdaqPercent=$(curl terminal-stocks.dev/market-summary | sed -n '9p' | awk '{print $9}' | sed 's/^.\{5\}//' | sed 's/.\{5\}$//')
+tsxPrice=$(curl terminal-stocks.dev/^gsptse | sed -n '5p' | awk '{print $6}' | sed 's/^.\{5\}//' | sed 's/.\{5\}$//')
+tsxPercent=$(curl terminal-stocks.dev/^gsptse | sed -n '5p' | awk '{print $10}' | sed 's/^.\{5\}//' | sed 's/.\{5\}$//')
+
+TOOLTIP='Network:\n'\
+'Public IP = '$privateIP'\n'\
+$city', '$region', '$country'\n'\
+'Private IP = '$connectionName' ('$connectionIP')\n\n'\
+'Markets:\n'\
+'SPY = '$spyPrice' ('$spyPercent')\n'\
+'DOW = '$dowPrice' ('$dowPercent')\n'\
+'NASDAQ = '$nasdaqPrice' ('$nasdaqPercent')\n'\
+'TSX = '$tsxPrice' ('$tsxPercent'%)'\
+
+echo '{"text": "'Info'", "tooltip": "'$TOOLTIP'"}'
+#echo '{"text": "Tr3ble", "tooltip": "'$TOOLTIP'"}'
