@@ -87,6 +87,7 @@ install_stage=(
 #Office packages------------------------------------------------------------------------------------------------------
 install_stage2=(
     libreoffice
+    zim #note taking app
     blender
     gimp
     code

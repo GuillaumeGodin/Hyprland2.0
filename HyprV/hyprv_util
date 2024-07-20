@@ -124,6 +124,7 @@ TOOLTIP='Default Keybinds\n'\
 'ALT + F = Firefox\n'\
 'ALT + G = Gimp\n'\
 'ALT + M = Mail/Calendar (Evolution)\n'\
+'ALT + N = Notes (Zim)\n'\
 'ALT + Q = Close Window\n'\
 'ALT + S = Steam\n'\
 'ALT + T = Terminal (Kitty)\n'\
