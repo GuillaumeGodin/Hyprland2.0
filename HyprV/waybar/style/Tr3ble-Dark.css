@@ -162,7 +162,9 @@ tooltip label{
 }
 
 #pulseaudio,
-#temperature {
+#temperature,
+#backlight,
+#battery {
     border-radius: 0px 0px 0px 0px;
     border-width: 2px;
     border-top-style: solid;
@@ -290,8 +292,8 @@ tooltip label{
 #language,
 #custom-myhyprv,
 #custom-power_profile,/*Not sure the order?*/
-#battery,/*Not sure the order?*/
-#backlight,/*Not sure the order?*/
+#battery,
+#backlight,
 #custom-launch_wofi,
 #custom-launch_firefox,
 #custom-launch_thunderbird,
@@ -300,7 +302,7 @@ tooltip label{
 #taskbar,
 #custom-info, /*New Info Tooltip*/
 #custom-weather{
-border-color: #ffbb00;
+border-color: #000000;
 background: #222222;
 opacity: 0.8;
 }

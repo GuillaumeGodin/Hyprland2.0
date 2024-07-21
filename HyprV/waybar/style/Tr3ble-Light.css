@@ -162,7 +162,9 @@ tooltip label{
 }
 
 #pulseaudio,
-#temperature {
+#temperature,
+#backlight,
+#battery {
     border-radius: 0px 0px 0px 0px;
     border-width: 2px;
     border-top-style: solid;
@@ -300,7 +302,7 @@ tooltip label{
 #taskbar,
 #custom-info, /*New Info Tooltip*/
 #custom-weather{
-border-color: #3018b8;
+border-color: #ffffff;
 background: #eeeeff;
 opacity: 0.8;
 }
