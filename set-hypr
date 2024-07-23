@@ -282,6 +282,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     # Install the correct hyprland version
     echo -e "$CNT - Installing Hyprland, this may take a while..."   
     #install_software hyprland
+    install_software hyprlang-git #Needed to install hyprland-git after aquamarine
     install_software hyprland-git
 
     # Stage 1 - main components
