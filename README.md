@@ -59,4 +59,35 @@ Unplug the USB drive and select no (no post installation configurations)
 
 4) Setup Script
 
-        (To be continued...)
+        1: Would you like to continue with the install? (y.n)
+        (enter password)
+
+        2: Would you like to disable WIFI powersave? (y.n)
+        (turns off wifi powersave)
+
+        3: Would you like to install packages? (y.n)
+        (kitty, mako, waybar, thunar, ect...)
+
+        4: Would you like to install office softwares? (y.n)
+        (libreoffice, zim, blender, gimp, vscode, okular, timeshift, gparted, easyeffects, ect...)
+
+        5: Would you like to install gaming softwares? (y.n)
+        (steam, webcord, obs-studio, mangohud) 
+
+        6: Would you like to copy config files? (y.n)
+        (Copy configs and theming)
+
+        7: Select measurement units, (m) for metric or (i) for imperial? (m.i)
+        (Metric or Imperial)
+
+        8: Select a background manager, (s) for swww or (h) for hyprpaper? (s.h)
+        (swww is nicer but long downoad, hyprpaper works on most computers and is a short download)
+
+        9: Would you like to activate the starship shell? (y.n)
+        (for laptops)
+
+        10: for Asus laptops – Would you like to install Asus software support? (y.n)
+        (for asus laptops gpu profiles)
+
+        11: Would you like to start Hyprland now? (y.n)
+        (starts Hyprland)

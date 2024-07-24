@@ -194,7 +194,7 @@ If you are worried about entering your password then you may want to review the 
 sleep 1
 
 # give the user an option to exit out
-read -rep $'[\e[1;33mACTION\e[0m] - Would you like to continue with the install (y,n) ' CONTINST
+read -rep $'[\e[1;33mACTION\e[0m] - Would you like to continue with the install? (y,n) ' CONTINST
 if [[ $CONTINST == "Y" || $CONTINST == "y" ]]; then
     echo -e "$CNT - Setup starting..."
     sudo touch /tmp/hyprv.tmp
@@ -318,7 +318,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
 fi
 
 #Install gaming softwares------------------------------------------------------------------------------------------------------------
-read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install Steam, Discord and OBS? (y,n) ' INST
+read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install gaming softwares? (y,n) ' INST
 if [[ $INST == "Y" || $INST == "y" ]]; then
 
     # Stage 3 - gaming softwares
@@ -402,7 +402,7 @@ sudo bash /home/$USER/Hyprland2.0/Bash/MoveLspApplications
 #bash /home/$USER/Hyprland2.0/Bash/XboxDongleDrivers
 
 #Set measurement unit------------------------------------------------------------------------------------------------------
-read -rep $'[\e[1;33mACTION\e[0m] - Select measurement units, (m) for metric or (i) for imperial ' INST
+read -rep $'[\e[1;33mACTION\e[0m] - Select measurement units, (m) for metric or (i) for imperial? (m.i) ' INST
 if [[ $INST == "M" || $INST == "m" ]]; then
     echo -e "$COK - Setting mesuring system to metric..."
     ln -sf ~/.config/HyprV/waybar/conf/mesu-met.jsonc ~/.config/HyprV/waybar/conf/mesu.jsonc
@@ -412,7 +412,7 @@ elif [[ $INST == "I" || $INST == "i" ]]; then
 fi
 
 #Install background manager-----------------------------------------------------------------------------------------------
-read -rep $'[\e[1;33mACTION\e[0m] - Select a background manager, (s) for swww or (h) for hyprpaper ' INST
+read -rep $'[\e[1;33mACTION\e[0m] - Select a background manager, (s) for swww or (h) for hyprpaper? (s.h)' INST
 if [[ $INST == "S" || $INST == "s" ]]; then
     # Stage 4 - Background Manager
     echo -e "$CNT - Installing swww, this may take a while..."
@@ -435,7 +435,7 @@ if [[ $STAR == "Y" || $STAR == "y" ]]; then
 fi
 
 ### Install software for Asus ROG laptops ###
-read -rep $'[\e[1;33mACTION\e[0m] - For ASUS ROG Laptops - Would you like to install Asus ROG software support? (y,n) ' ROG
+read -rep $'[\e[1;33mACTION\e[0m] - For Asus laptops - Would you like to install Asus software support? (y,n) ' ROG
 if [[ $ROG == "Y" || $ROG == "y" ]]; then
     echo -e "$CNT - Adding Keys..."
     sudo pacman-key --recv-keys 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35 &>> $INSTLOG
