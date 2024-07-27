@@ -44,11 +44,13 @@
         },
         "tooltip": true
     },
-
     "hyprland/language": {
         "interval": 30,
-        "format": " {}",
-        "keyboard-name": "logitech-pro-gaming-keyboard",
+        "format":" {}",
+        "format-en":"En(US)",
+        "format-fr":"Fr(CAD)",
+        /*libinput or hyprctl devices to get keyboard name (listed under main/yes)*/
+        "keyboard-name": "keyboard-k380-keyboard",
         "on-click": "~/.config/HyprV/hyprv_util swkb",
         "signal": 8
     },
