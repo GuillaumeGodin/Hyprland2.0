@@ -153,6 +153,30 @@ tooltip label{
     margin-left: 0px;
 }
 
+#backlight {
+    border-radius: 10px 0px 0px 10px;
+    border-width: 2px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+}
+
+#custom-power_profile {
+    border-radius: 0px 0px 0px 0px;
+    border-width: 2px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+}
+
+#battery {
+    border-radius: 0px 10px 10px 0px;
+    border-width: 2px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-right-style: solid;
+    margin-right: 10px;
+}
+
 #cpu {
     border-radius: 10px 0px 0px 10px;
     border-width: 2px;
@@ -162,9 +186,7 @@ tooltip label{
 }
 
 #pulseaudio,
-#temperature,
-#backlight,
-#battery {
+#temperature {
     border-radius: 0px 0px 0px 0px;
     border-width: 2px;
     border-top-style: solid;
@@ -250,30 +272,26 @@ tooltip label{
 }
 
 /*Hover colors*/
-#custom-weather:hover,
-#custom-info:hover,
+#custom-power_btn:hover,
+#custom-lock_screen:hover,
+#idle_inhibitor:hover,
+#clock:hover,
+#custom-updates:hover,
+#backlight:hover,
+#custom-power_profile:hover,
+#battery:hover,
+#cpu:hover,
+#pulseaudio:hover,
+#temperature:hover,
+#language:hover,
+#custom-myhyprv:hover,
 #custom-launch_wofi:hover,
 #custom-launch_firefox:hover,
 #custom-launch_thunderbird:hover,
 #custom-launch_thunar:hover,
 #custom-launch_kitty:hover,
-#custom-lock_screen:hover,
-#custom-light_dark:hover,
-#custom-power_btn:hover,
-#custom-power_profile:hover,
-#custom-weather:hover,
-#custom-myhyprv:hover,
-#window:hover,
-#cpu:hover,
-#disk:hover,
-#custom-updates:hover,
-#memory:hover,
-#clock:hover,
-#battery:hover,
-#pulseaudio:hover,
-#temperature:hover,
-#idle_inhibitor:hover,
-#language:hover{
+#custom-info:hover,
+#custom-weather:hover {
     background-color: #3018b8;
     color: #eeeeff;
 }
@@ -286,14 +304,14 @@ tooltip label{
 #clock,
 #custom-updates,
 #tray,
+#backlight,
+#custom-power_profile,/*Not sure the order?*/
+#battery,
 #cpu,
 #pulseaudio,
 #temperature,
 #language,
 #custom-myhyprv,
-#custom-power_profile,/*Not sure the order?*/
-#battery,/*Not sure the order?*/
-#backlight,/*Not sure the order?*/
 #custom-launch_wofi,
 #custom-launch_firefox,
 #custom-launch_thunderbird,
@@ -301,7 +319,7 @@ tooltip label{
 #custom-launch_kitty,
 #taskbar,
 #custom-info, /*New Info Tooltip*/
-#custom-weather{
+#custom-weather {
 border-color: #ffffff;
 background: #eeeeff;
 opacity: 0.8;

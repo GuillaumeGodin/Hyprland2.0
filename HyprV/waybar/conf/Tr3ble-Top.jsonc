@@ -17,11 +17,11 @@
         "custom/updates"
     ],
     "modules-right": [
+        "tray",
         "cpu",
         "pulseaudio",
         "pulseaudio#microphone",
         "backlight",
-        "tray",
         "temperature",
         "custom/power_profile",
         "battery",
