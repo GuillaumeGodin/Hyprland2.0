@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#needs yay mpv-mpris
-
 #get private ip
 artist=$(playerctl metadata artist)
 title=$(playerctl metadata title)

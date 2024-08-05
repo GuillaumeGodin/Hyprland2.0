@@ -56,6 +56,7 @@ install_stage=(
     firefox
     #thunderbird #Evolution is better for emails & Calendars
     mpv
+    mpv-mpris #needed for playerctl
     pamixer 
     pavucontrol 
     brightnessctl 
