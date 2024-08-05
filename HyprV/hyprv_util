@@ -50,7 +50,7 @@ switch_version() {
             #set the wofi theme
             ln -sf ~/.config/HyprV/wofi/style/Wofi-Tr3ble-Dark.css ~/.config/wofi/style.css
             #set background
-            swww img ~/.config/HyprV/backgrounds/Tr3ble-Dark-Background.jpg --transition-fps 60 --transition-type wipe --transition-duration 2
+            #swww img ~/.config/HyprV/backgrounds/Tr3ble-Dark-Background.jpg --transition-fps 60 --transition-type wipe --transition-duration 2
             #set sddm image
             cp -f ~/.config/HyprV/backgrounds/Tr3ble-Dark-Background.jpg /usr/share/sddm/themes/sdt/wallpaper.jpg
             #set kitty Theme
@@ -74,7 +74,7 @@ switch_version() {
             #set the wofi theme
             ln -sf ~/.config/HyprV/wofi/style/Wofi-Tr3ble-Light.css ~/.config/wofi/style.css
             #set background
-            swww img ~/.config/HyprV/backgrounds/Tr3ble-Light-Background.jpg --transition-fps 60 --transition-type wipe --transition-duration 2
+            #swww img ~/.config/HyprV/backgrounds/Tr3ble-Light-Background.jpg --transition-fps 60 --transition-type wipe --transition-duration 2
             #set sddm image
             cp -f ~/.config/HyprV/backgrounds/Tr3ble-Light-Background.jpg /usr/share/sddm/themes/sdt/wallpaper.jpg
             #set kitty Theme

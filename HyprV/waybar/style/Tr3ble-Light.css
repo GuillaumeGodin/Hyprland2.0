@@ -61,6 +61,7 @@ tooltip label{
 #custom-launch_thunderbird,
 #custom-launch_thunar,
 #custom-launch_kitty,
+#custom-media,
 #custom-info, /*New Info Tooltip*/
 #custom-weather
 {
@@ -256,6 +257,15 @@ tooltip label{
 }
 
 /*Bottom Right*/
+#custom-media {
+    border-radius: 10px 10px 10px 10px;
+    border-style: solid;
+    margin-right: 10px;
+    margin-left: 0px;
+    opacity: 0.8;
+    color: #000000;
+}
+
 #custom-info {
     border-radius: 10px 10px 10px 10px;
     border-width: 2px;
@@ -291,6 +301,7 @@ tooltip label{
 #custom-launch_thunderbird:hover,
 #custom-launch_thunar:hover,
 #custom-launch_kitty:hover,
+#custom-media:hover,
 #custom-info:hover,
 #custom-weather:hover {
     background-color: #3018b8;

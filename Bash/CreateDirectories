@@ -4,5 +4,6 @@
 mkdir /home/$USER/Documents
 mkdir /home/$USER/Downloads
 mkdir /home/$USER/Music
+mkdir /home/$USER/Music/Playlist
 mkdir /home/$USER/Pictures
 mkdir /home/$USER/Videos

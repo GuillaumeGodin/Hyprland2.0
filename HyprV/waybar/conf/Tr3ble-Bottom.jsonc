@@ -15,12 +15,14 @@
     ],
     "modules-center": ["wlr/taskbar"],
     "modules-right": [
+        "custom/media",
         "custom/info",
         "custom/weather"
     ],
 
     "include": [
         "~/.config/HyprV/waybar/conf/mesu.jsonc",
+        "~/.config/HyprV/waybar/conf/media.jsonc",
         "~/.config/HyprV/waybar/conf/info.jsonc"
     ],
 
@@ -52,6 +54,12 @@
         "format": "󱗼",
         "on-click": "sh -c '(sleep 0.5s; pkill wofi || wofi -c ~/.config/HyprV/wofi/config-lmenu)' & disown",
         "tooltip": false
+    },
+
+    "custom/media": {
+        "format": "{}",
+        "interval": 1,
+        "on-click": "playerctl play-pause"
     },
 
     "custom/info": {

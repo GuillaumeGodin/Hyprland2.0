@@ -4,7 +4,10 @@
 token=8b928b8ffd980d
 
 #get private ip
-privateIP=$(curl ifconfig.co)
+#privateIP=$(curl ifconfig.co)
+
+#curl -4 icanhazip for ipv4 or curl -6 icanhazip for ipv6
+privateIP=$(curl -4 icanhazip)
 
 #get geo location from private ip
 url=$(curl ipinfo.io/$privateIP?token=$token)

@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#needs yay mpv-mpris
+
+#get private ip
+artist=$(playerctl metadata artist)
+title=$(playerctl metadata title)
+album=$(playerctl metadata album)
+#next=$(playerctl next)
+
+
+
+if [ x"${artist}" == "x" ]
+then
+    artist="$($artist)"
+    #echo "Off"
+else
+    artist="${artist} - "
+    #echo "On"
+fi
+
+#echo $artist
+
+#TOOLTIP=$album
+
+#echo '{"text": "'$artist' - '$title'", "tooltip": "'$TOOLTIP'"}'
+echo '{"text": "'$artist''$title'"}'
