@@ -1,9 +1,11 @@
 #!/bin/bash
 
+#needs yay mpv-mpris
+
 #get private ip
-artist=$(playerctl metadata artist)
-title=$(playerctl metadata title)
-album=$(playerctl metadata album)
+artist=$(playerctl metadata artist --player=mpv)
+title=$(playerctl metadata title --player=mpv)
+album=$(playerctl metadata album --player=mpv)
 #next=$(playerctl next)
 
 

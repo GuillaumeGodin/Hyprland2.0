@@ -59,11 +59,16 @@
     "custom/media": {
         "format": "{}",
         "interval": 1,
-        "on-click": "playerctl play-pause"
+        "on-click": "playerctl play-pause --player=mpv"
     },
 
     "custom/info": {
         "format": "{}"
+    },
+
+    "custom/weather": {
+        "format": "{}",
+        "on-click": "firefox -kiosk https://www.theweathernetwork.com/en/city/ca/ontario/ottawa/current"
     },
 
     //centre taskbar
