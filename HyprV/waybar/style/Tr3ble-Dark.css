@@ -139,9 +139,7 @@ tooltip label{
 #custom-updates {
     border-radius: 10px 10px 10px 10px;
     border-width: 2px;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    border-right-style: solid;
+    border-style: solid;
     margin-left: 10px;
 }
 
