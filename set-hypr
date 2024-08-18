@@ -118,6 +118,7 @@ install_stage2=(
 #Game packages--------------------------------------------------------------------------------------------------------
 install_stage3=(
     steam
+    icu73-bin #needed for steamlink
     steamlink
     webcord
     obs-studio
