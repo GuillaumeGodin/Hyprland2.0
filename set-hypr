@@ -118,6 +118,7 @@ install_stage2=(
 #Game packages--------------------------------------------------------------------------------------------------------
 install_stage3=(
     steam
+    steamlink
     webcord
     obs-studio
     mangohud #gaming overlay like MSI Afterburner
