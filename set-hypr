@@ -83,6 +83,7 @@ install_stage=(
     waypaper
     tk
     yt-dlp
+    breezex-cursor-theme #nice breezex cursors
 )
 
 #Office packages------------------------------------------------------------------------------------------------------
