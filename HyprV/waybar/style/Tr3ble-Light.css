@@ -250,13 +250,30 @@ tooltip label{
     border-radius: 10px 10px 10px 10px;
     border-width: 2px;
     border-style: solid;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 #taskbar.empty{
 	background: rgba(12, 12, 12, 0.0);
     border-style: none;
+}
+
+#taskbar button {
+    padding: 5px;
+    color: #11111b;
+}
+
+#taskbar button.active {
+    color: #eeeeff;
+    background: #3018b8;
+    border-radius: 10px;
+}
+
+#taskbar button:hover {
+    background: #3018b8;
+    color: #eeeeff;
+    border-radius: 10px;
 }
 
 /*Bottom Right*/
