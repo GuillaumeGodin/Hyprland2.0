@@ -18,13 +18,13 @@
     ],
     "modules-right": [
         "tray",
-        "cpu",
-        "pulseaudio",
-        "pulseaudio#microphone",
         "backlight",
         "temperature",
         "custom/power_profile",
         "battery",
+        "cpu",
+        "pulseaudio",
+        "pulseaudio#microphone",
         "hyprland/language",
         "custom/myhyprv"
         //"custom/light_dark"
