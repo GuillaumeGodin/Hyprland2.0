@@ -63,12 +63,14 @@
     },
 
     "custom/info": {
-        "format": "{}"
+        "format": "{}",
+        "interval": 200
     },
 
     "custom/weather": {
         "format": "{}",
-        "on-click": "firefox -kiosk https://www.theweathernetwork.com/en/city/ca/ontario/ottawa/current"
+        "interval": 200
+//      "on-click": "firefox https://www.theweathernetwork.com/en/city/ca/ontario/ottawa/current"
     },
 
     //centre taskbar
@@ -76,11 +78,13 @@
         "format": "{icon}",
         "icon-size": 24,
         "all-outputs": true,
-        "tooltip-format": "{name} - {title}",
+        //"tooltip-format": "{name} - {title}",
+        "tooltip-format": "{name}",
         "on-click": "activate",
         "on-click-middle": "close",
         "ignore-list": [
-            "wofi"
+            "wofi",
+            "mpv"
         ],
 	    "app_ids-mapping": {
 	        "steam_app_39210": "Final Fantasy 14"

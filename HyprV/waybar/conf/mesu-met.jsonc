@@ -1,14 +1,15 @@
 {
-    "clock": {
-        "format": "{:%H:%M}",
-        "tooltip-format": "{: %A, %e %B %Y}"
-    },
+    //"clock": {
+    //    "format": "{:%H:%M}",
+    //    "tooltip-format": "{: %A, %e %B %Y}"
+    //},
 
     "custom/weather": {
         //shows the current weather and forecast
         "tooltip" : true,
         "format" : "{}",
-        "interval" : 30,
+        "on-click": "firefox https://www.theweathernetwork.com/en/city/ca/ontario/ottawa/current",
+        //"interval" : 30,
         "exec" : "~/.config/HyprV/waybar/scripts/waybar-wttr-c.py",
         "return-type" : "json"
     },
