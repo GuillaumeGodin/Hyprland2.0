@@ -3,6 +3,8 @@
 
 echo '' | tee -a /home/$USER/.bashrc
 echo '[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"' | tee -a /home/$USER/.bashrc
+echo '' | tee -a /home/$USER/.bashrc
+echo "HISTIGNORE='*sudo -S*'" | tee -a /home/$USER/.bashrc
 
 #sudo su <<HERE
 #HERE

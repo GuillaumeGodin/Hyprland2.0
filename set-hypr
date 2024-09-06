@@ -401,7 +401,7 @@ fi
 # Bash scripts-----------------------------------------------------------------------------------------------------------
 bash /home/$USER/Hyprland2.0/Bash/CreateDirectories
 #bash /home/$USER/Hyprland2.0/Bash/AutoStartSDDM
-bash /home/$USER/Hyprland2.0/Bash/KittySSH
+bash /home/$USER/Hyprland2.0/Bash/Bashrc
 sudo bash /home/$USER/Hyprland2.0/Bash/MoveLspApplications
 #bash /home/$USER/Hyprland2.0/Bash/XboxDongleDrivers
 
