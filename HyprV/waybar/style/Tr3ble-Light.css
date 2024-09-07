@@ -1,30 +1,38 @@
+@define-color backgroundColor #eeeeff;
+@define-color borderColor #ffffff;
+@define-color highlightColor #3018b8;
+@define-color writingColor #11111b;
+@define-color highlightWritingColor #eeeeff;
+/*
+*/
+
 * {
     border: none;
     border-radius: 0;
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
     font-size: 16px;
-    min-height: 0;
+    min-height: 0; 
 }
 
 window#waybar {
     background: rgba(21, 18, 27, 0);
-    color: #11111b;
+    color: @writingColor;
 }
 
 /*this is the pop up tooltip whenhovering*/
 tooltip {
-    background: #eeeeff;
+    background: @backgroundColor;
     opacity: 0.8;
     border-radius: 10px;
     border-width: 2px;
     border-style: solid;
-    border-color: #eeeeff;
+    border-color: @borderColor;
 }
 
 tooltip label{
-    color: #11111b;
-    font-size: 12px; /*tooltip text size*/
+    color: @writingColor;
+    font-size: 16px; /*tooltip text size*/
 }
 
 /*Top left to right*/
@@ -103,19 +111,19 @@ tooltip label{
 
 #workspaces button {
     padding: 5px;
-    color: #11111b;
+    color: @writingColor;
     margin-right: 5px;
 }
 
 #workspaces button.active {
-    color: #eeeeff;
-    background: #3018b8;
+    color: #000000;
+    background: @highlightColor;
     border-radius: 10px;
 }
 
 #workspaces button:hover {
-    background: #3018b8;
-    color: #eeeeff;
+    background: @highlightColor;
+    color: @highlightWritingColor;
     border-radius: 10px;
 }
 
@@ -261,29 +269,29 @@ tooltip label{
 
 #taskbar button {
     padding: 5px;
-    color: #11111b;
+    color: @writingColor;
 }
 
 #taskbar button.active {
-    color: #eeeeff;
-    background: #3018b8;
+    color: @highlightWritingColor;
+    background: @highlightColor;
     border-radius: 10px;
 }
 
 #taskbar button:hover {
-    background: #3018b8;
-    color: #eeeeff;
+    background: @highlightColor;
+    color: #11111b;
     border-radius: 10px;
 }
 
 /*Bottom Right*/
 #custom-media {
     border-radius: 10px 10px 10px 10px;
+    /*border-width: 2px;*/
     border-style: solid;
     margin-right: 10px;
     margin-left: 0px;
-    opacity: 0.8;
-    color: #000000;
+    color: @highlightWritingColor;
 }
 
 #custom-info {
@@ -324,8 +332,8 @@ tooltip label{
 #custom-media:hover,
 #custom-info:hover,
 #custom-weather:hover {
-    background-color: #3018b8;
-    color: #eeeeff;
+    background-color: @highlightColor;
+    color: @highlightWritingColor;
 }
 
 /*Top left to right*/
@@ -350,11 +358,12 @@ tooltip label{
 #custom-launch_thunar,
 #custom-launch_kitty,
 #taskbar,
+/*#custom-media,*/
 #custom-info, /*New Info Tooltip*/
 #custom-weather {
-border-color: #ffffff;
-background: #eeeeff;
-opacity: 0.8;
+border-color: @borderColor;
+background: @backgroundColor;
+opacity: 0.7;
 }
 
 /*Not sure*/
