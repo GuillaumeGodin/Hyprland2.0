@@ -20,7 +20,7 @@ def Widgets():
     pane.pack(fill=X, expand=True)
 
     # 1st Row Header---------------------------------------------------------------------------------
-    head_label = Label(pane, text="Privado", bg="yellow", font="SegoeUI 14", fg="black", width=55)
+    head_label = Label(pane, text="Privado", bg="yellow", font="SegoeUI 14", fg="black", width=85)
     head_label.grid(row=0, column=0, columnspan=4, sticky="n")
 
     # 2nd Row origin----------------------------------------------------------------------------------
