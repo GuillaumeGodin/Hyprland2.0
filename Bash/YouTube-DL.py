@@ -61,20 +61,20 @@ def Widgets():
     root.destinationText = Entry(pane, font="Arial", textvariable=download_Path)
     root.destinationText.insert(0, "/home/$USER/Music/") 
     root.destinationText.grid(row=3, column=1, sticky="new")
-    browse_B = Button(pane, text="Browse", bg="thistle1", font="Arial", command=Browse, pady=0, relief=GROOVE)
+    browse_B = Button(pane, text="Browse", bg="bisque", font="Arial", command=Browse, pady=0, relief=GROOVE)
     browse_B.grid(row=3, column=2, sticky="wne")
     
     # 5th Row Button Video----------------------------------------------------------------------------
     Download_Video = Button(pane, text="Video", bg="thistle1", font="Arial", command=DownloadVideo, relief=GROOVE, pady=0)
-    Download_Video.grid(row=4, column=0, sticky="enw", padx=30, pady=10)
+    Download_Video.grid(row=4, column=0, sticky="enw", padx=30, pady=5)
     
     # 5th Row Button Audio----------------------------------------------------------------------------
     Download_Audio = Button(pane, text="Audio", bg="thistle1", font="Arial", command=DownloadAudio, relief=GROOVE, pady=0)
-    Download_Audio.grid(row=4, column=1, sticky="new", padx=60, pady=10)
+    Download_Audio.grid(row=4, column=1, sticky="new", padx=60, pady=5)
     
     # 5th Row Button Playlist-------------------------------------------------------------------------
     Download_Playlist = Button(pane, text="Playlist", bg="thistle1", font="Arial", command=DownloadPlaylist, relief=GROOVE, pady=0)
-    Download_Playlist.grid(row=4, column=2, sticky="enw", padx=30, pady=10)
+    Download_Playlist.grid(row=4, column=2, sticky="enw", padx=30, pady=5)
 
 def Browse():
     download_Directory = filedialog.askdirectory(

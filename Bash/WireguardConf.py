@@ -10,7 +10,7 @@ root = tk.Tk()
 #root.geometry("600x140")
 root.resizable(height = None, width = None)
 root.resizable(0, 0)
-root.title("Rsync")
+root.title("Wireguard")
 root.config(background="black")
 
 def Widgets():
@@ -24,7 +24,7 @@ def Widgets():
     head_label.grid(row=0, column=0, columnspan=4, sticky="n")
 
     # 2nd Row origin----------------------------------------------------------------------------------
-    origin_label = Label(pane, text=".conf :", bg="white", font="Arial")
+    origin_label = Label(pane, text=".conf", bg="white", font="Arial")
     origin_label.grid(row=1, column=0, sticky="enw")
     root.originText = Entry(pane, textvariable=from_Path, font="Arial", width=45)
     root.originText.grid(row=1, column=1, columnspan=2, sticky="new")
