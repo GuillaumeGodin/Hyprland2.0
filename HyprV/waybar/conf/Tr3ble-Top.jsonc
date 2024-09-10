@@ -13,37 +13,35 @@
     ],
     "modules-center": [
         "idle_inhibitor",
-        "clock",
+        //"clock",                  //replaced with custom/time
+        "custom/time",
         "custom/updates"
     ],
     "modules-right": [
         "tray",
+        "cpu",
+        "pulseaudio",
+        "pulseaudio#microphone",
         "backlight",
         "temperature",
         "custom/power_profile",
         "battery",
-        "cpu",
-        "pulseaudio",
-        "pulseaudio#microphone",
         "hyprland/language",
         "custom/myhyprv"
-        //"custom/light_dark"
     ],
-    
+/*    
     "include": [
-        "~/.config/HyprV/waybar/conf/mesu.jsonc",
         "~/.config/HyprV/waybar/conf/asus-rog.jsonc",
-        "~/.config/HyprV/waybar/conf/hyprv-util.jsonc"
     ],
-
+*/
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
             "activated": "󰛐",
             "deactivated": "󰛑"
-        },
-        "tooltip": true
+        }
     },
+
     "hyprland/language": {
         "interval": 30,
         "format":" {}",
@@ -53,6 +51,17 @@
         "keyboard-name": "keyboard-k380-keyboard",
         "on-click": "~/.config/HyprV/hyprv_util swkb",
         "signal": 8
+    },
+
+    "custom/myhyprv": {
+        //shows the current power profile and switches to next on click
+        "exec": "~/.config/HyprV/hyprv_util",
+        "return-type" : "json",
+        "interval": 30,
+        "format": "{}",
+        //"on-click": "~/.config/HyprV/hyprv_util vswitch",
+        "on-click": "~/.config/HyprV/hyprv_util vswitch; ~/.config/HyprV/waybar/scripts/baraction",
+        "tooltip": true
     },
 
     "custom/power_btn": {
@@ -66,46 +75,26 @@
         "on-click": "sh -c '(sleep 0.5s; swaylock)' & disown",
         "tooltip": false
     },
-
-    /*
-        "hyprland/workspaces": {
-            "disable-scroll": true,
-            "all-outputs": true,
-            "on-click": "activate",
-            "persistent_workspaces": {
-                "1": [],
-                "2": [],
-                "3": [],
-                "4": [],
-                "5": [],
-                "6": [],
-                "7": [],
-                "8": [],
-                "9": [],
-                "10": []
-            }
-        },
-    */
     
-    /* https://github.com/Alexays/Waybar/wiki/Module:-Hyprland#persistent-workspaces*/
-        "hyprland/workspaces": {
-            "format": "{icon}",
-            "format-icons": {
-                "1": "1",
-                "2": "2",
-                "3": "3",
-                "4": "4",
-                "5": "5",
-                "6": "6",
-                "7": "7",
-                "8": "8",
-                "9": "9",
-                "10": "10"
-            },
-            "persistent-workspaces": {
-                    "*": 10
-            }
+    /*https://github.com/Alexays/Waybar/wiki/Module:-Hyprland#persistent-workspaces*/
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "10"
         },
+        "persistent-workspaces": {
+                "*": 10
+        }
+    },
 
     "cpu": {
         "interval": 10,
@@ -164,6 +153,26 @@
         "tooltip-format": " at {volume}%"
     },
 
+    "temperature": {
+        "thermal-zone": 1,
+        "format": "",
+        "format-alt-click": "click-right",
+        "format-alt": " {temperatureC}°C",
+        "critical-threshold": 70,
+        "format-critical": " {temperatureC}°C",
+        "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
+    },
+
+    "custom/power_profile": {
+    //shows the current power profile and switches to next on click
+    "exec": "~/.config/HyprV/waybar/scripts/power_profile",
+    "return-type": "json",
+    "interval": 20,
+    "format": "{}",
+    "on-click": "~/.config/HyprV/waybar/scripts/power_profile next",
+    "signal": 8
+    },
+
     "backlight": {
         "device": "intel_backlight",
         "format": "{icon}",
@@ -191,9 +200,20 @@
         "tooltip": true
     },
 
+    "custom/time": {
+        "exec": "~/.config/HyprV/waybar/scripts/time",
+        "on-click": "evolution",
+        "return-type" : "json",
+        "interval": 1,
+        "format": "{}"
+    }
+
+/*
     "clock": {
+        "timezone": "Canada/Eastern",       //Not sure if this works to select timzone
         "tooltip-format": "<tt><big>{calendar}</big></tt>",
         "format": "{:%a %d %b - %I:%M %p}",
         "interval": 1
-    }
+    },
+*/
 }

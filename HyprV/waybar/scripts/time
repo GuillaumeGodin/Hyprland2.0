@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#https://www.howtogeek.com/410442/how-to-display-the-date-and-time-in-the-linux-terminal-and-use-it-in-bash-scripts/
+
+day=$(date +%a)
+date=$(date +%d)
+month=$(date +%b)
+hour=$(date +%I)
+minute=$(date +%M)
+pmam=$(date +%P)
+
+echo '{"text": "'$day' '$date' '$month' - '$hour':'$minute' '$pmam'"}'

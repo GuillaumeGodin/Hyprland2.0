@@ -1,8 +1,0 @@
-{
-    "custom/media": {
-        "exec": "~/.config/HyprV/waybar/conf/media",
-        "return-type" : "json",
-        "format": "{}"//,
-        //"tooltip": true
-    }
-}

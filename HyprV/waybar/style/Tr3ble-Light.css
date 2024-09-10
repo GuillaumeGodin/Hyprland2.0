@@ -41,6 +41,7 @@ tooltip label{
 #workspaces,
 #idle_inhibitor,
 #clock,
+#custom-time,
 #custom-updates,
 #tray,
 #cpu,
@@ -136,7 +137,8 @@ tooltip label{
     border-left-style: solid;
 }
 
-#clock {
+#clock,
+#custom-time {
     border-radius: 0px 10px 10px 0px;
     border-width: 2px;
     border-top-style: solid;
@@ -314,7 +316,8 @@ tooltip label{
 #custom-power_btn:hover,
 #custom-lock_screen:hover,
 #idle_inhibitor:hover,
-#clock:hover,
+/*#clock:hover,*/               /*Replaced wuth custom-time*/
+#custom-time:hover,
 #custom-updates:hover,
 #backlight:hover,
 #custom-power_profile:hover,
@@ -341,11 +344,12 @@ tooltip label{
 #custom-lock_screen,
 #workspaces,
 #idle_inhibitor,
-#clock,
+/*#clock,*/                     /*replaced with custom-time*/
+#custom-time,
 #custom-updates,
 #tray,
 #backlight,
-#custom-power_profile,/*Not sure the order?*/
+#custom-power_profile,          /*Not sure the order?*/
 #battery,
 #cpu,
 #pulseaudio,
