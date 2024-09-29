@@ -406,14 +406,14 @@ sudo bash /home/$USER/Hyprland2.0/Bash/MoveLspApplications
 #bash /home/$USER/Hyprland2.0/Bash/XboxDongleDrivers
 
 #Set measurement unit------------------------------------------------------------------------------------------------------
-read -rep $'[\e[1;33mACTION\e[0m] - Select measurement units, (m) for metric or (i) for imperial? (m.i) ' INST
-if [[ $INST == "M" || $INST == "m" ]]; then
-    echo -e "$COK - Setting mesuring system to metric..."
-    ln -sf ~/.config/HyprV/waybar/conf/mesu-met.jsonc ~/.config/HyprV/waybar/conf/mesu.jsonc
-elif [[ $INST == "I" || $INST == "i" ]]; then
-    echo -e "$COK - Setting mesuring system to imperial..."
-    ln -sf ~/.config/HyprV/waybar/conf/mesu-imp.jsonc ~/.config/HyprV/waybar/conf/mesu.jsonc
-fi
+#read -rep $'[\e[1;33mACTION\e[0m] - Select measurement units, (m) for metric or (i) for imperial? (m.i) ' INST
+#if [[ $INST == "M" || $INST == "m" ]]; then
+#    echo -e "$COK - Setting mesuring system to metric..."
+#    ln -sf ~/.config/HyprV/waybar/conf/mesu-met.jsonc ~/.config/HyprV/waybar/conf/mesu.jsonc
+#elif [[ $INST == "I" || $INST == "i" ]]; then
+#    echo -e "$COK - Setting mesuring system to imperial..."
+#    ln -sf ~/.config/HyprV/waybar/conf/mesu-imp.jsonc ~/.config/HyprV/waybar/conf/mesu.jsonc
+#fi
 
 #Install background manager-----------------------------------------------------------------------------------------------
 read -rep $'[\e[1;33mACTION\e[0m] - Select a background manager, (s) for swww or (h) for hyprpaper? (s.h)' INST
