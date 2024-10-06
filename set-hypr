@@ -48,7 +48,8 @@ install_stage=(
     wofi 
     wlogout 
     xdg-desktop-portal-hyprland 
-    swappy 
+    viewnior #image viewer
+    #swappy #Basic image viewer
     grim 
     slurp 
     thunar 
