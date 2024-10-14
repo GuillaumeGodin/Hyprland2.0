@@ -182,6 +182,10 @@ moveApps=(
     in.lsp_plug.lsp_plugins_trigger_stereo.desktop
     in.lsp_plug.lsp_plugins_chorus_mono.desktop
     in.lsp_plug.lsp_plugins_chorus_stereo.desktop
+    in.lsp_plug.lsp_plugins_return_mono.desktop
+    in.lsp_plug.lsp_plugins_return_stereo.desktop
+    in.lsp_plug.lsp_plugins_send_mono.desktop
+    in.lsp_plug.lsp_plugins_send_stereo.desktop
 )
 
 for APPS in ${moveApps[@]}; do
