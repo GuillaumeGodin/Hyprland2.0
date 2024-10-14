@@ -49,7 +49,7 @@ install_stage=(
     wlogout 
     xdg-desktop-portal-hyprland 
     viewnior #image viewer
-    #swappy #Basic image viewer
+    swappy #Basic image viewer
     grim 
     slurp 
     thunar 
