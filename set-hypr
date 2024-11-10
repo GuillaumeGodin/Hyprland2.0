@@ -93,7 +93,8 @@ install_stage2=(
     zim #note taking app
     blender
     gimp
-    code
+    #code
+    visual-studio-code-bin
     okular #PDF Viewer
     timeshift
     gparted
@@ -425,7 +426,6 @@ if [[ $INST == "S" || $INST == "s" ]]; then
 elif [[ $INST == "H" || $INST == "h" ]]; then
     echo -e "$CNT - Installing hyprpaper, this may take a while..."
     install_software hyprpaper
-    bash /home/$USER/Hyprland2.0/Bash/SetHyprpaperBackground
 fi
 
 ### Install the starship shell ###

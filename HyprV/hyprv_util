@@ -48,11 +48,7 @@ switch_version() {
             #set the waybar theme
             ln -sf ~/.config/HyprV/waybar/style/Tr3ble-Dark.css ~/.config/waybar/style.css
             #set the wofi theme
-            ln -sf ~/.config/HyprV/wofi/style/Wofi-Tr3ble-Dark.css ~/.config/wofi/style.css
-            #set background
-            #swww img ~/.config/HyprV/backgrounds/Tr3ble-Dark-Background.jpg --transition-fps 60 --transition-type wipe --transition-duration 2
-            #set sddm image
-            cp -f ~/.config/HyprV/backgrounds/Tr3ble-Dark-Background.jpg /usr/share/sddm/themes/sdt/wallpaper.jpg
+            ln -sf ~/.config/HyprV/wofi/style/Wofi-Tr3ble-Dark.css ~/.config/wofi/style.css           
             #set kitty Theme
             ln -sf ~/.config/HyprV/kitty/MochaDark.conf ~/.config/HyprV/kitty/mocha.conf
             kill -SIGUSR1 $(pidof kitty)
@@ -73,10 +69,6 @@ switch_version() {
             ln -sf ~/.config/HyprV/waybar/style/Tr3ble-Light.css ~/.config/waybar/style.css
             #set the wofi theme
             ln -sf ~/.config/HyprV/wofi/style/Wofi-Tr3ble-Light.css ~/.config/wofi/style.css
-            #set background
-            #swww img ~/.config/HyprV/backgrounds/Tr3ble-Light-Background.jpg --transition-fps 60 --transition-type wipe --transition-duration 2
-            #set sddm image
-            cp -f ~/.config/HyprV/backgrounds/Tr3ble-Light-Background.jpg /usr/share/sddm/themes/sdt/wallpaper.jpg
             #set kitty Theme
             ln -sf ~/.config/HyprV/kitty/MochaLight.conf ~/.config/HyprV/kitty/mocha.conf
             kill -SIGUSR1 $(pidof kitty)
