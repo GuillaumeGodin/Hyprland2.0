@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# https://github.com/chubin/wttr.in
+
+wttr=$(curl wttr.in/Ottawa?format=1)
+feels=$(curl wttr.in/Ottawa?format=%c%f)
+wind=$(curl wttr.in/Ottawa?format=%w)
+rain=$(curl wttr.in/Ottawa?format=%p)
+
+TOOLTIP='Feels like = '$feels'\n'\
+'Wind = '$wind'\n'\
+'Rain = '$rain\
+
+echo '{"text": "'$wttr'", "tooltip": "'$TOOLTIP'"}'
