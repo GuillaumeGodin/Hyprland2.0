@@ -1,0 +1,79 @@
+/*
+see following link
+https://www.userchrome.org/
+about:support
+*/
+
+.tabbrowser-tab[selected] .tab-content {
+  background-color: #ffbb00 !important;
+  color: black !important;
+}
+
+#urlbar-input:focus::selection, 
+#urlbar-input:not(:focus)::selection {
+  background-color: #ffbb00 !important;
+  color: black !important;
+}
+
+#urlbar-input:not(:focus)::selection {
+  background-color: #ffbb00b7 !important;
+  color: black !important;
+}
+
+.urlbarView-row {
+  border: 1px solid transparent;
+}
+
+.urlbarView-row:hover {
+  background-color: #ffbb00 !important;
+  color: black !important;
+}
+
+#appMenu-popup toolbarbutton.subviewbutton:not([disabled], [open], :active):is(:hover) {
+  background-color: #ffbb00 !important;
+  color: black !important;
+}
+
+/*Bookmark Highlight*/
+#personal-bookmarks .bookmark-item {
+  &:hover  > .toolbarbutton-text { 
+    color: black !important;
+  }
+}
+
+#personal-bookmarks .bookmark-item {
+  &:hover { 
+    background-color: #ffbb00 !important;
+  }
+}
+
+/* Changes hamburger menu background color */
+/*
+:root { --arrowpanel-background: #ffbb00 !important; }
+*/
+
+/*A lot of this got fixed except the 4th line*/
+/*
+:root {
+  --urlbarView-highlight-background: #ffbb00 !important;
+  --urlbarView-hover-background: #ffbb00 !important;
+  --urlbarView-separator-color: #ffbb00 !important;
+  --button-hover-bgcolor: #ffbb00 !important;
+}
+*/
+
+/* Makes bookmarks button always orange */
+/*  
+.toolbarbutton-text {
+  background-color: #ffbb00 !important;
+  color: black !important;
+}
+*/
+
+/*Cool hover of bookmarks*/
+/*
+#personal-bookmarks .bookmark-item {
+  & > .toolbarbutton-text { display: none !important; }
+  &:hover  > .toolbarbutton-text { display: block !important; }
+}
+*/

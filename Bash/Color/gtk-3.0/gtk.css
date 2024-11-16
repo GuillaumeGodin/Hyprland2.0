@@ -1,0 +1,51 @@
+/*see https://forum.xfce.org/viewtopic.php?pid=66248#p66248*/
+
+/*.thunar .shortcuts-pane .view {background-color: red} /* sidebar - shortcuts view */
+/*.thunar .shortcuts-pane .view {color: blue} /* sidebar - shortcuts view - font color - can use pseudo states :selected, :hover */
+/*.thunar treeview {background-color: pink} /* sidebar - treeview */
+/*.thunar treeview {color: blue} /* sidebar - shortcuts view - font color - can use pseudo states :selected, :hover */
+
+/*.thunar .standard-view .view {background-color: blue} /* main contents view */
+/*.thunar .standard-view .view {color: yellow} /* main contents view font color - can use pseudo states :selected, :hover */
+/*.thunar .standard-view .view header button {background-color: lightblue} /* main contents views - header while in list view */
+
+/*.thunar toolbar {background-color: yellow} /* toolbar */ 
+/*.thunar toolbar entry {background-color: yellow} /* toolbar entry when pathbar style */
+/*.thunar .path-bar-button {background: none; background-color: yellow} /* toolbar entry when toolbar style */
+
+/*.thunar statusbar {background-color: green} /* status bar */
+/*.thunar paned>grid {background-color: green} /* to get statusbar background - may affect other areas ? */
+
+/*.thunar menubar { color: red } /* just the menubar contents */
+/*.thunar menu {background-color: orange; color: purple} /* just the drop-down menus */
+/*.thunar menuitem:hover { background-color: yellow; color: blue } /* menu items being hovered over */
+
+/*
+thunar -q
+GTK_DEBUG=interactive thunar
+*/
+
+/* Selected menubar and menu items */
+menubar > menuitem:hover,
+menu > menuitem:hover,
+.thunar .view:selected,
+.thunar toolbar entry selection {
+    background-color: #ffbb00;
+    color: black;
+    box-shadow: none;
+}
+
+/*changes bottom statusbar color*/
+/*
+.thunar statusbar { 
+    background-color: #ffbb00; 
+    color: black; 
+}
+*/
+
+/*changes backgroud color*/
+/*
+.thunar .view { 
+    background-color: #CCCCCC;
+}
+*/

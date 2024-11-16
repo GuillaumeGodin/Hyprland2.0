@@ -15,6 +15,8 @@
 #sudo pacman -S tk
 
 import os
+# from subprocess import Popen, PIPE
+import subprocess
 import tkinter as tk
 from tkinter import *
 from tkinter import messagebox, filedialog
@@ -42,11 +44,10 @@ def Widgets():
 #    head_label.pack(fill=X, expand=False, side=TOP)
     head_label.grid(row=0, column=0, columnspan=3, sticky="n")
 
-    # 4th Row Destination-----------------------------------------------------------------------------
+    # 2nd Row Destination-----------------------------------------------------------------------------
     destination_label = Label(pane, text="Color Hex Code :", bg="white", font="Arial")
     destination_label.grid(row=3, column=0, sticky="enw")
-    root.destinationText = Entry(pane, font="Arial", textvariable=download_Path)
-    # root.destinationText.insert(0, "/home/$USER/Music/") 
+    root.destinationText = Entry(pane, font="Arial", textvariable=hexColor)
     root.destinationText.grid(row=3, column=1, sticky="new")
     browse_B = Button(pane, text="Hyprpicker", bg="bisque", font="Arial", command=hyprpickerColor, pady=0, relief=GROOVE)
     browse_B.grid(row=3, column=2, sticky="wne")
@@ -62,16 +63,37 @@ def Widgets():
 #     download_Path.set(download_Directory)
 
 def hyprpickerColor():
-    # download_Directory = os.popen('hyprpicker').read()
-    
-    # download_Directory2 = os.system('{} | sed "s/^.\{1\}//" | sed "s/.\{1\}$//"'.format(download_Directory.get()))
-    download_Directory = os.system('{} | sed "s/^.\{1\}//" | sed "s/.\{1\}$//"'.format(download_Directory.get()))
+    command = os.popen('hyprpicker | sed "s/^.\{1\}//"')
+    output = command.read()
+    print(output[:6])
+    hexColor.set(output[:6])
 
-    download_Path.set(download_Directory)
+
+def setColor():
+    # Get current color
+    command = os.popen('echo "$(</home/$USER/Hyprland2.0/Bash/Color/currentColor)"')
+    currentColor1 = command.read()
+    currentColor2 = currentColor1[:6]
+    print(currentColor2)
+
+    # Update Waybar
+    # os.system('sed -i "/@define-color borderColor/c @define-color borderColor #{};" .config/HyprV/waybar/style/Tr3ble-Dark.css'.format(hexColor.get()))
+    # os.system('sed -i "/@define-color highlightColor/c @define-color highlightColor #{};" .config/HyprV/waybar/style/Tr3ble-Dark.css'.format(hexColor.get()))
+
+    os.system('sed -i "/{}/c {}" /home/$USER/Hyprland2.0/Bash/Color/currentColor'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/HyprV/waybar/style/Tr3ble-Dark.css'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/HyprV/waybar/style/Tr3ble-Light.css'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/gtk-3.0/gtk.css'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .mozilla/firefox/k3st9w68.default-release/chrome/userChrome.css'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .mozilla/firefox/k3st9w68.default-release/chrome/userContent.css'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/hypr/hyprland.conf'.format(currentColor2, hexColor.get()))
+
+    # Restart Waybar
+    os.system('hyprctl reload')
+    quit()
 
 # Creating the tkinter Variables
-setColor = StringVar()
-download_Path = StringVar()
+hexColor = StringVar()
 
 # Calling the Widgets() function
 Widgets()

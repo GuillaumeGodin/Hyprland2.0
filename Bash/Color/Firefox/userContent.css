@@ -1,0 +1,6 @@
+@-moz-document regexp("http(s)?:.*") {
+    ::selection {
+        background-color: #ffbb00b7 !important;
+        color: black !important;
+    }
+}
