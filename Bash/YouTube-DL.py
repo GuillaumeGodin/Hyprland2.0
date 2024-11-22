@@ -5,6 +5,9 @@
 #to use in terminal for playlist audio only
 #Desktop\Python\yt-dlp.exe --ignore-errors --format bestaudio --extract-audio --audio-format mp3 --audio-quality 160K --output "%(title)s.%(ext)s" --yes-playlist (link)
 
+#Best 1080 with audio
+#yt-dlp -f "bestvideo[height<=1080]+bestaudio[ext=m4a]/bestvideo+bestaudio" (link)
+
 #Ubuntu
 #sudo apt install yt-DownloadPlaylist
 #sudo apt install tk
@@ -84,9 +87,14 @@ def Browse():
 
 
 def DownloadVideo():
-
+    
     os.system(
-        'yt-dlp -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio" --merge-output-format mp4 -o "{}/{}.mp4" {}'.format(download_Path.get(), video_Name.get(), video_Link.get()))
+        'yt-dlp -f "bestvideo[height<=1080]+bestaudio[ext=m4a]/bestvideo+bestaudio" --merge-output-format mp4 -o "{}/{}.mp4" {}'.format(download_Path.get(), video_Name.get(), video_Link.get())
+    )
+
+    # os.system(
+    #     'yt-dlp -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio" --merge-output-format mp4 -o "{}/{}.mp4" {}'.format(download_Path.get(), video_Name.get(), video_Link.get())
+    # )
 
 
 def DownloadAudio():
