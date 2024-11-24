@@ -16,7 +16,7 @@
 
 import os
 # from subprocess import Popen, PIPE
-import subprocess
+import subprocess as sp
 import tkinter as tk
 from tkinter import *
 from tkinter import messagebox, filedialog
@@ -48,6 +48,7 @@ def Widgets():
     destination_label = Label(pane, text="Color Hex Code :", bg="white", font="Arial")
     destination_label.grid(row=3, column=0, sticky="enw")
     root.destinationText = Entry(pane, font="Arial", textvariable=hexColor)
+    root.destinationText.insert(0, call)
     root.destinationText.grid(row=3, column=1, sticky="new")
     browse_B = Button(pane, text="Hyprpicker", bg="bisque", font="Arial", command=hyprpickerColor, pady=0, relief=GROOVE)
     browse_B.grid(row=3, column=2, sticky="wne")
@@ -61,6 +62,9 @@ def Widgets():
 #         initialdir="YOUR DIRECTORY PATH", title="Save Video")
 
 #     download_Path.set(download_Directory)
+
+call = sp.getoutput('echo "$(</home/$USER/Hyprland2.0/Bash/Color/currentColor)"')
+print(call)
 
 def hyprpickerColor():
     command = os.popen('hyprpicker | sed "s/^.\{1\}//"')
