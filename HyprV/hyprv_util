@@ -1,24 +1,25 @@
 #!/bin/bash
-. ~/.config/HyprV/hyprv.conf
+
+#Set your keyboard name here and in waybar waybar_top.jsonc 
+#hyprctl devices
+SET_KB="keyboard-k380-keyboard"
 
 get_theme() {
     # Check which waybar theme is set
-    #THEMEIS=$(readlink -f ~/.config/waybar/style.css | cut -d '-' -f3) 
-    #THEMEIS=$(readlink -f ~/.config/waybar/style.css | cut -d '-' -f3) #Return Dark.css
-    THEMEIS=$(readlink -f ~/.config/waybar/style.css | cut -d '/' -f8) #Return Tr3ble-Dark.css
+    THEMEIS=$(readlink -f ~/.config/waybar/style.css | cut -d '/' -f8) #Return waybar_dark.css
 
     #if the theme is not dark then we need to switch to it
-    if [[ $THEMEIS == "Tr3ble-Dark.css" ]]; then
-        SWITCHTO=""
-        MODESTR="Light"
+    if [[ $THEMEIS == "waybar_dark.css" ]]; then
+        # SWITCHTO=""
+        MODESTR="light"
     else
-        SWITCHTO="-dark"
-        MODESTR="Dark"
+        # SWITCHTO="_dark"
+        MODESTR="dark"
     fi
 }
 
 get_ver() {
-    VER=$(readlink -f ~/.config/waybar/config.jsonc | cut -d '-' -f1 | cut -d '/' -f8) #returns Tr3ble
+    VER=$(readlink -f ~/.config/waybar/config.jsonc | cut -d '_' -f1 | cut -d '/' -f8) #returns waybar
 }
 
 restart_waybar() {
@@ -29,38 +30,39 @@ restart_waybar() {
     get_ver   
 
     #if [[ $VER == "v4" ]]; then
-    if [[ $VER == "Tr3ble" ]]; then
-        #waybar --config ~/.config/HyprV/waybar/conf/v4-config-bottom.jsonc
-        waybar --config ~/.config/HyprV/waybar/conf/Tr3ble-Bottom.jsonc
+    if [[ $VER == "waybar" ]]; then
+        waybar --config ~/.config/HyprV/waybar/conf/waybar_bottom.jsonc
     fi
 }
 
 switch_version() {
-    get_theme #Return Tr3ble-Dark.css
-    get_ver #returns Tr3ble
+    get_theme #Return waybar_dark.css
+    get_ver #returns waybar
     case $THEMEIS in
-        Tr3ble-Light.css)
-            #we are on Tr3ble-Dark so switch to Tr3ble-Dark
-            VERTO="Tr3ble-Dark"
-            notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "switching to Tr3ble Dark"
+        waybar_light.css)
+            #we are on waybar_light so switch to waybar_dark
+            VERTO="waybar_dark"
+            notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Switching to Dark Theme"
             #set the waybar config
-            ln -sf ~/.config/HyprV/waybar/conf/Tr3ble-Top.jsonc ~/.config/waybar/config.jsonc
+            ln -sf ~/.config/HyprV/waybar/conf/waybar_top.jsonc ~/.config/waybar/config.jsonc
             #set the waybar theme
-            ln -sf ~/.config/HyprV/waybar/style/Tr3ble-Dark.css ~/.config/waybar/style.css
+            ln -sf ~/.config/HyprV/waybar/style/waybar_dark.css ~/.config/waybar/style.css
             #set the wofi theme
-            ln -sf ~/.config/HyprV/wofi/style/Wofi-Tr3ble-Dark.css ~/.config/wofi/style.css
+            ln -sf ~/.config/HyprV/wofi/style/wofi_dark.css ~/.config/wofi/style.css
             #set the wlogout theme
-            ln -sf ~/.config/HyprV/wlogout/style/dark_style.css ~/.config/wlogout/style.css
+            ln -sf ~/.config/HyprV/wlogout/style/wlogout_dark.css ~/.config/wlogout/style.css
             #set the mako theme
-            ln -sf ~/.config/HyprV/mako/conf/dark_config ~/.config/mako/config
+            ln -sf ~/.config/HyprV/mako/conf/mako_dark ~/.config/mako/config
             makoctl reload
-            #set background
-            #swww img ~/.config/HyprV/backgrounds/Tr3ble-Dark-Background.jpg --transition-fps 60 --transition-type wipe --transition-duration 2
-            #set sddm image
-            cp -f ~/.config/HyprV/backgrounds/Tr3ble-Dark-Background.jpg /usr/share/sddm/themes/sdt/wallpaper.jpg
             #set kitty Theme
             ln -sf ~/.config/HyprV/kitty/MochaDark.conf ~/.config/HyprV/kitty/mocha.conf
             kill -SIGUSR1 $(pidof kitty)
+
+            #set background
+            #swww img ~/.config/HyprV/backgrounds/background_dark.jpg --transition-fps 60 --transition-type wipe --transition-duration 2
+            #set sddm image
+            # cp -f ~/.config/HyprV/backgrounds/background_dark.jpg /usr/share/sddm/themes/sdt/wallpaper.jpg
+            
             #set icon themes
             xfconf-query -c xsettings -p /Net/IconThemeName -s "Papirus-Dark"
             gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark"
@@ -68,28 +70,30 @@ switch_version() {
             gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
         ;;
 
-        Tr3ble-Dark.css)
-            #we are on Tr3ble-Dark so switch to Tr3ble Light
-            VERTO="Tr3ble-Light"
-            notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "switching to Tr3ble Light"
+        waybar_dark.css)
+            #we are on waybar_dark so switch to waybar_light
+            VERTO="waybar_light"
+            notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Switching to Light Theme"
             #set the waybar config
-            ln -sf ~/.config/HyprV/waybar/conf/Tr3ble-Top.jsonc ~/.config/waybar/config.jsonc
+            ln -sf ~/.config/HyprV/waybar/conf/waybar_top.jsonc ~/.config/waybar/config.jsonc
             #set the waybar theme
-            ln -sf ~/.config/HyprV/waybar/style/Tr3ble-Light.css ~/.config/waybar/style.css
+            ln -sf ~/.config/HyprV/waybar/style/waybar_light.css ~/.config/waybar/style.css
             #set the wofi theme
-            ln -sf ~/.config/HyprV/wofi/style/Wofi-Tr3ble-Light.css ~/.config/wofi/style.css
+            ln -sf ~/.config/HyprV/wofi/style/wofi_light.css ~/.config/wofi/style.css
             #set the wlogout theme
-            ln -sf ~/.config/HyprV/wlogout/style/light_style.css ~/.config/wlogout/style.css
+            ln -sf ~/.config/HyprV/wlogout/style/wlogout_light.css ~/.config/wlogout/style.css
             #set the mako theme
-            ln -sf ~/.config/HyprV/mako/conf/light_config ~/.config/mako/config
+            ln -sf ~/.config/HyprV/mako/conf/mako_light ~/.config/mako/config
             makoctl reload
-            #set background
-            #swww img ~/.config/HyprV/backgrounds/Tr3ble-Light-Background.jpg --transition-fps 60 --transition-type wipe --transition-duration 2
-            #set sddm image
-            cp -f ~/.config/HyprV/backgrounds/Tr3ble-Light-Background.jpg /usr/share/sddm/themes/sdt/wallpaper.jpg
             #set kitty Theme
             ln -sf ~/.config/HyprV/kitty/MochaLight.conf ~/.config/HyprV/kitty/mocha.conf
             kill -SIGUSR1 $(pidof kitty)
+
+            #set background
+            #swww img ~/.config/HyprV/backgrounds/background_light.jpg --transition-fps 60 --transition-type wipe --transition-duration 2
+            #set sddm image
+            # cp -f ~/.config/HyprV/backgrounds/background_light.jpg /usr/share/sddm/themes/sdt/wallpaper.jpg
+
             #set icon themes
             xfconf-query -c xsettings -p /Net/IconThemeName -s "Papirus-Light"
             gsettings set org.gnome.desktop.interface icon-theme "Papirus-Light"
@@ -120,12 +124,16 @@ fi
 # need to show the version and tooltip
 get_ver
 
-TOOLTIP='Default Keybinds\n'\
-'-------------------------------------\n'\
+TOOLTIP='------------------\n'\
+'Move Things Around\n'\
+'------------------\n'\
 'SUPER + # = Change Workspace\n'\
 'SUPER + ALT + # = Move to Workspace\n'\
 'ALT + # = Change/Move to Workspace\n'\
-'-------------------------------------\n'\
+'ALT + TAB = Toggle Waybar\n'\
+'-------------------\n'\
+'Open and Close Apps\n'\
+'-------------------\n'\
 'ALT + A = Audacity\n'\
 'ALT + B = Blender\n'\
 'ALT + C = Calculator (galculator)\n'\
@@ -140,13 +148,25 @@ TOOLTIP='Default Keybinds\n'\
 'ALT + T = Terminal (Kitty)\n'\
 'ALT + V = VSCode\n'\
 'ALT + W = Background (waypaper)\n'\
-'-------------------------------------\n'\
+'----------\n'\
+'Main Tools\n'\
+'----------\n'\
 'SUPER + C = Open clipboard manager\n'\
 'SUPER + L = Lock Screen\n'\
 'SUPER + M = Logout menu\n'\
 'SUPER + S = Screenshot\n'\
+'SUPER + T = Light/Dark Mode\n'\
 'SUPER + V = Toggle Float\n'\
-'SUPER + SPACE = App Launcher'\
+'SUPER + SPACE = App Launcher\n'\
+'ALT + L = Toggle Hidden Workspace (Playlist)\n'\
+'ALT + K = Move to Hidden Workspace (Playlist)\n'\
+'--------\n'\
+'Playlist\n'\
+'--------\n'\
+'ALT + P = Play Playlist\n'\
+'ALT + [ = Play Previous Song\n'\
+'ALT + ] = Play Next Song\n'\
+'ALT + \\ = Stop Playlist'\
 
-echo '{"text": "'$VER'", "tooltip": "'$TOOLTIP'"}'
-#echo '{"text": "Tr3ble", "tooltip": "'$TOOLTIP'"}'
+# echo '{"text": "'$VER'", "tooltip": "'$TOOLTIP'"}'
+echo '{"text": "Tr3ble", "tooltip": "'$TOOLTIP'"}'
