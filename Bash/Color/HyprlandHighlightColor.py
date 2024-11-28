@@ -85,12 +85,27 @@ def setColor():
     # os.system('sed -i "/@define-color highlightColor/c @define-color highlightColor #{};" .config/HyprV/waybar/style/Tr3ble-Dark.css'.format(hexColor.get()))
 
     os.system('sed -i "/{}/c {}" /home/$USER/Hyprland2.0/Bash/Color/currentColor'.format(currentColor2, hexColor.get()))
+    #hyprland (border)
+    os.system('sed -i "s/{}/{}/g" .config/hypr/hyprland.conf'.format(currentColor2, hexColor.get()))
+    # gtk (thunar)
+    os.system('sed -i "s/{}/{}/g" .config/gtk-3.0/gtk.css'.format(currentColor2, hexColor.get()))
+    # wofi
+    os.system('sed -i "s/{}/{}/g" .config/wofi/style.css'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/HyprV/wofi/style/Wofi-Tr3ble-Dark.css'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/HyprV/wofi/style/Wofi-Tr3ble-Light.css'.format(currentColor2, hexColor.get()))
+    # waybar
     os.system('sed -i "s/{}/{}/g" .config/HyprV/waybar/style/Tr3ble-Dark.css'.format(currentColor2, hexColor.get()))
     os.system('sed -i "s/{}/{}/g" .config/HyprV/waybar/style/Tr3ble-Light.css'.format(currentColor2, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/gtk-3.0/gtk.css'.format(currentColor2, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .mozilla/firefox/k3st9w68.default-release/chrome/userChrome.css'.format(currentColor2, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .mozilla/firefox/k3st9w68.default-release/chrome/userContent.css'.format(currentColor2, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/hypr/hyprland.conf'.format(currentColor2, hexColor.get()))
+    # wlogout
+    os.system('sed -i "s/{}/{}/g" .config/HyprV/wlogout/style/dark_style.css'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/HyprV/wlogout/style/light_style.css'.format(currentColor2, hexColor.get()))
+    # mako
+    os.system('sed -i "s/{}/{}/g" .config/HyprV/mako/conf/dark_config'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/HyprV/mako/conf/light_config'.format(currentColor2, hexColor.get()))
+    os.system('makoctl reload')
+    # firefox
+    os.system('sed -i "s/{}/{}/g" .mozilla/firefox/*.default-release/chrome/userChrome.css'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .mozilla/firefox/*.default-release/chrome/userContent.css'.format(currentColor2, hexColor.get()))
 
     # Restart Waybar
     os.system('hyprctl reload')
