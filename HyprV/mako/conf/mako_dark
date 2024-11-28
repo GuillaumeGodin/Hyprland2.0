@@ -43,15 +43,15 @@ anchor=center
 background-color=#222222BB
 text-color=#d9e0ee
 border-size=2
-border-color=#D1EEA6
+border-color=#ffbb00
 progress-color=over #89b4fa
 
 [urgency=low]
-border-color=#D1EEA6
+border-color=#ffbb00
 default-timeout=2000
 
 [urgency=normal]
-border-color=#D1EEA6
+border-color=#ffbb00
 default-timeout=5000
 
 [urgency=high]
