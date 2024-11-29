@@ -63,7 +63,7 @@ def Widgets():
 
 #     download_Path.set(download_Directory)
 
-call = sp.getoutput('echo "$(</home/$USER/Hyprland2.0/Bash/Color/currentColor)"')
+call = sp.getoutput('echo "$(</home/$USER/.config/HyprV/currentColor)"')
 print(call)
 
 def hyprpickerColor():
@@ -75,12 +75,12 @@ def hyprpickerColor():
 
 def setColor():
     # Get current color
-    command = os.popen('echo "$(</home/$USER/Hyprland2.0/Bash/Color/currentColor)"')
+    command = os.popen('echo "$(<.config/HyprV/currentColor)"')
     currentColor1 = command.read()
     currentColor2 = currentColor1[:6]
     print(currentColor2)
 
-    os.system('sed -i "/{}/c {}" /home/$USER/Hyprland2.0/Bash/Color/currentColor'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "/{}/c {}" .config/HyprV/currentColor'.format(currentColor2, hexColor.get()))
     #hyprland (border)
     os.system('sed -i "s/{}/{}/g" .config/hypr/hyprland.conf'.format(currentColor2, hexColor.get()))
     # gtk (thunar)
@@ -89,7 +89,8 @@ def setColor():
     os.system('sed -i "s/{}/{}/g" .config/wofi/style.css'.format(currentColor2, hexColor.get()))
     os.system('sed -i "s/{}/{}/g" .config/HyprV/wofi/style/wofi_dark.css'.format(currentColor2, hexColor.get()))
     os.system('sed -i "s/{}/{}/g" .config/HyprV/wofi/style/wofi_light.css'.format(currentColor2, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/starship.toml'.format(currentColor2, hexColor.get()))
+    # starship shell
+    os.system('sed -i "s/{}/{}/g" .config/HyprV/starship/starship.toml'.format(currentColor2, hexColor.get()))
     # waybar
     os.system('sed -i "s/{}/{}/g" .config/HyprV/waybar/style/waybar_dark.css'.format(currentColor2, hexColor.get()))
     os.system('sed -i "s/{}/{}/g" .config/HyprV/waybar/style/waybar_light.css'.format(currentColor2, hexColor.get()))
