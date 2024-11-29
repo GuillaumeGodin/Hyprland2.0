@@ -1,11 +1,6 @@
 #!/bin/bash
 
 # HyprV4 By SolDoesTech - https://www.youtube.com/@SolDoesTech
-# License..? - You may copy, edit and ditribute this script any way you like, enjoy! :)
-
-# The follwoing will attempt to install all needed packages to run Hyprland
-# This is a quick and dirty script there are some error checking
-# IMPORTANT - This script is meant to run on a clean fresh Arch install on physical hardware
 
 # Define the software that would be inbstalled 
 #Need some prep work
@@ -361,13 +356,13 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e "$CNT - Setting up the new config..." 
     cp ~/.config/HyprV/hypr/* ~/.config/hypr/
     ln -sf ~/.config/HyprV/kitty/kitty.conf ~/.config/kitty/kitty.conf
-    ln -sf ~/.config/HyprV/mako/conf/config-dark ~/.config/mako/config
+    ln -sf ~/.config/HyprV/mako/conf/mako_dark ~/.config/mako/config
     ln -sf ~/.config/HyprV/swaylock/config ~/.config/swaylock/config
-    ln -sf ~/.config/HyprV/waybar/conf/Tr3ble-Top.jsonc ~/.config/waybar/config.jsonc
-    ln -sf ~/.config/HyprV/waybar/style/Tr3ble-Dark.css ~/.config/waybar/style.css
+    ln -sf ~/.config/HyprV/waybar/conf/waybar_top.jsonc ~/.config/waybar/config.jsonc
+    ln -sf ~/.config/HyprV/waybar/style/waybar_dark.css ~/.config/waybar/style.css
     ln -sf ~/.config/HyprV/wlogout/layout ~/.config/wlogout/layout
     ln -sf ~/.config/HyprV/wofi/config ~/.config/wofi/config
-    ln -sf ~/.config/HyprV/wofi/style/Wofi-Tr3ble-Dark.css ~/.config/wofi/style.css
+    ln -sf ~/.config/HyprV/wofi/style/wofi_dark.css ~/.config/wofi/style.css
 
 
     # add the Nvidia env file to the config (if needed)
@@ -397,7 +392,7 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     xfconf-query -c xsettings -p /Net/IconThemeName -s "Papirus-Dark"
     gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
     gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark"
-    cp -f ~/.config/HyprV/backgrounds/Tr3ble-Dark-Background.jpg /usr/share/sddm/themes/sdt/wallpaper.jpg
+    # cp -f ~/.config/HyprV/backgrounds/Tr3ble-Dark-Background.jpg /usr/share/sddm/themes/sdt/wallpaper.jpg
 fi
 
 # Bash scripts-----------------------------------------------------------------------------------------------------------
