@@ -89,6 +89,7 @@ def setColor():
     os.system('sed -i "s/{}/{}/g" .config/wofi/style.css'.format(currentColor2, hexColor.get()))
     os.system('sed -i "s/{}/{}/g" .config/HyprV/wofi/style/wofi_dark.css'.format(currentColor2, hexColor.get()))
     os.system('sed -i "s/{}/{}/g" .config/HyprV/wofi/style/wofi_light.css'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/starship.toml'.format(currentColor2, hexColor.get()))
     # waybar
     os.system('sed -i "s/{}/{}/g" .config/HyprV/waybar/style/waybar_dark.css'.format(currentColor2, hexColor.get()))
     os.system('sed -i "s/{}/{}/g" .config/HyprV/waybar/style/waybar_light.css'.format(currentColor2, hexColor.get()))
