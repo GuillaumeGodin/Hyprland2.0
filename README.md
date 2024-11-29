@@ -55,7 +55,7 @@ Unplug the USB drive and select no (no post installation configurations)
                                     password
         git clone https://github.com/GuillaumeGodin/Hyprland2.0.git
         cd Hyprland2.0
-        ./set-hypr
+        ./install
 
 4) Setup Script
 
