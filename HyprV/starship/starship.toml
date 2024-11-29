@@ -17,12 +17,12 @@ format = "[ $path ]($style)"
 style = "fg:#000000 bg:rgba(34, 34, 34, 0.7)"
 
 [git_branch]
-format = '[ $symbol$branch(:$remote_branch) ]($style)'
+format = '[ $symbol$branch(:$remote_branch)]($style)'
 symbol = "  "
 style = "fg:#fe99bc"
 
 [git_status]
-format = '[$all_status]($style)'
+format = '[ $all_status]($style)'
 style = "fg:#ff0000"
 
 [git_metrics]
