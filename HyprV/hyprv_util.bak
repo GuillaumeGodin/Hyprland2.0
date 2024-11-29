@@ -2,7 +2,7 @@
 
 #Set your keyboard name here and in waybar waybar_top.jsonc 
 #hyprctl devices
-SET_KB="keyboard-k380-keyboard"
+# SET_KB="keyboard-k380-keyboard"
 
 get_theme() {
     # Check which waybar theme is set
@@ -43,17 +43,15 @@ switch_version() {
             #we are on waybar_light so switch to waybar_dark
             VERTO="waybar_dark"
             notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Switching to Dark Theme"
-            #set waybar theme
+            #set the waybar config
             ln -sf ~/.config/HyprV/waybar/conf/waybar_top.jsonc ~/.config/waybar/config.jsonc
-            #set waybar theme
+            #set the waybar theme
             ln -sf ~/.config/HyprV/waybar/style/waybar_dark.css ~/.config/waybar/style.css
-            #set wofi theme
+            #set the wofi theme
             ln -sf ~/.config/HyprV/wofi/style/wofi_dark.css ~/.config/wofi/style.css
-            #set wlogout theme
+            #set the wlogout theme
             ln -sf ~/.config/HyprV/wlogout/style/wlogout_dark.css ~/.config/wlogout/style.css
-            #set starship shell theme
-            ln -sf ~/.config/HyprV/starship/starship.toml ~/.config/starship.toml
-            #set mako theme
+            #set the mako theme
             ln -sf ~/.config/HyprV/mako/conf/mako_dark ~/.config/mako/config
             makoctl reload
             #set kitty Theme
@@ -76,17 +74,15 @@ switch_version() {
             #we are on waybar_dark so switch to waybar_light
             VERTO="waybar_light"
             notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Switching to Light Theme"
-            #set waybar theme
+            #set the waybar config
             ln -sf ~/.config/HyprV/waybar/conf/waybar_top.jsonc ~/.config/waybar/config.jsonc
-            #set waybar theme
+            #set the waybar theme
             ln -sf ~/.config/HyprV/waybar/style/waybar_light.css ~/.config/waybar/style.css
-            #set wofi theme
+            #set the wofi theme
             ln -sf ~/.config/HyprV/wofi/style/wofi_light.css ~/.config/wofi/style.css
-            #set wlogout theme
+            #set the wlogout theme
             ln -sf ~/.config/HyprV/wlogout/style/wlogout_light.css ~/.config/wlogout/style.css
-            #set starship shell theme
-            ln -sf ~/.config/HyprV/starship/starship.toml ~/.config/starship.toml
-            #set mako theme
+            #set the mako theme
             ln -sf ~/.config/HyprV/mako/conf/mako_light ~/.config/mako/config
             makoctl reload
             #set kitty Theme

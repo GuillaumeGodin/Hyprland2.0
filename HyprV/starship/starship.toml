@@ -1,15 +1,15 @@
 format = """\
-[](fg:#fe99bc)\
-[ ](bg:#fe99bc fg:#090c0c)\
-[](fg:#fe99bc)\
+[](fg:#ffbb00)\
+[ ](bg:#ffbb00 fg:#090c0c)\
+[](fg:#ffbb00)\
 $time\
-[](fg:#fe99bc)\
+[](fg:#ffbb00)\
 $directory\
-[](fg:#fe99bc)\
+[](fg:#ffbb00)\
 $git_branch\
 $git_status\
 $git_metrics\
-[ ](fg:#fe99bc)\
+[ ](fg:#ffbb00)\
 """
 
 [directory]
@@ -19,7 +19,7 @@ style = "fg:#000000 bg:rgba(34, 34, 34, 0.7)"
 [git_branch]
 format = '[ $symbol$branch(:$remote_branch)]($style)'
 symbol = "  "
-style = "fg:#fe99bc"
+style = "fg:#ffbb00"
 
 [git_status]
 format = '[ $all_status]($style)'
@@ -43,4 +43,4 @@ style = "fg:bright-white bg:18"
 disabled = false
 time_format = "%R" # Hour:Minute Format
 style = "bg:#1d2230"
-format = '[[ 󱑍 $time ](fg:#fe99bc)]($style)'
+format = '[[ 󱑍 $time ](fg:#ffbb00)]($style)'
