@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# BF1A15
+notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Updating config files"
+
+currentColor=$(cat /home/$USER/.config/HyprV/currentColor)
+# echo $currentColor
+
+rm -r /home/$USER/.config/HyprV
+cp -r /home/$USER/Hyprland2.0/HyprV /home/$USER/.config/HyprV
+
+newColor=$(cat /home/$USER/.config/HyprV/currentColor)
+# echo $newColor
+
+ln -sf ~/.config/HyprV/waybar/conf/waybar_top.jsonc ~/.config/waybar/config.jsonc
+ln -sf ~/.config/HyprV/waybar/style/waybar_dark.css ~/.config/waybar/style.css
+ln -sf ~/.config/HyprV/kitty/MochaDark.conf ~/.config/HyprV/kitty/mocha.conf
+
+sed -i "s/$currentColor/$newColor/g" ~/.config/hypr/hyprland.conf
+sed -i "s/$currentColor/$newColor/g" ~/.config/gtk-3.0/gtk.css
+sed -i "s/$currentColor/$newColor/g" ~/.config/wofi/style.css
+sed -i "s/$currentColor/$newColor/g" ~/.mozilla/firefox/*.default-release/chrome/userChrome.css
+sed -i "s/$currentColor/$newColor/g" ~/.mozilla/firefox/*.default-release/chrome/userContent.css
+makoctl reload
+hyprctl reload
