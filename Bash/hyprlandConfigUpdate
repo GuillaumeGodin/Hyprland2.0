@@ -20,7 +20,6 @@ ln -sf ~/.config/HyprV/waybar/style/waybar_dark.css ~/.config/waybar/style.css
 ln -sf ~/.config/HyprV/kitty/MochaDark.conf ~/.config/HyprV/kitty/mocha.conf
 ln -sf ~/.config/HyprV/hypr/hyprland.conf ~/.config/hypr/hyprland.conf
 
-sed -i "s/$currentColor/$newColor/g" ~/.config/hypr/hyprland.conf
 sed -i "s/$currentColor/$newColor/g" ~/.config/gtk-3.0/gtk.css
 sed -i "s/$currentColor/$newColor/g" ~/.config/wofi/style.css
 sed -i "s/$currentColor/$newColor/g" ~/.mozilla/firefox/*.default-release/chrome/userChrome.css
