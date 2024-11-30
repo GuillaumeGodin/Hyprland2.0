@@ -82,7 +82,7 @@ def setColor():
 
     os.system('sed -i "/{}/c {}" .config/HyprV/currentColor'.format(currentColor2, hexColor.get()))
     #hyprland (border)
-    os.system('sed -i "s/{}/{}/g" .config/hypr/hyprland.conf'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/HyprV/hypr/hyprland.conf'.format(currentColor2, hexColor.get()))
     # gtk (thunar)
     os.system('sed -i "s/{}/{}/g" .config/gtk-3.0/gtk.css'.format(currentColor2, hexColor.get()))
     # wofi
