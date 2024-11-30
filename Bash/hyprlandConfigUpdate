@@ -1,7 +1,9 @@
 #!/bin/bash
 
+# sudo su <<HERE
 # rm -r Hyprland2.0/
 # git clone https://github.com/GuillaumeGodin/Hyprland2.0
+# HERE
 
 # BF1A15
 notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Updating config files"
