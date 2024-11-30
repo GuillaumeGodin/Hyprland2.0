@@ -57,7 +57,7 @@ switch_version() {
             ln -sf ~/.config/HyprV/mako/conf/mako_dark ~/.config/mako/config
             makoctl reload
             #set kitty Theme
-            ln -sf ~/.config/HyprV/kitty/MochaDark.conf ~/.config/HyprV/kitty/mocha.conf
+            ln -sf ~/.config/HyprV/kitty/kitty_dark.conf ~/.config/kitty/kitty.conf
             kill -SIGUSR1 $(pidof kitty)
 
             #set background
@@ -90,7 +90,7 @@ switch_version() {
             ln -sf ~/.config/HyprV/mako/conf/mako_light ~/.config/mako/config
             makoctl reload
             #set kitty Theme
-            ln -sf ~/.config/HyprV/kitty/MochaLight.conf ~/.config/HyprV/kitty/mocha.conf
+            ln -sf ~/.config/HyprV/kitty/kitty_light.conf ~/.config/kitty/kitty.conf
             kill -SIGUSR1 $(pidof kitty)
 
             #set background
