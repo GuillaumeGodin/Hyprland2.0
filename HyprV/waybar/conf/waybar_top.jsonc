@@ -13,8 +13,8 @@
     ],
     "modules-center": [
         "idle_inhibitor",
-        //"clock",                  //replaced with custom/time
-        "custom/time",
+        "clock",                    //same as custom/time
+        // "custom/time",              //same as clock
         "custom/updates"
     ],
     "modules-right": [
