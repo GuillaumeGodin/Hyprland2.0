@@ -200,20 +200,19 @@
         "tooltip": true
     },
 
-    "custom/time": {
-        "exec": "~/.config/HyprV/waybar/scripts/time",
-        "on-click": "evolution",
-        "return-type" : "json",
-        "interval": 1,
-        "format": "{}"
-    }
+    // "custom/time": {
+    //     "exec": "~/.config/HyprV/waybar/scripts/time",
+    //     "on-click": "evolution",
+    //     "return-type" : "json",
+    //     "interval": 1,
+    //     "format": "{}"
+    // }
 
-/*
     "clock": {
         "timezone": "Canada/Eastern",       //Not sure if this works to select timzone
+        "on-click": "evolution",
         "tooltip-format": "<tt><big>{calendar}</big></tt>",
         "format": "{:%a %d %b - %I:%M %p}",
         "interval": 1
-    },
-*/
+    }
 }
