@@ -64,7 +64,8 @@
         "on-click-middle": "close",
         "ignore-list": [
             "wofi",
-            "mpv"
+            "mpv",
+            "Volume Control"
         ],
 	    "app_ids-mapping": {
 	        "steam_app_39210": "Final Fantasy 14"
