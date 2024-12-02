@@ -4,8 +4,8 @@ notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Updatin
 
 # sudo su <<HERE
 # rm -r Hyprland2.0/
-# git clone https://github.com/GuillaumeGodin/Hyprland2.0
 # HERE
+# git clone https://github.com/GuillaumeGodin/Hyprland2.0
 
 currentColor=$(cat /home/$USER/.config/HyprV/currentColor)
 # echo $currentColor
