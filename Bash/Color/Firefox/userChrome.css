@@ -77,3 +77,20 @@ about:support
   &:hover  > .toolbarbutton-text { display: block !important; }
 }
 */
+
+
+/* Tab dimesions */
+/* https://www.reddit.com/r/FirefoxCSS/comments/182qyiz/how_to_reduce_the_margin_around_the_tabs/ */
+
+*|*:root {
+  --tab-min-height:      30px !important;
+  /* --tab-min-width:       60px !important; */
+  --tab-block-margin: -1px 0px !important;
+ }
+ 
+ #tabbrowser-tabs,
+ #tabbrowser-tabs > #tabbrowser-arrowscrollbox,
+ .tabbrowser-tabs .tabbrowser-tab {
+   min-height: var(--tab-min-height) !important;
+   max-height: var(--tab-min-height) !important;
+ }
