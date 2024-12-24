@@ -25,27 +25,19 @@ thunar -q
 GTK_DEBUG=interactive thunar
 */
 
-/* Selected menubar and menu items */
-menubar > menuitem:hover,
-menu > menuitem:hover,
+/* .thunar toolbar, */
+/* .thunar entry,  */
+/* .thunar statusbar, */
+/* .thunar .view,  */
+.thunar .view:hover,
 .thunar .view:selected,
-.thunar toolbar entry selection {
+.thunar selection,
+menubar > menuitem:hover,
+menu > menuitem:hover {
     background-color: #ffbb00;
     color: black;
     box-shadow: none;
+    /* background-color: transparent; */
+    /* border: 1px solid #FFA0C0; */
+    /* background-image: none; */
 }
-
-/*changes bottom statusbar color*/
-/*
-.thunar statusbar { 
-    background-color: #ffbb00; 
-    color: black; 
-}
-*/
-
-/*changes backgroud color*/
-/*
-.thunar .view { 
-    background-color: #CCCCCC;
-}
-*/
