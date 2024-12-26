@@ -37,12 +37,13 @@ install_stage=(
     kitty 
     mako 
     waybar
-    #swww #Alternative to hyprpaper
+    swww #Alternative to hyprpaper
     #hyprpaper #Alternative to swww
     swaylock-effects 
     wofi 
     wlogout 
-    xdg-desktop-portal-hyprland 
+    xdg-desktop-portal-hyprland-git
+    hyprpicker-git #used for color switching tool
     viewnior #image viewer
     swappy #Basic image viewer
     grim 
@@ -69,7 +70,7 @@ install_stage=(
     noto-fonts-emoji 
     lxappearance 
     xfce4-settings
-    nwg-look-bin
+    #nwg-look-bin #no longuer needed or in AUR
     sddm
     #GG Extras-------------------------------------------------------------------------------------------------------
     evolution
