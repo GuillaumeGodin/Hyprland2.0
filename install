@@ -364,6 +364,7 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     ln -sf ~/.config/HyprV/wlogout/layout ~/.config/wlogout/layout
     ln -sf ~/.config/HyprV/wofi/config ~/.config/wofi/config
     ln -sf ~/.config/HyprV/wofi/style/wofi_dark.css ~/.config/wofi/style.css
+    ln -sf ~/.config/HyprV/hypr/hyprland.conf ~/.config/hypr/hyprland.conf
 
 
     # add the Nvidia env file to the config (if needed)
