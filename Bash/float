@@ -12,6 +12,6 @@ if $floatValue2; then
     hyprctl dispatch togglefloating
 else
     hyprctl dispatch togglefloating
-    hyprctl dispatch resizeactive exact 800 600
+    hyprctl dispatch resizeactive exact 40% 50%
     hyprctl dispatch centerwindow
 fi
