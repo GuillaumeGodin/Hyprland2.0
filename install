@@ -34,8 +34,8 @@ nvidia_stage=(
 
 #the main packages
 install_stage=(
-    kitty 
-    mako 
+    kitty #Terminal
+    mako #Notification
     waybar
     swww #Alternative to hyprpaper
     #hyprpaper #Alternative to swww
@@ -48,11 +48,10 @@ install_stage=(
     swappy #Basic image viewer
     grim 
     slurp 
-    thunar 
+    thunar #File browser
     btop
-    firefox
-    #thunderbird #Evolution is better for emails & Calendars
-    mpv
+    firefox #Browser
+    mpv #Media Player
     mpv-mpris #needed for playerctl
     pamixer 
     pavucontrol 
@@ -73,13 +72,13 @@ install_stage=(
     #nwg-look-bin #no longuer needed or in AUR
     sddm
     #GG Extras-------------------------------------------------------------------------------------------------------
-    evolution
-    gnome-keyring
+    evolution #Email and Calendar
+    gnome-keyring #Needed for Evolution
     libsecret
     seahorse
-    waypaper
-    tk
-    yt-dlp
+    waypaper #Background picker for hyprland (swww & hyprpaper)
+    tk #Python GUI 
+    yt-dlp #Youtube downloader
     breezex-cursor-theme #nice breezex cursors
 )
 
@@ -87,14 +86,14 @@ install_stage=(
 install_stage2=(
     libreoffice
     zim #note taking app
-    blender
-    gimp
+    blender #3D Modeling software
+    gimp #Image editor
     #code
-    visual-studio-code-bin
+    visual-studio-code-bin #Code editor
     okular #PDF Viewer
-    timeshift
-    gparted
-    easyeffects
+    timeshift #Back up tool
+    gparted #Disk device managing tiik
+    easyeffects #Audio plugins
     lsp-plugins #Plugins for easyeffects
     xorg-xhost #Needed for Timeshift and gparted
     tumbler #Needed for file thumbnails
