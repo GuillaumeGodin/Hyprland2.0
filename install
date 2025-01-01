@@ -37,7 +37,7 @@ install_stage=(
     kitty #Terminal
     mako #Notification
     waybar
-    swww #Alternative to hyprpaper
+    #swww #Alternative to hyprpaper
     #hyprpaper #Alternative to swww
     swaylock-effects 
     wofi 
