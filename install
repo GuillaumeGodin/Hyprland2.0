@@ -106,6 +106,7 @@ install_stage2=(
     audacity #Audio Editor
     systemd-resolvconf #Needed for wireguard
     mkvtoolnix-gui #Tool to combine movie language and subs
+    handbrake #video converter
     wireguard-tools #Needed for wireguard
     openvpn #Needed for privado
     networkmanager-openvpn #Needed for privado
