@@ -1,6 +1,6 @@
 #!/bin/bash
 
-waypaperBackground=$(sed -n 4p /home/$USER/.config/waypaper/config.ini | sed 's/^.\{13\}//')
+waypaperBackground=$(sed -n 5p /home/$USER/.config/waypaper/config.ini | sed 's/^.\{13\}//')
 
 #variable not used
 #waypaperBackground2='/home/$USER'$waypaperBackground
