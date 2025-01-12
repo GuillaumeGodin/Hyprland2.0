@@ -70,6 +70,7 @@ install_stage=(
     lxappearance 
     xfce4-settings
     #nwg-look-bin #no longuer needed or in AUR
+    nwg-look
     sddm
     #GG Extras-------------------------------------------------------------------------------------------------------
     evolution #Email and Calendar
