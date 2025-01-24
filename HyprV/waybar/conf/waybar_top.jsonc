@@ -1,5 +1,6 @@
 {
     "layer": "top",
+    //"output": "HDMI-A-1", //Show waybar on specific monitor
     "position": "top",
     "mod": "dock",
     "exclusive": true,
@@ -93,6 +94,7 @@
         },
         "persistent-workspaces": {
                 "*": 10
+                // "HDMI-A-1": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10  ] //show workspaces on specific monitor
         }
     },
 

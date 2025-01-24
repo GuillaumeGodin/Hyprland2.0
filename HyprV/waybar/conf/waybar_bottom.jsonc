@@ -1,5 +1,6 @@
 {
     "layer": "top",
+    //"output": "HDMI-A-1", //Show waybar on specific monitor
     "position": "bottom",
     "mod": "dock",
     "exclusive": true,
