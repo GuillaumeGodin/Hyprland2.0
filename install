@@ -113,6 +113,7 @@ install_stage2=(
     networkmanager-openvpn #Needed for privado
     unzip # Needed for privado
     wget # Needed for privado
+    dosfstools # add filesystems like fat32
 )
 
 #Game packages--------------------------------------------------------------------------------------------------------
