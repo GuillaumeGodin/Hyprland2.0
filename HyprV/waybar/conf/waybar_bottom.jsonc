@@ -67,7 +67,8 @@
             "wofi",
             "mpv",
             "Volume Control",
-            "Easy Effects"
+            "Easy Effects",
+            "btop"
         ],
 	    "app_ids-mapping": {
 	        "steam_app_39210": "Final Fantasy 14"

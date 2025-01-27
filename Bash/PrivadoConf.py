@@ -52,10 +52,10 @@ def Widgets():
     # 5th Row--------------------------------------------------------------------------------
     root.privadoUser = Entry(pane, textvariable=privadoUser, font="Arial", width=45)
     root.privadoUser.grid(row=6, column=0, columnspan=2, sticky="ew", pady=5, padx=20)
-    root.privadoUser.insert(0, "Username")
+    root.privadoUser.insert(0, "username")
     root.privadoPass = Entry(pane, textvariable=privadoPass, font="Arial", width=45)
     root.privadoPass.grid(row=6, column=2, columnspan=2, sticky="we", pady=5, padx=20)
-    root.privadoPass.insert(0, "Password")
+    root.privadoPass.insert(0, "password")
 
     # 7th Row----------------------------------------------------------------------------------
     Download_B = Button(pane, text="Add Config", font="Arial", bg="thistle1", command=addConfig, relief=GROOVE, pady=0)

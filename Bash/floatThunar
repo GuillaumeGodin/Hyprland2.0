@@ -3,7 +3,7 @@
 #see dispatcher
 #https://wiki.hyprland.org/Configuring/Dispatchers/
 
-hyprctl dispatch exec thunar
+hyprctl dispatch exec [size 40% 50%] thunar
 
 sleep .5
 
