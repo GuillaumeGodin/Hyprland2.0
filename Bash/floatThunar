@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#see dispatcher
+#https://wiki.hyprland.org/Configuring/Dispatchers/
+
+hyprctl dispatch exec thunar
+
+sleep .5
+
+floatValue=$(hyprctl activewindow -j)
+
+floatValue2=$(cut -d',' -f1 <<< "$floatValue" | sed -n '/"floating"/p' | sed 's/^.\{15\}//')
+
+if $floatValue2; then
+    hyprctl dispatch togglefloating
+else
+    hyprctl dispatch togglefloating
+    hyprctl dispatch resizeactive exact 40% 50%
+    hyprctl dispatch centerwindow
+fi 
