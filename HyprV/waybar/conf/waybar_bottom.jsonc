@@ -11,6 +11,10 @@
         "custom/launch_wofi",
         "custom/launch_firefox",
         "custom/launch_thunderbird",
+        "custom/launch_steam",
+        "custom/launch_discord",
+        "custom/launch_gimp",
+        "custom/launch_blender",
         "custom/launch_kitty",
         "custom/launch_thunar"
     ],
@@ -23,6 +27,8 @@
 
     "include": [
     ],
+
+    // https://www.nerdfonts.com/cheat-sheet
 
     "custom/launch_firefox": {
         "format": "",
@@ -39,6 +45,30 @@
     "custom/launch_thunar": {
         "format": "",
         "on-click": "exec thunar",
+        "tooltip": false
+    },
+
+    "custom/launch_steam": {
+        "format": "",
+        "on-click": "exec steam",
+        "tooltip": false
+    },
+
+    "custom/launch_discord": {
+        "format": "",
+        "on-click": "exec webcord",
+        "tooltip": false
+    },
+
+    "custom/launch_gimp": {
+        "format": "",
+        "on-click": "exec gimp",
+        "tooltip": false
+    },
+
+    "custom/launch_blender": {
+        "format": "",
+        "on-click": "exec blender",
         "tooltip": false
     },
 
