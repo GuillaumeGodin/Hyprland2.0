@@ -1,0 +1,105 @@
+#!/bin/bash
+
+#sudo chmod u+x fileName.sh
+
+#From /usr/share/applications/
+#To /usr/share/LSP/
+
+mkdir /usr/share/proAudio
+
+moveApps=(
+    ardour8.desktop
+    calf.desktop
+    carla-control.desktop
+    carla.desktop
+    carla-jack-multi.desktop
+    carla-jack-single.desktop
+    carla-patchbay.desktop
+    carla-rack.desktop
+    com.github.pdesaulniers.wolf-shaper.desktop
+    helm-synth.desktop
+    com.x42_plugins.x42_darc.desktop
+    com.x42_plugins.x42_dpl.desktop
+    com.x42_plugins.x42_fat1.desktop
+    com.x42_plugins.x42_fil4.desktop
+    com.x42_plugins.x42_matrixmixer8x8.desktop
+    com.x42_plugins.x42_meter_0.desktop
+    com.x42_plugins.x42_meter_10.desktop
+    com.x42_plugins.x42_meter_11.desktop
+    com.x42_plugins.x42_meter_12.desktop
+    com.x42_plugins.x42_meter_13.desktop
+    com.x42_plugins.x42_meter_14.desktop
+    com.x42_plugins.x42_meter_15.desktop
+    com.x42_plugins.x42_meter_16.desktop
+    com.x42_plugins.x42_meter_17.desktop
+    com.x42_plugins.x42_meter_18.desktop
+    com.x42_plugins.x42_meter_19.desktop
+    com.x42_plugins.x42_meter_1.desktop
+    com.x42_plugins.x42_meter_2.desktop
+    com.x42_plugins.x42_meter_3.desktop
+    com.x42_plugins.x42_meter_4.desktop
+    com.x42_plugins.x42_meter_5.desktop
+    com.x42_plugins.x42_meter_6.desktop
+    com.x42_plugins.x42_meter_7.desktop
+    com.x42_plugins.x42_meter_8.desktop
+    com.x42_plugins.x42_meter_9.desktop
+    com.x42_plugins.x42_mixtri.desktop
+    com.x42_plugins.x42_phaserotate.desktop
+    com.x42_plugins.x42_scope.desktop
+    com.x42_plugins.x42_spectr.desktop
+    com.x42_plugins.x42_stepseq.desktop
+    com.x42_plugins.x42_tuna_0.desktop
+    com.x42_plugins.x42_tuna_1.desktop
+    com.zamaudio.zamautosat.desktop
+    com.zamaudio.zamaximx2.desktop
+    com.zamaudio.zamcomp.desktop
+    com.zamaudio.zamcompx2.desktop
+    com.zamaudio.zamdelay.desktop
+    com.zamaudio.zamdynamiceq.desktop
+    com.zamaudio.zameq2.desktop
+    com.zamaudio.zamgate.desktop
+    com.zamaudio.zamgatex2.desktop
+    com.zamaudio.zamgeq31.desktop
+    com.zamaudio.zamgrains.desktop
+    com.zamaudio.zamheadx2.desktop
+    com.zamaudio.zamphono.desktop
+    com.zamaudio.zamtube.desktop
+    com.zamaudio.zamulticomp.desktop
+    com.zamaudio.zamulticompx2.desktop
+    com.zamaudio.zamverb.desktop
+    geonkick.desktop
+    guitarix.desktop
+    helm-synth.desktop
+    io.github.michaelwillis.DragonflyEarlyReflections.desktop
+    io.github.michaelwillis.DragonflyHallReverb.desktop
+    io.github.michaelwillis.DragonflyPlateReverb.desktop
+    io.github.michaelwillis.DragonflyRoomReverb.desktop
+    net.sf.distrho.3BandEQ.desktop
+    net.sf.distrho.3BandSplitter.desktop
+    net.sf.distrho.AmplitudeImposer.desktop
+    net.sf.distrho.CycleShifter.desktop
+    net.sf.distrho.glBars.desktop
+    net.sf.distrho.Kars.desktop
+    net.sf.distrho.MaBitcrush.desktop
+    net.sf.distrho.MaFreeverb.desktop
+    net.sf.distrho.MaGigaverb.desktop
+    net.sf.distrho.MaPitchshift.desktop
+    net.sf.distrho.MVerb.desktop
+    net.sf.distrho.Nekobi.desktop
+    net.sf.distrho.PingPongPan.desktop
+    net.sf.distrho.SoulForce.desktop
+    ninjas2.desktop
+    org.rncbc.drumkv1.desktop
+    org.rncbc.padthv1.desktop
+    org.rncbc.qtractor.desktop
+    org.rncbc.samplv1.desktop
+    org.rncbc.synthv1.desktop
+    zynaddsubfx-alsa.desktop
+    zynaddsubfx-jack.desktop
+    zynaddsubfx-jack-multi.desktop
+    zynaddsubfx-oss.desktop
+)
+
+for APPS in ${moveApps[@]}; do
+    mv /usr/share/applications/$APPS /usr/share/LSP
+done
