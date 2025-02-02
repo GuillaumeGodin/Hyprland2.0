@@ -101,5 +101,5 @@ moveApps=(
 )
 
 for APPS in ${moveApps[@]}; do
-    mv /usr/share/applications/$APPS /usr/share/LSP
+    mv /usr/share/applications/$APPS /usr/share/proAudio
 done
