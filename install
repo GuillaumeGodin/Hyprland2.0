@@ -111,9 +111,10 @@ install_stage2=(
     wireguard-tools #Needed for wireguard
     openvpn #Needed for privado
     networkmanager-openvpn #Needed for privado
-    unzip # Needed for privado
-    wget # Needed for privado
-    dosfstools # add filesystems like fat32
+    unzip #Needed for privado
+    wget #Needed for privado
+    dosfstools #add filesystems like fat32
+    puddletag #Audio tagger
 )
 
 #Game packages--------------------------------------------------------------------------------------------------------

@@ -17,7 +17,6 @@ moveApps=(
     carla-patchbay.desktop
     carla-rack.desktop
     com.github.pdesaulniers.wolf-shaper.desktop
-    helm-synth.desktop
     com.x42_plugins.x42_darc.desktop
     com.x42_plugins.x42_dpl.desktop
     com.x42_plugins.x42_fat1.desktop

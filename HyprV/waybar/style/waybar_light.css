@@ -301,8 +301,10 @@ tooltip label{
     /*border-width: 2px;*/
     border-style: solid;
     margin-right: 5px;
-    margin-left: 0px;
-    color: @highlightWritingColor;
+    margin-left: 5px;
+    background: @highlightColor;
+    color: @writingColor;
+    opacity: 0.8;
 }
 
 #custom-info {
