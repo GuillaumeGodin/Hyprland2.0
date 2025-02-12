@@ -57,7 +57,7 @@ def Browse_To():
 def FullRsync():
 
     os.system(
-        'rsync -asAX --delete --exclude "*Trash-1000" "{}/" "{}/"'.format(from_Path.get(), to_Path.get()))
+        'rsync -asvAX --delete --exclude "*Trash-1000" "{}/" "{}/"'.format(from_Path.get(), to_Path.get()))
         #rsync -aAX --delete --exclude '*Trash-1000' /media/g/10TB/* /media/g/10TB\ \(Backup\)/ 
 
 def RsyncKeepLatest():
