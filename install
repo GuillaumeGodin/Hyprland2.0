@@ -120,7 +120,8 @@ install_stage2=(
 install_stage3=(
     steam
     steamlink
-    webcord
+    # webcord
+    discord
     obs-studio
     mangohud #gaming overlay like MSI Afterburner
     goverlay # GUI for mangohud
