@@ -1,4 +1,5 @@
 #!/bin/bash
+# works only with 1 monitor
 
 waypaperBackground=$(sed -n 5p /home/$USER/.config/waypaper/config.ini | sed 's/^.\{13\}//')
 
