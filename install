@@ -113,7 +113,8 @@ install_stage2=(
     unzip #Needed for privado
     wget #Needed for privado
     dosfstools #add filesystems like fat32
-    puddletag #Audio tagger
+    #puddletag #Audio tagger
+    easytag #Audio tagger
 )
 
 #Game packages--------------------------------------------------------------------------------------------------------
