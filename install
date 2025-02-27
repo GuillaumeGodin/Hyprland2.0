@@ -115,7 +115,7 @@ install_stage2=(
     dosfstools #add filesystems like fat32
     #puddletag #Audio tagger
     easytag #Audio tagger
-    wofi-emoji #Emoji picker
+    emote #Emoji picker
 )
 
 #Game packages--------------------------------------------------------------------------------------------------------
