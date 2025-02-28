@@ -54,10 +54,11 @@ def Browse_From():
     from_Path.set(download_Directory)
 
 def mount():
-    # os.system('echo {} | sudo -S sed -i "" /etc/NetworkManager/system-connections/{}.default.nmconnection'.format(password.get(), rename.get()))
-    os.system('echo {} | sudo -S cryptsetup open /dev/{} {}'.format(password.get(), from_Path.get(), from_Path.get()))
+    os.system('echo {} | echo {} | sudo -S cryptsetup open /dev/{} {}'.format(password.get(), password.get(), from_Path.get(), from_Path.get()))
     os.system('echo {} | sudo -S mount /dev/mapper/{} /mnt/encrypted'.format(password.get(), from_Path.get()))
     os.system('thunar /mnt/encrypted')
+    os.system('echo {} | sudo -S umount /dev/mapper/{} /mnt/encrypted'.format(password.get(), from_Path.get()))
+    os.system('echo {} | sudo -S cryptsetup close {}'.format(password.get(), from_Path.get()))
     root.quit()
 
 def unmount():
