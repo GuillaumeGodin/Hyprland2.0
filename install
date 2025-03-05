@@ -73,6 +73,7 @@ install_stage=(
     sddm
     #GG Extras-------------------------------------------------------------------------------------------------------
     evolution #Email and Calendar
+    evolution-ews #for microsoft exchange, Office365
     gnome-keyring #Needed for Evolution
     libsecret
     seahorse
