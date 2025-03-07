@@ -2,6 +2,7 @@
 
 import os
 import tkinter as tk
+import time
 from tkinter import *
 from tkinter import messagebox, filedialog
 from pathlib import Path
@@ -55,9 +56,13 @@ def Browse_From():
 
 def mount():
     os.system('echo {} | sudo -S mkdir /mnt/encrypted'.format(password.get()))
+    # time.sleep(1)
     os.system('echo {} | echo {} | sudo -S cryptsetup open /dev/{} {}'.format(password.get(), password.get(), from_Path.get(), from_Path.get()))
+    # time.sleep(1)
     os.system('echo {} | sudo -S mount /dev/mapper/{} /mnt/encrypted'.format(password.get(), from_Path.get()))
+    # time.sleep(1)
     os.system('echo {} | sudo -S chown -R `whoami`:users /mnt/encrypted'.format(password.get()))
+    # time.sleep(1)
     os.system('thunar /mnt/encrypted')
     
 def unmount():
@@ -67,7 +72,6 @@ def unmount():
     root.quit()
 
 from_Path = StringVar()
-rename = StringVar()
 password = StringVar()
 
 # Calling the Widgets() function

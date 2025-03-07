@@ -51,6 +51,7 @@ install_stage=(
     thunar #File browser
     btop
     firefox #Browser
+    #librewolf-bin #Browser
     mpv #Media Player
     mpv-mpris #needed for playerctl
     pamixer 
