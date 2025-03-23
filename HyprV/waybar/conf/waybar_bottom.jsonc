@@ -56,7 +56,7 @@
 
     "custom/launch_discord": {
         "format": "",
-        "on-click": "exec webcord",
+        "on-click": "exec discord",
         "tooltip": false
     },
 
