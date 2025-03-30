@@ -1,0 +1,17 @@
+Add gtk .css to 
+.config/gtk-3.0
+
+Firefox https://www.howtogeek.com/334716/how-to-customize-firefoxs-user-interface-with-userchrome.css/
+1) add firefox .css to 
+.mozilla/firefox/xxx.default/chrome/userChrome.css
+.mozilla/firefox/xxx.default/chrome/userContent.css
+2) browse to
+about:config
+3) Search for and set to true
+toolkit.legacyUserProfileCustomizations.stylesheets
+
+---------------------
+
+remove alt menu pop up
+about:config
+ui.key.menuAccessKeyFocuses = false
