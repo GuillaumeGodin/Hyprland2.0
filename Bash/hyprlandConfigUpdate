@@ -25,5 +25,7 @@ sed -i "s/$currentColor/$newColor/g" ~/.config/gtk-3.0/gtk.css
 sed -i "s/$currentColor/$newColor/g" ~/.config/wofi/style.css
 sed -i "s/$currentColor/$newColor/g" ~/.mozilla/firefox/*.default-release/chrome/userChrome.css
 sed -i "s/$currentColor/$newColor/g" ~/.mozilla/firefox/*.default-release/chrome/userContent.css
+sed -i "s/$currentColor/$newColor/g" ~/.librewolf/*.default-default/chrome/userChrome.css
+sed -i "s/$currentColor/$newColor/g" ~/.librewolf/*.default-default/chrome/userContent.css
 makoctl reload
 hyprctl reload
