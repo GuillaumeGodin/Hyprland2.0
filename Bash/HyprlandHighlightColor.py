@@ -105,8 +105,8 @@ def setColor():
     os.system('sed -i "s/{}/{}/g" .mozilla/firefox/*.default-release/chrome/userChrome.css'.format(currentColor2, hexColor.get()))
     os.system('sed -i "s/{}/{}/g" .mozilla/firefox/*.default-release/chrome/userContent.css'.format(currentColor2, hexColor.get()))
     # librewolf
-    os.system('sed -i "s/{}/{}/g" .librewolf/*.default-release/chrome/userChrome.css'.format(currentColor2, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .librewolf/*.default-release/chrome/userContent.css'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .librewolf/*.default-default/chrome/userChrome.css'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .librewolf/*.default-default/chrome/userContent.css'.format(currentColor2, hexColor.get()))
 
     # Restart Waybar
     os.system('hyprctl reload')
