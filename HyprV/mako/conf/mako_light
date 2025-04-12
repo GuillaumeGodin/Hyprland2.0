@@ -15,7 +15,7 @@ on-touch=dismiss
 
 #sends notification sound
 #on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/dialog-warning.oga
-on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message.oga
+on-notify=exec mpv --volume=60 /usr/share/sounds/freedesktop/stereo/message.oga
 
 # STYLE OPTIONS
 font=Fantasque Sans Mono 14
