@@ -21,10 +21,11 @@ fi
 
 # artist2=$(tr "&" + <<< "$artist")
 artist2=$(sed 's/&/+/g' <<< "$artist")
+title2=$(sed 's/&/+/g' <<< "$title")
 
 #echo $artist
 
 #TOOLTIP=$album
 
 #echo '{"text": "'$artist' - '$title'", "tooltip": "'$TOOLTIP'"}'
-echo '{"text": "'$artist2''$title'"}'
+echo '{"text": "'$artist2''$title2'"}'
