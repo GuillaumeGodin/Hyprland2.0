@@ -5,10 +5,8 @@
 #get private ip
 artist=$(playerctl metadata artist --player=mpv)
 title=$(playerctl metadata title --player=mpv)
-# album=$(playerctl metadata album --player=mpv)
+album=$(playerctl metadata album --player=mpv)
 #next=$(playerctl next)
-
-
 
 if [ x"${artist}" == "x" ]
 then
@@ -23,9 +21,8 @@ fi
 artist2=$(sed 's/&/+/g' <<< "$artist")
 title2=$(sed 's/&/+/g' <<< "$title")
 
-#echo $artist
+# echo $album
+# echo $artist2
+# echo $title2
 
-#TOOLTIP=$album
-
-#echo '{"text": "'$artist' - '$title'", "tooltip": "'$TOOLTIP'"}'
-echo '{"text": "'$artist2''$title2'"}'
+echo '{"text": "'$artist2''$title2'", "tooltip": "'$album'"}'
