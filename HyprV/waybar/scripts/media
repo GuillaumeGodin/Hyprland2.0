@@ -25,4 +25,10 @@ title2=$(sed 's/&/+/g' <<< "$title")
 # echo $artist2
 # echo $title2
 
-echo '{"text": "'$artist2''$title2'", "tooltip": "'$album'"}'
+TOOLTIP='Playlist = '$album'\n'\
+'ALT P = Play random\n'\
+'ALT [ = Play previous\n'\
+'ALT ] = Play next\n'\
+'ALT \\ = Stop music'\
+
+echo '{"text": "'$artist2''$title2'", "tooltip": "'$TOOLTIP'"}'
