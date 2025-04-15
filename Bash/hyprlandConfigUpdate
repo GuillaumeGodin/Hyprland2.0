@@ -14,6 +14,8 @@ defaultColor=$(cat /home/$USER/Hyprland2.0/Bash/Color/currentColor)
 # echo $defaultColor
 # echo $currentColor
 
+sleep 3
+
 rm -r /home/$USER/.config/HyprV
 cp -r /home/$USER/Hyprland2.0/HyprV /home/$USER/.config/HyprV
 
