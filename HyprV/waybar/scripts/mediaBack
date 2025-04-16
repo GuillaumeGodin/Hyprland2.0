@@ -1,0 +1,14 @@
+#!/bin/bash
+
+artist=$(playerctl metadata artist --player=mpv)
+
+if [ x"${artist}" == "x" ]
+then
+    mediaBack=""
+    #echo "Off"
+else
+    mediaBack=""
+    #echo "On"
+fi
+
+echo '{"text": "'$mediaBack'"}'

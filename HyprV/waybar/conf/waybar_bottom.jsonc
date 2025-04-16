@@ -1,6 +1,6 @@
 {
     "layer": "top",
-    //"output": "HDMI-A-1", //Show waybar on specific monitor
+    // "output": "DP-2", //Show waybar on specific monitor
     "position": "bottom",
     "mod": "dock",
     "exclusive": true,
@@ -21,6 +21,10 @@
     "modules-center": ["wlr/taskbar"],
     "modules-right": [
         "custom/media",
+        "custom/mediaBack",
+        "custom/mediaPlay",
+        "custom/mediaStop",
+        "custom/mediaNext",
         "custom/info",
         "custom/weather"
     ],
@@ -112,6 +116,34 @@
         "interval": 1,
         "format": "{}"//,
         //"tooltip": true
+    },
+
+    "custom/mediaBack": {
+        "exec": "~/.config/HyprV/waybar/scripts/mediaBack",
+        "on-click": "playerctl previous --player=mpv",
+        "return-type" : "json",
+        "interval": 1
+    },
+    
+    "custom/mediaPlay": {
+        "exec": "~/.config/HyprV/waybar/scripts/mediaPlay",
+        "on-click": "mpv --volume=75 --shuffle /home/$USER/Music/Playlist/*",
+        "return-type" : "json",
+        "interval": 1
+    },
+    
+    "custom/mediaStop": {
+        "exec": "~/.config/HyprV/waybar/scripts/mediaStop",
+        "on-click": "playerctl stop -a --player=mpv",
+        "return-type" : "json",
+        "interval": 1
+    },
+    
+    "custom/mediaNext": {
+        "exec": "~/.config/HyprV/waybar/scripts/mediaNext",
+        "on-click": "playerctl next --player=mpv",
+        "return-type" : "json",
+        "interval": 1
     },
 
     "custom/info": {

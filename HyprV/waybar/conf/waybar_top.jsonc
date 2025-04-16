@@ -1,6 +1,6 @@
 {
     "layer": "top",
-    //"output": "HDMI-A-1", //Show waybar on specific monitor
+    // "output": "DP-2", //Show waybar on specific monitor
     "position": "top",
     "mod": "dock",
     "exclusive": true,
@@ -16,7 +16,8 @@
         "idle_inhibitor",
         "clock",                    //same as custom/time
         // "custom/time",              //same as clock
-        "custom/updates"
+        "custom/updates",
+        "custom/dropdown"
     ],
     "modules-right": [
         "tray",
@@ -200,6 +201,20 @@
         "on-click": "~/.config/HyprV/waybar/scripts/update-sys update",
         "interval": 43200,
         "tooltip": true
+    },
+
+    // https://github.com/Alexays/Waybar/pull/3247
+    "custom/dropdown": {
+        "format" : "󰍜",
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "~/.config/HyprV/waybar/scripts/dropdown.xml",
+        "menu-actions": {
+            "Jellyfin": "firefox --no-terminal 2&>1 1>/dev/null --new-window http://192.168.111.100:8097/web/#/home.html &",
+            "Recipes": "firefox --no-terminal 2&>1 1>/dev/null --new-window http://192.168.111.100:8090/search/ &",
+            "Google Maps": "firefox --no-terminal 2&>1 1>/dev/null --new-window https://www.google.com/maps &",
+            "Play Music": "mpv --no-terminal 2&>1 1>/dev/null --volume=75 --shuffle /home/$USER/Music/Playlist/* &"
+        }
     },
 
     // "custom/time": {

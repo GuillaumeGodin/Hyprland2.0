@@ -1,0 +1,14 @@
+#!/bin/bash
+
+artist=$(playerctl metadata artist --player=mpv)
+
+if [ x"${artist}" == "x" ]
+then
+    mediaPlay=""
+    #echo "Off"
+else
+    mediaPlay=""
+    #echo "On"
+fi
+
+echo '{"text": "'$mediaPlay'"}'

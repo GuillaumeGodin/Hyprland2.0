@@ -1,0 +1,26 @@
+<!-- https://github.com/Alexays/Waybar/pull/3247 -->
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkMenu" id="menu">
+    <child>
+		  <object class="GtkMenuItem" id="Jellyfin">
+			  <property name="label">Jellyfin</property>
+      </object>
+	  </child>
+    <child>
+      <object class="GtkMenuItem" id="Recipes">
+        <property name="label">Recipes</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="Google Maps">
+			  <property name="label">Google Maps</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="Play Music">
+        <property name="label">Play Music</property>
+      </object>
+    </child>
+  </object>
+</interface>

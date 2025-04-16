@@ -2,8 +2,8 @@
 @define-color highlightWritingColor #eeeeff;
 @define-color writingColor #11111b;
 
-@define-color borderColor #ffbb00;
-@define-color highlightColor #ffbb00;
+@define-color borderColor #EAB282;
+@define-color highlightColor #EAB282;
 
 * {
     border: none;
@@ -42,6 +42,7 @@ tooltip label{
 #clock,                     /*same as custom-time*/
 #custom-time,               /*same as clock*/
 #custom-updates,
+#custom-dropdown,
 #tray,
 #cpu,
 #pulseaudio,
@@ -75,6 +76,10 @@ tooltip label{
 #custom-launch_kitty,
 #taskbar,
 #custom-media,
+#custom-mediaBack,
+#custom-mediaPlay,
+#custom-mediaStop,
+#custom-mediaNext,
 #custom-info, /*New Info Tooltip*/
 #custom-weather
 {
@@ -157,6 +162,22 @@ tooltip label{
     border-style: solid;
     margin-left: 5px;
 }
+/* --------------------------------------------------------------- */
+#custom-dropdown {
+    background: @highlightColor;
+    color: @writingColor;
+    opacity: 0.8;
+    border-radius: 10px 10px 10px 10px;
+    border-width: 2px;
+    border-style: solid;
+    margin-left: 5px;
+    padding-right: 12px;
+}
+
+menuitem {
+	border-radius: 15px;
+}
+/* --------------------------------------------------------------- */
 
 /*Top right*/
 #tray {
@@ -307,6 +328,49 @@ tooltip label{
     opacity: 0.8;
 }
 
+#custom-mediaBack {
+    border-radius: 10px 0px 0px 10px;
+    border-width: 2px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    padding-left: 8px;
+    padding-right: 15px;
+    font-size: 24px;
+}
+
+#custom-mediaPlay {
+    border-radius: 0px 0px 0px 0px;
+    border-width: 2px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    padding-left: 5px;
+    padding-right: 6px;
+    font-size: 24px;
+}
+
+#custom-mediaStop {
+    border-radius: 0px 0px 0px 0px;
+    border-width: 2px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    padding-left: 5px;
+    padding-right: 8px;
+    font-size: 24px;
+}
+
+#custom-mediaNext {
+    border-radius: 0px 10px 10px 0px;
+    border-width: 2px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-right-style: solid;
+    margin-right: 5px;
+    padding-left: 5px;
+    padding-right: 15px;
+    font-size: 24px;
+}
+
 #custom-info {
     border-radius: 10px 10px 10px 10px;
     border-width: 2px;
@@ -347,7 +411,10 @@ tooltip label{
 #custom-launch_blender:hover,
 #custom-launch_thunar:hover,
 #custom-launch_kitty:hover,
-#custom-media:hover,
+#custom-mediaBack:hover,
+#custom-mediaPlay:hover,
+#custom-mediaStop:hover,
+#custom-mediaNext:hover,
 #custom-info:hover,
 #custom-weather:hover {
     background-color: @highlightColor;
@@ -381,7 +448,10 @@ tooltip label{
 #custom-launch_thunar,
 #custom-launch_kitty,
 #taskbar,
-/*#custom-media,*/
+#custom-mediaBack,
+#custom-mediaPlay,
+#custom-mediaStop,
+#custom-mediaNext,
 #custom-info, /*New Info Tooltip*/
 #custom-weather {
 border-color: @borderColor;
