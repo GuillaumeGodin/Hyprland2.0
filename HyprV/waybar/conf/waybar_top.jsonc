@@ -1,6 +1,6 @@
 {
     "layer": "top",
-    // "output": "DP-2", //Show waybar on specific monitor
+    "output": "DP-2", //Show waybar on specific monitor
     "position": "top",
     "mod": "dock",
     "exclusive": true,
@@ -66,10 +66,22 @@
         "tooltip": true
     },
 
+    // "custom/power_btn": {
+    //     "format": "",
+    //     "on-click": "sh -c '(sleep 0.5s; wlogout --protocol layer-shell)' & disown",
+    //     "tooltip": false
+    // },
+    
     "custom/power_btn": {
-        "format": "",
-        "on-click": "sh -c '(sleep 0.5s; wlogout --protocol layer-shell)' & disown",
-        "tooltip": false
+        "format" : "",
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "~/.config/HyprV/waybar/scripts/powerButton.xml",
+        "menu-actions": {
+            "Logout": "hyprctl dispatch exit 0",
+            "Restart": "systemctl reboot",
+            "Shutdown": "systemctl poweroff"
+        }
     },
 
     "custom/lock_screen": {
