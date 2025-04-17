@@ -162,14 +162,12 @@ tooltip label{
     border-style: solid;
     margin-left: 5px;
 }
-/* --------------------------------------------------------------- */
 #custom-dropdown {
     background: @highlightColor;
     color: @highlightWritingColor;
     opacity: 0.8;
     border-radius: 10px 10px 10px 10px;
     border-width: 2px;
-    border-style: solid;
     margin-left: 5px;
     padding-right: 12px;
 }
@@ -177,7 +175,6 @@ tooltip label{
 menuitem {
 	border-radius: 15px;
 }
-/* --------------------------------------------------------------- */
 
 /*Top right*/
 #tray {

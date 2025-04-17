@@ -20,37 +20,37 @@ rm -r /home/$USER/.config/HyprV
 cp -r /home/$USER/Hyprland2.0/HyprV /home/$USER/.config/HyprV
 
 #hyprland (border)
-sed -i "s/$defaultColor/$currentColor/g" ~/.config/HyprV/hypr/hyprland.conf
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/hypr/hyprland.conf
 # gtk (thunar)
-sed -i "s/$defaultColor/$currentColor/g" ~/.config/gtk-3.0/gtk.css
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/gtk-3.0/gtk.css
 # wofi
-sed -i "s/$defaultColor/$currentColor/g" ~/.config/wofi/style.css
-sed -i "s/$defaultColor/$currentColor/g" ~/.config/HyprV/wofi/style/wofi_dark.css
-sed -i "s/$defaultColor/$currentColor/g" ~/.config/HyprV/wofi/style/wofi_light.css
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/wofi/style.css
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/wofi/style/wofi_dark.css
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/wofi/style/wofi_light.css
 # starship shell
-sed -i "s/$defaultColor/$currentColor/g" ~/.config/HyprV/starship/starship.toml
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/starship/starship.toml
 # waybar
-sed -i "s/$defaultColor/$currentColor/g" ~/.config/HyprV/waybar/style/waybar_dark.css
-sed -i "s/$defaultColor/$currentColor/g" ~/.config/HyprV/waybar/style/waybar_light.css
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/waybar/style/waybar_dark.css
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/waybar/style/waybar_light.css
 # wlogout
-sed -i "s/$defaultColor/$currentColor/g" ~/.config/HyprV/wlogout/style/wlogout_dark.css
-sed -i "s/$defaultColor/$currentColor/g" ~/.config/HyprV/wlogout/style/wlogout_light.css
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/wlogout/style/wlogout_dark.css
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/wlogout/style/wlogout_light.css
 # mako
-sed -i "s/$defaultColor/$currentColor/g" ~/.config/HyprV/mako/conf/mako_dark
-sed -i "s/$defaultColor/$currentColor/g" ~/.config/HyprV/mako/conf/mako_light
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/mako/conf/mako_dark
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/mako/conf/mako_light
 # firefox
-sed -i "s/$defaultColor/$currentColor/g" ~/.mozilla/firefox/*.default-release/chrome/userChrome.css
-sed -i "s/$defaultColor/$currentColor/g" ~/.mozilla/firefox/*.default-release/chrome/userContent.css
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.mozilla/firefox/*.default-release/chrome/userChrome.css
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.mozilla/firefox/*.default-release/chrome/userContent.css
 # librewolf
-sed -i "s/$defaultColor/$currentColor/g" ~/.librewolf/*.default-default/chrome/userChrome.css
-sed -i "s/$defaultColor/$currentColor/g" ~/.librewolf/*.default-default/chrome/userContent.css
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.librewolf/*.default-default/chrome/userChrome.css
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.librewolf/*.default-default/chrome/userContent.css
 # currentColor
-sed -i "s/$defaultColor/$currentColor/g" ~/.config/HyprV/currentColor
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/currentColor
 
-ln -sf ~/.config/HyprV/waybar/conf/waybar_top.jsonc ~/.config/waybar/config.jsonc
-ln -sf ~/.config/HyprV/waybar/style/waybar_dark.css ~/.config/waybar/style.css
-ln -sf ~/.config/HyprV/kitty/MochaDark.conf ~/.config/HyprV/kitty/mocha.conf
-ln -sf ~/.config/HyprV/hypr/hyprland.conf ~/.config/hypr/hyprland.conf
+ln -sf /home/$USER/.config/HyprV/waybar/conf/waybar_top.jsonc /home/$USER/.config/waybar/config.jsonc
+ln -sf /home/$USER/.config/HyprV/waybar/style/waybar_dark.css /home/$USER/.config/waybar/style.css
+ln -sf /home/$USER/.config/HyprV/kitty/MochaDark.conf /home/$USER/.config/HyprV/kitty/mocha.conf
+ln -sf /home/$USER/.config/HyprV/hypr/hyprland.conf /home/$USER/.config/hypr/hyprland.conf
 
 makoctl reload
 hyprctl reload
