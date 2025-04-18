@@ -13,8 +13,18 @@
       </object>
     </child>
     <child>
+      <object class="GtkMenuItem" id="Google">
+			  <property name="label">Google</property>
+      </object>
+    </child>
+    <child>
       <object class="GtkMenuItem" id="Google Maps">
 			  <property name="label">Google Maps</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="Weather Network">
+			  <property name="label">Weather Network</property>
       </object>
     </child>
     <child>
