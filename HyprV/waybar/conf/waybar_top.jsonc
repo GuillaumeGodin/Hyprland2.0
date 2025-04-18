@@ -1,6 +1,6 @@
 {
     "layer": "top",
-    "output": "DP-2", //Show waybar on specific monitor
+    // "output": "DP-2", //Show waybar on specific monitor
     "position": "top",
     "mod": "dock",
     "exclusive": true,
