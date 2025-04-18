@@ -7,7 +7,7 @@ then
     mediaPlay=""
     #echo "Off"
 else
-    mediaPlay=""
+    mediaPlay="󰐎"
     #echo "On"
 fi
 
