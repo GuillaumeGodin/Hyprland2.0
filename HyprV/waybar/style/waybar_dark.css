@@ -2,8 +2,8 @@
 @define-color highlightWritingColor #000000;
 @define-color writingColor #f6f7fc;
 
-@define-color borderColor #EAB282;
-@define-color highlightColor #EAB282;
+@define-color borderColor #ffbb00;
+@define-color highlightColor #ffbb00;
 
 * {
     border: none;
