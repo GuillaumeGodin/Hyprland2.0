@@ -7,7 +7,7 @@ then
     mediaStop=""
     #echo "Off"
 else
-    mediaStop=""
+    mediaStop="󰓛"
     #echo "On"
 fi
 

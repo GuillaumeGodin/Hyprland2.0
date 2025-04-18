@@ -7,7 +7,7 @@ then
     mediaNext=""
     #echo "Off"
 else
-    mediaNext=""
+    mediaNext="󰒭"
     #echo "On"
 fi
 

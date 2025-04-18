@@ -7,7 +7,7 @@ then
     mediaBack=""
     #echo "Off"
 else
-    mediaBack=""
+    mediaBack="󰒮"
     #echo "On"
 fi
 
