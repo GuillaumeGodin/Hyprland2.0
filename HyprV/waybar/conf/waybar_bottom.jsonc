@@ -102,7 +102,8 @@
             "mpv",
             "Volume Control",
             "Easy Effects",
-            "btop"
+            "btop",
+            "Lan Mouse"
         ],
 	    "app_ids-mapping": {
 	        "steam_app_39210": "Final Fantasy 14"
