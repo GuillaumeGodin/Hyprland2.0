@@ -14,13 +14,11 @@ defaultColor=$(cat /home/$USER/Hyprland2.0/Bash/Color/currentColor)
 # echo $defaultColor
 # echo $currentColor
 
-sleep 3
+sleep 1
 
 rm -r /home/$USER/.config/HyprV
 cp -r /home/$USER/Hyprland2.0/HyprV /home/$USER/.config/HyprV
 
-#hyprland (border)
-sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/hypr/hyprland.conf
 # gtk (thunar)
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/gtk-3.0/gtk.css
 # wofi
@@ -46,11 +44,17 @@ sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.librewolf/*.default-defaul
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.librewolf/*.default-default/chrome/userContent.css
 # currentColor
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/currentColor
+#hyprland (border)
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/hypr/hyprland.conf
+
+sleep 1
 
 ln -sf /home/$USER/.config/HyprV/waybar/conf/waybar_top.jsonc /home/$USER/.config/waybar/config.jsonc
 ln -sf /home/$USER/.config/HyprV/waybar/style/waybar_dark.css /home/$USER/.config/waybar/style.css
 ln -sf /home/$USER/.config/HyprV/kitty/MochaDark.conf /home/$USER/.config/HyprV/kitty/mocha.conf
 ln -sf /home/$USER/.config/HyprV/hypr/hyprland.conf /home/$USER/.config/hypr/hyprland.conf
+
+sleep 1
 
 makoctl reload
 hyprctl reload
