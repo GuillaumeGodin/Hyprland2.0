@@ -67,7 +67,8 @@ call = sp.getoutput('echo "$(</home/$USER/.config/HyprV/currentColor)"')
 print(call)
 
 def hyprpickerColor():
-    command = os.popen('hyprpicker | sed "s/^.\{1\}//"')
+    # command = os.popen('hyprpicker | sed "s/^.\{1\}//"')
+    command = os.popen('hyprpicker | tail -c 7')
     output = command.read()
     print(output[:6])
     hexColor.set(output[:6])
