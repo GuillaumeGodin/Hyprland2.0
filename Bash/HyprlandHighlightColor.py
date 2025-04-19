@@ -68,7 +68,7 @@ print(call)
 
 def hyprpickerColor():
     # command = os.popen('hyprpicker | sed "s/^.\{1\}//"')
-    command = os.popen('hyprpicker | tail -c 7')
+    command = os.popen('hyprpicker | tail -c 7') #Selects the last 6 characters
     output = command.read()
     print(output[:6])
     hexColor.set(output[:6])
