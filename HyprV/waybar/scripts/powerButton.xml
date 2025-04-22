@@ -18,6 +18,11 @@
       </object>
     </child>
     <child>
+      <object class="GtkMenuItem" id="Update Packages">
+			  <property name="label">Update Packages</property>
+      </object>
+    </child>
+    <child>
       <object class="GtkMenuItem" id="Update Configs">
 			  <property name="label">Update Configs</property>
       </object>

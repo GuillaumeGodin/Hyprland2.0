@@ -8,10 +8,12 @@ notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Updatin
 
 git clone https://github.com/GuillaumeGodin/Hyprland2.0
 
-currentColor=$(cat /home/$USER/.config/HyprV/currentColor)
-defaultColor=$(cat /home/$USER/Hyprland2.0/Bash/Color/currentColor)
-currentMonitor=$(cat /home/$USER/.config/HyprV/currentMonitor)
-defaultMonitor=$(cat /home/$USER/Hyprland2.0/Bash/Color/currentMonitor)
+currentColor=$(cat /home/$USER/.config/HyprV/current/currentColor)
+defaultColor=$(cat /home/$USER/Hyprland2.0/Bash/Color/current/currentColor)
+currentMonitor=$(cat /home/$USER/.config/HyprV/current/currentMonitor)
+defaultMonitor=$(cat /home/$USER/Hyprland2.0/Bash/Color/current/currentMonitor)
+currentKeyboard=$(cat /home/$USER/.config/HyprV/current/currentKeyboard)
+defaultKeyboard=$(cat /home/$USER/Hyprland2.0/Bash/Color/current/currentKeyboard)
 
 # echo $defaultColor
 # echo $currentColor
@@ -46,10 +48,10 @@ sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.mozilla/firefox/*.default-
 # librewolf
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.librewolf/*.default-default/chrome/userChrome.css
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.librewolf/*.default-default/chrome/userContent.css
-# currentColor
+# current
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/currentColor
-# currentMonitor
 sed -i "s/$defaultMonitor/$currentMonitor/g" /home/$USER/.config/HyprV/currentMonitor
+sed -i "s/$defaultKeyboard/$currentKeyboard/g" /home/$USER/.config/HyprV/currentKeyboard
 #hyprland (border)
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/hypr/hyprland.conf
 

@@ -81,7 +81,8 @@
             "Logout": "hyprctl dispatch exit 0",
             "Restart": "systemctl reboot",
             "Shutdown": "systemctl poweroff",
-            "Update Configs": "kitty --hold  bash /home/$USER/Hyprland2.0/Bash/hyprlandConfigUpdate"
+            "Update Configs": "kitty --hold  bash /home/$USER/Hyprland2.0/Bash/hyprlandConfigUpdate",
+            "Update Packages": "kitty --hold  yay"
         }
     },
 

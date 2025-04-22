@@ -63,7 +63,7 @@ def Widgets():
 
 #     download_Path.set(download_Directory)
 
-call = sp.getoutput('echo "$(</home/$USER/.config/HyprV/currentColor)"')
+call = sp.getoutput('echo "$(</home/$USER/.config/HyprV/current/currentColor)"')
 print(call)
 
 def hyprpickerColor():
@@ -76,12 +76,12 @@ def hyprpickerColor():
 
 def setColor():
     # Get current color
-    command = os.popen('echo "$(<.config/HyprV/currentColor)"')
+    command = os.popen('echo "$(<.config/HyprV/current/currentColor)"')
     currentColor1 = command.read()
     currentColor2 = currentColor1[:6]
     print(currentColor2)
 
-    os.system('sed -i "/{}/c {}" .config/HyprV/currentColor'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "/{}/c {}" .config/HyprV/current/currentColor'.format(currentColor2, hexColor.get()))
     #hyprland (border)
     os.system('sed -i "s/{}/{}/g" .config/HyprV/hypr/hyprland.conf'.format(currentColor2, hexColor.get()))
     # gtk (thunar)
