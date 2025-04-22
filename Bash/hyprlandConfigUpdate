@@ -54,8 +54,8 @@ sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/current/curre
 sed -i "s/$defaultMonitor/$currentMonitor/g" /home/$USER/.config/HyprV/current/currentMonitor
 sed -i "s/$defaultKeyboard/$currentKeyboard/g" /home/$USER/.config/HyprV/current/currentKeyboard
 # keyboard
-sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/waybar/conf/waybar_top.jsonc
-sed -i "s/$defaultMonitor/$currentMonitor/g" /home/$USER/.config/HyprV/hyprv_util
+sed -i "s/$defaultKeyboard/$currentKeyboard/g" /home/$USER/.config/HyprV/waybar/conf/waybar_top.jsonc
+sed -i "s/$defaultKeyboard/$currentKeyboard/g" /home/$USER/.config/HyprV/hyprv_util
 #hyprland (border)
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/hypr/hyprland.conf
 
