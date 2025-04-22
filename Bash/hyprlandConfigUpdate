@@ -48,6 +48,8 @@ sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.librewolf/*.default-defaul
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.librewolf/*.default-default/chrome/userContent.css
 # currentColor
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/currentColor
+# currentMonitor
+sed -i "s/$defaultMonitor/$currentMonitor/g" /home/$USER/.config/HyprV/currentMonitor
 #hyprland (border)
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/hypr/hyprland.conf
 
