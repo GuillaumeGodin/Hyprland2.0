@@ -52,6 +52,8 @@ sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.librewolf/*.default-defaul
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/current/currentColor
 sed -i "s/$defaultMonitor/$currentMonitor/g" /home/$USER/.config/HyprV/current/currentMonitor
 sed -i "s/$defaultKeyboard/$currentKeyboard/g" /home/$USER/.config/HyprV/current/currentKeyboard
+#hyprland (border)
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/hypr/hyprland.conf
 
 sleep 1
 
@@ -63,9 +65,7 @@ ln -sf /home/$USER/.config/HyprV/hypr/hyprland.conf /home/$USER/.config/hypr/hyp
 sleep 1
 
 makoctl reload
-
-#hyprland (border)
-sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/hypr/hyprland.conf
+hyprctl reload
 
 # echo $defaultColor
 # echo $currentColor
