@@ -49,9 +49,9 @@ sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.mozilla/firefox/*.default-
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.librewolf/*.default-default/chrome/userChrome.css
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.librewolf/*.default-default/chrome/userContent.css
 # current
-sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/currentColor
-sed -i "s/$defaultMonitor/$currentMonitor/g" /home/$USER/.config/HyprV/currentMonitor
-sed -i "s/$defaultKeyboard/$currentKeyboard/g" /home/$USER/.config/HyprV/currentKeyboard
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/current/currentColor
+sed -i "s/$defaultMonitor/$currentMonitor/g" /home/$USER/.config/HyprV/current/currentMonitor
+sed -i "s/$defaultKeyboard/$currentKeyboard/g" /home/$USER/.config/HyprV/current/currentKeyboard
 #hyprland (border)
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/hypr/hyprland.conf
 
