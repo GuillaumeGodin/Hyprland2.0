@@ -52,6 +52,9 @@ sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.librewolf/*.default-defaul
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/current/currentColor
 sed -i "s/$defaultMonitor/$currentMonitor/g" /home/$USER/.config/HyprV/current/currentMonitor
 sed -i "s/$defaultKeyboard/$currentKeyboard/g" /home/$USER/.config/HyprV/current/currentKeyboard
+# keyboard
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/Hyprland2.0/HyprV/waybar/conf/waybar_top.jsonc
+sed -i "s/$defaultMonitor/$currentMonitor/g" /home/$USER/Hyprland2.0/HyprV/hyprv_util
 #hyprland (border)
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/hypr/hyprland.conf
 

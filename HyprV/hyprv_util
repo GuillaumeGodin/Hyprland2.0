@@ -2,7 +2,7 @@
 
 #Set your keyboard name here and in waybar waybar_top.jsonc 
 #hyprctl devices
-SET_KB="keyboard-k380-keyboard"
+SET_KB="currentKeyboard"
 
 get_theme() {
     # Check which waybar theme is set
