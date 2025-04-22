@@ -9,11 +9,11 @@ notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Updatin
 git clone https://github.com/GuillaumeGodin/Hyprland2.0
 
 currentColor=$(cat /home/$USER/.config/HyprV/current/currentColor)
-defaultColor=$(cat /home/$USER/Hyprland2.0/Bash/Color/current/currentColor)
+defaultColor=$(cat /home/$USER/Hyprland2.0/HyprV/current/currentColor)
 currentMonitor=$(cat /home/$USER/.config/HyprV/current/currentMonitor)
-defaultMonitor=$(cat /home/$USER/Hyprland2.0/Bash/Color/current/currentMonitor)
+defaultMonitor=$(cat /home/$USER/Hyprland2.0/HyprV/current/currentMonitor)
 currentKeyboard=$(cat /home/$USER/.config/HyprV/current/currentKeyboard)
-defaultKeyboard=$(cat /home/$USER/Hyprland2.0/Bash/Color/current/currentKeyboard)
+defaultKeyboard=$(cat /home/$USER/Hyprland2.0/HyprV/current/currentKeyboard)
 
 # echo $defaultColor
 # echo $currentColor
