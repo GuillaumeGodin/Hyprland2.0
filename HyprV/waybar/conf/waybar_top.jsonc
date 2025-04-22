@@ -1,6 +1,6 @@
 {
     "layer": "top",
-    // "output": "DP-2", //Show waybar on specific monitor
+    "output": "currentMonitor",
     "position": "top",
     "mod": "dock",
     "exclusive": true,
@@ -80,7 +80,8 @@
         "menu-actions": {
             "Logout": "hyprctl dispatch exit 0",
             "Restart": "systemctl reboot",
-            "Shutdown": "systemctl poweroff"
+            "Shutdown": "systemctl poweroff",
+            "Update Configs": "kitty --hold  bash /home/$USER/Hyprland2.0/Bash/hyprlandConfigUpdate"
         }
     },
 
