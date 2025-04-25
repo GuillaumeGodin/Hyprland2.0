@@ -81,10 +81,10 @@
             "Logout": "hyprctl dispatch exit 0",
             "Restart": "systemctl reboot",
             "Shutdown": "systemctl poweroff",
-            "Update Configs": "kitty --hold  bash /home/$USER/Hyprland2.0/Bash/hyprlandConfigUpdate",
             // "Update Packages": "kitty --hold  yay"
             // "Update Packages": "kitty --title update-sys sh -c 'yay -Syu'"
-            "Update Packages": "bash /home/$USER/.config/HyprV/waybar/scripts/update-sys_2 update"
+            "Update Packages": "kitty --title update-sys sh -c 'yay -Syu' && pkill -RTMIN+8 waybar",
+            "Update Configs": "kitty --hold  bash /home/$USER/Hyprland2.0/Bash/hyprlandConfigUpdate"
         }
     },
 
@@ -216,6 +216,7 @@
         "exec": "~/.config/HyprV/waybar/scripts/update-sys",
         "on-click": "~/.config/HyprV/waybar/scripts/update-sys update",
         "interval": 43200,
+        "signal": 8,
         "tooltip": true
     },
 

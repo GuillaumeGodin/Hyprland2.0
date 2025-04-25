@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-if [ "$1" = "update" ]; then
-    kitty --title update-sys sh -c 'yay -Syu'
-    bash /home/$USER/.config/HyprV/waybar/scripts/update-sys
-fi
