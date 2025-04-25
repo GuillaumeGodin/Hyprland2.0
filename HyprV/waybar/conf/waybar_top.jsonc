@@ -232,7 +232,8 @@
             "Google": "firefox --no-terminal 2&>1 1>/dev/null --new-window https://www.google.com &",
             "Google Maps": "firefox --no-terminal 2&>1 1>/dev/null --new-window https://www.google.com/maps &",
             "Weather Network": "firefox --no-terminal 2&>1 1>/dev/null --new-window https://www.theweathernetwork.com/en/city/ca/ontario/ottawa/hourly &",
-            "Play Music": "mpv --no-terminal 2&>1 1>/dev/null --volume=75 --shuffle /home/$USER/Music/Playlist/* &"
+            // "Play Music": "mpv --no-terminal 2&>1 1>/dev/null --volume=75 --shuffle /home/$USER/Music/Playlist/* &"
+            "Play Music": "./.config/HyprV/waybar/scripts/mediaSwitch"
         }
     },
 

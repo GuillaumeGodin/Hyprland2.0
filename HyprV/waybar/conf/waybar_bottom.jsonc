@@ -123,28 +123,32 @@
         "exec": "~/.config/HyprV/waybar/scripts/mediaBack",
         "on-click": "playerctl previous --player=mpv",
         "return-type" : "json",
-        "interval": 1
+        "signal": 7
+        // "interval": 1
     },
     
     "custom/mediaPlay": {
         "exec": "~/.config/HyprV/waybar/scripts/mediaPlay",
         "on-click": "playerctl play-pause --player=mpv",
         "return-type" : "json",
-        "interval": 1
+        "signal": 7
+        // "interval": 1
     },
     
     "custom/mediaStop": {
         "exec": "~/.config/HyprV/waybar/scripts/mediaStop",
-        "on-click": "playerctl stop -a --player=mpv",
+        "on-click": "playerctl stop -a --player=mpv && pkill -RTMIN+7 waybar",
         "return-type" : "json",
-        "interval": 1
+        "signal": 7
+        // "interval": 1
     },
     
     "custom/mediaNext": {
         "exec": "~/.config/HyprV/waybar/scripts/mediaNext",
         "on-click": "playerctl next --player=mpv",
         "return-type" : "json",
-        "interval": 1
+        "signal": 7
+        // "interval": 1
     },
 
     "custom/info": {

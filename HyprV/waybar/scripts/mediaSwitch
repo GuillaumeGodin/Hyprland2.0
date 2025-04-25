@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+mpv --no-terminal 2&>1 1>/dev/null --volume=75 --shuffle /home/$USER/Music/Playlist/* &
+
+sleep 1
+
+pkill -RTMIN+7 waybar
