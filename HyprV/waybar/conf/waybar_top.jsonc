@@ -82,7 +82,9 @@
             "Restart": "systemctl reboot",
             "Shutdown": "systemctl poweroff",
             "Update Configs": "kitty --hold  bash /home/$USER/Hyprland2.0/Bash/hyprlandConfigUpdate",
-            "Update Packages": "kitty --hold  yay"
+            // "Update Packages": "kitty --hold  yay"
+            // "Update Packages": "kitty --title update-sys sh -c 'yay -Syu'"
+            "Update Packages": "bash /home/$USER/.config/HyprV/waybar/scripts/update-sys_2 update"
         }
     },
 

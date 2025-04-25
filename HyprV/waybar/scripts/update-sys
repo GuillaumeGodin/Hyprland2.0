@@ -19,9 +19,9 @@ case $1 in
 esac
 
 # If the parameter is "update", update all services
-if [ "$1" = "update" ]; then
-    kitty --title update-sys sh -c 'yay -Syu'
-fi
+# if [ "$1" = "update" ]; then
+#     kitty --title update-sys sh -c 'yay -Syu'
+# fi
 
 # If there aren't any parameters, return the total number of updates
 if [ "$1" = "" ]; then
