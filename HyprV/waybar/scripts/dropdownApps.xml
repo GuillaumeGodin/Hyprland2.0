@@ -1,0 +1,41 @@
+<!-- https://github.com/Alexays/Waybar/pull/3247 -->
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkMenu" id="menu">
+    <child>
+		  <object class="GtkMenuItem" id="Firefox">
+			  <property name="label"> Firefox</property>
+      </object>
+	  </child>
+    <child>
+      <object class="GtkMenuItem" id="Mail_Evolution">
+        <property name="label">󰇰 Mail_Evolution</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="Steam">
+			  <property name="label"> Steam</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="Discord">
+			  <property name="label"> Discord</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="Gimp">
+			  <property name="label"> Gimp</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="Blender">
+        <property name="label"> Blender</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="Terminal_Kitty">
+        <property name="label"> Terminal_Kitty</property>
+      </object>
+    </child>
+  </object>
+</interface>

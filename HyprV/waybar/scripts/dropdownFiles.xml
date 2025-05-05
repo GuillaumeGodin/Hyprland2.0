@@ -1,0 +1,36 @@
+<!-- https://github.com/Alexays/Waybar/pull/3247 -->
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkMenu" id="menu">
+    <child>
+		  <object class="GtkMenuItem" id="Desktop">
+			  <property name="label">Desktop</property>
+      </object>
+	  </child>
+    <child>
+      <object class="GtkMenuItem" id="Documents">
+        <property name="label">Documents</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="Downloads">
+			  <property name="label">Downloads</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="Music">
+			  <property name="label">Music</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="Pictures">
+			  <property name="label">Pictures</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="Videos">
+        <property name="label">Videos</property>
+      </object>
+    </child>
+  </object>
+</interface>

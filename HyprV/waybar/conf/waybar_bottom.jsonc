@@ -1,6 +1,6 @@
 {
     "layer": "top",
-    "output": "currentMonitor",
+    "output": "DP-2",
     "position": "bottom",
     "mod": "dock",
     "exclusive": true,
@@ -9,14 +9,16 @@
     "height": 20,
     "modules-left": [
         "custom/launch_wofi",
-        "custom/launch_firefox",
-        "custom/launch_thunderbird",
-        "custom/launch_steam",
-        "custom/launch_discord",
-        "custom/launch_gimp",
-        "custom/launch_blender",
-        "custom/launch_kitty",
-        "custom/launch_thunar"
+        "custom/dropdownApps",
+        "custom/dropdownFiles"
+        // "custom/launch_firefox",
+        // "custom/launch_thunderbird",
+        // "custom/launch_steam",
+        // "custom/launch_discord",
+        // "custom/launch_gimp",
+        // "custom/launch_blender",
+        // "custom/launch_kitty",
+        // "custom/launch_thunar"
     ],
     "modules-center": ["wlr/taskbar"],
     "modules-right": [
@@ -33,6 +35,43 @@
     ],
 
     // https://www.nerdfonts.com/cheat-sheet
+    
+    "custom/launch_wofi": {
+        "format": "󱗼",
+        "on-click": "sh -c '(sleep 0.5s; pkill wofi || wofi -c ~/.config/HyprV/wofi/config-lmenu)' & disown",
+        "tooltip": false
+    },
+
+    "custom/dropdownApps": {
+        "format" : "Apps",
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "~/.config/HyprV/waybar/scripts/dropdownApps.xml",
+        "menu-actions": {
+            "Firefox": "firefox --no-terminal 2&>1 1>/dev/null --new-window &",
+            "Mail_Evolution": "evolution 1>/dev/null &",
+            "Steam": "steam 1>/dev/null &",
+            "Discord": "discord 1>/dev/null &",
+            "Gimp": "gimp 1>/dev/null &",
+            "Blender": "blender 1>/dev/null &",
+            "Terminal_Kitty": "kitty 1>/dev/null &"
+        }
+    },
+
+    "custom/dropdownFiles": {
+        "format" : "Files",
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "~/.config/HyprV/waybar/scripts/dropdownFiles.xml",
+        "menu-actions": {
+            "Desktop": "thunar /home/$USER/Desktop 1>/dev/null &",
+            "Documents": "thunar /home/$USER/Documents 1>/dev/null &",
+            "Downloads": "thunar /home/$USER/Downloads 1>/dev/null &",
+            "Music": "thunar /home/$USER/Music 1>/dev/null &",
+            "Pictures": "thunar /home/$USER/Pictures 1>/dev/null &",
+            "Videos": "thunar /home/$USER/Videos 1>/dev/null &"
+        }
+    },
 
     "custom/launch_firefox": {
         "format": "",
@@ -81,12 +120,6 @@
         "on-click": "exec kitty",
         "tooltip": false
     },
-    
-    "custom/launch_wofi": {
-        "format": "󱗼",
-        "on-click": "sh -c '(sleep 0.5s; pkill wofi || wofi -c ~/.config/HyprV/wofi/config-lmenu)' & disown",
-        "tooltip": false
-    },
 
     //centre taskbar
     "wlr/taskbar": {
@@ -103,7 +136,8 @@
             "Volume Control",
             "Easy Effects",
             "btop",
-            "Lan Mouse"
+            "Lan Mouse",
+            "python3"
         ],
 	    "app_ids-mapping": {
 	        "steam_app_39210": "Final Fantasy 14"

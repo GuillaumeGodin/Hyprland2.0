@@ -66,14 +66,16 @@ tooltip label{
 
 /*Bottom Left to right*/
 #custom-launch_wofi,
-#custom-launch_firefox,
+#custom-dropdownApps,
+#custom-dropdownFiles,
+/* #custom-launch_firefox,
 #custom-launch_thunderbird,
 #custom-launch_steam,
 #custom-launch_discord,
 #custom-launch_gimp,
 #custom-launch_blender,
 #custom-launch_thunar,
-#custom-launch_kitty,
+#custom-launch_kitty, */
 #taskbar,
 #custom-media,
 #custom-mediaBack,
@@ -162,6 +164,7 @@ tooltip label{
     border-style: solid;
     margin-left: 5px;
 }
+
 #custom-dropdown {
     background: @highlightColor;
     color: @highlightWritingColor;
@@ -245,30 +248,23 @@ menuitem {
 
 /*Bottom left*/
 #custom-launch_wofi {
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 10px 10px 10px 10px;
+    border-radius: 10px;
     border-width: 2px;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
+    border-style: solid;
     margin-left: 5px;
-    padding-left: 10px;
-    font-size: 24px;
+    padding-left: 12px;
+    padding-right: 12px;
 }
 
-#custom-launch_firefox,
-#custom-launch_thunderbird,/*THUNDERBIRD NO LONGUER USED*/
-#custom-launch_steam,
-#custom-launch_discord,
-#custom-launch_gimp,
-#custom-launch_blender,
-#custom-launch_kitty {
-    border-radius: 0px 0px 0px 0px;
+#custom-dropdownApps,
+#custom-dropdownFiles {
+    border-radius: 10px 10px 10px 10px;
+    border-radius: 10px;
     border-width: 2px;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    padding-left: 10px;
-    padding-right: 20px;
-    font-size: 24px;
+    border-style: solid;
+    margin-left: 5px;
+    padding: 6px 12px 6px 12px;
 }
 
 #custom-launch_thunar {
@@ -400,14 +396,8 @@ menuitem {
 #language:hover,
 #custom-myhyprv:hover,
 #custom-launch_wofi:hover,
-#custom-launch_firefox:hover,
-#custom-launch_thunderbird:hover,
-#custom-launch_steam:hover,
-#custom-launch_discord:hover,
-#custom-launch_gimp:hover,
-#custom-launch_blender:hover,
-#custom-launch_thunar:hover,
-#custom-launch_kitty:hover,
+#custom-dropdownApps:hover,
+#custom-dropdownFiles:hover,
 #custom-mediaBack:hover,
 #custom-mediaPlay:hover,
 #custom-mediaStop:hover,
@@ -436,14 +426,8 @@ menuitem {
 #language,
 #custom-myhyprv,
 #custom-launch_wofi,
-#custom-launch_firefox,
-#custom-launch_thunderbird,
-#custom-launch_steam,
-#custom-launch_discord,
-#custom-launch_gimp,
-#custom-launch_blender,
-#custom-launch_thunar,
-#custom-launch_kitty,
+#custom-dropdownApps,
+#custom-dropdownFiles,
 #taskbar,
 #custom-mediaBack,
 #custom-mediaPlay,
