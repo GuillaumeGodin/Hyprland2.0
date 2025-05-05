@@ -1,6 +1,6 @@
 {
     "layer": "top",
-    "output": "DP-2",
+    "output": "currentMonitor",
     "position": "bottom",
     "mod": "dock",
     "exclusive": true,
@@ -11,14 +11,6 @@
         "custom/launch_wofi",
         "custom/dropdownApps",
         "custom/dropdownFiles"
-        // "custom/launch_firefox",
-        // "custom/launch_thunderbird",
-        // "custom/launch_steam",
-        // "custom/launch_discord",
-        // "custom/launch_gimp",
-        // "custom/launch_blender",
-        // "custom/launch_kitty",
-        // "custom/launch_thunar"
     ],
     "modules-center": ["wlr/taskbar"],
     "modules-right": [
@@ -71,54 +63,6 @@
             "Pictures": "thunar /home/$USER/Pictures 1>/dev/null &",
             "Videos": "thunar /home/$USER/Videos 1>/dev/null &"
         }
-    },
-
-    "custom/launch_firefox": {
-        "format": "",
-        "on-click": "firefox",
-        "tooltip": false
-    },
-
-    "custom/launch_thunderbird": {
-        "format": "󰇰",
-        "on-click": "evolution",
-        "tooltip": false
-    },
-
-    "custom/launch_thunar": {
-        "format": "",
-        "on-click": "exec thunar",
-        "tooltip": false
-    },
-
-    "custom/launch_steam": {
-        "format": "",
-        "on-click": "exec steam",
-        "tooltip": false
-    },
-
-    "custom/launch_discord": {
-        "format": "",
-        "on-click": "exec discord",
-        "tooltip": false
-    },
-
-    "custom/launch_gimp": {
-        "format": "",
-        "on-click": "exec gimp",
-        "tooltip": false
-    },
-
-    "custom/launch_blender": {
-        "format": "",
-        "on-click": "exec blender",
-        "tooltip": false
-    },
-
-    "custom/launch_kitty": {
-        "format": "",
-        "on-click": "exec kitty",
-        "tooltip": false
     },
 
     //centre taskbar
