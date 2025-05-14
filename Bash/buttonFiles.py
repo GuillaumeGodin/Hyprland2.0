@@ -13,6 +13,7 @@ root.resizable(0, 0)
 root.title("Files")
 root.configure(bg="#222222")
 root.bind("<Escape>", lambda x: root.destroy())
+root.bind("<Button-1>", lambda x: root.destroy())
 
 def Widgets():
 
