@@ -68,6 +68,14 @@ tooltip label{
 #custom-launch_wofi,
 #custom-dropdownApps,
 #custom-dropdownFiles,
+/* #custom-launch_firefox,
+#custom-launch_thunderbird,
+#custom-launch_steam,
+#custom-launch_discord,
+#custom-launch_gimp,
+#custom-launch_blender,
+#custom-launch_thunar,
+#custom-launch_kitty, */
 #taskbar,
 #custom-media,
 #custom-mediaBack,
@@ -158,11 +166,12 @@ tooltip label{
 }
 
 #custom-dropdown {
-    background: @highlightColor;
-    color: @highlightWritingColor;
+    /* background: @highlightColor;
+    color: @highlightWritingColor; */
     opacity: 0.8;
     border-radius: 10px 10px 10px 10px;
     border-width: 2px;
+    border-style: solid;
     margin-left: 5px;
     padding-right: 12px;
 }
@@ -388,6 +397,7 @@ menuitem {
 #language:hover,
 #custom-myhyprv:hover,
 #custom-launch_wofi:hover,
+#custom-dropdown:hover,
 #custom-dropdownApps:hover,
 #custom-dropdownFiles:hover,
 #custom-mediaBack:hover,
@@ -408,6 +418,7 @@ menuitem {
 #clock,                         /*same as custom-time*/
 #custom-time,                   /*same as clock*/
 #custom-updates,
+#custom-dropdown,
 #tray,
 #backlight,
 #custom-power_profile,          /*Not sure the order?*/

@@ -50,7 +50,7 @@
         "format-en":"En(US)",
         "format-fr":"Fr(CAD)",
         /*libinput or hyprctl devices to get keyboard name (listed under main/yes)*/
-        "keyboard-name": "currentKeyboard",
+        "keyboard-name": "logitech-logitech-g710-keyboard",
         "on-click": "~/.config/HyprV/hyprv_util swkb",
         "signal": 8
     },
@@ -66,26 +66,10 @@
         "tooltip": true
     },
 
-    // "custom/power_btn": {
-    //     "format": "",
-    //     "on-click": "sh -c '(sleep 0.5s; wlogout --protocol layer-shell)' & disown",
-    //     "tooltip": false
-    // },
-    
     "custom/power_btn": {
-        "format" : "",
+        "format" : "󰍜",
         "tooltip": false,
-        "menu": "on-click",
-        "menu-file": "~/.config/HyprV/waybar/scripts/powerButton.xml",
-        "menu-actions": {
-            "Logout": "hyprctl dispatch exit 0",
-            "Restart": "systemctl reboot",
-            "Shutdown": "systemctl poweroff",
-            // "Update Packages": "kitty --hold  yay"
-            // "Update Packages": "kitty --title update-sys sh -c 'yay -Syu'"
-            "Update Packages": "kitty --title update-sys sh -c 'yay -Syu' && pkill -RTMIN+8 waybar",
-            "Update Configs": "kitty --hold  bash /home/$USER/Hyprland2.0/Bash/hyprlandConfigUpdate"
-        }
+        "on-click": "python3 Hyprland2.0/Bash/buttonPowerButton.py"
     },
 
     "custom/lock_screen": {
@@ -220,21 +204,10 @@
         "tooltip": true
     },
 
-    // https://github.com/Alexays/Waybar/pull/3247
     "custom/dropdown": {
         "format" : "󰍜",
         "tooltip": false,
-        "menu": "on-click",
-        "menu-file": "~/.config/HyprV/waybar/scripts/dropdown.xml",
-        "menu-actions": {
-            "Jellyfin": "firefox --no-terminal 2&>1 1>/dev/null --new-window http://192.168.111.100:8097/web/#/home.html &",
-            "Recipes": "firefox --no-terminal 2&>1 1>/dev/null --new-window http://192.168.111.100:8090/search/ &",
-            "Google": "firefox --no-terminal 2&>1 1>/dev/null --new-window https://www.google.com &",
-            "Google Maps": "firefox --no-terminal 2&>1 1>/dev/null --new-window https://www.google.com/maps &",
-            "Weather Network": "firefox --no-terminal 2&>1 1>/dev/null --new-window https://www.theweathernetwork.com/en/city/ca/ontario/ottawa/hourly &",
-            // "Play Music": "mpv --no-terminal 2&>1 1>/dev/null --volume=75 --shuffle /home/$USER/Music/Playlist/* &"
-            "Play Music": "./.config/HyprV/waybar/scripts/mediaSwitch"
-        }
+        "on-click": "python3 Hyprland2.0/Bash/buttonDropDown.py"
     },
 
     // "custom/time": {
