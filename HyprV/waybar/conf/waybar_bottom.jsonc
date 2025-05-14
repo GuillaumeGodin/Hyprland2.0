@@ -46,54 +46,6 @@
         "on-click": "python3 Hyprland2.0/Bash/buttonFiles.py"
     },
 
-    "custom/launch_firefox": {
-        "format": "",
-        "on-click": "firefox",
-        "tooltip": false
-    },
-
-    "custom/launch_thunderbird": {
-        "format": "󰇰",
-        "on-click": "evolution",
-        "tooltip": false
-    },
-
-    "custom/launch_thunar": {
-        "format": "",
-        "on-click": "exec thunar",
-        "tooltip": false
-    },
-
-    "custom/launch_steam": {
-        "format": "",
-        "on-click": "exec steam",
-        "tooltip": false
-    },
-
-    "custom/launch_discord": {
-        "format": "",
-        "on-click": "exec discord",
-        "tooltip": false
-    },
-
-    "custom/launch_gimp": {
-        "format": "",
-        "on-click": "exec gimp",
-        "tooltip": false
-    },
-
-    "custom/launch_blender": {
-        "format": "",
-        "on-click": "exec blender",
-        "tooltip": false
-    },
-
-    "custom/launch_kitty": {
-        "format": "",
-        "on-click": "exec kitty",
-        "tooltip": false
-    },
-
     //centre taskbar
     "wlr/taskbar": {
         "format": "{icon}",
@@ -110,7 +62,8 @@
             "Easy Effects",
             "btop",
             "Lan Mouse",
-            "python3"
+            "python3",
+            "Tk"
         ],
 	    "app_ids-mapping": {
 	        "steam_app_39210": "Final Fantasy 14"
