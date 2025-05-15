@@ -69,7 +69,7 @@
     "custom/power_btn": {
         "format" : "󰍜",
         "tooltip": false,
-        "on-click": "python3 Hyprland2.0/Bash/buttonPowerButton.py"
+        "on-click": "python3 .config/HyprV/waybar/scripts/buttonPowerButton.py"
     },
 
     "custom/lock_screen": {
@@ -195,6 +195,12 @@
     //    "format-ethernet": "{ipaddr}"
     //},
 
+    "custom/dropdown": {
+        "format" : "󰍜",
+        "tooltip": false,
+        "on-click": "python3 .config/HyprV/waybar/scripts/buttonDropDown.py"
+    },
+
     "custom/updates": {
         "format": "{}",
         "exec": "~/.config/HyprV/waybar/scripts/update-sys",
@@ -202,12 +208,6 @@
         "interval": 43200,
         "signal": 8,
         "tooltip": true
-    },
-
-    "custom/dropdown": {
-        "format" : "󰍜",
-        "tooltip": false,
-        "on-click": "python3 Hyprland2.0/Bash/buttonDropDown.py"
     },
 
     // "custom/time": {

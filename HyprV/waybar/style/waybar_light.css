@@ -41,8 +41,8 @@ tooltip label{
 #idle_inhibitor,
 #clock,                     /*same as custom-time*/
 #custom-time,               /*same as clock*/
-#custom-updates,
 #custom-dropdown,
+#custom-updates,
 #tray,
 #cpu,
 #pulseaudio,
@@ -158,22 +158,20 @@ tooltip label{
     border-right-style: solid;
 }
 
-#custom-updates {
-    border-radius: 10px 10px 10px 10px;
-    border-width: 2px;
-    border-style: solid;
-    margin-left: 5px;
-}
-
 #custom-dropdown {
-    /* background: @highlightColor;
-    color: @writingColor; */
     opacity: 0.8;
     border-radius: 10px 10px 10px 10px;
     border-width: 2px;
     border-style: solid;
     margin-left: 5px;
     padding-right: 12px;
+}
+
+#custom-updates {
+    border-radius: 10px 10px 10px 10px;
+    border-width: 2px;
+    border-style: solid;
+    margin-left: 5px;
 }
 
 menuitem {
@@ -387,8 +385,8 @@ menuitem {
 #idle_inhibitor:hover,
 #clock:hover,               /*same custom-time*/
 #custom-time:hover,         /*same clock*/
-#custom-updates:hover,
 #custom-dropdown:hover,
+#custom-updates:hover,
 #backlight:hover,
 #custom-power_profile:hover,
 #battery:hover,
@@ -417,8 +415,8 @@ menuitem {
 #idle_inhibitor,
 #clock,                         /*same as custom-time*/
 #custom-time,                   /*same as clock*/
-#custom-updates,
 #custom-dropdown,
+#custom-updates,
 #tray,
 #backlight,
 #custom-power_profile,          /*Not sure the order?*/

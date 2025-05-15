@@ -37,13 +37,13 @@
     "custom/dropdownApps": {
         "format" : "Apps",
         "tooltip": false,
-        "on-click": "python3 Hyprland2.0/Bash/buttonApps.py"
+        "on-click": "python3 .config/HyprV/waybar/scripts/buttonApps.py"
     },
 
     "custom/dropdownFiles": {
         "format" : "Files",
         "tooltip": false,
-        "on-click": "python3 Hyprland2.0/Bash/buttonFiles.py"
+        "on-click": "python3 .config/HyprV/waybar/scripts/buttonFiles.py"
     },
 
     //centre taskbar
