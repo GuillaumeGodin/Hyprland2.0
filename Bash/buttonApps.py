@@ -16,30 +16,30 @@ root.bind("<Escape>", lambda x: root.destroy())
 
 def Widgets():
 
-    #    pane = Frame(root, bg="black")
+    # pane = Frame(root, bg="black")
     pane = Frame(root)    
     pane.pack(fill=X, expand=True)
 
     # 1st Row----------------------------------------------------------------------------------
-    Download_B = Button(pane, text="   Firefox", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#DFA27C', command=firefox, relief=GROOVE, pady=0)
+    Download_B = Button(pane, text="   Firefox", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#ffbb00', command=firefox, relief=GROOVE, pady=0)
     Download_B.grid(row=2, column=0, columnspan=2, sticky="ew", pady=0, padx=0)
     # 2nd Row----------------------------------------------------------------------------------
-    Download_B = Button(pane, text="󰇰   Mail_Evolution", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#DFA27C', command=evolution, relief=GROOVE, pady=0)
+    Download_B = Button(pane, text="󰇰   Mail_Evolution", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#ffbb00', command=evolution, relief=GROOVE, pady=0)
     Download_B.grid(row=3, column=0, columnspan=2, sticky="ew", pady=0, padx=0)
     # 3rd Row----------------------------------------------------------------------------------
-    Download_B = Button(pane, text="   Steam", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#DFA27C', command=steam, relief=GROOVE, pady=0)
+    Download_B = Button(pane, text="   Steam", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#ffbb00', command=steam, relief=GROOVE, pady=0)
     Download_B.grid(row=4, column=0, columnspan=2, sticky="ew", pady=0, padx=0)
     # 4th Row----------------------------------------------------------------------------------
-    Download_B = Button(pane, text="   Discord", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#DFA27C', command=discord, relief=GROOVE, pady=0)
+    Download_B = Button(pane, text="   Discord", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#ffbb00', command=discord, relief=GROOVE, pady=0)
     Download_B.grid(row=5, column=0, columnspan=2, sticky="ew", pady=0, padx=0)
     # 5th Row----------------------------------------------------------------------------------
-    Download_B = Button(pane, text="   Gimp", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#DFA27C', command=gimp, relief=GROOVE, pady=0)
+    Download_B = Button(pane, text="   Gimp", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#ffbb00', command=gimp, relief=GROOVE, pady=0)
     Download_B.grid(row=6, column=0, columnspan=2, sticky="ew", pady=0, padx=0)
     # 6th Row----------------------------------------------------------------------------------
-    Download_B = Button(pane, text="   Blender", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#DFA27C', command=blender, relief=GROOVE, pady=0)
+    Download_B = Button(pane, text="   Blender", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#ffbb00', command=blender, relief=GROOVE, pady=0)
     Download_B.grid(row=7, column=0, columnspan=2, sticky="ew", pady=0, padx=0)
     # 6th Row----------------------------------------------------------------------------------
-    Download_B = Button(pane, text="   Terminal_Kitty", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#DFA27C', command=kitty, relief=GROOVE, pady=0)
+    Download_B = Button(pane, text="   Terminal_Kitty", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#ffbb00', command=kitty, relief=GROOVE, pady=0)
     Download_B.grid(row=8, column=0, columnspan=2, sticky="ew", pady=0, padx=0)
 
 #-----------------------------------------------------------------------------------------------------

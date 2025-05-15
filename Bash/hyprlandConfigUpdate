@@ -37,6 +37,10 @@ sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/waybar/style/
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/waybar/style/waybar_light.css
 sed -i "s/$defaultMonitor/$currentMonitor/g" /home/$USER/.config/HyprV/waybar/conf/waybar_top.jsonc
 sed -i "s/$defaultMonitor/$currentMonitor/g" /home/$USER/.config/HyprV/waybar/conf/waybar_bottom.jsonc
+sed -i "s/$defaultMonitor/$currentMonitor/g" /home/$USER/Hyprland2.0/Bash/buttonApps.py
+sed -i "s/$defaultMonitor/$currentMonitor/g" /home/$USER/Hyprland2.0/Bash/buttonDropDown.py
+sed -i "s/$defaultMonitor/$currentMonitor/g" /home/$USER/Hyprland2.0/Bash/buttonFiles.py
+sed -i "s/$defaultMonitor/$currentMonitor/g" /home/$USER/Hyprland2.0/Bash/buttonPowerButton.py
 # wlogout
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/wlogout/style/wlogout_dark.css
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/wlogout/style/wlogout_light.css

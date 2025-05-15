@@ -16,27 +16,27 @@ root.bind("<Escape>", lambda x: root.destroy())
 
 def Widgets():
 
-    #    pane = Frame(root, bg="black")
+    # pane = Frame(root, bg="black")
     pane = Frame(root)    
     pane.pack(fill=X, expand=True)
 
     # 1st Row----------------------------------------------------------------------------------
-    Download_B = Button(pane, text="Jellyfin", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#DFA27C', command=jellyfin, relief=GROOVE, pady=0)
+    Download_B = Button(pane, text="Jellyfin", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#ffbb00', command=jellyfin, relief=GROOVE, pady=0)
     Download_B.grid(row=2, column=0, columnspan=2, sticky="ew", pady=0, padx=0)
     # 2nd Row----------------------------------------------------------------------------------
-    Download_B = Button(pane, text="Recipes", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#DFA27C', command=recipes, relief=GROOVE, pady=0)
+    Download_B = Button(pane, text="Recipes", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#ffbb00', command=recipes, relief=GROOVE, pady=0)
     Download_B.grid(row=3, column=0, columnspan=2, sticky="ew", pady=0, padx=0)
     # 3rd Row----------------------------------------------------------------------------------
-    Download_B = Button(pane, text="Google", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#DFA27C', command=google, relief=GROOVE, pady=0)
+    Download_B = Button(pane, text="Google", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#ffbb00', command=google, relief=GROOVE, pady=0)
     Download_B.grid(row=4, column=0, columnspan=2, sticky="ew", pady=0, padx=0)
     # 4th Row----------------------------------------------------------------------------------
-    Download_B = Button(pane, text="Google Maps", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#DFA27C', command=maps, relief=GROOVE, pady=0)
+    Download_B = Button(pane, text="Google Maps", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#ffbb00', command=maps, relief=GROOVE, pady=0)
     Download_B.grid(row=5, column=0, columnspan=2, sticky="ew", pady=0, padx=0)
     # 5th Row----------------------------------------------------------------------------------
-    Download_B = Button(pane, text="Weather Networks", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#DFA27C', command=weather, relief=GROOVE, pady=0)
+    Download_B = Button(pane, text="Weather Networks", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#ffbb00', command=weather, relief=GROOVE, pady=0)
     Download_B.grid(row=6, column=0, columnspan=2, sticky="ew", pady=0, padx=0)
     # 6th Row----------------------------------------------------------------------------------
-    Download_B = Button(pane, text="Play Music", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#DFA27C', command=music, relief=GROOVE, pady=0)
+    Download_B = Button(pane, text="Play Music", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#ffbb00', command=music, relief=GROOVE, pady=0)
     Download_B.grid(row=7, column=0, columnspan=2, sticky="ew", pady=0, padx=0)
 
 #-----------------------------------------------------------------------------------------------------

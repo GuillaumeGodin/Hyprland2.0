@@ -16,24 +16,24 @@ root.bind("<Escape>", lambda x: root.destroy())
 
 def Widgets():
 
-    #    pane = Frame(root, bg="black")
+    # pane = Frame(root, bg="black")
     pane = Frame(root)    
     pane.pack(fill=X, expand=True)
 
     # 1st Row----------------------------------------------------------------------------------
-    Download_B = Button(pane, text="Logout", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#DFA27C', command=logout, relief=GROOVE, pady=0)
+    Download_B = Button(pane, text="Logout", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#ffbb00', command=logout, relief=GROOVE, pady=0)
     Download_B.grid(row=2, column=0, columnspan=2, sticky="ew", pady=0, padx=0)
     # 2nd Row----------------------------------------------------------------------------------
-    Download_B = Button(pane, text="Restart", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#DFA27C', command=restart, relief=GROOVE, pady=0)
+    Download_B = Button(pane, text="Restart", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#ffbb00', command=restart, relief=GROOVE, pady=0)
     Download_B.grid(row=3, column=0, columnspan=2, sticky="ew", pady=0, padx=0)
     # 3rd Row----------------------------------------------------------------------------------
-    Download_B = Button(pane, text="Shutdown", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#DFA27C', command=shutdown, relief=GROOVE, pady=0)
+    Download_B = Button(pane, text="Shutdown", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#ffbb00', command=shutdown, relief=GROOVE, pady=0)
     Download_B.grid(row=4, column=0, columnspan=2, sticky="ew", pady=0, padx=0)
     # 4th Row----------------------------------------------------------------------------------
-    Download_B = Button(pane, text="Update Packages", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#DFA27C', command=packages, relief=GROOVE, pady=0)
+    Download_B = Button(pane, text="Update Packages", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#ffbb00', command=packages, relief=GROOVE, pady=0)
     Download_B.grid(row=5, column=0, columnspan=2, sticky="ew", pady=(5,0), padx=0)
     # 5th Row----------------------------------------------------------------------------------
-    Download_B = Button(pane, text="Update Configs", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#DFA27C', command=configs, relief=GROOVE, pady=0)
+    Download_B = Button(pane, text="Update Configs", font=("JetBrainsMono", 14), anchor="w", bg="#222222", fg="#FFFFFF", highlightthickness=0, activebackground='#ffbb00', command=configs, relief=GROOVE, pady=0)
     Download_B.grid(row=6, column=0, columnspan=2, sticky="ew", pady=0, padx=0)
 
 #-----------------------------------------------------------------------------------------------------
