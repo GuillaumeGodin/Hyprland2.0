@@ -67,7 +67,7 @@
     },
 
     "custom/power_btn": {
-        "format" : "󰍜",
+        "format" : "",
         "tooltip": false,
         "on-click": "python3 .config/HyprV/waybar/scripts/buttonPowerButton.py"
     },
