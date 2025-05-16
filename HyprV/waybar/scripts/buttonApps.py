@@ -31,6 +31,28 @@ def Widgets():
     # 1st Row----------------------------------------------------------------------------------
     File_1 = Button (
         pane, 
+        text="Audacity", 
+        font=("JetBrainsMono", 14), 
+        anchor="w", 
+        bg="#222222", 
+        fg="#FFFFFF", 
+        highlightthickness=0, 
+        activebackground='#ffbb00', 
+        command=audacity, 
+        relief=GROOVE, 
+        pady=0
+    )
+    File_1.grid (
+        row=89, 
+        column=0, 
+        columnspan=2, 
+        sticky="ew", 
+        pady=0, 
+        padx=0
+    )
+    # 1st Row----------------------------------------------------------------------------------
+    File_1 = Button (
+        pane, 
         text="Handbrake", 
         font=("JetBrainsMono", 14), 
         anchor="w", 
@@ -256,6 +278,11 @@ def quit():
 
 def exit(e):
     root.destroy()
+    
+def audacity():
+    os.system('hyprctl keyword unbind , mouse:273')
+    os.system('audacity 1>/dev/null &')
+    root.quit()
     
 def handbrake():
     os.system('hyprctl keyword unbind , mouse:273')
