@@ -39,7 +39,7 @@ def Widgets():
         fg="#FFFFFF", 
         highlightthickness=0, 
         activebackground='#ffbb00', 
-        command=lan-mouse, 
+        command=lanmouse, 
         relief=GROOVE, 
         pady=0
     )
@@ -215,7 +215,7 @@ def quit():
 def exit(e):
     root.destroy()
     
-def lan-mouse():
+def lanmouse():
     os.system('hyprctl keyword unbind , mouse:273')
     os.system('lan-mouse 1>/dev/null &')
     root.quit()
