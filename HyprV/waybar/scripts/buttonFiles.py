@@ -192,6 +192,7 @@ def quit():
     root.quit()
 
 def exit(e):
+    os.system('hyprctl keyword unbind , mouse:273')
     root.destroy()
     
 def media():
