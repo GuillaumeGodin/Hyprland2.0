@@ -105,7 +105,7 @@ def Widgets():
         fg="#FFFFFF", 
         highlightthickness=0, 
         activebackground='#ffbb00', 
-        command=lanmouse, 
+        command=lambda: [lanmouse(), onedrivegui()],
         relief=GROOVE, 
         pady=0
     )
@@ -299,7 +299,11 @@ def mkvtool():
 def lanmouse():
     os.system('hyprctl keyword unbind , mouse:273')
     os.system('lan-mouse 1>/dev/null &')
-    os.system('ondrivegui 1>/dev/null &')
+    root.quit()
+    
+def onedrivegui():
+    os.system('hyprctl keyword unbind , mouse:273')
+    os.system('onedrivegui 1>/dev/null &')
     root.quit()
     
 def firefox():
