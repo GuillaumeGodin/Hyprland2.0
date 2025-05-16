@@ -98,7 +98,7 @@ def Widgets():
     # 1st Row----------------------------------------------------------------------------------
     File_1 = Button (
         pane, 
-        text="Lan-Mouse", 
+        text="Work_Mode", 
         font=("JetBrainsMono", 14), 
         anchor="w", 
         bg="#222222", 
@@ -299,6 +299,7 @@ def mkvtool():
 def lanmouse():
     os.system('hyprctl keyword unbind , mouse:273')
     os.system('lan-mouse 1>/dev/null &')
+    os.system('ondrivegui 1>/dev/null &')
     root.quit()
     
 def firefox():
