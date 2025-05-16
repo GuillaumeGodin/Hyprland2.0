@@ -13,7 +13,8 @@ root.resizable(0, 0)
 # root.resizable(10, 10)
 root.title("dropDown")
 # root.configure(bg="#222222")
-root.bind("<Escape>", exit)
+# root.bind("<Escape>", exit)
+root.bind("<Escape>", lambda x: exit())
 # root.bind("<FocusOut>", exit)
 
 # root.bind("<Escape>", lambda x: root.destroy())
@@ -166,7 +167,7 @@ def quit():
     global root
     root.quit()
 
-def exit(e):
+def exit():
     os.system('hyprctl keyword unbind , mouse:273')
     root.destroy()
     
