@@ -27,6 +27,30 @@ def Widgets():
     pane = Frame(root, bg="#ffbb00")
     # pane = Frame(root)  
     pane.pack(fill=X, expand=True)
+    
+
+    # 1st Row----------------------------------------------------------------------------------
+    File_1 = Button (
+        pane, 
+        text="Lan-Mouse", 
+        font=("JetBrainsMono", 14), 
+        anchor="w", 
+        bg="#222222", 
+        fg="#FFFFFF", 
+        highlightthickness=0, 
+        activebackground='#ffbb00', 
+        command=lan-mouse, 
+        relief=GROOVE, 
+        pady=0
+    )
+    File_1.grid (
+        row=92, 
+        column=0, 
+        columnspan=2, 
+        sticky="ew", 
+        pady=0, 
+        padx=0
+    )
 
     # 1st Row----------------------------------------------------------------------------------
     File_1 = Button (
@@ -43,11 +67,11 @@ def Widgets():
         pady=0
     )
     File_1.grid (
-        row=2, 
+        row=93, 
         column=0, 
         columnspan=2, 
         sticky="ew", 
-        pady=0, 
+        pady=(2,0),
         padx=0
     )
     # 2nd Row----------------------------------------------------------------------------------
@@ -65,7 +89,7 @@ def Widgets():
         pady=0
     )
     File_2.grid (
-        row=3, 
+        row=94, 
         column=0, 
         columnspan=2, 
         sticky="ew", 
@@ -87,7 +111,7 @@ def Widgets():
         pady=0
     )
     File_3.grid (
-        row=4, 
+        row=95, 
         column=0, 
         columnspan=2, 
         sticky="ew", 
@@ -109,7 +133,7 @@ def Widgets():
         pady=0
     )
     File_4.grid (
-        row=5, 
+        row=96, 
         column=0, 
         columnspan=2, 
         sticky="ew", 
@@ -130,7 +154,7 @@ def Widgets():
         pady=0
     )
     File_5.grid (
-        row=6, 
+        row=97, 
         column=0, 
         columnspan=2, 
         sticky="ew", 
@@ -152,7 +176,7 @@ def Widgets():
         pady=0
     )
     File_6.grid (
-        row=7, 
+        row=98, 
         column=0, 
         columnspan=2, 
         sticky="ew", 
@@ -174,7 +198,7 @@ def Widgets():
         pady=0
     )
     File_7.grid (
-        row=8, 
+        row=99, 
         column=0, 
         columnspan=2, 
         sticky="ew", 
@@ -190,6 +214,11 @@ def quit():
 
 def exit(e):
     root.destroy()
+    
+def lan-mouse():
+    os.system('hyprctl keyword unbind , mouse:273')
+    os.system('lan-mouse 1>/dev/null &')
+    root.quit()
     
 def firefox():
     os.system('hyprctl keyword unbind , mouse:273')
