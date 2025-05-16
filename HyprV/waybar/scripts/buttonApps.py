@@ -28,7 +28,50 @@ def Widgets():
     # pane = Frame(root)  
     pane.pack(fill=X, expand=True)
     
-
+    # 1st Row----------------------------------------------------------------------------------
+    File_1 = Button (
+        pane, 
+        text="Handbrake", 
+        font=("JetBrainsMono", 14), 
+        anchor="w", 
+        bg="#222222", 
+        fg="#FFFFFF", 
+        highlightthickness=0, 
+        activebackground='#ffbb00', 
+        command=handbrake, 
+        relief=GROOVE, 
+        pady=0
+    )
+    File_1.grid (
+        row=90, 
+        column=0, 
+        columnspan=2, 
+        sticky="ew", 
+        pady=0, 
+        padx=0
+    )
+    # 1st Row----------------------------------------------------------------------------------
+    File_1 = Button (
+        pane, 
+        text="MkvTool", 
+        font=("JetBrainsMono", 14), 
+        anchor="w", 
+        bg="#222222", 
+        fg="#FFFFFF", 
+        highlightthickness=0, 
+        activebackground='#ffbb00', 
+        command=mkvtool, 
+        relief=GROOVE, 
+        pady=0
+    )
+    File_1.grid (
+        row=91, 
+        column=0, 
+        columnspan=2, 
+        sticky="ew", 
+        pady=0, 
+        padx=0
+    )
     # 1st Row----------------------------------------------------------------------------------
     File_1 = Button (
         pane, 
@@ -51,7 +94,6 @@ def Widgets():
         pady=0, 
         padx=0
     )
-
     # 1st Row----------------------------------------------------------------------------------
     File_1 = Button (
         pane, 
@@ -214,6 +256,16 @@ def quit():
 
 def exit(e):
     root.destroy()
+    
+def handbrake():
+    os.system('hyprctl keyword unbind , mouse:273')
+    os.system('ghb 1>/dev/null &')
+    root.quit()
+    
+def mkvtool():
+    os.system('hyprctl keyword unbind , mouse:273')
+    os.system('mkvtoolnix-gui 1>/dev/null &')
+    root.quit()
     
 def lanmouse():
     os.system('hyprctl keyword unbind , mouse:273')
