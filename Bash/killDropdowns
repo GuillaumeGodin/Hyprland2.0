@@ -1,0 +1,12 @@
+#!/bin/bash
+
+active_window_class=$(hyprctl activewindow -j | jq -r ".class")
+
+if [ "$active_window_class" = "Tk" ]; then
+    hyprctl dispatch killactive
+    hyprctl keyword unbind , mouse:273
+else
+    hyprctl keyword unbind , mouse:273
+fi
+
+# hyprctl cursorpos

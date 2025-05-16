@@ -43,7 +43,9 @@
     "custom/dropdownFiles": {
         "format" : "Files",
         "tooltip": false,
-        "on-click": "python3 .config/HyprV/waybar/scripts/buttonFiles.py"
+        // "on-click": "python3 .config/HyprV/waybar/scripts/buttonFiles.py"
+        // "on-click": "hyprctl dispatch exec [tag notFocus] python3 .config/HyprV/waybar/scripts/buttonFiles.py"
+        "on-click": "hyprctl dispatch exec [tag focus] python3 .config/HyprV/waybar/scripts/buttonFiles.py"
     },
 
     //centre taskbar
