@@ -299,7 +299,7 @@ def gimp():
 
 def blender():
     os.system('hyprctl keyword unbind , mouse:273')
-    os.system('blender 1>/dev/null &')
+    os.system('blender -p 1920 1080 1280 720 1>/dev/null &')
     root.quit()
 
 def kitty():
