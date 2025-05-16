@@ -196,7 +196,7 @@ def exit(e):
     
 def media():
     os.system('hyprctl keyword unbind , mouse:273')
-    os.system('thunar /home/gg/mnt/md0/Media/Media_Arr/Deluge/ 1>/dev/null &')
+    os.system('thunar /home/$USER/mnt/md0/Media/Media_Arr/Deluge/ 1>/dev/null &')
     root.quit()
     
 def desktop():
