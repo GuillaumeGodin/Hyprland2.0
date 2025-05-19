@@ -152,12 +152,12 @@ def exit():
 
 def packages():
     os.system('hyprctl keyword unbind , mouse:273')
-    root.quit()
     os.system('kitty --title update-sys sh -c "yay -Syu" && pkill -RTMIN+8 waybar 1>/dev/null &')
+    root.quit()
 
 def configs():
     os.system('hyprctl keyword unbind , mouse:273')
-    os.system('kitty --hold  bash /home/$USER/Hyprland2.0/Bash/hyprlandConfigUpdate 1>/dev/null &')
+    os.system('kitty --hold bash /home/$USER/Hyprland2.0/Bash/hyprlandConfigUpdate 1>/dev/null &')
     root.quit()
     
 def logout():
