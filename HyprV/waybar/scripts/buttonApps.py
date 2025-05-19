@@ -54,6 +54,28 @@ def Widgets():
     # 1st Row----------------------------------------------------------------------------------
     File_1 = Button (
         pane, 
+        text="LibreOffice", 
+        font=("JetBrainsMono", 14), 
+        anchor="w", 
+        bg="#222222", 
+        fg="#FFFFFF", 
+        highlightthickness=0, 
+        activebackground='#ffbb00', 
+        command=libreoffice, 
+        relief=GROOVE, 
+        pady=0
+    )
+    File_1.grid (
+        row=89, 
+        column=0, 
+        columnspan=2, 
+        sticky="ew", 
+        pady=0, 
+        padx=0
+    )
+    # 1st Row----------------------------------------------------------------------------------
+    File_1 = Button (
+        pane, 
         text="Handbrake", 
         font=("JetBrainsMono", 14), 
         anchor="w", 
@@ -280,6 +302,11 @@ def quit():
 def exit():
     os.system('hyprctl keyword unbind , mouse:273')
     root.destroy()
+    
+def libreoffice():
+    os.system('hyprctl keyword unbind , mouse:273')
+    os.system('libreoffice 1>/dev/null &')
+    root.quit()
     
 def audacity():
     os.system('hyprctl keyword unbind , mouse:273')
