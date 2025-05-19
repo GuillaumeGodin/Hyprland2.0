@@ -32,14 +32,14 @@ def Widgets():
     # 1st Row----------------------------------------------------------------------------------
     File_1 = Button (
         pane, 
-        text="Audacity", 
+        text="LibreOffice", 
         font=("JetBrainsMono", 14), 
         anchor="w", 
         bg="#222222", 
         fg="#FFFFFF", 
         highlightthickness=0, 
         activebackground='#ffbb00', 
-        command=audacity, 
+        command=libreoffice, 
         relief=GROOVE, 
         pady=0
     )
@@ -54,14 +54,14 @@ def Widgets():
     # 1st Row----------------------------------------------------------------------------------
     File_1 = Button (
         pane, 
-        text="LibreOffice", 
+        text="Audacity", 
         font=("JetBrainsMono", 14), 
         anchor="w", 
         bg="#222222", 
         fg="#FFFFFF", 
         highlightthickness=0, 
         activebackground='#ffbb00', 
-        command=libreoffice, 
+        command=audacity, 
         relief=GROOVE, 
         pady=0
     )
