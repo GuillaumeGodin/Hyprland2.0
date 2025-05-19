@@ -2,6 +2,7 @@
 
 sudo su <<HERE
 rm -r /home/$USER/Hyprland2.0
+exit
 HERE
 
 notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Updating config files"
@@ -74,8 +75,6 @@ sleep 1
 
 makoctl reload
 hyprctl reload
-
-exit
 
 # echo $defaultColor
 # echo $currentColor
