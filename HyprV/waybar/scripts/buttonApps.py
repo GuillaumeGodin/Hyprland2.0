@@ -44,7 +44,7 @@ def Widgets():
         pady=0
     )
     File_1.grid (
-        row=89, 
+        row=88, 
         column=0, 
         columnspan=2, 
         sticky="ew", 
