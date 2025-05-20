@@ -157,7 +157,7 @@ def packages():
 
 def configs():
     os.system('hyprctl keyword unbind , mouse:273')
-    os.system('kitty --hold bash /home/$USER/Hyprland2.0/Bash/hyprlandConfigUpdate 1>/dev/null &')
+    os.system('kitty bash /home/$USER/Hyprland2.0/Bash/hyprlandConfigUpdate 1>/dev/null &')
     root.quit()
     
 def logout():
