@@ -32,7 +32,7 @@ def Widgets():
     # 1st Row----------------------------------------------------------------------------------
     File_1 = Button (
         pane, 
-        text="Update Packages", 
+        text="󰇚   Update Packages", 
         font=("JetBrainsMono", 14), 
         anchor="w", 
         bg="#222222", 
@@ -54,7 +54,7 @@ def Widgets():
     # 2nd Row----------------------------------------------------------------------------------
     File_2 = Button (
         pane, 
-        text="Update Configs", 
+        text="󰇚   Update Configs", 
         font=("JetBrainsMono", 14), 
         anchor="w", 
         bg="#222222", 
@@ -76,7 +76,7 @@ def Widgets():
     # 3rd Row----------------------------------------------------------------------------------
     File_3 = Button (
         pane, 
-        text="Logout", 
+        text="󰍃   Logout", 
         font=("JetBrainsMono", 14), 
         anchor="w", 
         bg="#222222", 
@@ -98,7 +98,7 @@ def Widgets():
     # 4th Row----------------------------------------------------------------------------------
     File_4 = Button (
         pane, 
-        text="Restart", 
+        text="   Restart", 
         font=("JetBrainsMono", 14), 
         anchor="w", 
         bg="#222222", 
@@ -120,7 +120,7 @@ def Widgets():
     # 5th Row----------------------------------------------------------------------------------
     File_5 = Button (
         pane, 
-        text="Shutdown", 
+        text="   Shutdown", 
         font=("JetBrainsMono", 14), 
         anchor="w", 
         bg="#222222", 
