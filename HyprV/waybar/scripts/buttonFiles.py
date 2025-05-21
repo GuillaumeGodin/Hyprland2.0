@@ -54,7 +54,7 @@ def Widgets():
     # 1st Row----------------------------------------------------------------------------------
     File_1 = Button (
         pane, 
-        text="Desktop", 
+        text="   Desktop", 
         font=("JetBrainsMono", 14),
         anchor="sw",
         bg="#222222", 
@@ -76,7 +76,7 @@ def Widgets():
     # 2nd Row----------------------------------------------------------------------------------
     File_2 = Button (
         pane, 
-        text="Documents", 
+        text="󰈙   Documents", 
         font=("JetBrainsMono", 14), 
         anchor="sw",
         bg="#222222", 
@@ -98,7 +98,7 @@ def Widgets():
     # 3rd Row----------------------------------------------------------------------------------
     File_3 = Button (
         pane, 
-        text="Downloads", 
+        text="   Downloads", 
         font=("JetBrainsMono", 14), 
         anchor="sw",
         bg="#222222", 
@@ -120,7 +120,7 @@ def Widgets():
     # 4th Row----------------------------------------------------------------------------------
     File_4 = Button (
         pane, 
-        text="Music", 
+        text="   Music", 
         font=("JetBrainsMono", 14), 
         anchor="sw",
         bg="#222222", 
@@ -142,7 +142,7 @@ def Widgets():
     # 5th Row----------------------------------------------------------------------------------
     File_5 = Button (
         pane, 
-        text="Pictures", 
+        text="   Pictures", 
         font=("JetBrainsMono", 14), 
         anchor="sw",
         bg="#222222", 
@@ -164,7 +164,7 @@ def Widgets():
     # 6th Row----------------------------------------------------------------------------------
     File_6 = Button (
         pane, 
-        text="Videos", 
+        text="   Videos", 
         font=("JetBrainsMono", 14), 
         anchor="sw",
         bg="#222222", 
