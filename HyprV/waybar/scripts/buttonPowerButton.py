@@ -8,6 +8,7 @@ from pathlib import Path
 
 root = tk.Tk()
 # root.geometry("600x140")
+root.geometry('+10+50')
 root.resizable(height = None, width = None)
 root.resizable(0, 0)
 # root.resizable(10, 10)
@@ -25,10 +26,14 @@ root.bind("<Escape>", lambda x: exit())
 os.system('hyprctl keyword bind , mouse:273, exec, bash Hyprland2.0/Bash/killDropdowns')
 
 def Widgets():
-    pane = Frame(root, bg="#ffbb00")
-    # pane = Frame(root)  
-    pane.pack(fill=X, expand=True)
-
+    pane = Frame (
+        root, 
+        bg="#ffbb00"
+    )
+    pane.pack (
+        fill=X, 
+        expand=True
+    )
     # 1st Row----------------------------------------------------------------------------------
     File_1 = Button (
         pane, 
