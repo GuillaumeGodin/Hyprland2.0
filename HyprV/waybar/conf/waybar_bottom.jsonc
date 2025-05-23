@@ -37,7 +37,7 @@
     "custom/dropdownApps": {
         "format" : "Apps",
         "tooltip": false,
-        "on-click": "python3 .config/HyprV/waybar/scripts/buttonApps.py"
+        "on-click": "python3 /home/$USER/.config/waybar/buttonApps.py"
     },
 
     "custom/dropdownFiles": {

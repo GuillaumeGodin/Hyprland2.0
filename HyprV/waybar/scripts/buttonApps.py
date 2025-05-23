@@ -34,7 +34,7 @@ def Widgets():
         fill=X, 
         expand=True
     )
-    # 1st Row----------------------------------------------------------------------------------
+    # 11_LibreOffice----------------------------------------------------------------------------------
     File_1 = Button (
         pane, 
         text="LibreOffice", 
@@ -49,14 +49,14 @@ def Widgets():
         pady=0
     )
     File_1.grid (
-        row=88, 
+        row=89, 
         column=0, 
         columnspan=2, 
         sticky="ew", 
         pady=0, 
         padx=0
     )
-    # 1st Row----------------------------------------------------------------------------------
+    # 10_Audacity----------------------------------------------------------------------------------
     File_1 = Button (
         pane, 
         text="Audacity", 
@@ -71,14 +71,14 @@ def Widgets():
         pady=0
     )
     File_1.grid (
-        row=89, 
+        row=90, 
         column=0, 
         columnspan=2, 
         sticky="ew", 
         pady=0, 
         padx=0
     )
-    # 1st Row----------------------------------------------------------------------------------
+    # 9_Handbrake----------------------------------------------------------------------------------
     File_1 = Button (
         pane, 
         text="Handbrake", 
@@ -93,14 +93,14 @@ def Widgets():
         pady=0
     )
     File_1.grid (
-        row=90, 
+        row=91, 
         column=0, 
         columnspan=2, 
         sticky="ew", 
         pady=0, 
         padx=0
     )
-    # 1st Row----------------------------------------------------------------------------------
+    # 8_MkvTool----------------------------------------------------------------------------------
     File_1 = Button (
         pane, 
         text="MkvTool", 
@@ -115,28 +115,6 @@ def Widgets():
         pady=0
     )
     File_1.grid (
-        row=91, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew", 
-        pady=0, 
-        padx=0
-    )
-    # 1st Row----------------------------------------------------------------------------------
-    File_1 = Button (
-        pane, 
-        text="Work_Mode", 
-        font=("JetBrainsMono", 14), 
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=lambda: [lanmouse(), onedrivegui()],
-        relief=GROOVE, 
-        pady=0
-    )
-    File_1.grid (
         row=92, 
         column=0, 
         columnspan=2, 
@@ -144,7 +122,7 @@ def Widgets():
         pady=0, 
         padx=0
     )
-    # 1st Row----------------------------------------------------------------------------------
+    # 7_Firefox----------------------------------------------------------------------------------
     File_1 = Button (
         pane, 
         text="   Firefox", 
@@ -166,7 +144,7 @@ def Widgets():
         pady=(2,0),
         padx=0
     )
-    # 2nd Row----------------------------------------------------------------------------------
+    # 6_Evolution----------------------------------------------------------------------------------
     File_2 = Button (
         pane, 
         text="󰇰   Mail_Evolution", 
@@ -188,7 +166,7 @@ def Widgets():
         pady=0, 
         padx=0
     )
-    # 3rd Row----------------------------------------------------------------------------------
+    # 5_Steam----------------------------------------------------------------------------------
     File_3 = Button (
         pane, 
         text="   Steam", 
@@ -210,7 +188,7 @@ def Widgets():
         pady=0, 
         padx=0
     )
-    # 4th Row----------------------------------------------------------------------------------
+    # 4_Discord----------------------------------------------------------------------------------
     File_4 = Button (
         pane, 
         text="   Discord", 
@@ -232,7 +210,7 @@ def Widgets():
         pady=0, 
         padx=0
     )
-    # 5th Row----------------------------------------------------------------------------------
+    # 3_Gimp----------------------------------------------------------------------------------
     File_5 = Button (
         pane, text="   Gimp", 
         font=("JetBrainsMono", 14), 
@@ -253,7 +231,7 @@ def Widgets():
         pady=0, 
         padx=0
     )
-    # 6th Row----------------------------------------------------------------------------------
+    # 2_Blender----------------------------------------------------------------------------------
     File_6 = Button (
         pane, 
         text="   Blender", 
@@ -275,7 +253,7 @@ def Widgets():
         pady=0, 
         padx=0
     )
-    # 7th Row----------------------------------------------------------------------------------
+    # 1_Terminal----------------------------------------------------------------------------------
     File_7 = Button (
         pane, 
         text="   Terminal_Kitty", 
@@ -326,16 +304,6 @@ def handbrake():
 def mkvtool():
     os.system('hyprctl keyword unbind , mouse:273')
     os.system('mkvtoolnix-gui 1>/dev/null &')
-    root.quit()
-    
-def lanmouse():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('lan-mouse 1>/dev/null &')
-    root.quit()
-    
-def onedrivegui():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('onedrivegui 1>/dev/null &')
     root.quit()
     
 def firefox():
