@@ -14,8 +14,8 @@ if $floatValue2; then
 else
     hyprctl dispatch togglefloating
     hyprctl dispatch resizeactive exact 480 270
-    # hyprctl dispatch moveactive exact 1435 5
-    hyprctl dispatch moveactive exact 3355 5
+    hyprctl dispatch moveactive exact 1440 0
+    # hyprctl dispatch moveactive exact 3360 0
     hyprctl dispatch pin
     hyprctl setprop active opaque toggle
     # hyprctl dispatch centerwindow
