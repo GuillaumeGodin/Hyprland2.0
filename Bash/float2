@@ -3,6 +3,9 @@
 #see dispatcher
 #https://wiki.hyprland.org/Configuring/Dispatchers/
 
+num_monitors=$(xrandr | grep " connected" | wc -l)
+
+echo "$num_monitors"
 
 floatValue=$(hyprctl activewindow -j)
 
@@ -11,11 +14,17 @@ floatValue2=$(cut -d',' -f1 <<< "$floatValue" | sed -n '/"floating"/p' | sed 's/
 if $floatValue2; then
     hyprctl dispatch togglefloating
     hyprctl setprop active opaque toggle
+elif [ "$num_monitors" == 2 ]; then
+    hyprctl dispatch togglefloating
+    hyprctl dispatch resizeactive exact 480 270
+    hyprctl dispatch moveactive exact 3360 0
+    hyprctl dispatch pin
+    hyprctl setprop active opaque toggle
+    # hyprctl dispatch centerwindow
 else
     hyprctl dispatch togglefloating
     hyprctl dispatch resizeactive exact 480 270
-    # hyprctl dispatch moveactive exact 1440 0
-    hyprctl dispatch moveactive exact 3360 0
+    hyprctl dispatch moveactive exact 1440 0
     hyprctl dispatch pin
     hyprctl setprop active opaque toggle
     # hyprctl dispatch centerwindow
