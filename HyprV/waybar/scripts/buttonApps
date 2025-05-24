@@ -1,0 +1,20 @@
+#!/bin/bash
+
+python3 /home/$USER/.config/waybar/buttonApps.py 1>/dev/null &
+
+sleep .5
+
+width=$(hyprctl -j clients | jq -r '.[] | select(.title=="Apps") | .size[0]')
+height=$(hyprctl -j clients | jq -r '.[] | select(.title=="Apps") | .size[1]')
+
+newWidth=$(($width))
+newHeight=$((1080 - $height -57))
+
+echo $newWidth
+echo $newHeight
+
+newLine="root.geometry('+50+"$newHeight"')"
+
+echo $newLine
+
+sed -i "11s/.*/$newLine/" /home/$USER/.config/waybar/buttonApps.py
