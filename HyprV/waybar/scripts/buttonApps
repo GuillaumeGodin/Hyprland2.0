@@ -1,20 +1,28 @@
 #!/bin/bash
 
-python3 /home/$USER/.config/waybar/buttonApps.py 1>/dev/null &
+if test -e "/home/$USER/.config/waybar/buttonApps.py"; then
 
-sleep .5
+    python3 /home/$USER/.config/waybar/buttonApps.py 1>/dev/null &
 
-width=$(hyprctl -j clients | jq -r '.[] | select(.title=="Apps") | .size[0]')
-height=$(hyprctl -j clients | jq -r '.[] | select(.title=="Apps") | .size[1]')
+    sleep .5
 
-newWidth=$(($width))
-newHeight=$((1080 - $height -57))
+    width=$(hyprctl -j clients | jq -r '.[] | select(.title=="Apps") | .size[0]')
+    height=$(hyprctl -j clients | jq -r '.[] | select(.title=="Apps") | .size[1]')
 
-echo $newWidth
-echo $newHeight
+    newWidth=$(($width))
+    newHeight=$((1080 - $height -57))
 
-newLine="root.geometry('+50+"$newHeight"')"
+    echo $newWidth
+    echo $newHeight
 
-echo $newLine
+    newLine="root.geometry('+50+"$newHeight"')"
 
-sed -i "11s/.*/$newLine/" /home/$USER/.config/waybar/buttonApps.py
+    echo $newLine
+
+    sed -i "11s/.*/$newLine/" /home/$USER/.config/waybar/buttonApps.py
+
+else
+    cp /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonApps.py /home/$USER/.config/waybar/buttonApps.py
+
+    python3 /home/$USER/.config/waybar/buttonApps.py 1>/dev/null &
+fi

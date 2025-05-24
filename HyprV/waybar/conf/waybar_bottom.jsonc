@@ -37,7 +37,7 @@
     "custom/dropdownApps": {
         "format" : "Apps",
         "tooltip": false,
-        "on-click": "bash /home/gg/Hyprland2.0/HyprV/waybar/scripts/buttonApps"
+        "on-click": "bash /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonApps"
     },
 
     "custom/dropdownFiles": {
