@@ -10,7 +10,7 @@ if test -e "/home/$USER/.config/waybar/buttonApps.py"; then
     height=$(hyprctl -j clients | jq -r '.[] | select(.title=="Apps") | .size[1]')
 
     newWidth=$(($width))
-    newHeight=$((1080 - $height -57))
+    newHeight=$((1080 - $height -55))
 
     echo $newWidth
     echo $newHeight

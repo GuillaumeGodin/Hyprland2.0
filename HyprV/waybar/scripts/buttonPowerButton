@@ -10,12 +10,12 @@ if test -e "/home/$USER/.config/waybar/buttonPowerButton.py"; then
     height=$(hyprctl -j clients | jq -r '.[] | select(.title=="Apps") | .size[1]')
 
     newWidth=$(($width))
-    newHeight=$((57))
+    newHeight=$((50))
 
     echo $newWidth
     echo $newHeight
 
-    newLine="root.geometry('+50+"$newHeight"')"
+    newLine="root.geometry('+10+"$newHeight"')"
 
     echo $newLine
 

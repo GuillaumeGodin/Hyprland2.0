@@ -10,7 +10,7 @@ if test -e "/home/$USER/.config/waybar/buttonDropDown.py"; then
     height=$(hyprctl -j clients | jq -r '.[] | select(.title=="dropDown") | .size[1]')
 
     newWidth=$(($width))
-    newHeight=$((57))
+    newHeight=$((50))
 
     echo $newWidth
     echo $newHeight
