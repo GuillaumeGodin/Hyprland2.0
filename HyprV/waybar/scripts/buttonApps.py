@@ -398,7 +398,7 @@ def exit():
     
 def zim():
     os.system('hyprctl keyword unbind , mouse:273')
-    os.system('zim 1>/dev/null &')
+    os.system('zim --geometry 1000x600+1280+720 1>/dev/null &')
     root.quit()
     
 def galculator():
