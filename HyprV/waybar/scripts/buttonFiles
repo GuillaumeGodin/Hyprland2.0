@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if test -e "/home/$USER/.config/waybar/buttonFiles.py"; then
+
+    python3 /home/$USER/.config/waybar/buttonFiles.py 1>/dev/null &
+
+    sleep .5
+
+    width=$(hyprctl -j clients | jq -r '.[] | select(.title=="Files") | .size[0]')
+    height=$(hyprctl -j clients | jq -r '.[] | select(.title=="Files") | .size[1]')
+
+    newWidth=$(($width))
+    newHeight=$((1080 - $height -57))
+
+    echo $newWidth
+    echo $newHeight
+
+    newLine="root.geometry('+125+"$newHeight"')"
+
+    echo $newLine
+
+    sed -i "11s/.*/$newLine/" /home/$USER/.config/waybar/buttonFiles.py
+
+else
+    cp /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonFiles.py /home/$USER/.config/waybar/buttonFiles.py
+
+    python3 /home/$USER/.config/waybar/buttonFiles.py 1>/dev/null &
+fi

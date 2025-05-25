@@ -69,7 +69,7 @@
     "custom/power_btn": {
         "format" : "",
         "tooltip": false,
-        "on-click": "python3 .config/HyprV/waybar/scripts/buttonPowerButton.py"
+        "on-click": "bash /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonPowerButton"
     },
 
     "custom/lock_screen": {
@@ -198,7 +198,7 @@
     "custom/dropdown": {
         "format" : "󰍜",
         "tooltip": false,
-        "on-click": "python3 .config/HyprV/waybar/scripts/buttonDropDown.py"
+        "on-click": "bash /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonDropDown"
     },
 
     "custom/updates": {
