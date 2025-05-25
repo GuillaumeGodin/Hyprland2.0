@@ -8,7 +8,7 @@ from pathlib import Path
 
 root = tk.Tk()
 # root.geometry("600x140")
-root.geometry('+50+735')
+root.geometry('+50+637')
 root.resizable(height = None, width = None)
 root.resizable(0, 0)
 # root.resizable(10, 10)
@@ -34,7 +34,51 @@ def Widgets():
         fill=X, 
         expand=True
     )
-    # 11_LibreOffice----------------------------------------------------------------------------------
+    # 15_Notes----------------------------------------------------------------------------------
+    File_1 = Button (
+        pane, 
+        text="Notes", 
+        font=("JetBrainsMono", 14), 
+        anchor="sw",
+        bg="#222222", 
+        fg="#FFFFFF", 
+        highlightthickness=0, 
+        activebackground='#ffbb00', 
+        command=zim,
+        relief=GROOVE, 
+        pady=0
+    )
+    File_1.grid (
+        row=19, 
+        column=0, 
+        columnspan=2, 
+        sticky="ew",
+        pady=0, 
+        padx=0
+    )
+    # 14_Calculator----------------------------------------------------------------------------------
+    File_1 = Button (
+        pane, 
+        text="Calculator", 
+        font=("JetBrainsMono", 14), 
+        anchor="sw",
+        bg="#222222", 
+        fg="#FFFFFF", 
+        highlightthickness=0, 
+        activebackground='#ffbb00', 
+        command=galculator, 
+        relief=GROOVE, 
+        pady=0
+    )
+    File_1.grid (
+        row=20, 
+        column=0, 
+        columnspan=2, 
+        sticky="ew",
+        pady=0, 
+        padx=0
+    )
+    # 13_LibreOffice----------------------------------------------------------------------------------
     File_1 = Button (
         pane, 
         text="LibreOffice", 
@@ -49,14 +93,14 @@ def Widgets():
         pady=0
     )
     File_1.grid (
-        row=89, 
+        row=45, 
         column=0, 
         columnspan=2, 
-        sticky="ew", 
-        pady=0, 
+        sticky="ew",
+        pady=(2,0),
         padx=0
     )
-    # 10_Audacity----------------------------------------------------------------------------------
+    # 12_Audacity----------------------------------------------------------------------------------
     File_1 = Button (
         pane, 
         text="Audacity", 
@@ -71,14 +115,14 @@ def Widgets():
         pady=0
     )
     File_1.grid (
-        row=90, 
+        row=46, 
         column=0, 
         columnspan=2, 
         sticky="ew", 
         pady=0, 
         padx=0
     )
-    # 9_Handbrake----------------------------------------------------------------------------------
+    # 11_Handbrake----------------------------------------------------------------------------------
     File_1 = Button (
         pane, 
         text="Handbrake", 
@@ -93,14 +137,36 @@ def Widgets():
         pady=0
     )
     File_1.grid (
-        row=91, 
+        row=47, 
         column=0, 
         columnspan=2, 
         sticky="ew", 
         pady=0, 
         padx=0
     )
-    # 8_MkvTool----------------------------------------------------------------------------------
+    # 10_MediaInfo----------------------------------------------------------------------------------
+    File_1 = Button (
+        pane, 
+        text="Media_Info", 
+        font=("JetBrainsMono", 14), 
+        anchor="sw",
+        bg="#222222", 
+        fg="#FFFFFF", 
+        highlightthickness=0, 
+        activebackground='#ffbb00', 
+        command=mediainfo, 
+        relief=GROOVE, 
+        pady=0
+    )
+    File_1.grid (
+        row=48, 
+        column=0, 
+        columnspan=2, 
+        sticky="ew", 
+        pady=0, 
+        padx=0
+    )
+    # 9_MkvTool----------------------------------------------------------------------------------
     File_1 = Button (
         pane, 
         text="MkvTool", 
@@ -111,6 +177,50 @@ def Widgets():
         highlightthickness=0, 
         activebackground='#ffbb00', 
         command=mkvtool, 
+        relief=GROOVE, 
+        pady=0
+    )
+    File_1.grid (
+        row=49, 
+        column=0, 
+        columnspan=2, 
+        sticky="ew", 
+        pady=0, 
+        padx=0
+    )
+    # 8_MkvTool_Batch----------------------------------------------------------------------------------
+    File_1 = Button (
+        pane, 
+        text="MkvTool_Batch", 
+        font=("JetBrainsMono", 14), 
+        anchor="sw",
+        bg="#222222", 
+        fg="#FFFFFF", 
+        highlightthickness=0, 
+        activebackground='#ffbb00', 
+        command=mkvtool_batch, 
+        relief=GROOVE, 
+        pady=0
+    )
+    File_1.grid (
+        row=50, 
+        column=0, 
+        columnspan=2, 
+        sticky="ew", 
+        pady=0, 
+        padx=0
+    )
+    # 1st Row----------------------------------------------------------------------------------
+    File_1 = Button (
+        pane, 
+        text="Work_Mode", 
+        font=("JetBrainsMono", 14), 
+        anchor="sw",
+        bg="#222222", 
+        fg="#FFFFFF", 
+        highlightthickness=0, 
+        activebackground='#ffbb00', 
+        command=lambda: [lanmouse(), onedrivegui()],
         relief=GROOVE, 
         pady=0
     )
@@ -140,7 +250,7 @@ def Widgets():
         row=93, 
         column=0, 
         columnspan=2, 
-        sticky="ew", 
+        sticky="ew",
         pady=(2,0),
         padx=0
     )
@@ -286,6 +396,16 @@ def exit():
     os.system('hyprctl keyword unbind , mouse:273')
     root.destroy()
     
+def zim():
+    os.system('hyprctl keyword unbind , mouse:273')
+    os.system('zim 1>/dev/null &')
+    root.quit()
+    
+def galculator():
+    os.system('hyprctl keyword unbind , mouse:273')
+    os.system('galculator 1>/dev/null &')
+    root.quit()
+    
 def libreoffice():
     os.system('hyprctl keyword unbind , mouse:273')
     os.system('libreoffice 1>/dev/null &')
@@ -301,10 +421,30 @@ def handbrake():
     os.system('ghb 1>/dev/null &')
     root.quit()
     
+def mediainfo():
+    os.system('hyprctl keyword unbind , mouse:273')
+    os.system('mediainfo-gui 1>/dev/null &')
+    root.quit()
+    
 def mkvtool():
     os.system('hyprctl keyword unbind , mouse:273')
     os.system('mkvtoolnix-gui 1>/dev/null &')
     root.quit()
+
+def mkvtool_batch():
+    os.system('hyprctl keyword unbind , mouse:273')
+    os.system('python Documents/MKV_Batch/main.py 1>/dev/null &')
+    root.quit()
+    
+# def lanmouse():
+#     os.system('hyprctl keyword unbind , mouse:273')
+#     os.system('lan-mouse 1>/dev/null &')
+#     root.quit()
+    
+# def onedrivegui():
+#     os.system('hyprctl keyword unbind , mouse:273')
+#     os.system('onedrivegui 1>/dev/null &')
+#     root.quit()
     
 def firefox():
     os.system('hyprctl keyword unbind , mouse:273')
