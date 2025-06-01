@@ -19,7 +19,8 @@ if test -e "/home/$USER/.config/waybar/buttonApps.py"; then
 
     echo $newLine
 
-    sed -i "11s/.*/$newLine/" /home/$USER/.config/waybar/buttonApps.py
+    # sed -i "11s/.*/$newLine/" /home/$USER/.config/waybar/buttonApps.py
+    sed -i "10s/.*/$newLine/" /home/$USER/.config/waybar/buttonApps.py
 
 else
     cp /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonApps.py /home/$USER/.config/waybar/buttonApps.py

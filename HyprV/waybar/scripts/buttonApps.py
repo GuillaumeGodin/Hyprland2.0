@@ -1,489 +1,211 @@
-# sudo apt-get install python3-tk
-
-import os
 import tkinter as tk
+import os
+import subprocess
 from tkinter import *
 from tkinter import messagebox, filedialog
 from pathlib import Path
 
 root = tk.Tk()
-# root.geometry("600x140")
-root.geometry('+50+637')
+root.title("Apps")
+root.geometry('+50+557')
 root.resizable(height = None, width = None)
 root.resizable(0, 0)
-# root.resizable(10, 10)
-root.title("Apps")
-# root.configure(bg="#222222")
-# root.bind("<Escape>", exit)
 root.bind("<Escape>", lambda x: exit())
-# root.bind("<FocusOut>", exit)
+root.bind("<Super_L>", lambda x: exit())
 
-# root.bind("<Escape>", lambda x: root.destroy())
-# root.bind("<FocusOut>", lambda x: root.destroy())
-# root.bind("<FocusIn>", lambda x: root.destroy())
-# root.bind("<Button-1>", lambda x: root.destroy())
-
+# os.system('hyprctl keyword unbind , mouse:273')
 os.system('hyprctl keyword bind , mouse:273, exec, bash Hyprland2.0/Bash/killDropdowns')
 
-def Widgets():
-    pane = Frame (
-        root, 
-        bg="#ffbb00"
-    )
-    pane.pack (
-        fill=X, 
-        expand=True
-    )
-    # 15_Notes----------------------------------------------------------------------------------
-    File_1 = Button (
-        pane, 
-        text="Notes", 
-        font=("JetBrainsMono", 14), 
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=zim,
-        relief=GROOVE, 
-        pady=0
-    )
-    File_1.grid (
-        row=19, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew",
-        pady=0, 
-        padx=0
-    )
-    # 14_Calculator----------------------------------------------------------------------------------
-    File_1 = Button (
-        pane, 
-        text="Calculator", 
-        font=("JetBrainsMono", 14), 
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=galculator, 
-        relief=GROOVE, 
-        pady=0
-    )
-    File_1.grid (
-        row=20, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew",
-        pady=0, 
-        padx=0
-    )
-    # 13_LibreOffice----------------------------------------------------------------------------------
-    File_1 = Button (
-        pane, 
-        text="LibreOffice", 
-        font=("JetBrainsMono", 14), 
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=libreoffice, 
-        relief=GROOVE, 
-        pady=0
-    )
-    File_1.grid (
-        row=45, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew",
-        pady=(2,0),
-        padx=0
-    )
-    # 12_Audacity----------------------------------------------------------------------------------
-    File_1 = Button (
-        pane, 
-        text="Audacity", 
-        font=("JetBrainsMono", 14), 
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=audacity, 
-        relief=GROOVE, 
-        pady=0
-    )
-    File_1.grid (
-        row=46, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew", 
-        pady=0, 
-        padx=0
-    )
-    # 11_Handbrake----------------------------------------------------------------------------------
-    File_1 = Button (
-        pane, 
-        text="Handbrake", 
-        font=("JetBrainsMono", 14), 
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=handbrake, 
-        relief=GROOVE, 
-        pady=0
-    )
-    File_1.grid (
-        row=47, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew", 
-        pady=0, 
-        padx=0
-    )
-    # 10_MediaInfo----------------------------------------------------------------------------------
-    File_1 = Button (
-        pane, 
-        text="Media_Info", 
-        font=("JetBrainsMono", 14), 
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=mediainfo, 
-        relief=GROOVE, 
-        pady=0
-    )
-    File_1.grid (
-        row=48, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew", 
-        pady=0, 
-        padx=0
-    )
-    # 9_MkvTool----------------------------------------------------------------------------------
-    File_1 = Button (
-        pane, 
-        text="MkvTool", 
-        font=("JetBrainsMono", 14), 
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=mkvtool, 
-        relief=GROOVE, 
-        pady=0
-    )
-    File_1.grid (
-        row=49, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew", 
-        pady=0, 
-        padx=0
-    )
-    # 8_MkvTool_Batch----------------------------------------------------------------------------------
-    File_1 = Button (
-        pane, 
-        text="MkvTool_Batch", 
-        font=("JetBrainsMono", 14), 
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=mkvtool_batch, 
-        relief=GROOVE, 
-        pady=0
-    )
-    File_1.grid (
-        row=50, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew", 
-        pady=0, 
-        padx=0
-    )
-    # 1st Row----------------------------------------------------------------------------------
-    File_1 = Button (
-        pane, 
-        text="Work_Mode", 
-        font=("JetBrainsMono", 14), 
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=lambda: [lanmouse(), onedrivegui()],
-        relief=GROOVE, 
-        pady=0
-    )
-    File_1.grid (
-        row=92, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew", 
-        pady=0, 
-        padx=0
-    )
-    # 7_Firefox----------------------------------------------------------------------------------
-    File_1 = Button (
-        pane, 
-        text="   Firefox", 
-        font=("JetBrainsMono", 14), 
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=firefox, 
-        relief=GROOVE, 
-        pady=0
-    )
-    File_1.grid (
-        row=93, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew",
-        pady=(2,0),
-        padx=0
-    )
-    # 6_Evolution----------------------------------------------------------------------------------
-    File_2 = Button (
-        pane, 
-        text="󰇰   Mail_Evolution", 
-        font=("JetBrainsMono", 14), 
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=evolution, 
-        relief=GROOVE, 
-        pady=0
-    )
-    File_2.grid (
-        row=94, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew", 
-        pady=0, 
-        padx=0
-    )
-    # 5_Steam----------------------------------------------------------------------------------
-    File_3 = Button (
-        pane, 
-        text="   Steam", 
-        font=("JetBrainsMono", 14), 
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=steam, 
-        relief=GROOVE, 
-        pady=0
-    )
-    File_3.grid (
-        row=95, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew", 
-        pady=0, 
-        padx=0
-    )
-    # 4_Discord----------------------------------------------------------------------------------
-    File_4 = Button (
-        pane, 
-        text="   Discord", 
-        font=("JetBrainsMono", 14), 
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=discord, 
-        relief=GROOVE, 
-        pady=0
-    )
-    File_4.grid (
-        row=96, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew", 
-        pady=0, 
-        padx=0
-    )
-    # 3_Gimp----------------------------------------------------------------------------------
-    File_5 = Button (
-        pane, text="   Gimp", 
-        font=("JetBrainsMono", 14), 
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=gimp, 
-        relief=GROOVE, 
-        pady=0
-    )
-    File_5.grid (
-        row=97, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew", 
-        pady=0, 
-        padx=0
-    )
-    # 2_Blender----------------------------------------------------------------------------------
-    File_6 = Button (
-        pane, 
-        text="   Blender", 
-        font=("JetBrainsMono", 14), 
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=blender, 
-        relief=GROOVE, 
-        pady=0
-    )
-    File_6.grid (
-        row=98, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew", 
-        pady=0, 
-        padx=0
-    )
-    # 1_Terminal----------------------------------------------------------------------------------
-    File_7 = Button (
-        pane, 
-        text="   Terminal_Kitty", 
-        font=("JetBrainsMono", 14), 
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=kitty, 
-        relief=GROOVE, 
-        pady=0
-    )
-    File_7.grid (
-        row=99, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew", 
-        pady=0, 
-        padx=0
-    )
+os.system('hyprctl keyword unbind SUPER, SUPER_L')
+os.system('hyprctl keyword bindr SUPER, SUPER_L, exec, bash Hyprland2.0/Bash/killDropdowns')
 
-#-----------------------------------------------------------------------------------------------------
+# os.system('hyprctl keyword unbind , escape')
+os.system('hyprctl keyword bind , escape, exec, bash Hyprland2.0/Bash/killDropdowns')
 
-def quit():
-    global root
-    root.quit()
+class ButtonSelectorWidget(tk.Frame):
+    def __init__(self, parent, button_labels=None, command=None, **kwargs):
+        super().__init__(parent, bg="#ffbb00", **kwargs)
+        self.command = command
+        self.buttons = []
+        self.selected_index = 0
 
-def exit():
-    os.system('hyprctl keyword unbind , mouse:273')
-    root.destroy()
+        if button_labels is None:
+            button_labels = [f"Button {i+1}" for i in range(16)]
+            button_labels[0] = "Notes"
+            button_labels[1] = "Calculator"
+            button_labels[2] = "LibreOffice"
+            button_labels[3] = "Audacity"
+            button_labels[4] = "Handbrake"
+            button_labels[5] = "MediaInfo"
+            button_labels[6] = "MkvTool"
+            button_labels[7] = "MkvToolBatch"
+            button_labels[8] = "Work_Mode"
+            button_labels[9] = "   Firefox"
+            button_labels[10] = "󰇰   Mail_Evolution"
+            button_labels[11] = "   Steam"
+            button_labels[12] = "   Discord"
+            button_labels[13] = "   Gimp"
+            button_labels[14] = "   Blender"
+            button_labels[15] = "   Terminal_Kitty"
+
+        self.create_buttons(button_labels)
+        self.highlight_selected()
+
+        self.bind_all("<Up>", self.move_up)
+        self.bind_all("<Down>", self.move_down)
+        self.bind_all("<Return>", self.press_selected)
+        self.bind_all("<KP_Enter>", self.press_selected)
+        
+
+    def highlight_selected(self):
+        for i, btn in enumerate(self.buttons):
+            label = btn.cget("text")
+            if i == self.selected_index:
+                if label == "   Firefox":  # Optional condition for Firefox button customization
+                    btn.configure(bg="#ffbb00", fg="#000000")  # Text black for Firefox
+                else:
+                    btn.configure(bg="#ffbb00", fg="#000000")  # Text black for other selected buttons
+            else:
+                btn.configure(bg="#222222", fg="#FFFFFF")  # Default white text for unselected buttons
+
+    def create_buttons(self, labels):
+        for i, label in enumerate(labels):
+            btn = tk.Button(
+                self,
+                text=label,
+                font=("JetBrainsMono", 12),
+                width=20,
+                anchor="sw",
+                bg="#222222",  # unselected background color
+                fg="#FFFFFF",  # unselected writing color
+                highlightthickness=0, 
+                activebackground="#ffbb00", 
+                activeforeground="#000000",
+                relief=GROOVE,
+            )
+            
+            # Apply custom padding for specific buttons
+            if label == "LibreOffice" or label == "   Firefox":
+                btn.pack(pady=(2, 0))
+            else:
+                btn.pack(pady=0)
+            
+            btn.bind("<Button-1>", lambda e, idx=i: self.on_mouse_click(idx))
+            self.buttons.append(btn)
+
+    def move_up(self, event=None):
+        if self.selected_index > 0:
+            self.selected_index -= 1
+            self.highlight_selected()
+
+    def move_down(self, event=None):
+        if self.selected_index < len(self.buttons) - 1:
+            self.selected_index += 1
+            self.highlight_selected()
+
+    def press_selected(self, event=None):
+        label = self.buttons[self.selected_index].cget("text")
+        print(f"You pressed {label}")
+# Notes-------------------------------------------------------------------------------
+        if label == "Notes":
+            os.system('zim --geometry 1000x600 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# Calculator-------------------------------------------------------------------------------
+        if label == "Calculator":
+            os.system('galculator 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# LibreOffice-------------------------------------------------------------------------------
+        if label == "LibreOffice":
+            os.system('libreoffice 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# Audacity-------------------------------------------------------------------------------
+        if label == "Audacity":
+            os.system('audacity 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# Handbrake-------------------------------------------------------------------------------
+        if label == "Handbrake":
+            os.system('ghb 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# MediaInfo-------------------------------------------------------------------------------
+        if label == "MediaInfo":
+            os.system('mediainfo-gui 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# MkvTool-------------------------------------------------------------------------------
+        if label == "MkvTool":
+            os.system('mkvtoolnix-gui 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# MkvToolBatch-------------------------------------------------------------------------------
+        if label == "MkvToolBatch":
+            os.system('python Documents/MKV_Batch/main.py 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# Work_Mode-------------------------------------------------------------------------------
+        if label == "Work_Mode":
+            os.system('lan-mouse 1>/dev/null &')
+            os.system('onedrivegui 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# Firefox-------------------------------------------------------------------------------
+        if label == "   Firefox":
+            os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# Mail_Evolution-------------------------------------------------------------------------------
+        if label == "󰇰   Mail_Evolution":
+            os.system('evolution 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# Steam-------------------------------------------------------------------------------
+        if label == "   Steam":
+            os.system('steam 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# Discord-------------------------------------------------------------------------------
+        if label == "   Discord":
+            os.system('discord 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# Gimp-------------------------------------------------------------------------------
+        if label == "   Gimp":
+            os.system('gimp 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# Blender-------------------------------------------------------------------------------
+        if label == "   Blender":
+            os.system('blender -p 1920 1080 1280 720 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# Terminal_Kitty-------------------------------------------------------------------------------
+        if label == "   Terminal_Kitty":
+            os.system('kitty 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+
+        if self.command:
+            self.command(label)
+
+    def on_mouse_click(self, index):
+        self.selected_index = index
+        self.highlight_selected()
+        self.press_selected()
     
-def zim():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('zim --geometry 1000x600+1280+720 1>/dev/null &')
-    root.quit()
-    
-def galculator():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('galculator 1>/dev/null &')
-    root.quit()
-    
-def libreoffice():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('libreoffice 1>/dev/null &')
-    root.quit()
-    
-def audacity():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('audacity 1>/dev/null &')
-    root.quit()
-    
-def handbrake():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('ghb 1>/dev/null &')
-    root.quit()
-    
-def mediainfo():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('mediainfo-gui 1>/dev/null &')
-    root.quit()
-    
-def mkvtool():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('mkvtoolnix-gui 1>/dev/null &')
-    root.quit()
+    def exit():
+        # os.system('hyprctl keyword unbind SUPER, SUPER_L')
+        os.system('bash Hyprland2.0/Bash/killDropdowns')
+        root.destroy()
 
-def mkvtool_batch():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('python Documents/MKV_Batch/main.py 1>/dev/null &')
-    root.quit()
-    
-# def lanmouse():
-#     os.system('hyprctl keyword unbind , mouse:273')
-#     os.system('lan-mouse 1>/dev/null &')
-#     root.quit()
-    
-# def onedrivegui():
-#     os.system('hyprctl keyword unbind , mouse:273')
-#     os.system('onedrivegui 1>/dev/null &')
-#     root.quit()
-    
-def firefox():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window &')
-    root.quit()
+# --- Example usage ---
+def on_button_pressed(label):
+    print(f"Callback: {label}")
 
-def evolution():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('evolution 1>/dev/null &')
-    root.quit()
+selector = ButtonSelectorWidget(root, command=on_button_pressed)
+selector.pack(padx=0, pady=0)
 
-def steam():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('steam 1>/dev/null &')
-    root.quit()
-
-def discord():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('discord 1>/dev/null &')
-    root.quit()
-
-def gimp():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('gimp 1>/dev/null &')
-    root.quit()
-
-def blender():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('blender -p 1920 1080 1280 720 1>/dev/null &')
-    root.quit()
-
-def kitty():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('kitty 1>/dev/null &')
-    root.quit()
-
-# Calling the Widgets() function
-Widgets()
-
-# Defining infinite loop to run
-# application
 root.mainloop()
