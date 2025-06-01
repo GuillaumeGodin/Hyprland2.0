@@ -30,7 +30,7 @@ class ButtonSelectorWidget(tk.Frame):
         self.selected_index = 0
 
         if button_labels is None:
-            button_labels = [f"Button {i+1}" for i in range(7)]
+            button_labels = [f"Button {i+1}" for i in range(8)]
             button_labels[0] = "md0_Media"
             button_labels[1] = "   Desktop"
             button_labels[2] = "󰈙   Documents"
@@ -38,6 +38,7 @@ class ButtonSelectorWidget(tk.Frame):
             button_labels[4] = "   Music"
             button_labels[5] = "   Pictures"
             button_labels[6] = "   Videos"
+            button_labels[7] = "   Trash"
 
         self.create_buttons(button_labels)
         self.highlight_selected()
@@ -76,7 +77,7 @@ class ButtonSelectorWidget(tk.Frame):
             )
             
             # Apply custom padding for specific buttons
-            if label == "   Desktop":
+            if label == "   Desktop" or label == "   Trash":
                 btn.pack(pady=(2, 0))
             else:
                 btn.pack(pady=0)
@@ -131,6 +132,11 @@ class ButtonSelectorWidget(tk.Frame):
 # Videos-------------------------------------------------------------------------------
         if label == "   Videos":
             os.system('thunar /home/$USER/Videos 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# Trash-------------------------------------------------------------------------------
+        if label == "   Trash":
+            os.system('thunar trash:/// 1>/dev/null &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             exit()
 
