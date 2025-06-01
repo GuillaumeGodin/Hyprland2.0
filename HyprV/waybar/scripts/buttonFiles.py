@@ -1,246 +1,157 @@
-# sudo apt-get install python3-tk
-
-import os
 import tkinter as tk
+import os
+import subprocess
 from tkinter import *
 from tkinter import messagebox, filedialog
 from pathlib import Path
 
 root = tk.Tk()
-# root.geometry("600x140")
-root.geometry('+125+855')
+root.title("Files")
+root.geometry('+125+820')
 root.resizable(height = None, width = None)
 root.resizable(0, 0)
-# root.resizable(10, 10)
-root.title("Files")
-# root.configure(bg="#222222")
-# root.bind("<Escape>", exit)
 root.bind("<Escape>", lambda x: exit())
-# root.bind("<FocusOut>", exit)
+root.bind("<Alt_L>", lambda x: exit())
 
-# root.bind("<Escape>", lambda x: root.destroy())
-# root.bind("<FocusOut>", lambda x: root.destroy())
-# root.bind("<FocusIn>", lambda x: root.destroy())
-# root.bind("<Button-1>", lambda x: root.destroy())
-
+# os.system('hyprctl keyword unbind , mouse:273')
 os.system('hyprctl keyword bind , mouse:273, exec, bash Hyprland2.0/Bash/killDropdowns')
 
-def Widgets():
-    pane = Frame (
-        root, 
-        bg="#ffbb00"
-    )
-    pane.pack (
-        fill=X, 
-        expand=True
-    )
-    # 1st Row----------------------------------------------------------------------------------
-    File_1 = Button (
-        pane, 
-        text="md0_Media", 
-        font=("JetBrainsMono", 14),
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=media, 
-        relief=GROOVE, 
-        pady=0
-    )
-    File_1.grid (
-        row=2, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew", 
-        pady=0, 
-        padx=0
-    )
-    # 1st Row----------------------------------------------------------------------------------
-    File_1 = Button (
-        pane, 
-        text="   Desktop", 
-        font=("JetBrainsMono", 14),
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=desktop, 
-        relief=GROOVE, 
-        pady=0
-    )
-    File_1.grid (
-        row=74, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew", 
-        pady=(2,0),
-        padx=0
-    )
-    # 2nd Row----------------------------------------------------------------------------------
-    File_2 = Button (
-        pane, 
-        text="󰈙   Documents", 
-        font=("JetBrainsMono", 14), 
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=documents, 
-        relief=GROOVE, 
-        pady=0
-    )
-    File_2.grid ( 
-        row=75, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew", 
-        pady=0, 
-        padx=0
-    )
-    # 3rd Row----------------------------------------------------------------------------------
-    File_3 = Button (
-        pane, 
-        text="   Downloads", 
-        font=("JetBrainsMono", 14), 
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=downloads, 
-        relief=GROOVE, 
-        pady=0
-    )
-    File_3.grid (
-        row=76, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew", 
-        pady=0, 
-        padx=0
-    )
-    # 4th Row----------------------------------------------------------------------------------
-    File_4 = Button (
-        pane, 
-        text="   Music", 
-        font=("JetBrainsMono", 14), 
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=music, 
-        relief=GROOVE, 
-        pady=0
-    )
-    File_4.grid (
-        row=77, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew", 
-        pady=0, 
-        padx=0
-    )
-    # 5th Row----------------------------------------------------------------------------------
-    File_5 = Button (
-        pane, 
-        text="   Pictures", 
-        font=("JetBrainsMono", 14), 
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=pictures, 
-        relief=GROOVE, 
-        pady=0
-    )
-    File_5.grid (
-        row=78, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew", 
-        pady=0, 
-        padx=0
-    )
-    # 6th Row----------------------------------------------------------------------------------
-    File_6 = Button (
-        pane, 
-        text="   Videos", 
-        font=("JetBrainsMono", 14), 
-        anchor="sw",
-        bg="#222222", 
-        fg="#FFFFFF", 
-        highlightthickness=0, 
-        activebackground='#ffbb00', 
-        command=videos, 
-        relief=GROOVE, 
-        pady=0
-    )
-    File_6.grid (
-        row=79, 
-        column=0, 
-        columnspan=2, 
-        sticky="ew", 
-        pady=0, 
-        padx=0
-    )
+os.system('hyprctl keyword unbind ALT, ALT_L')
+os.system('hyprctl keyword bindr ALT, ALT_L, exec, bash Hyprland2.0/Bash/killDropdowns')
 
-# print ("Download_A")
+# os.system('hyprctl keyword unbind , escape')
+os.system('hyprctl keyword bind , escape, exec, bash Hyprland2.0/Bash/killDropdowns')
 
-# os.system('hyprctl keyword bind , mouse:272, movefocus, l')
+class ButtonSelectorWidget(tk.Frame):
+    def __init__(self, parent, button_labels=None, command=None, **kwargs):
+        super().__init__(parent, bg="#ffbb00", **kwargs)
+        self.command = command
+        self.buttons = []
+        self.selected_index = 0
 
-#-----------------------------------------------------------------------------------------------------
+        if button_labels is None:
+            button_labels = [f"Button {i+1}" for i in range(7)]
+            button_labels[0] = "md0_Media"
+            button_labels[1] = "   Desktop"
+            button_labels[2] = "󰈙   Documents"
+            button_labels[3] = "   Downloads"
+            button_labels[4] = "   Music"
+            button_labels[5] = "   Pictures"
+            button_labels[6] = "   Videos"
 
-def quit():
-    global root
-    root.quit()
+        self.create_buttons(button_labels)
+        self.highlight_selected()
 
-def exit():
-    os.system('hyprctl keyword unbind , mouse:273')
-    root.destroy()
+        self.bind_all("<Up>", self.move_up)
+        self.bind_all("<Down>", self.move_down)
+        self.bind_all("<Return>", self.press_selected)
+        self.bind_all("<KP_Enter>", self.press_selected)
+        
+
+    def highlight_selected(self):
+        for i, btn in enumerate(self.buttons):
+            label = btn.cget("text")
+            if i == self.selected_index:
+                if label == "   Firefox":  # Optional condition for Firefox button customization
+                    btn.configure(bg="#ffbb00", fg="#000000")  # Text black for Firefox
+                else:
+                    btn.configure(bg="#ffbb00", fg="#000000")  # Text black for other selected buttons
+            else:
+                btn.configure(bg="#222222", fg="#FFFFFF")  # Default white text for unselected buttons
+
+    def create_buttons(self, labels):
+        for i, label in enumerate(labels):
+            btn = tk.Button(
+                self,
+                text=label,
+                font=("JetBrainsMono", 12),
+                width=12,
+                anchor="sw",
+                bg="#222222",  # unselected background color
+                fg="#FFFFFF",  # unselected writing color
+                highlightthickness=0, 
+                activebackground="#ffbb00", 
+                activeforeground="#000000",
+                relief=GROOVE,
+            )
+            
+            # Apply custom padding for specific buttons
+            if label == "   Desktop":
+                btn.pack(pady=(2, 0))
+            else:
+                btn.pack(pady=0)
+            
+            btn.bind("<Button-1>", lambda e, idx=i: self.on_mouse_click(idx))
+            self.buttons.append(btn)
+
+    def move_up(self, event=None):
+        if self.selected_index > 0:
+            self.selected_index -= 1
+            self.highlight_selected()
+
+    def move_down(self, event=None):
+        if self.selected_index < len(self.buttons) - 1:
+            self.selected_index += 1
+            self.highlight_selected()
+
+    def press_selected(self, event=None):
+        label = self.buttons[self.selected_index].cget("text")
+        print(f"You pressed {label}")
+
+# md0_Media-------------------------------------------------------------------------------
+        if label == "md0_Media":
+            os.system('thunar /home/$USER/mnt/md0/Media/Media_Arr/Deluge/ 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# Desktop-------------------------------------------------------------------------------
+        if label == "   Desktop":
+            os.system('thunar /home/$USER/Desktop 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# Documents-------------------------------------------------------------------------------
+        if label == "󰈙   Documents":
+            os.system('thunar /home/$USER/Documents 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# Downloads-------------------------------------------------------------------------------
+        if label == "   Downloads":
+            os.system('thunar /home/$USER/Downloads 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# Music-------------------------------------------------------------------------------
+        if label == "   Music":
+            os.system('thunar /home/$USER/Music 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# Pictures-------------------------------------------------------------------------------
+        if label == "   Pictures":
+            os.system('thunar /home/$USER/Pictures 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# Videos-------------------------------------------------------------------------------
+        if label == "   Videos":
+            os.system('thunar /home/$USER/Videos 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+
+        if self.command:
+            self.command(label)
+
+    def on_mouse_click(self, index):
+        self.selected_index = index
+        self.highlight_selected()
+        self.press_selected()
     
-def media():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('thunar /home/$USER/mnt/md0/Media/Media_Arr/Deluge/ 1>/dev/null &')
-    root.quit()
-    
-def desktop():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('thunar /home/$USER/Desktop 1>/dev/null &')
-    root.quit()
+    def exit():
+        # os.system('hyprctl keyword unbind SUPER, SUPER_L')
+        os.system('bash Hyprland2.0/Bash/killDropdowns')
+        root.destroy()
 
-def documents():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('thunar /home/$USER/Documents 1>/dev/null &')
-    root.quit()
+# --- Example usage ---
+def on_button_pressed(label):
+    print(f"Callback: {label}")
 
-def downloads():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('thunar /home/$USER/Downloads 1>/dev/null &')
-    root.quit()
+selector = ButtonSelectorWidget(root, command=on_button_pressed)
+selector.pack(padx=0, pady=0)
 
-def music():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('thunar /home/$USER/Music 1>/dev/null &')
-    root.quit()
-
-def pictures():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('thunar /home/$USER/Pictures 1>/dev/null &')
-    root.quit()
-
-def videos():
-    os.system('hyprctl keyword unbind , mouse:273')
-    os.system('thunar /home/$USER/Videos 1>/dev/null &')
-    root.quit()
-
-# Calling the Widgets() function
-Widgets()
-
-# Defining infinite loop to run
-# application
 root.mainloop()

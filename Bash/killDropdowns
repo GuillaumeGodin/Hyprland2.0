@@ -8,11 +8,15 @@ if [ "$active_window_class" = "Tk" ]; then
     hyprctl keyword unbind , escape
     hyprctl keyword unbind SUPER, SUPER_L
     hyprctl keyword bindr SUPER, SUPER_L, exec, python3 .config/waybar/buttonApps.py
+    hyprctl keyword unbind ALT, ALT_L
+    hyprctl keyword bindr ALT, ALT_L, exec, python3 .config/waybar/buttonFiles.py
 else
     hyprctl keyword unbind , mouse:273
     hyprctl keyword unbind , escape
     hyprctl keyword unbind SUPER, SUPER_L
     hyprctl keyword bindr SUPER, SUPER_L, exec, python3 .config/waybar/buttonApps.py
+    hyprctl keyword unbind ALT, ALT_L
+    hyprctl keyword bindr ALT, ALT_L, exec, python3 .config/waybar/buttonFiles.py
 fi
 
 # hyprctl cursorpos
