@@ -37,13 +37,13 @@
     "custom/dropdownApps": {
         "format" : "Apps",
         "tooltip": false,
-        "on-click": "bash /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonApps"
+        "on-click": "bash /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttons Apps"
     },
 
     "custom/dropdownFiles": {
         "format" : "Files",
         "tooltip": false,
-        "on-click": "bash /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonFiles"
+        "on-click": "bash /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttons Files"
     },
 
     //centre taskbar
