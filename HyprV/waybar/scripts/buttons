@@ -1,0 +1,121 @@
+#!/bin/bash
+
+# make file executable
+#sudo chmod u+x fileName.sh
+
+var1="$1"
+
+# echo "$var1"
+
+if [ "$var1" == Apps ]; then
+
+    if test -e "/home/$USER/.config/waybar/buttonApps.py"; then
+
+        python3 /home/$USER/.config/waybar/buttonApps.py 1>/dev/null &
+
+        sleep .5
+
+        width=$(hyprctl -j clients | jq -r '.[] | select(.title=="Apps") | .size[0]')
+        height=$(hyprctl -j clients | jq -r '.[] | select(.title=="Apps") | .size[1]')
+
+        newWidth=$(($width))
+        newHeight=$((1080 - $height -55))
+        newLine="root.geometry('+50+"$newHeight"')"
+
+        echo $newLine
+
+        sed -i "10s/.*/$newLine/" /home/$USER/.config/waybar/buttonApps.py
+
+    else
+        cp /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonApps.py /home/$USER/.config/waybar/buttonApps.py
+
+        python3 /home/$USER/.config/waybar/buttonApps.py 1>/dev/null &
+    fi
+
+elif [ "$var1" == Dropdown ]; then
+
+    if test -e "/home/$USER/.config/waybar/buttonDropDown.py"; then
+
+        python3 /home/$USER/.config/waybar/buttonDropDown.py 1>/dev/null &
+
+        sleep .5
+
+        width=$(hyprctl -j clients | jq -r '.[] | select(.title=="dropDown") | .size[0]')
+        height=$(hyprctl -j clients | jq -r '.[] | select(.title=="dropDown") | .size[1]')
+
+        newWidth=$(($width))
+        newHeight=$((50))
+        newLine="root.geometry('+1080+"$newHeight"')"
+
+        echo $newLine
+
+        sed -i "11s/.*/$newLine/" /home/$USER/.config/waybar/buttonDropDown.py
+
+    else
+        cp /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonDropDown.py /home/$USER/.config/waybar/buttonDropDown.py
+
+        python3 /home/$USER/.config/waybar/buttonDropDown.py 1>/dev/null &
+    fi
+
+elif [ "$var1" == Files ]; then
+
+    if test -e "/home/$USER/.config/waybar/buttonFiles.py"; then
+
+        python3 /home/$USER/.config/waybar/buttonFiles.py 1>/dev/null &
+
+        sleep .5
+
+        width=$(hyprctl -j clients | jq -r '.[] | select(.title=="Files") | .size[0]')
+        height=$(hyprctl -j clients | jq -r '.[] | select(.title=="Files") | .size[1]')
+
+        newWidth=$(($width))
+        newHeight=$((1080 - $height -55))
+
+        echo $newWidth
+        echo $newHeight
+
+        newLine="root.geometry('+125+"$newHeight"')"
+
+        echo $newLine
+
+        sed -i "10s/.*/$newLine/" /home/$USER/.config/waybar/buttonFiles.py
+
+    else
+        cp /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonFiles.py /home/$USER/.config/waybar/buttonFiles.py
+
+        python3 /home/$USER/.config/waybar/buttonFiles.py 1>/dev/null &
+    fi
+
+elif [ "$var1" == Power ]; then
+
+    if test -e "/home/$USER/.config/waybar/buttonPowerButton.py"; then
+
+        python3 /home/$USER/.config/waybar/buttonPowerButton.py 1>/dev/null &
+
+        sleep .5
+
+        width=$(hyprctl -j clients | jq -r '.[] | select(.title=="Apps") | .size[0]')
+        height=$(hyprctl -j clients | jq -r '.[] | select(.title=="Apps") | .size[1]')
+
+        newWidth=$(($width))
+        newHeight=$((50))
+
+        echo $newWidth
+        echo $newHeight
+
+        newLine="root.geometry('+10+"$newHeight"')"
+
+        echo $newLine
+
+        sed -i "10s/.*/$newLine/" /home/$USER/.config/waybar/buttonPowerButton.py
+
+    else
+        cp /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonPowerButton.py /home/$USER/.config/waybar/buttonPowerButton.py
+
+        python3 /home/$USER/.config/waybar/buttonPowerButton.py 1>/dev/null &
+    fi
+else
+    echo "K bye"
+fi
+
+#reboot
