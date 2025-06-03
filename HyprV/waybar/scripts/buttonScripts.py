@@ -22,8 +22,8 @@ os.system('bash Hyprland2.0/Bash/killDropdowns')
 # os.system('hyprctl keyword unbind , mouse:273')
 os.system('hyprctl keyword bind , mouse:273, exec, bash Hyprland2.0/Bash/killDropdowns')
 
-# os.system('hyprctl keyword unbind CTRL, CTRL_L')
-# os.system('hyprctl keyword bindr CTRL, CTRL_L, exec, bash Hyprland2.0/Bash/killDropdowns')
+os.system('hyprctl keyword unbind CONTROL, CONTROL_L')
+os.system('hyprctl keyword bindr CONTROL, CONTROL_L, exec, bash Hyprland2.0/Bash/killDropdowns')
 
 # os.system('hyprctl keyword unbind , escape')
 os.system('hyprctl keyword bind , escape, exec, bash Hyprland2.0/Bash/killDropdowns')
