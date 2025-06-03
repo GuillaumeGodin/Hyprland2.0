@@ -41,7 +41,6 @@ tooltip label{
 #idle_inhibitor,
 #clock,                     /*same as custom-time*/
 #custom-time,               /*same as clock*/
-#custom-dropdown,
 #custom-updates,
 #tray,
 #cpu,
@@ -66,6 +65,7 @@ tooltip label{
 
 /*Bottom Left to right*/
 #custom-launch_wofi,
+#custom-dropdownScripts,
 #custom-dropdownApps,
 #custom-dropdownFiles,
 /* #custom-launch_firefox,
@@ -158,15 +158,6 @@ tooltip label{
     border-right-style: solid;
 }
 
-#custom-dropdown {
-    opacity: 0.8;
-    border-radius: 10px 10px 10px 10px;
-    border-width: 2px;
-    border-style: solid;
-    margin-left: 5px;
-    padding-right: 12px;
-}
-
 #custom-updates {
     border-radius: 10px 10px 10px 10px;
     border-width: 2px;
@@ -256,6 +247,7 @@ menuitem {
     padding-right: 12px;
 }
 
+#custom-dropdown,
 #custom-dropdownApps,
 #custom-dropdownFiles {
     border-radius: 10px 10px 10px 10px;
@@ -385,7 +377,6 @@ menuitem {
 #idle_inhibitor:hover,
 #clock:hover,               /*same custom-time*/
 #custom-time:hover,         /*same clock*/
-#custom-dropdown:hover,
 #custom-updates:hover,
 #backlight:hover,
 #custom-power_profile:hover,
@@ -396,6 +387,7 @@ menuitem {
 #language:hover,
 #custom-myhyprv:hover,
 #custom-launch_wofi:hover,
+#custom-dropdownScripts:hover,
 #custom-dropdownApps:hover,
 #custom-dropdownFiles:hover,
 #custom-mediaBack:hover,
@@ -415,7 +407,6 @@ menuitem {
 #idle_inhibitor,
 #clock,                         /*same as custom-time*/
 #custom-time,                   /*same as clock*/
-#custom-dropdown,
 #custom-updates,
 #tray,
 #backlight,
@@ -427,6 +418,7 @@ menuitem {
 #language,
 #custom-myhyprv,
 #custom-launch_wofi,
+#custom-dropdownScripts,
 #custom-dropdownApps,
 #custom-dropdownFiles,
 #taskbar,
