@@ -1,28 +1,15 @@
-#!/bin/bash
+# #!/bin/bash
 
-active_window_class=$(hyprctl activewindow -j | jq -r ".class")
+hyprctl keyword unbind , mouse:273
+hyprctl keyword unbind , escape
 
-if [ "$active_window_class" = "Tk" ]; then
-    # hyprctl dispatch killactive
-    hyprctl keyword unbind , mouse:273
-    hyprctl keyword unbind , escape
-    hyprctl keyword unbind CONTROL, CONTROL_L
-    hyprctl keyword bindr CONTROL, CONTROL_L, exec, python3 .config/waybar/buttonScripts.py
-    hyprctl keyword unbind SUPER, SUPER_L
-    hyprctl keyword bindr SUPER, SUPER_L, exec, python3 .config/waybar/buttonApps.py
-    hyprctl keyword unbind ALT, ALT_L
-    hyprctl keyword bindr ALT, ALT_L, exec, python3 .config/waybar/buttonFiles.py
-else
-    hyprctl keyword unbind , mouse:273
-    hyprctl keyword unbind , escape
-    hyprctl keyword unbind CONTROL, CONTROL_L
-    hyprctl keyword bindr CONTROL, CONTROL_L, exec, python3 .config/waybar/buttonScripts.py
-    hyprctl keyword unbind SUPER, SUPER_L
-    hyprctl keyword bindr SUPER, SUPER_L, exec, python3 .config/waybar/buttonApps.py
-    hyprctl keyword unbind ALT, ALT_L
-    hyprctl keyword bindr ALT, ALT_L, exec, python3 .config/waybar/buttonFiles.py
-fi
+hyprctl keyword unbind CONTROL, CONTROL_L
+hyprctl keyword bind CONTROL, CONTROL_L, exec, bash Hyprland2.0/HyprV/waybar/scripts/buttons Scripts
+
+hyprctl keyword unbind SUPER, SUPER_L
+hyprctl keyword bind SUPER, SUPER_L, exec, bash Hyprland2.0/HyprV/waybar/scripts/buttons Apps
+
+hyprctl keyword unbind ALT, ALT_L
+hyprctl keyword bind ALT, ALT_L, exec, bash Hyprland2.0/HyprV/waybar/scripts/buttons Files
 
 hyprctl dispatch killwindow class:Tk
-
-# hyprctl cursorpos

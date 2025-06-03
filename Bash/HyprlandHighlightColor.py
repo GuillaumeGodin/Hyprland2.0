@@ -96,9 +96,9 @@ def setColor():
     os.system('sed -i "s/{}/{}/g" .config/HyprV/waybar/style/waybar_dark.css'.format(currentColor2, hexColor.get()))
     os.system('sed -i "s/{}/{}/g" .config/HyprV/waybar/style/waybar_light.css'.format(currentColor2, hexColor.get()))
     os.system('sed -i "s/{}/{}/g" .config/waybar/buttonApps.py'.format(currentColor2, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/waybar/buttonDropDown.py'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/waybar/buttonScripts.py'.format(currentColor2, hexColor.get()))
     os.system('sed -i "s/{}/{}/g" .config/waybar/buttonFiles.py'.format(currentColor2, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/waybar/buttonPowerButton.py'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/waybar/buttonPower.py'.format(currentColor2, hexColor.get()))
     # wlogout
     os.system('sed -i "s/{}/{}/g" .config/HyprV/wlogout/style/wlogout_dark.css'.format(currentColor2, hexColor.get()))
     os.system('sed -i "s/{}/{}/g" .config/HyprV/wlogout/style/wlogout_light.css'.format(currentColor2, hexColor.get()))

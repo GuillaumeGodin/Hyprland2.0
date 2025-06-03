@@ -88,14 +88,14 @@ elif [ "$var1" == Files ]; then
 
 elif [ "$var1" == Power ]; then
 
-    if test -e "/home/$USER/.config/waybar/buttonPowerButton.py"; then
+    if test -e "/home/$USER/.config/waybar/buttonPower.py"; then
 
-        python3 /home/$USER/.config/waybar/buttonPowerButton.py 1>/dev/null &
+        python3 /home/$USER/.config/waybar/buttonPower.py 1>/dev/null &
 
         sleep .5
 
-        width=$(hyprctl -j clients | jq -r '.[] | select(.title=="Apps") | .size[0]')
-        height=$(hyprctl -j clients | jq -r '.[] | select(.title=="Apps") | .size[1]')
+        width=$(hyprctl -j clients | jq -r '.[] | select(.title=="Power") | .size[0]')
+        height=$(hyprctl -j clients | jq -r '.[] | select(.title=="Power") | .size[1]')
 
         newWidth=$(($width))
         newHeight=$((50))
@@ -107,12 +107,12 @@ elif [ "$var1" == Power ]; then
 
         echo $newLine
 
-        sed -i "10s/.*/$newLine/" /home/$USER/.config/waybar/buttonPowerButton.py
+        sed -i "10s/.*/$newLine/" /home/$USER/.config/waybar/buttonPower.py
 
     else
-        cp /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonPowerButton.py /home/$USER/.config/waybar/buttonPowerButton.py
+        cp /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonPower.py /home/$USER/.config/waybar/buttonPower.py
 
-        python3 /home/$USER/.config/waybar/buttonPowerButton.py 1>/dev/null &
+        python3 /home/$USER/.config/waybar/buttonPower.py 1>/dev/null &
     fi
 else
     echo "K bye"
