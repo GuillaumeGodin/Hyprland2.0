@@ -10,7 +10,7 @@ var1="$1"
 if [ "$var1" == Apps ]; then
 
     if test -e "/home/$USER/.config/waybar/buttonApps.py"; then
-
+        
         python3 /home/$USER/.config/waybar/buttonApps.py 1>/dev/null &
 
         sleep .5
@@ -34,9 +34,9 @@ if [ "$var1" == Apps ]; then
 
 elif [ "$var1" == Dropdown ]; then
 
-    if test -e "/home/$USER/.config/waybar/buttonDropDown.py"; then
+    if test -e "/home/$USER/.config/waybar/buttonScripts.py"; then
 
-        python3 /home/$USER/.config/waybar/buttonDropDown.py 1>/dev/null &
+        python3 /home/$USER/.config/waybar/buttonScripts.py 1>/dev/null &
 
         sleep .5
 
@@ -49,12 +49,12 @@ elif [ "$var1" == Dropdown ]; then
 
         echo $newLine
 
-        sed -i "11s/.*/$newLine/" /home/$USER/.config/waybar/buttonDropDown.py
+        sed -i "11s/.*/$newLine/" /home/$USER/.config/waybar/buttonScripts.py
 
     else
-        cp /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonDropDown.py /home/$USER/.config/waybar/buttonDropDown.py
+        cp /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonScripts.py /home/$USER/.config/waybar/buttonScripts.py
 
-        python3 /home/$USER/.config/waybar/buttonDropDown.py 1>/dev/null &
+        python3 /home/$USER/.config/waybar/buttonScripts.py 1>/dev/null &
     fi
 
 elif [ "$var1" == Files ]; then

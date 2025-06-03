@@ -8,7 +8,7 @@ from pathlib import Path
 root = tk.Tk()
 root.title("Power")
 root.geometry('+10+50')
-root.geometry('+10+50')
+root.resizable(height = None, width = None)
 root.resizable(0, 0)
 root.bind("<Escape>", lambda x: exit())
 root.bind("<Super_L>", lambda x: exit())

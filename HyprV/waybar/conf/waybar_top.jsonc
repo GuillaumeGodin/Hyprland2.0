@@ -16,8 +16,7 @@
         "idle_inhibitor",
         "clock",                    //same as custom/time
         // "custom/time",              //same as clock
-        "custom/updates",
-        "custom/dropdown"
+        "custom/updates"
     ],
     "modules-right": [
         "tray",
@@ -194,12 +193,6 @@
     //"network": { //shows ip addr
     //    "format-ethernet": "{ipaddr}"
     //},
-
-    "custom/dropdown": {
-        "format" : "󰍜",
-        "tooltip": false,
-        "on-click": "bash /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttons Dropdown"
-    },
 
     "custom/updates": {
         "format": "{}",

@@ -9,6 +9,7 @@
     "height": 20,
     "modules-left": [
         "custom/launch_wofi",
+        "custom/dropdownScripts",
         "custom/dropdownApps",
         "custom/dropdownFiles"
     ],
@@ -32,6 +33,12 @@
         "format": "󱗼",
         "on-click": "sh -c '(sleep 0.5s; pkill wofi || wofi -c ~/.config/HyprV/wofi/config-lmenu)' & disown",
         "tooltip": false
+    },
+
+    "custom/dropdownScripts": {
+        "format" : "Scripts",
+        "tooltip": false,
+        "on-click": "bash /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttons Scripts"
     },
 
     "custom/dropdownApps": {

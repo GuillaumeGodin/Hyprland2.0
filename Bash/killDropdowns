@@ -3,7 +3,7 @@
 active_window_class=$(hyprctl activewindow -j | jq -r ".class")
 
 if [ "$active_window_class" = "Tk" ]; then
-    hyprctl dispatch killactive
+    # hyprctl dispatch killactive
     hyprctl keyword unbind , mouse:273
     hyprctl keyword unbind , escape
     hyprctl keyword unbind SUPER, SUPER_L
@@ -18,5 +18,7 @@ else
     hyprctl keyword unbind ALT, ALT_L
     hyprctl keyword bindr ALT, ALT_L, exec, python3 .config/waybar/buttonFiles.py
 fi
+
+hyprctl dispatch killwindow class:Tk
 
 # hyprctl cursorpos
