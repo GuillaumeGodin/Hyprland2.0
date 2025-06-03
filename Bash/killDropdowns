@@ -7,7 +7,7 @@ if [ "$active_window_class" = "Tk" ]; then
     hyprctl keyword unbind , mouse:273
     hyprctl keyword unbind , escape
     hyprctl keyword unbind CONTROL, CONTROL_L
-    hyprctl keyword bindr CONTROL, CONTROL_L, exec, bash Hyprland2.0/Bash/killDropdowns
+    hyprctl keyword bindr CONTROL, CONTROL_L, exec, python3 .config/waybar/buttonScripts.py
     hyprctl keyword unbind SUPER, SUPER_L
     hyprctl keyword bindr SUPER, SUPER_L, exec, python3 .config/waybar/buttonApps.py
     hyprctl keyword unbind ALT, ALT_L
@@ -16,7 +16,7 @@ else
     hyprctl keyword unbind , mouse:273
     hyprctl keyword unbind , escape
     hyprctl keyword unbind CONTROL, CONTROL_L
-    hyprctl keyword bindr CONTROL, CONTROL_L, exec, bash Hyprland2.0/Bash/killDropdowns
+    hyprctl keyword bindr CONTROL, CONTROL_L, exec, python3 .config/waybar/buttonScripts.py
     hyprctl keyword unbind SUPER, SUPER_L
     hyprctl keyword bindr SUPER, SUPER_L, exec, python3 .config/waybar/buttonApps.py
     hyprctl keyword unbind ALT, ALT_L
