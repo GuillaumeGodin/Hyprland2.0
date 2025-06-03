@@ -32,7 +32,7 @@ if [ "$var1" == Apps ]; then
         python3 /home/$USER/.config/waybar/buttonApps.py 1>/dev/null &
     fi
 
-elif [ "$var1" == Dropdown ]; then
+elif [ "$var1" == Scripts ]; then
 
     if test -e "/home/$USER/.config/waybar/buttonScripts.py"; then
 
@@ -40,8 +40,8 @@ elif [ "$var1" == Dropdown ]; then
 
         sleep .5
 
-        width=$(hyprctl -j clients | jq -r '.[] | select(.title=="dropDown") | .size[0]')
-        height=$(hyprctl -j clients | jq -r '.[] | select(.title=="dropDown") | .size[1]')
+        width=$(hyprctl -j clients | jq -r '.[] | select(.title=="Scripts") | .size[0]')
+        height=$(hyprctl -j clients | jq -r '.[] | select(.title=="Scripts") | .size[1]')
 
         newWidth=$(($width))
         newHeight=$((50))
