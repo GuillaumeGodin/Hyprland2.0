@@ -20,7 +20,7 @@ if [ "$var1" == Apps ]; then
 
         newWidth=$(($width))
         newHeight=$((1080 - $height -55))
-        newLine="root.geometry('+50+"$newHeight"')"
+        newLine="root.geometry('+150+"$newHeight"')"
 
         echo $newLine
 
@@ -44,12 +44,12 @@ elif [ "$var1" == Scripts ]; then
         height=$(hyprctl -j clients | jq -r '.[] | select(.title=="Scripts") | .size[1]')
 
         newWidth=$(($width))
-        newHeight=$((50))
-        newLine="root.geometry('+1080+"$newHeight"')"
+        newHeight=$((1080 - $height -55))
+        newLine="root.geometry('+50+"$newHeight"')"
 
         echo $newLine
 
-        sed -i "11s/.*/$newLine/" /home/$USER/.config/waybar/buttonScripts.py
+        sed -i "10s/.*/$newLine/" /home/$USER/.config/waybar/buttonScripts.py
 
     else
         cp /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonScripts.py /home/$USER/.config/waybar/buttonScripts.py
@@ -74,7 +74,7 @@ elif [ "$var1" == Files ]; then
         echo $newWidth
         echo $newHeight
 
-        newLine="root.geometry('+125+"$newHeight"')"
+        newLine="root.geometry('+225+"$newHeight"')"
 
         echo $newLine
 

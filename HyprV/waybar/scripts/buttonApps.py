@@ -7,11 +7,17 @@ from pathlib import Path
 
 root = tk.Tk()
 root.title("Apps")
-root.geometry('+50+557')
+root.geometry('+150+557')
 root.resizable(height = None, width = None)
 root.resizable(0, 0)
 root.bind("<Escape>", lambda x: exit())
 root.bind("<Super_L>", lambda x: exit())
+
+# Key names
+# https://anzeljg.github.io/rin2/book2/2405/docs/tkinter/key-names.html
+
+# os.system('hyprctl dispatch killwindow class:Tk')
+os.system('bash Hyprland2.0/Bash/killDropdowns')
 
 # os.system('hyprctl keyword unbind , mouse:273')
 os.system('hyprctl keyword bind , mouse:273, exec, bash Hyprland2.0/Bash/killDropdowns')
@@ -27,7 +33,7 @@ class ButtonSelectorWidget(tk.Frame):
         super().__init__(parent, bg="#ffbb00", **kwargs)
         self.command = command
         self.buttons = []
-        self.selected_index = 0
+        self.selected_index = 9
 
         if button_labels is None:
             button_labels = [f"Button {i+1}" for i in range(16)]

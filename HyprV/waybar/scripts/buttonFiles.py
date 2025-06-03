@@ -7,11 +7,17 @@ from pathlib import Path
 
 root = tk.Tk()
 root.title("Files")
-root.geometry('+125+820')
+root.geometry('+225+731')
 root.resizable(height = None, width = None)
 root.resizable(0, 0)
 root.bind("<Escape>", lambda x: exit())
 root.bind("<Alt_L>", lambda x: exit())
+
+# Key names
+# https://anzeljg.github.io/rin2/book2/2405/docs/tkinter/key-names.html
+
+# os.system('hyprctl dispatch killwindow class:Tk')
+os.system('bash Hyprland2.0/Bash/killDropdowns')
 
 # os.system('hyprctl keyword unbind , mouse:273')
 os.system('hyprctl keyword bind , mouse:273, exec, bash Hyprland2.0/Bash/killDropdowns')
@@ -27,18 +33,20 @@ class ButtonSelectorWidget(tk.Frame):
         super().__init__(parent, bg="#ffbb00", **kwargs)
         self.command = command
         self.buttons = []
-        self.selected_index = 0
+        self.selected_index = 4
 
         if button_labels is None:
-            button_labels = [f"Button {i+1}" for i in range(8)]
-            button_labels[0] = "md0_Media"
-            button_labels[1] = "   Desktop"
-            button_labels[2] = "󰈙   Documents"
-            button_labels[3] = "   Downloads"
-            button_labels[4] = "   Music"
-            button_labels[5] = "   Pictures"
-            button_labels[6] = "   Videos"
-            button_labels[7] = "   Trash"
+            button_labels = [f"Button {i+1}" for i in range(10)]
+            button_labels[0] = "md0_ET"
+            button_labels[1] = "md0_GG"
+            button_labels[2] = "md0_Media"
+            button_labels[3] = "   Desktop"
+            button_labels[4] = "󰈙   Documents"
+            button_labels[5] = "   Downloads"
+            button_labels[6] = "   Music"
+            button_labels[7] = "   Pictures"
+            button_labels[8] = "   Videos"
+            button_labels[9] = "   Trash"
 
         self.create_buttons(button_labels)
         self.highlight_selected()
@@ -99,9 +107,19 @@ class ButtonSelectorWidget(tk.Frame):
         label = self.buttons[self.selected_index].cget("text")
         print(f"You pressed {label}")
 
+# md0_ET-------------------------------------------------------------------------------
+        if label == "md0_ET":
+            os.system('thunar /home/$USER/mnt/md0/ET/ 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# md0_GG-------------------------------------------------------------------------------
+        if label == "md0_GG":
+            os.system('thunar /home/$USER/mnt/md0/Guillaume/ 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
 # md0_Media-------------------------------------------------------------------------------
         if label == "md0_Media":
-            os.system('thunar /home/$USER/mnt/md0/Media/Media_Arr/Deluge/ 1>/dev/null &')
+            os.system('thunar /home/$USER/mnt/md0/Media/ 1>/dev/null &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             exit()
 # Desktop-------------------------------------------------------------------------------

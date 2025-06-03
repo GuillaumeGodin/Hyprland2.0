@@ -7,7 +7,7 @@ from pathlib import Path
 
 root = tk.Tk()
 root.title("Scripts")
-root.geometry('+50+557')
+root.geometry('+50+528')
 root.resizable(height = None, width = None)
 root.resizable(0, 0)
 root.bind("<Escape>", lambda x: exit())
@@ -16,11 +16,14 @@ root.bind("<Control_L>", lambda x: exit())
 # Key names
 # https://anzeljg.github.io/rin2/book2/2405/docs/tkinter/key-names.html
 
+# os.system('hyprctl dispatch killwindow class:Tk')
+os.system('bash Hyprland2.0/Bash/killDropdowns')
+
 # os.system('hyprctl keyword unbind , mouse:273')
 os.system('hyprctl keyword bind , mouse:273, exec, bash Hyprland2.0/Bash/killDropdowns')
 
-os.system('hyprctl keyword unbind CTRL, CTRL_L')
-os.system('hyprctl keyword bindr CTRL, CTRL_L, exec, bash Hyprland2.0/Bash/killDropdowns')
+# os.system('hyprctl keyword unbind CTRL, CTRL_L')
+# os.system('hyprctl keyword bindr CTRL, CTRL_L, exec, bash Hyprland2.0/Bash/killDropdowns')
 
 # os.system('hyprctl keyword unbind , escape')
 os.system('hyprctl keyword bind , escape, exec, bash Hyprland2.0/Bash/killDropdowns')
@@ -30,7 +33,7 @@ class ButtonSelectorWidget(tk.Frame):
         super().__init__(parent, bg="#ffbb00", **kwargs)
         self.command = command
         self.buttons = []
-        self.selected_index = 0
+        self.selected_index = 6
 
         if button_labels is None:
             button_labels = [f"Button {i+1}" for i in range(17)]
@@ -110,85 +113,90 @@ class ButtonSelectorWidget(tk.Frame):
     def press_selected(self, event=None):
         label = self.buttons[self.selected_index].cget("text")
         print(f"You pressed {label}")
-# Notes-------------------------------------------------------------------------------
-        if label == "Notes":
-            os.system('zim --geometry 1000x600 1>/dev/null &')
+
+# VNC_Rpi-------------------------------------------------------------------------------
+        if label == "VNC_Rpi":
+            os.system('bash /home/gg/.config/hypr/vncChange rpi 1>/dev/null &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             exit()
-# Calculator-------------------------------------------------------------------------------
-        if label == "Calculator":
-            os.system('galculator 1>/dev/null &')
+# VNC_Arch-------------------------------------------------------------------------------
+        if label == "VNC_Arch":
+            os.system('bash /home/gg/.config/hypr/vncChange arch 1>/dev/null &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             exit()
-# LibreOffice-------------------------------------------------------------------------------
-        if label == "LibreOffice":
-            os.system('libreoffice 1>/dev/null &')
+# VNC_Ubuntu-------------------------------------------------------------------------------
+        if label == "VNC_Ubuntu":
+            os.system('bash /home/gg/.config/hypr/vncChange ubuntu 1>/dev/null &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             exit()
-# Audacity-------------------------------------------------------------------------------
-        if label == "Audacity":
-            os.system('audacity 1>/dev/null &')
+# VM_Win11-------------------------------------------------------------------------------
+        if label == "VM_Win11":
+            os.system('bash /home/$USER/.config/hypr/win11 win11 1>/dev/null &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             exit()
-# Handbrake-------------------------------------------------------------------------------
-        if label == "Handbrake":
-            os.system('ghb 1>/dev/null &')
+# Play_Music-------------------------------------------------------------------------------
+        if label == "Play_Music":
+            os.system('./.config/HyprV/waybar/scripts/mediaSwitch')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             exit()
-# MediaInfo-------------------------------------------------------------------------------
-        if label == "MediaInfo":
-            os.system('mediainfo-gui 1>/dev/null &')
+# Server-------------------------------------------------------------------------------
+        if label == "Server":
+            os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window http://192.168.111.100:81/#/ &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             exit()
-# MkvTool-------------------------------------------------------------------------------
-        if label == "MkvTool":
-            os.system('mkvtoolnix-gui 1>/dev/null &')
+# Jellyfin-------------------------------------------------------------------------------
+        if label == "Jellyfin":
+            os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window http://192.168.111.100:8097/web/#/home.html &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             exit()
-# MkvToolBatch-------------------------------------------------------------------------------
-        if label == "MkvToolBatch":
-            os.system('python Documents/MKV_Batch/main.py 1>/dev/null &')
+# MotionEye-------------------------------------------------------------------------------
+        if label == "MotionEye":
+            os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window http://192.168.111.100:8765/ &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             exit()
-# Work_Mode-------------------------------------------------------------------------------
-        if label == "Work_Mode":
-            os.system('lan-mouse 1>/dev/null &')
-            os.system('onedrivegui 1>/dev/null &')
+# PhotoPrism-------------------------------------------------------------------------------
+        if label == "PhotoPrism":
+            os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window http://192.168.111.100:2342/library/browse &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             exit()
-# Firefox-------------------------------------------------------------------------------
-        if label == "   Firefox":
-            os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window &')
+# Navidrome-------------------------------------------------------------------------------
+        if label == "Navidrome":
+            os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window http://192.168.111.100:4533/app/#/album/recentlyAdded?sort=recently_added&order=DESC&filter={} &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             exit()
-# Mail_Evolution-------------------------------------------------------------------------------
-        if label == "󰇰   Mail_Evolution":
-            os.system('evolution 1>/dev/null &')
+# Tandoor-------------------------------------------------------------------------------
+        if label == "Tandoor":
+            os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window http://192.168.111.100:8090/search/ &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             exit()
-# Steam-------------------------------------------------------------------------------
-        if label == "   Steam":
-            os.system('steam 1>/dev/null &')
+# Youtube-DL-------------------------------------------------------------------------------
+        if label == "Youtube-DL":
+            os.system('python3 Hyprland2.0/Bash/YouTube-DL.py 1>/dev/null &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             exit()
-# Discord-------------------------------------------------------------------------------
-        if label == "   Discord":
-            os.system('discord 1>/dev/null &')
+# Rsync-------------------------------------------------------------------------------
+        if label == "Rsync":
+            os.system('python3 Hyprland2.0/Bash/Rsync.py 1>/dev/null &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             exit()
-# Gimp-------------------------------------------------------------------------------
-        if label == "   Gimp":
-            os.system('gimp 1>/dev/null &')
+# WireguardConf-------------------------------------------------------------------------------
+        if label == "WireguardConf":
+            os.system('python3 Hyprland2.0/Bash/WireguardConf.py 1>/dev/null &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             exit()
-# Blender-------------------------------------------------------------------------------
-        if label == "   Blender":
-            os.system('blender -p 1920 1080 1280 720 1>/dev/null &')
+# PrivadoConf-------------------------------------------------------------------------------
+        if label == "PrivadoConf":
+            os.system('python3 Hyprland2.0/Bash/PrivadoConf.py 1>/dev/null &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             exit()
-# Terminal_Kitty-------------------------------------------------------------------------------
-        if label == "   Terminal_Kitty":
-            os.system('kitty 1>/dev/null &')
+# HyprlandHighlightColor-------------------------------------------------------------------------------
+        if label == "HyprlandHighlightColor":
+            os.system('python3 Hyprland2.0/Bash/HyprlandHighlightColor.py 1>/dev/null &')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            exit()
+# Luks-------------------------------------------------------------------------------
+        if label == "Luks":
+            os.system('python3 Hyprland2.0/Bash/Luks.py 1>/dev/null &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             exit()
 
