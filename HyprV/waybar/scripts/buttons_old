@@ -1,124 +1,90 @@
 #!/bin/bash
 
-# make file executable
-#sudo chmod u+x fileName.sh
-
 var1="$1"
 
-# echo "$var1"
+if [ "$var1" == "Apps" ]; then
 
-if [ "$var1" == Apps ]; then
-
-    if test -e "/home/$USER/.config/waybar/buttonApps.py"; then
-        
+    if [ -e "/home/$USER/.config/waybar/buttonApps.py" ]; then
         python3 /home/$USER/.config/waybar/buttonApps.py 1>/dev/null &
-
-        sleep .5
+        sleep 0.5
 
         width=$(hyprctl -j clients | jq -r '.[] | select(.title=="Apps") | .size[0]')
         height=$(hyprctl -j clients | jq -r '.[] | select(.title=="Apps") | .size[1]')
 
-        newWidth=$(($width))
-        newHeight=$((1080 - $height -55))
-        newLine="root.geometry('+150+"$newHeight"')"
+        newHeight=$((1080 - height - 55))
+        newLine="root.geometry(\"+150+${newHeight}\")"
 
-        echo $newLine
-
-        sed -i "11s/.*/$newLine/" /home/$USER/.config/waybar/buttonApps.py
+        sleep 0.5
+        # echo "$newLine"
+        sed -i "11s|.*|$newLine|" /home/$USER/.config/waybar/buttonApps.py
 
     else
         cp /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonApps.py /home/$USER/.config/waybar/buttonApps.py
-
         python3 /home/$USER/.config/waybar/buttonApps.py 1>/dev/null &
     fi
 
-elif [ "$var1" == Scripts ]; then
+elif [ "$var1" == "Scripts" ]; then
 
-    if test -e "/home/$USER/.config/waybar/buttonScripts.py"; then
-
+    if [ -e "/home/$USER/.config/waybar/buttonScripts.py" ]; then
         python3 /home/$USER/.config/waybar/buttonScripts.py 1>/dev/null &
-
-        sleep .5
+        sleep 0.5
 
         width=$(hyprctl -j clients | jq -r '.[] | select(.title=="Scripts") | .size[0]')
         height=$(hyprctl -j clients | jq -r '.[] | select(.title=="Scripts") | .size[1]')
 
-        newWidth=$(($width))
-        newHeight=$((1080 - $height -55))
-        newLine="root.geometry('+50+"$newHeight"')"
+        newHeight=$((1080 - height - 55))
+        newLine="root.geometry(\"+50+${newHeight}\")"
 
-        echo $newLine
-
-        sed -i "11s/.*/$newLine/" /home/$USER/.config/waybar/buttonScripts.py
+        sleep 0.5
+        # echo "$newLine"
+        sed -i "11s|.*|$newLine|" /home/$USER/.config/waybar/buttonScripts.py
 
     else
         cp /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonScripts.py /home/$USER/.config/waybar/buttonScripts.py
-
         python3 /home/$USER/.config/waybar/buttonScripts.py 1>/dev/null &
     fi
 
-elif [ "$var1" == Files ]; then
+elif [ "$var1" == "Files" ]; then
 
-    if test -e "/home/$USER/.config/waybar/buttonFiles.py"; then
-
+    if [ -e "/home/$USER/.config/waybar/buttonFiles.py" ]; then
         python3 /home/$USER/.config/waybar/buttonFiles.py 1>/dev/null &
-
-        sleep .5
+        sleep 0.5
 
         width=$(hyprctl -j clients | jq -r '.[] | select(.title=="Files") | .size[0]')
         height=$(hyprctl -j clients | jq -r '.[] | select(.title=="Files") | .size[1]')
+        
+        newHeight=$((1080 - height - 55))
+        newLine="root.geometry(\"+225+${newHeight}\")"
 
-        newWidth=$(($width))
-        newHeight=$((1080 - $height -55))
-
-        echo $newWidth
-        echo $newHeight
-
-        # newLine="root.geometry('+225+"$newHeight"')"
-        newLine="root.geometry('+225+${newHeight}')"
-
-
-        echo $newLine
-
-        # sed -i "11s/.*/$newLine/" /home/$USER/.config/waybar/buttonFiles.py
+        sleep 0.5
+        # echo "$newLine"
         sed -i "11s|.*|$newLine|" /home/$USER/.config/waybar/buttonFiles.py
 
     else
         cp /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonFiles.py /home/$USER/.config/waybar/buttonFiles.py
-
         python3 /home/$USER/.config/waybar/buttonFiles.py 1>/dev/null &
     fi
 
-elif [ "$var1" == Power ]; then
+elif [ "$var1" == "Power" ]; then
 
-    if test -e "/home/$USER/.config/waybar/buttonPower.py"; then
-
+    if [ -e "/home/$USER/.config/waybar/buttonPower.py" ]; then
         python3 /home/$USER/.config/waybar/buttonPower.py 1>/dev/null &
-
-        sleep .5
+        sleep 0.5
 
         width=$(hyprctl -j clients | jq -r '.[] | select(.title=="Power") | .size[0]')
         height=$(hyprctl -j clients | jq -r '.[] | select(.title=="Power") | .size[1]')
-
-        newWidth=$(($width))
-        newHeight=$((50))
-
-        echo $newWidth
-        echo $newHeight
-
-        newLine="root.geometry('+10+"$newHeight"')"
-
-        echo $newLine
-
-        sed -i "11s/.*/$newLine/" /home/$USER/.config/waybar/buttonPower.py
+        newHeight=50
+        newLine="root.geometry(\"+10+${newHeight}\")"
+        
+        sleep 0.5
+        # echo "$newLine"
+        sed -i "11s|.*|$newLine|" /home/$USER/.config/waybar/buttonPower.py
 
     else
         cp /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonPower.py /home/$USER/.config/waybar/buttonPower.py
-
         python3 /home/$USER/.config/waybar/buttonPower.py 1>/dev/null &
     fi
+
 else
     echo "K bye"
 fi
-
-#reboot
