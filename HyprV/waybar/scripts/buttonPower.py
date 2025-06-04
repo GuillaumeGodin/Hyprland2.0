@@ -1,32 +1,28 @@
 import tkinter as tk
 import os
 import subprocess
+import sys
 from tkinter import *
 from tkinter import messagebox, filedialog
 from pathlib import Path
 
 root = tk.Tk()
 root.title("Power")
-root.geometry('+10+50')
-root.resizable(height = None, width = None)
+root.geometry("+10+50")
+# root.resizable(height = None, width = None)
 root.resizable(0, 0)
-root.bind("<Escape>", lambda x: exit())
-root.bind("<Super_L>", lambda x: exit())
+root.bind_all("<Escape>", lambda event: clean_exit())
 
 # Key names
 # https://anzeljg.github.io/rin2/book2/2405/docs/tkinter/key-names.html
 
-# os.system('hyprctl dispatch killwindow class:Tk')
-os.system('bash Hyprland2.0/Bash/killDropdowns')
+os.system('bash "/home/$USER/Hyprland2.0/Bash/killDropdowns" kill')
 
 # os.system('hyprctl keyword unbind , mouse:273')
-os.system('hyprctl keyword bind , mouse:273, exec, bash Hyprland2.0/Bash/killDropdowns')
-
-# os.system('hyprctl keyword unbind SUPER, SUPER_L')
-# os.system('hyprctl keyword bindr SUPER, SUPER_L, exec, bash Hyprland2.0/Bash/killDropdowns')
+os.system('hyprctl keyword bind , mouse:273, exec, bash "/home/$USER/Hyprland2.0/Bash/killDropdowns" kill')
 
 # os.system('hyprctl keyword unbind , escape')
-os.system('hyprctl keyword bind , escape, exec, bash Hyprland2.0/Bash/killDropdowns')
+# os.system('hyprctl keyword bind , escape, exec, bash "/home/$USER/Hyprland2.0/Bash/killDropdowns" kill')
 
 class ButtonSelectorWidget(tk.Frame):
     def __init__(self, parent, button_labels=None, command=None, **kwargs):
@@ -105,28 +101,23 @@ class ButtonSelectorWidget(tk.Frame):
 # Update Packages-------------------------------------------------------------------------------
         if label == "󰇚   Update Packages":
             os.system('kitty --title update-sys sh -c "yay -Syu" && pkill -RTMIN+8 waybar 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
-            exit()
+            clean_exit()
 # Update Configs-------------------------------------------------------------------------------
         if label == "󰇚   Update Configs":
             os.system('kitty bash /home/$USER/Hyprland2.0/Bash/hyprlandConfigUpdate 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
-            exit()
+            clean_exit()
 # Logout-------------------------------------------------------------------------------
         if label == "󰍃   Logout":
             os.system('hyprctl dispatch exit 0')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
-            exit()
+            clean_exit()
 # Restart-------------------------------------------------------------------------------
         if label == "   Restart":
             os.system('systemctl reboot')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
-            exit()
+            clean_exit()
 # Shutdown-------------------------------------------------------------------------------
         if label == "   Shutdown":
             os.system('systemctl poweroff')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
-            exit()
+            clean_exit()
 
         if self.command:
             self.command(label)
@@ -135,11 +126,12 @@ class ButtonSelectorWidget(tk.Frame):
         self.selected_index = index
         self.highlight_selected()
         self.press_selected()
-    
-    def exit():
-        # os.system('hyprctl keyword unbind SUPER, SUPER_L')
-        os.system('bash Hyprland2.0/Bash/killDropdowns')
-        root.destroy()
+
+def clean_exit():
+    # os.system('bash Hyprland2.0/Bash/killDropdowns bind')
+    # os.system('hyprctl dispatch killwindow class:Tk')
+    root.destroy()
+    # sys.exit()
 
 # --- Example usage ---
 def on_button_pressed(label):

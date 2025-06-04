@@ -1,32 +1,32 @@
 import tkinter as tk
 import os
 import subprocess
+import sys
 from tkinter import *
 from tkinter import messagebox, filedialog
 from pathlib import Path
 
 root = tk.Tk()
 root.title("Files")
-root.geometry('+225+731')
-root.resizable(height = None, width = None)
+root.geometry("+225+731")
+# root.resizable(height = None, width = None)
 root.resizable(0, 0)
-root.bind("<Escape>", lambda x: exit())
-root.bind("<Alt_L>", lambda x: exit())
+root.bind_all("<Escape>", lambda event: clean_exit())
+root.bind_all("<Alt_L>", lambda x: clean_exit())
 
 # Key names
 # https://anzeljg.github.io/rin2/book2/2405/docs/tkinter/key-names.html
 
-# os.system('hyprctl dispatch killwindow class:Tk')
-os.system('bash Hyprland2.0/Bash/killDropdowns')
+os.system('bash Hyprland2.0/Bash/killDropdowns kill')
 
 # os.system('hyprctl keyword unbind , mouse:273')
-os.system('hyprctl keyword bind , mouse:273, exec, bash Hyprland2.0/Bash/killDropdowns')
+os.system('hyprctl keyword bind , mouse:273, exec, bash Hyprland2.0/Bash/killDropdowns kill')
 
 os.system('hyprctl keyword unbind ALT, ALT_L')
-os.system('hyprctl keyword bindr ALT, ALT_L, exec, bash Hyprland2.0/Bash/killDropdowns')
+os.system('hyprctl keyword bind ALT, ALT_L, exec, bash Hyprland2.0/Bash/killDropdowns kill')
 
 # os.system('hyprctl keyword unbind , escape')
-os.system('hyprctl keyword bind , escape, exec, bash Hyprland2.0/Bash/killDropdowns')
+# os.system('hyprctl keyword bind , escape, exec, bash Hyprland2.0/Bash/killDropdowns kill')
 
 class ButtonSelectorWidget(tk.Frame):
     def __init__(self, parent, button_labels=None, command=None, **kwargs):
@@ -109,54 +109,44 @@ class ButtonSelectorWidget(tk.Frame):
 
 # md0_ET-------------------------------------------------------------------------------
         if label == "md0_ET":
-            os.system('thunar /home/$USER/mnt/md0/ET/ 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
-            exit()
+            os.system('thunar /home/$USER/mnt/md0/Emma/ 1>/dev/null &')
+            clean_exit()
 # md0_GG-------------------------------------------------------------------------------
         if label == "md0_GG":
             os.system('thunar /home/$USER/mnt/md0/Guillaume/ 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
-            exit()
+            clean_exit()
 # md0_Media-------------------------------------------------------------------------------
         if label == "md0_Media":
             os.system('thunar /home/$USER/mnt/md0/Media/ 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
-            exit()
+            clean_exit()
 # Desktop-------------------------------------------------------------------------------
         if label == "   Desktop":
             os.system('thunar /home/$USER/Desktop 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
-            exit()
+            clean_exit()
 # Documents-------------------------------------------------------------------------------
         if label == "󰈙   Documents":
             os.system('thunar /home/$USER/Documents 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
-            exit()
+            clean_exit()
 # Downloads-------------------------------------------------------------------------------
         if label == "   Downloads":
             os.system('thunar /home/$USER/Downloads 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
-            exit()
+            clean_exit()
 # Music-------------------------------------------------------------------------------
         if label == "   Music":
             os.system('thunar /home/$USER/Music 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
-            exit()
+            clean_exit()
 # Pictures-------------------------------------------------------------------------------
         if label == "   Pictures":
             os.system('thunar /home/$USER/Pictures 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
-            exit()
+            clean_exit()
 # Videos-------------------------------------------------------------------------------
         if label == "   Videos":
             os.system('thunar /home/$USER/Videos 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
-            exit()
+            clean_exit()
 # Trash-------------------------------------------------------------------------------
         if label == "   Trash":
             os.system('thunar trash:/// 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
-            exit()
+            clean_exit()
 
         if self.command:
             self.command(label)
@@ -166,10 +156,11 @@ class ButtonSelectorWidget(tk.Frame):
         self.highlight_selected()
         self.press_selected()
     
-    def exit():
-        # os.system('hyprctl keyword unbind SUPER, SUPER_L')
-        os.system('bash Hyprland2.0/Bash/killDropdowns')
-        root.destroy()
+def clean_exit():
+    # os.system('bash Hyprland2.0/Bash/killDropdowns both')
+    # os.system('hyprctl dispatch killwindow class:Tk')
+    root.destroy()
+    # sys.exit()
 
 # --- Example usage ---
 def on_button_pressed(label):
