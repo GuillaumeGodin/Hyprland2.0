@@ -30,7 +30,7 @@ os.system('hyprctl keyword bind CONTROL, CONTROL_L, exec, bash "/home/$USER/Hypr
 
 class ButtonSelectorWidget(tk.Frame):
     def __init__(self, parent, button_labels=None, command=None, **kwargs):
-        super().__init__(parent, bg="#F4BA66", **kwargs)
+        super().__init__(parent, bg="#ffbb00", **kwargs)
         self.command = command
         self.buttons = []
         self.selected_index = 5
@@ -69,9 +69,9 @@ class ButtonSelectorWidget(tk.Frame):
             label = btn.cget("text")
             if i == self.selected_index:
                 if label == "   Firefox":  # Optional condition for Firefox button customization
-                    btn.configure(bg="#F4BA66", fg="#000000")  # Text black for Firefox
+                    btn.configure(bg="#ffbb00", fg="#000000")  # Text black for Firefox
                 else:
-                    btn.configure(bg="#F4BA66", fg="#000000")  # Text black for other selected buttons
+                    btn.configure(bg="#ffbb00", fg="#000000")  # Text black for other selected buttons
             else:
                 btn.configure(bg="#222222", fg="#FFFFFF")  # Default white text for unselected buttons
 
@@ -86,7 +86,7 @@ class ButtonSelectorWidget(tk.Frame):
                 bg="#222222",  # unselected background color
                 fg="#FFFFFF",  # unselected writing color
                 highlightthickness=0, 
-                activebackground="#F4BA66", 
+                activebackground="#ffbb00", 
                 activeforeground="#000000",
                 relief=GROOVE,
             )
