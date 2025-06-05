@@ -38,7 +38,7 @@ sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/waybar/style/
 sed -i "s/$defaultMonitor/$currentMonitor/g" /home/$USER/.config/HyprV/waybar/conf/waybar_top.jsonc
 sed -i "s/$defaultMonitor/$currentMonitor/g" /home/$USER/.config/HyprV/waybar/conf/waybar_bottom.jsonc
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/waybar/buttonApps.py
-sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/waybar/buttonScrips.py
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/waybar/buttonScripts.py
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/waybar/buttonFiles.py
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/waybar/buttonPower.py
 # wlogout
