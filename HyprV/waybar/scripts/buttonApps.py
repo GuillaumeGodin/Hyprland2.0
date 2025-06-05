@@ -8,7 +8,7 @@ from pathlib import Path
 
 root = tk.Tk()
 root.title("Apps")
-root.geometry("+150+557")
+root.geometry('+150+1135')
 # root.resizable(height = None, width = None)
 root.resizable(0, 0)
 root.bind_all("<Escape>", lambda event: clean_exit())
@@ -30,7 +30,7 @@ os.system('hyprctl keyword bind SUPER, SUPER_L, exec, bash "/home/$USER/Hyprland
 
 class ButtonSelectorWidget(tk.Frame):
     def __init__(self, parent, button_labels=None, command=None, **kwargs):
-        super().__init__(parent, bg="#ffbb00", **kwargs)
+        super().__init__(parent, bg="#F4BA66", **kwargs)
         self.command = command
         self.buttons = []
         self.selected_index = 9
@@ -68,9 +68,9 @@ class ButtonSelectorWidget(tk.Frame):
             label = btn.cget("text")
             if i == self.selected_index:
                 if label == "   Firefox":  # Optional condition for Firefox button customization
-                    btn.configure(bg="#ffbb00", fg="#000000")  # Text black for Firefox
+                    btn.configure(bg="#F4BA66", fg="#000000")  # Text black for Firefox
                 else:
-                    btn.configure(bg="#ffbb00", fg="#000000")  # Text black for other selected buttons
+                    btn.configure(bg="#F4BA66", fg="#000000")  # Text black for other selected buttons
             else:
                 btn.configure(bg="#222222", fg="#FFFFFF")  # Default white text for unselected buttons
 
@@ -85,7 +85,7 @@ class ButtonSelectorWidget(tk.Frame):
                 bg="#222222",  # unselected background color
                 fg="#FFFFFF",  # unselected writing color
                 highlightthickness=0, 
-                activebackground="#ffbb00", 
+                activebackground="#F4BA66", 
                 activeforeground="#000000",
                 relief=GROOVE,
             )
@@ -115,68 +115,85 @@ class ButtonSelectorWidget(tk.Frame):
 # Notes-------------------------------------------------------------------------------
         if label == "Notes":
             os.system('zim --geometry 1000x600 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Calculator-------------------------------------------------------------------------------
         if label == "Calculator":
             os.system('galculator 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # LibreOffice-------------------------------------------------------------------------------
         if label == "LibreOffice":
             os.system('libreoffice 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Audacity-------------------------------------------------------------------------------
         if label == "Audacity":
             os.system('audacity 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Handbrake-------------------------------------------------------------------------------
         if label == "Handbrake":
             os.system('ghb 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # MediaInfo-------------------------------------------------------------------------------
         if label == "MediaInfo":
             os.system('mediainfo-gui 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # MkvTool-------------------------------------------------------------------------------
         if label == "MkvTool":
             os.system('mkvtoolnix-gui 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # MkvToolBatch-------------------------------------------------------------------------------
         if label == "MkvToolBatch":
             os.system('python Documents/MKV_Batch/main.py 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Work_Mode-------------------------------------------------------------------------------
         if label == "Work_Mode":
             os.system('lan-mouse 1>/dev/null &')
             os.system('onedrivegui 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Firefox-------------------------------------------------------------------------------
         if label == "   Firefox":
             os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Mail_Evolution-------------------------------------------------------------------------------
         if label == "󰇰   Mail_Evolution":
             os.system('evolution 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Steam-------------------------------------------------------------------------------
         if label == "   Steam":
             os.system('steam 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Discord-------------------------------------------------------------------------------
         if label == "   Discord":
             os.system('discord 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Gimp-------------------------------------------------------------------------------
         if label == "   Gimp":
             os.system('gimp 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Blender-------------------------------------------------------------------------------
         if label == "   Blender":
             os.system('blender -p 1920 1080 1280 720 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Terminal_Kitty-------------------------------------------------------------------------------
         if label == "   Terminal_Kitty":
             os.system('kitty 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 
         if self.command:
             self.command(label)
@@ -187,7 +204,7 @@ class ButtonSelectorWidget(tk.Frame):
         self.press_selected()
     
 def clean_exit():
-    # os.system('bash Hyprland2.0/Bash/killDropdowns bind')
+    # os.system('bash Hyprland2.0/Bash/killDropdowns')
     # os.system('hyprctl dispatch killwindow class:Tk')
     root.destroy()
     # sys.exit()

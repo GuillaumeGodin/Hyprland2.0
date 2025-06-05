@@ -8,7 +8,7 @@ from pathlib import Path
 
 root = tk.Tk()
 root.title("Files")
-root.geometry("+225+731")
+root.geometry('+225+731')
 # root.resizable(height = None, width = None)
 root.resizable(0, 0)
 root.bind_all("<Escape>", lambda event: clean_exit())
@@ -30,10 +30,10 @@ os.system('hyprctl keyword bind ALT, ALT_L, exec, bash Hyprland2.0/Bash/killDrop
 
 class ButtonSelectorWidget(tk.Frame):
     def __init__(self, parent, button_labels=None, command=None, **kwargs):
-        super().__init__(parent, bg="#ffbb00", **kwargs)
+        super().__init__(parent, bg="#F4BA66", **kwargs)
         self.command = command
         self.buttons = []
-        self.selected_index = 4
+        self.selected_index = 3
 
         if button_labels is None:
             button_labels = [f"Button {i+1}" for i in range(10)]
@@ -62,9 +62,9 @@ class ButtonSelectorWidget(tk.Frame):
             label = btn.cget("text")
             if i == self.selected_index:
                 if label == "   Firefox":  # Optional condition for Firefox button customization
-                    btn.configure(bg="#ffbb00", fg="#000000")  # Text black for Firefox
+                    btn.configure(bg="#F4BA66", fg="#000000")  # Text black for Firefox
                 else:
-                    btn.configure(bg="#ffbb00", fg="#000000")  # Text black for other selected buttons
+                    btn.configure(bg="#F4BA66", fg="#000000")  # Text black for other selected buttons
             else:
                 btn.configure(bg="#222222", fg="#FFFFFF")  # Default white text for unselected buttons
 
@@ -79,7 +79,7 @@ class ButtonSelectorWidget(tk.Frame):
                 bg="#222222",  # unselected background color
                 fg="#FFFFFF",  # unselected writing color
                 highlightthickness=0, 
-                activebackground="#ffbb00", 
+                activebackground="#F4BA66", 
                 activeforeground="#000000",
                 relief=GROOVE,
             )
@@ -110,43 +110,53 @@ class ButtonSelectorWidget(tk.Frame):
 # md0_ET-------------------------------------------------------------------------------
         if label == "md0_ET":
             os.system('thunar /home/$USER/mnt/md0/Emma/ 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # md0_GG-------------------------------------------------------------------------------
         if label == "md0_GG":
             os.system('thunar /home/$USER/mnt/md0/Guillaume/ 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # md0_Media-------------------------------------------------------------------------------
         if label == "md0_Media":
             os.system('thunar /home/$USER/mnt/md0/Media/ 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Desktop-------------------------------------------------------------------------------
         if label == "   Desktop":
             os.system('thunar /home/$USER/Desktop 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Documents-------------------------------------------------------------------------------
         if label == "󰈙   Documents":
             os.system('thunar /home/$USER/Documents 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Downloads-------------------------------------------------------------------------------
         if label == "   Downloads":
             os.system('thunar /home/$USER/Downloads 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Music-------------------------------------------------------------------------------
         if label == "   Music":
             os.system('thunar /home/$USER/Music 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Pictures-------------------------------------------------------------------------------
         if label == "   Pictures":
             os.system('thunar /home/$USER/Pictures 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Videos-------------------------------------------------------------------------------
         if label == "   Videos":
             os.system('thunar /home/$USER/Videos 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Trash-------------------------------------------------------------------------------
         if label == "   Trash":
             os.system('thunar trash:/// 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 
         if self.command:
             self.command(label)

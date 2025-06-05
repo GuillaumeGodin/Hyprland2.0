@@ -8,7 +8,7 @@ from pathlib import Path
 
 root = tk.Tk()
 root.title("Scripts")
-root.geometry("+50+528")
+root.geometry('+50+528')
 # root.resizable(height = None, width = None)
 root.resizable(0, 0)
 root.bind_all("<Escape>", lambda event: clean_exit())
@@ -30,10 +30,10 @@ os.system('hyprctl keyword bind CONTROL, CONTROL_L, exec, bash "/home/$USER/Hypr
 
 class ButtonSelectorWidget(tk.Frame):
     def __init__(self, parent, button_labels=None, command=None, **kwargs):
-        super().__init__(parent, bg="#ffbb00", **kwargs)
+        super().__init__(parent, bg="#F4BA66", **kwargs)
         self.command = command
         self.buttons = []
-        self.selected_index = 6
+        self.selected_index = 5
 
         if button_labels is None:
             button_labels = [f"Button {i+1}" for i in range(17)]
@@ -69,9 +69,9 @@ class ButtonSelectorWidget(tk.Frame):
             label = btn.cget("text")
             if i == self.selected_index:
                 if label == "   Firefox":  # Optional condition for Firefox button customization
-                    btn.configure(bg="#ffbb00", fg="#000000")  # Text black for Firefox
+                    btn.configure(bg="#F4BA66", fg="#000000")  # Text black for Firefox
                 else:
-                    btn.configure(bg="#ffbb00", fg="#000000")  # Text black for other selected buttons
+                    btn.configure(bg="#F4BA66", fg="#000000")  # Text black for other selected buttons
             else:
                 btn.configure(bg="#222222", fg="#FFFFFF")  # Default white text for unselected buttons
 
@@ -86,7 +86,7 @@ class ButtonSelectorWidget(tk.Frame):
                 bg="#222222",  # unselected background color
                 fg="#FFFFFF",  # unselected writing color
                 highlightthickness=0, 
-                activebackground="#ffbb00", 
+                activebackground="#F4BA66", 
                 activeforeground="#000000",
                 relief=GROOVE,
             )
@@ -117,71 +117,88 @@ class ButtonSelectorWidget(tk.Frame):
 # VNC_Rpi-------------------------------------------------------------------------------
         if label == "VNC_Rpi":
             os.system('bash /home/$USER/.config/hypr/vncChange rpi 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # VNC_Arch-------------------------------------------------------------------------------
         if label == "VNC_Arch":
             os.system('bash /home/$USER/.config/hypr/vncChange arch 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # VNC_Ubuntu-------------------------------------------------------------------------------
         if label == "VNC_Ubuntu":
             os.system('bash /home/$USER/.config/hypr/vncChange ubuntu 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # VM_Win11-------------------------------------------------------------------------------
         if label == "VM_Win11":
             os.system('bash /home/$USER/.config/hypr/win11 win11 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Play_Music-------------------------------------------------------------------------------
         if label == "Play_Music":
             os.system('./.config/HyprV/waybar/scripts/mediaSwitch')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Server-------------------------------------------------------------------------------
         if label == "Server":
             os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window http://192.168.111.100:81/#/ &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Jellyfin-------------------------------------------------------------------------------
         if label == "Jellyfin":
             os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window http://192.168.111.100:8097/web/#/home.html &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # MotionEye-------------------------------------------------------------------------------
         if label == "MotionEye":
             os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window http://192.168.111.100:8765/ &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # PhotoPrism-------------------------------------------------------------------------------
         if label == "PhotoPrism":
             os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window http://192.168.111.100:2342/library/browse &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Navidrome-------------------------------------------------------------------------------
         if label == "Navidrome":
             os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window http://192.168.111.100:4533/app/#/album/recentlyAdded?sort=recently_added&order=DESC&filter={} &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Tandoor-------------------------------------------------------------------------------
         if label == "Tandoor":
             os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window http://192.168.111.100:8090/search/ &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Youtube-DL-------------------------------------------------------------------------------
         if label == "Youtube-DL":
             os.system('python3 Hyprland2.0/Bash/YouTube-DL.py 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Rsync-------------------------------------------------------------------------------
         if label == "Rsync":
             os.system('python3 Hyprland2.0/Bash/Rsync.py 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # WireguardConf-------------------------------------------------------------------------------
         if label == "WireguardConf":
             os.system('python3 Hyprland2.0/Bash/WireguardConf.py 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # PrivadoConf-------------------------------------------------------------------------------
         if label == "PrivadoConf":
             os.system('python3 Hyprland2.0/Bash/PrivadoConf.py 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # HyprlandHighlightColor-------------------------------------------------------------------------------
         if label == "HyprlandHighlightColor":
             os.system('python3 Hyprland2.0/Bash/HyprlandHighlightColor.py 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Luks-------------------------------------------------------------------------------
         if label == "Luks":
             os.system('python3 Hyprland2.0/Bash/Luks.py 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 
         if self.command:
             self.command(label)

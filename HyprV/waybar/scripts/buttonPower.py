@@ -8,7 +8,7 @@ from pathlib import Path
 
 root = tk.Tk()
 root.title("Power")
-root.geometry("+10+50")
+root.geometry('+10+50')
 # root.resizable(height = None, width = None)
 root.resizable(0, 0)
 root.bind_all("<Escape>", lambda event: clean_exit())
@@ -26,7 +26,7 @@ os.system('hyprctl keyword bind , mouse:273, exec, bash "/home/$USER/Hyprland2.0
 
 class ButtonSelectorWidget(tk.Frame):
     def __init__(self, parent, button_labels=None, command=None, **kwargs):
-        super().__init__(parent, bg="#ffbb00", **kwargs)
+        super().__init__(parent, bg="#F4BA66", **kwargs)
         self.command = command
         self.buttons = []
         self.selected_index = 0
@@ -53,9 +53,9 @@ class ButtonSelectorWidget(tk.Frame):
             label = btn.cget("text")
             if i == self.selected_index:
                 if label == "󰍃   Logout":  # Optional condition for Firefox button customization
-                    btn.configure(bg="#ffbb00", fg="#000000")  # Text black for Firefox
+                    btn.configure(bg="#F4BA66", fg="#000000")  # Text black for Firefox
                 else:
-                    btn.configure(bg="#ffbb00", fg="#000000")  # Text black for other selected buttons
+                    btn.configure(bg="#F4BA66", fg="#000000")  # Text black for other selected buttons
             else:
                 btn.configure(bg="#222222", fg="#FFFFFF")  # Default white text for unselected buttons
 
@@ -70,7 +70,7 @@ class ButtonSelectorWidget(tk.Frame):
                 bg="#222222",  # unselected background color
                 fg="#FFFFFF",  # unselected writing color
                 highlightthickness=0, 
-                activebackground="#ffbb00", 
+                activebackground="#F4BA66", 
                 activeforeground="#000000",
                 relief=GROOVE,
             )
@@ -101,23 +101,28 @@ class ButtonSelectorWidget(tk.Frame):
 # Update Packages-------------------------------------------------------------------------------
         if label == "󰇚   Update Packages":
             os.system('kitty --title update-sys sh -c "yay -Syu" && pkill -RTMIN+8 waybar 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Update Configs-------------------------------------------------------------------------------
         if label == "󰇚   Update Configs":
             os.system('kitty bash /home/$USER/Hyprland2.0/Bash/hyprlandConfigUpdate 1>/dev/null &')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Logout-------------------------------------------------------------------------------
         if label == "󰍃   Logout":
             os.system('hyprctl dispatch exit 0')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Restart-------------------------------------------------------------------------------
         if label == "   Restart":
             os.system('systemctl reboot')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 # Shutdown-------------------------------------------------------------------------------
         if label == "   Shutdown":
             os.system('systemctl poweroff')
-            clean_exit()
+            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            # clean_exit()
 
         if self.command:
             self.command(label)
