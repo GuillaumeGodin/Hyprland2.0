@@ -1,0 +1,11 @@
+#!/bin/bash
+
+currentColor="F4BA66"
+currentDark="222222"
+currentWhite="EEEEFF"
+currentKeyboard="logitech-logitech-g710-keyboard"
+currentMonitor="DP-2"
+
+defaultColor="FFBB00"
+defaultMonitor="currentMonitor"
+defaultKeyboard="currentKeyboard"
