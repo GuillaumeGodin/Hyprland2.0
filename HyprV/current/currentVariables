@@ -6,6 +6,6 @@ currentWhite="EEEEFF"
 currentKeyboard="logitech-logitech-g710-keyboard"
 currentMonitor="DP-2"
 
-defaultColor="FFBB00"
+defaultColor="ffbb00"
 defaultMonitor="currentMonitor"
 defaultKeyboard="currentKeyboard"
