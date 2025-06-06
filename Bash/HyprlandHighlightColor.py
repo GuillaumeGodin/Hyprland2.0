@@ -16,7 +16,7 @@
 
 import os
 # from subprocess import Popen, PIPE
-import subprocess as sp
+import subprocess
 import tkinter as tk
 from tkinter import *
 from tkinter import messagebox, filedialog
@@ -48,7 +48,7 @@ def Widgets():
     destination_label = Label(pane, text="Color Hex Code :", bg="white", font="Arial")
     destination_label.grid(row=3, column=0, sticky="enw")
     root.destinationText = Entry(pane, font="Arial", textvariable=hexColor)
-    root.destinationText.insert(0, call)
+    root.destinationText.insert(0, currentColor)
     root.destinationText.grid(row=3, column=1, sticky="new")
     browse_B = Button(pane, text="Hyprpicker", bg="bisque", font="Arial", command=hyprpickerColor, pady=0, relief=GROOVE)
     browse_B.grid(row=3, column=2, sticky="wne")
@@ -57,14 +57,23 @@ def Widgets():
     Download_Audio = Button(pane, text="Set Color", bg="thistle1", font="Arial", command=setColor, relief=GROOVE, pady=0)
     Download_Audio.grid(row=4, column=1, sticky="new", padx=60, pady=5)
 
-# def Browse():
-#     download_Directory = filedialog.askdirectory(
-#         initialdir="YOUR DIRECTORY PATH", title="Save Video")
+# Source the bash script and echo the variable
+def get_current_color():
+    cmd = 'source /home/$USER/.config/hypr/currentVariables && echo $currentColor'
+    result = subprocess.run(['bash', '-c', cmd], stdout=subprocess.PIPE, text=True)
+    return result.stdout.strip()
 
-#     download_Path.set(download_Directory)
+currentColor = get_current_color()
+print(currentColor)
 
-call = sp.getoutput('echo "$(</home/$USER/.config/HyprV/current/currentColor)"')
-print(call)
+# Source the bash script and echo the variable
+# def get_default_color():
+#     cmd = 'source /home/$USER/.config/hypr/currentVariables && echo $defaultColor'
+#     result = subprocess.run(['bash', '-c', cmd], stdout=subprocess.PIPE, text=True)
+#     return result.stdout.strip()
+
+# defaultColor = get_default_color()
+# print(defaultColor)
 
 def hyprpickerColor():
     # command = os.popen('hyprpicker | sed "s/^.\{1\}//"')
@@ -77,41 +86,41 @@ def hyprpickerColor():
 def setColor():
     # Get current color
     command = os.popen('echo "$(<.config/HyprV/current/currentColor)"')
-    currentColor1 = command.read()
-    currentColor2 = currentColor1[:6]
-    print(currentColor2)
+    # currentColor1 = command.read()
+    # currentColor2 = currentColor1[:6]
+    # print(currentColor2)
 
-    os.system('sed -i "/{}/c {}" .config/HyprV/current/currentColor'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "/{}/c {}" .config/HyprV/current/currentColor'.format(currentColor, hexColor.get()))
     #hyprland (border)
-    os.system('sed -i "s/{}/{}/g" .config/HyprV/hypr/hyprland.conf'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/HyprV/hypr/hyprland.conf'.format(currentColor, hexColor.get()))
     # gtk (thunar)
-    os.system('sed -i "s/{}/{}/g" .config/gtk-3.0/gtk.css'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/gtk-3.0/gtk.css'.format(currentColor, hexColor.get()))
     # wofi
-    os.system('sed -i "s/{}/{}/g" .config/wofi/style.css'.format(currentColor2, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/HyprV/wofi/style/wofi_dark.css'.format(currentColor2, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/HyprV/wofi/style/wofi_light.css'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/wofi/style.css'.format(currentColor, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/HyprV/wofi/style/wofi_dark.css'.format(currentColor, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/HyprV/wofi/style/wofi_light.css'.format(currentColor, hexColor.get()))
     # starship shell
-    os.system('sed -i "s/{}/{}/g" .config/HyprV/starship/starship.toml'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/HyprV/starship/starship.toml'.format(currentColor, hexColor.get()))
     # waybar
-    os.system('sed -i "s/{}/{}/g" .config/HyprV/waybar/style/waybar_dark.css'.format(currentColor2, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/HyprV/waybar/style/waybar_light.css'.format(currentColor2, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/waybar/buttonApps.py'.format(currentColor2, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/waybar/buttonScripts.py'.format(currentColor2, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/waybar/buttonFiles.py'.format(currentColor2, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/waybar/buttonPower.py'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/HyprV/waybar/style/waybar_dark.css'.format(currentColor, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/HyprV/waybar/style/waybar_light.css'.format(currentColor, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/waybar/buttonApps.py'.format(currentColor, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/waybar/buttonScripts.py'.format(currentColor, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/waybar/buttonFiles.py'.format(currentColor, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/waybar/buttonPower.py'.format(currentColor, hexColor.get()))
     # wlogout
-    os.system('sed -i "s/{}/{}/g" .config/HyprV/wlogout/style/wlogout_dark.css'.format(currentColor2, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/HyprV/wlogout/style/wlogout_light.css'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/HyprV/wlogout/style/wlogout_dark.css'.format(currentColor, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/HyprV/wlogout/style/wlogout_light.css'.format(currentColor, hexColor.get()))
     # mako
-    os.system('sed -i "s/{}/{}/g" .config/HyprV/mako/conf/mako_dark'.format(currentColor2, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/HyprV/mako/conf/mako_light'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/HyprV/mako/conf/mako_dark'.format(currentColor, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .config/HyprV/mako/conf/mako_light'.format(currentColor, hexColor.get()))
     os.system('makoctl reload')
     # firefox
-    os.system('sed -i "s/{}/{}/g" .mozilla/firefox/*.default-release/chrome/userChrome.css'.format(currentColor2, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .mozilla/firefox/*.default-release/chrome/userContent.css'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .mozilla/firefox/*.default-release/chrome/userChrome.css'.format(currentColor, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .mozilla/firefox/*.default-release/chrome/userContent.css'.format(currentColor, hexColor.get()))
     # librewolf
-    os.system('sed -i "s/{}/{}/g" .librewolf/*.default-default/chrome/userChrome.css'.format(currentColor2, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .librewolf/*.default-default/chrome/userContent.css'.format(currentColor2, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .librewolf/*.default-default/chrome/userChrome.css'.format(currentColor, hexColor.get()))
+    os.system('sed -i "s/{}/{}/g" .librewolf/*.default-default/chrome/userContent.css'.format(currentColor, hexColor.get()))
 
     # Restart Waybar
     os.system('hyprctl reload')
