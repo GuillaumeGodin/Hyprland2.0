@@ -1,19 +1,3 @@
-#to use in terminal for video only no audio
-#Desktop\Python\yt-dlp.exe --list-formats (link)
-#Desktop\Python\yt-dlp.exe -f (format#) Desktop/(filename) (link)
-
-#to use in terminal for playlist audio only
-#Desktop\Python\yt-dlp.exe --ignore-errors --format bestaudio --extract-audio --audio-format mp3 --audio-quality 160K --output "%(title)s.%(ext)s" --yes-playlist (link)
-
-#Ubuntu
-#sudo apt install yt-DownloadPlaylist
-#sudo apt install tk
-#sudo apt install python3-tk
-
-#Arch
-#sudo pacman -Syu yt-dlp
-#sudo pacman -S tk
-
 import os
 # from subprocess import Popen, PIPE
 import subprocess
