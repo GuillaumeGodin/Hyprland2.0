@@ -73,7 +73,6 @@ def hyprpickerColor():
     print(output[:6])
     hexColor.set(output[:6])
 
-
 def setColor():
     # Get current color
     command = os.popen('echo "$(<.config/HyprV/current/currentColor)"')

@@ -34,6 +34,11 @@ def Widgets():
     pane = Frame(root)    
     pane.pack(fill=X, expand=True)
 
+#    root.grid_columnconfigure(0, weight=0)
+#    root.grid_columnconfigure(1, weight=0)
+#    root.grid_columnconfigure(2, weight=0)
+#    root.grid_columnconfigure(3, weight=0)
+
     # 1st Row Header----------------------------------------------------------------------------------
     head_label = Label(pane, text="Hyprland Highlight Color", bg="orange", fg="white", font="SegoeUI 14", width=55)
 #    head_label.pack(fill=X, expand=False, side=TOP)
@@ -43,7 +48,7 @@ def Widgets():
     destination_label = Label(pane, text="Color Hex Code :", bg="white", font="Arial")
     destination_label.grid(row=3, column=0, sticky="enw")
     root.destinationText = Entry(pane, font="Arial", textvariable=hexColor)
-    root.destinationText.insert(0, call)
+    root.destinationText.insert(0, currentColor)
     root.destinationText.grid(row=3, column=1, sticky="new")
     browse_B = Button(pane, text="Hyprpicker", bg="bisque", font="Arial", command=hyprpickerColor, pady=0, relief=GROOVE)
     browse_B.grid(row=3, column=2, sticky="wne")
@@ -64,15 +69,31 @@ print(currentColor)
 call = currentColor
 print(call)
 
+# Source the bash script and echo the variable
+# def get_default_color():
+#     cmd = 'source /home/$USER/.config/hypr/currentVariables && echo $defaultColor'
+#     result = subprocess.run(['bash', '-c', cmd], stdout=subprocess.PIPE, text=True)
+#     return result.stdout.strip()
+
+# defaultColor = get_default_color()
+# print(defaultColor)
+
 def hyprpickerColor():
+    # command = os.popen('hyprpicker | sed "s/^.\{1\}//"')
     command = os.popen('hyprpicker | tail -c 7') #Selects the last 6 characters
     output = command.read()
     print(output[:6])
     hexColor.set(output[:6])
 
+
 def setColor():
-    
-    os.system('sed -i "s/{}/{}/g" /home/$USER/.config/hypr/currentVariables'.format(currentColor, hexColor.get()))
+    # Get current color
+    command = os.popen('echo "$(<.config/HyprV/current/currentColor)"')
+    # currentColor1 = command.read()
+    # currentColor2 = currentColor1[:6]
+    # print(currentColor2)
+
+    os.system('sed -i "/{}/c {}" .config/HyprV/current/currentColor'.format(currentColor, hexColor.get()))
     #hyprland (border)
     os.system('sed -i "s/{}/{}/g" .config/HyprV/hypr/hyprland.conf'.format(currentColor, hexColor.get()))
     # gtk (thunar)
