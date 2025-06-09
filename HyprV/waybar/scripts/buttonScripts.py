@@ -191,7 +191,7 @@ class ButtonSelectorWidget(tk.Frame):
             # clean_exit()
 # HyprlandHighlightColor-------------------------------------------------------------------------------
         if label == "HyprlandHighlightColor":
-            os.system('python3 Hyprland2.0/Bash/HyprlandHighlightColor.py 1>/dev/null &')
+            os.system('python3 Hyprland2.0/Scripts/Python/HyprlandHighlightColor.py 1>/dev/null &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             # clean_exit()
 # Luks-------------------------------------------------------------------------------

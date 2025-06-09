@@ -1,72 +1,117 @@
-import os
-# from subprocess import Popen, PIPE
 import subprocess
 import tkinter as tk
-from tkinter import *
-from tkinter import messagebox, filedialog
+from tkinter import messagebox
+from pathlib import Path
 
-root = tk.Tk()
-#root.geometry("600x140")
-root.resizable(height = None, width = None)
-root.resizable(0, 0)
-root.title("Hyprland Highlight Color")
-root.config(background="black")
+# Paths
+HOME = Path.home()
+CONFIG_FILE = HOME / ".config/hypr/currentVariables"
+UPDATE_SCRIPT = HOME / "Hyprland2.0/Scripts/Bash/updateConfigs"
 
-def Widgets():
-
-#    pane = Frame(root, bg="black")
-    pane = Frame(root)    
-    pane.pack(fill=X, expand=True)
-
-    # 1st Row Header----------------------------------------------------------------------------------
-    head_label = Label(pane, text="Hyprland Highlight Color", bg="orange", fg="white", font="SegoeUI 14", width=55)
-#    head_label.pack(fill=X, expand=False, side=TOP)
-    head_label.grid(row=0, column=0, columnspan=3, sticky="n")
-
-    # 2nd Row Destination-----------------------------------------------------------------------------
-    destination_label = Label(pane, text="Color Hex Code :", bg="white", font="Arial")
-    destination_label.grid(row=3, column=0, sticky="enw")
-    root.destinationText = Entry(pane, font="Arial", textvariable=hexColor)
-    root.destinationText.insert(0, call)
-    root.destinationText.grid(row=3, column=1, sticky="new")
-    browse_B = Button(pane, text="Hyprpicker", bg="bisque", font="Arial", command=hyprpickerColor, pady=0, relief=GROOVE)
-    browse_B.grid(row=3, column=2, sticky="wne")
-    
-    # 5th Row Button Audio----------------------------------------------------------------------------
-    Download_Audio = Button(pane, text="Set Color", bg="thistle1", font="Arial", command=setColor, relief=GROOVE, pady=0)
-    Download_Audio.grid(row=4, column=1, sticky="new", padx=60, pady=5)
-
-# Source the bash script and echo the variable
 def get_current_color():
-    cmd = 'source /home/$USER/.config/hypr/currentVariables && echo $currentColor'
+    """Source Hyprland config and get currentColor variable."""
+    cmd = f"source {CONFIG_FILE} && echo $currentColor"
     result = subprocess.run(['bash', '-c', cmd], stdout=subprocess.PIPE, text=True)
     return result.stdout.strip()
 
-currentColor = get_current_color()
-# print(currentColor)
+def pick_color():
+    """Run hyprpicker and extract hex code."""
+    try:
+        output = subprocess.check_output("hyprpicker | tail -c 7", shell=True, text=True)
+        color = output.strip()
+        print(f"Picked color: {color}")
+        hex_color.set(color)
+    except subprocess.CalledProcessError as e:
+        messagebox.showerror("Error", f"Failed to run hyprpicker:\n{e}")
 
-call = currentColor
-# print(call)
+def apply_color():
+    """Apply selected color and update config."""
+    color = hex_color.get().strip()
 
-def hyprpickerColor():
-    command = os.popen('hyprpicker | tail -c 7') #Selects the last 6 characters
-    output = command.read()
-    print(output[:6])
-    hexColor.set(output[:6])
+    if not color:
+        messagebox.showwarning("Missing Color", "Please enter or select a color.")
+        return
 
-def setColor():
-    
-    # os.system('sed -i "s/currentColor=\\"{}\\"/currentColor=\\"{}\\"/g" /home/$USER/.config/hypr/currentVariables'.format(currentColor, hexColor.get()))
-    os.system('bash /home/$USER/Hyprland2.0/Scripts/Bash/updateConfigs updateColors {}'.format(hexColor.get()))
+    try:
+        # Update via bash script
+        subprocess.run([str(UPDATE_SCRIPT), "updateColors", color], check=True)
 
-    quit()
+        # Update config file directly
+        subprocess.run([
+            "sed", "-i",
+            f's/currentColor="{current_color}"/currentColor="{color}"/g',
+            str(CONFIG_FILE)
+        ], check=True)
 
-# Creating the tkinter Variables
-hexColor = StringVar()
+        root.quit()
 
-# Calling the Widgets() function
-Widgets()
+    except subprocess.CalledProcessError as e:
+        messagebox.showerror("Error", f"Failed to apply color:\n{e}")
 
-# Defining infinite loop to run
-# application
-root.mainloop()
+def create_widgets(window):
+    """Construct the UI layout."""
+    pane = tk.Frame(window, bg="#222222")
+    pane.pack(fill="x", expand=True, padx=5, pady=5)  # less padding here
+
+    pane.grid_columnconfigure(1, weight=1)
+
+    # Header
+    tk.Label(
+        pane, text="Hyprland Highlight Color", bg="orange",
+        fg="white", font="SegoeUI 14", width=55
+    ).grid(row=0, column=0, columnspan=3, sticky="nsew", pady=(0, 5))
+
+    # Label
+    tk.Label(pane, text="Color Hex Code:", bg="#222222", fg="white", font="Arial")\
+        .grid(row=3, column=0, sticky="e", padx=3, pady=0)
+
+    # Entry Field
+    entry = tk.Entry(pane, font="Arial", textvariable=hex_color, bg="#EEEEFF", fg="black", insertbackground="white")
+    entry.insert(0, current_color)
+    entry.grid(row=3, column=1, sticky="nsew", padx=3, pady=0, ipady=0)
+
+    # Enable copy-paste shortcuts
+    entry.bind("<Control-a>", lambda e: entry.select_range(0, 'end'))
+
+    # Bind Enter to Set Color
+    window.bind("<Return>", lambda event: apply_color())
+
+    def custom_paste(event):
+        try:
+            clipboard = event.widget.clipboard_get()
+            hex_color.set(clipboard.strip())
+            return "break"
+        except tk.TclError:
+            return "break"
+
+    entry.bind("<Control-v>", custom_paste)
+
+    # Hyprpicker Button
+    tk.Button(
+        pane, text="Hyprpicker", bg="bisque", font="Arial",
+        command=pick_color, relief="groove"
+    ).grid(row=3, column=2, sticky="nsew", padx=3, pady=0, ipady=0)
+
+    # Set Color Button
+    tk.Button(
+        pane, text="Set Color", bg="bisque", font="Arial",
+        command=apply_color, relief="groove"
+    ).grid(row=4, column=1, padx=150, pady=(5, 0), sticky="ew")
+
+def main():
+    global root, hex_color, current_color
+
+    current_color = get_current_color()
+
+    root = tk.Tk()
+    root.title("Hyprland Highlight Color")
+    root.config(background="#222222")
+    root.resizable(False, False)
+
+    hex_color = tk.StringVar()
+
+    create_widgets(root)
+    root.mainloop()
+
+if __name__ == "__main__":
+    main()
