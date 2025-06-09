@@ -406,10 +406,10 @@ fi
 
 # Bash scripts-----------------------------------------------------------------------------------------------------------
 bash /home/$USER/Hyprland2.0/Bash/CreateDirectories
-#bash /home/$USER/Hyprland2.0/Bash/AutoStartSDDM
-bash /home/$USER/Hyprland2.0/Bash/Bashrc
 sudo bash /home/$USER/Hyprland2.0/Bash/MoveLspApplications
-#bash /home/$USER/Hyprland2.0/Bash/XboxDongleDrivers
+# bash /home/$USER/Hyprland2.0/Bash/AutoStartSDDM
+# bash /home/$USER/Hyprland2.0/Bash/archBashrc
+# bash /home/$USER/Hyprland2.0/Bash/XboxDongleDrivers
 
 #Set measurement unit------------------------------------------------------------------------------------------------------
 #read -rep $'[\e[1;33mACTION\e[0m] - Select measurement units, (m) for metric or (i) for imperial? (m.i) ' INST
