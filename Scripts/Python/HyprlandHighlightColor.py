@@ -24,7 +24,7 @@ def pick_color():
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Error", f"Failed to run hyprpicker:\n{e}")
 
-def apply_color():
+def apply_color(event=None):
     """Apply selected color and update config."""
     color = hex_color.get().strip()
 
@@ -70,11 +70,21 @@ def create_widgets(window):
     entry.insert(0, current_color)
     entry.grid(row=3, column=1, sticky="nsew", padx=3, pady=0, ipady=0)
 
+    entry.focus_set()
+    entry.select_range(0, 'end')
+
     # Enable copy-paste shortcuts
     entry.bind("<Control-a>", lambda e: entry.select_range(0, 'end'))
 
     # Bind Enter to Set Color
-    window.bind("<Return>", lambda event: apply_color())
+    entry.bind("<Return>", apply_color)
+    window.bind("<Return>", apply_color)
+    entry.bind("<KP_Enter>", apply_color)
+    window.bind("<KP_Enter>", apply_color)
+
+    # Bind Escape to close window
+    window.bind("<Escape>", lambda e: window.destroy())
+
 
     def custom_paste(event):
         try:
