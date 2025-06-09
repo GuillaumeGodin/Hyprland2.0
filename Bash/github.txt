@@ -1,6 +1,0 @@
-git add .
-git commit -m "update"
-git puch -u origin main
-
-git config user.email email
-git config user.name name

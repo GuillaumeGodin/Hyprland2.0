@@ -1,2 +1,0 @@
-#!/bin/bash
-exec hyprctl setprop active opaque toggle
