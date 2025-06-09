@@ -171,22 +171,22 @@ class ButtonSelectorWidget(tk.Frame):
             # clean_exit()
 # Youtube-DL-------------------------------------------------------------------------------
         if label == "Youtube-DL":
-            os.system('python3 Hyprland2.0/Bash/YouTube-DL.py 1>/dev/null &')
+            os.system('python3 Hyprland2.0/Scripts/Python/YouTube-DL.py 1>/dev/null &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             # clean_exit()
 # Rsync-------------------------------------------------------------------------------
         if label == "Rsync":
-            os.system('python3 Hyprland2.0/Bash/Rsync.py 1>/dev/null &')
+            os.system('python3 Hyprland2.0/Scripts/Python/Rsync.py 1>/dev/null &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             # clean_exit()
 # WireguardConf-------------------------------------------------------------------------------
         if label == "WireguardConf":
-            os.system('python3 Hyprland2.0/Bash/WireguardConf.py 1>/dev/null &')
+            os.system('python3 Hyprland2.0/Scripts/Python/WireguardConf.py 1>/dev/null &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             # clean_exit()
 # PrivadoConf-------------------------------------------------------------------------------
         if label == "PrivadoConf":
-            os.system('python3 Hyprland2.0/Bash/PrivadoConf.py 1>/dev/null &')
+            os.system('python3 Hyprland2.0/Scripts/Python/PrivadoConf.py 1>/dev/null &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             # clean_exit()
 # HyprlandHighlightColor-------------------------------------------------------------------------------
@@ -196,7 +196,7 @@ class ButtonSelectorWidget(tk.Frame):
             # clean_exit()
 # Luks-------------------------------------------------------------------------------
         if label == "Luks":
-            os.system('python3 Hyprland2.0/Bash/Luks.py 1>/dev/null &')
+            os.system('python3 Hyprland2.0/Scripts/Python/Luks.py 1>/dev/null &')
             os.system('bash Hyprland2.0/Bash/killDropdowns')
             # clean_exit()
 
