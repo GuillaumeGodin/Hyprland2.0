@@ -1,0 +1,27 @@
+#!/bin/bash
+#sudo chmod u+x fileName.sh
+
+#command to reset bash rc
+#. ~/.bashrc
+
+# adds ssh to kitty
+echo '' | tee -a /home/$USER/.bashrc
+echo '[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"' | tee -a /home/$USER/.bashrc
+
+# prevents sudo -S showing up in command history 
+echo '' | tee -a /home/$USER/.bashrc
+echo "HISTIGNORE='*sudo -S*'" | tee -a /home/$USER/.bashrc
+
+# add a timer command
+echo '' | tee -a /home/$USER/.bashrc
+echo 'timer() {' | tee -a /home/$USER/.bashrc
+echo '    local M=$1; shift' | tee -a /home/$USER/.bashrc
+echo '    local S=$1; shift' | tee -a /home/$USER/.bashrc
+echo '    echo "timer set for $M $S"' | tee -a /home/$USER/.bashrc
+echo '    (sleep $M $S && notify-send "Time's up\"' && mpv /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga)' | tee -a /home/$USER/.bashrc
+echo '}' | tee -a /home/$USER/.bashrc
+
+#sudo su <<HERE
+#HERE
+
+#reboot

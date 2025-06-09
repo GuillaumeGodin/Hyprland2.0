@@ -1,0 +1,13 @@
+#!/bin/bash
+
+VARS_FILE="/home/$USER/.config/hypr/currentVariables"
+BACKUP_VARS_FILE="/home/$USER/Hyprland2.0/HyprV/current/currentVariables"
+
+# Check if vars.sh exists
+if [[ ! -f "$VARS_FILE" ]]; then
+    echo "currentVariables not found. Copying from backup..."
+    cp "$BACKUP_VARS_FILE" "$VARS_FILE" || {
+        echo "Failed to copy currentVariables. Exiting."
+        exit 1
+    }
+fi

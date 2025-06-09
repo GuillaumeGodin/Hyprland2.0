@@ -1,0 +1,54 @@
+#!/bin/bash
+
+source /home/$USER/.config/hypr/currentVariables
+
+# gtk (thunar)
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/gtk-3.0/gtk.css
+# wofi
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/wofi/style.css
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/wofi/style/wofi_dark.css
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/wofi/style/wofi_light.css
+# starship shell
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/starship/starship.toml
+# waybar
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/waybar/style/waybar_dark.css
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/waybar/style/waybar_light.css
+sed -i "s/$defaultMonitor/$currentMonitor/g" /home/$USER/.config/HyprV/waybar/conf/waybar_top.jsonc
+sed -i "s/$defaultMonitor/$currentMonitor/g" /home/$USER/.config/HyprV/waybar/conf/waybar_bottom.jsonc
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/waybar/buttonApps.py
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/waybar/buttonScripts.py
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/waybar/buttonFiles.py
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/waybar/buttonPower.py
+# wlogout
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/wlogout/style/wlogout_dark.css
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/wlogout/style/wlogout_light.css
+# mako
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/mako/conf/mako_dark
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/mako/conf/mako_light
+# firefox
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.mozilla/firefox/*.default-release/chrome/userChrome.css
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.mozilla/firefox/*.default-release/chrome/userContent.css
+# librewolf
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.librewolf/*.default-default/chrome/userChrome.css
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.librewolf/*.default-default/chrome/userContent.css
+# current
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/current/currentColor
+sed -i "s/$defaultMonitor/$currentMonitor/g" /home/$USER/.config/HyprV/current/currentMonitor
+sed -i "s/$defaultKeyboard/$currentKeyboard/g" /home/$USER/.config/HyprV/current/currentKeyboard
+# keyboard
+sed -i "s/$defaultKeyboard/$currentKeyboard/g" /home/$USER/.config/HyprV/waybar/conf/waybar_top.jsonc
+sed -i "s/$defaultKeyboard/$currentKeyboard/g" /home/$USER/.config/HyprV/hyprv_util
+#hyprland (border)
+sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/HyprV/hypr/hyprland.conf
+
+sleep 1
+
+ln -sf /home/$USER/.config/HyprV/waybar/conf/waybar_top.jsonc /home/$USER/.config/waybar/config.jsonc
+ln -sf /home/$USER/.config/HyprV/waybar/style/waybar_dark.css /home/$USER/.config/waybar/style.css
+ln -sf /home/$USER/.config/HyprV/kitty/MochaDark.conf /home/$USER/.config/HyprV/kitty/mocha.conf
+ln -sf /home/$USER/.config/HyprV/hypr/hyprland.conf /home/$USER/.config/hypr/hyprland.conf
+
+sleep 1
+
+makoctl reload
+hyprctl reload

@@ -1,0 +1,12 @@
+#!/bin/bash
+#sudo chmod u+x fileName.sh
+
+sudo su <<HERE
+
+echo '[Autologin]' | tee -a /etc/sddm.conf.d/autologin.conf
+echo 'User='$USER | tee -a /etc/sddm.conf.d/autologin.conf
+echo 'Session=hyprland' | tee -a /etc/sddm.conf.d/autologin.conf
+
+HERE
+
+#reboot

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+sudo su <<HERE
+rm -r /home/$USER/Hyprland2.0
+HERE
+
+notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Updating config files"
+
+git clone https://github.com/GuillaumeGodin/Hyprland2.0
+
+sleep 1
+
+rm -r /home/$USER/.config/HyprV
+cp -r /home/$USER/Hyprland2.0/HyprV /home/$USER/.config/HyprV
