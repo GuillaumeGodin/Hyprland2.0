@@ -57,7 +57,7 @@ def hyprpickerColor():
 def setColor():
     
     # os.system('sed -i "s/currentColor=\\"{}\\"/currentColor=\\"{}\\"/g" /home/$USER/.config/hypr/currentVariables'.format(currentColor, hexColor.get()))
-    os.system('bash /home/$USER/Hyprland2.0/Scripts/Bash/updateColors updateColors {}'.format(hexColor.get()))
+    os.system('bash /home/$USER/Hyprland2.0/Scripts/Bash/updateConfigs updateColors {}'.format(hexColor.get()))
 
     quit()
 
