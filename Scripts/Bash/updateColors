@@ -2,6 +2,9 @@
 
 source /home/$USER/.config/hypr/currentVariables
 
+echo $defaultColor
+echo $currentColor
+
 # gtk (thunar)
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/gtk-3.0/gtk.css
 # wofi

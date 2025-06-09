@@ -57,39 +57,8 @@ def hyprpickerColor():
 def setColor():
     
     os.system('sed -i "s/{}/{}/g" /home/$USER/.config/hypr/currentVariables'.format(currentColor, hexColor.get()))
-    #hyprland (border)
-    os.system('sed -i "s/{}/{}/g" .config/HyprV/hypr/hyprland.conf'.format(currentColor, hexColor.get()))
-    # gtk (thunar)
-    os.system('sed -i "s/{}/{}/g" .config/gtk-3.0/gtk.css'.format(currentColor, hexColor.get()))
-    # wofi
-    os.system('sed -i "s/{}/{}/g" .config/wofi/style.css'.format(currentColor, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/HyprV/wofi/style/wofi_dark.css'.format(currentColor, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/HyprV/wofi/style/wofi_light.css'.format(currentColor, hexColor.get()))
-    # starship shell
-    os.system('sed -i "s/{}/{}/g" .config/HyprV/starship/starship.toml'.format(currentColor, hexColor.get()))
-    # waybar
-    os.system('sed -i "s/{}/{}/g" .config/HyprV/waybar/style/waybar_dark.css'.format(currentColor, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/HyprV/waybar/style/waybar_light.css'.format(currentColor, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/waybar/buttonApps.py'.format(currentColor, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/waybar/buttonScripts.py'.format(currentColor, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/waybar/buttonFiles.py'.format(currentColor, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/waybar/buttonPower.py'.format(currentColor, hexColor.get()))
-    # wlogout
-    os.system('sed -i "s/{}/{}/g" .config/HyprV/wlogout/style/wlogout_dark.css'.format(currentColor, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/HyprV/wlogout/style/wlogout_light.css'.format(currentColor, hexColor.get()))
-    # mako
-    os.system('sed -i "s/{}/{}/g" .config/HyprV/mako/conf/mako_dark'.format(currentColor, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .config/HyprV/mako/conf/mako_light'.format(currentColor, hexColor.get()))
-    os.system('makoctl reload')
-    # firefox
-    os.system('sed -i "s/{}/{}/g" .mozilla/firefox/*.default-release/chrome/userChrome.css'.format(currentColor, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .mozilla/firefox/*.default-release/chrome/userContent.css'.format(currentColor, hexColor.get()))
-    # librewolf
-    os.system('sed -i "s/{}/{}/g" .librewolf/*.default-default/chrome/userChrome.css'.format(currentColor, hexColor.get()))
-    os.system('sed -i "s/{}/{}/g" .librewolf/*.default-default/chrome/userContent.css'.format(currentColor, hexColor.get()))
+    os.system('bash /home/$USER/Hyprland2.0/Scripts/Bash/updateColors')
 
-    # Restart Waybar
-    os.system('hyprctl reload')
     quit()
 
 # Creating the tkinter Variables
