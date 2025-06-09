@@ -43,10 +43,10 @@ def get_current_color():
     return result.stdout.strip()
 
 currentColor = get_current_color()
-print(currentColor)
+# print(currentColor)
 
 call = currentColor
-print(call)
+# print(call)
 
 def hyprpickerColor():
     command = os.popen('hyprpicker | tail -c 7') #Selects the last 6 characters
@@ -56,8 +56,8 @@ def hyprpickerColor():
 
 def setColor():
     
-    os.system('sed -i "s/{}/{}/g" /home/$USER/.config/hypr/currentVariables'.format(currentColor, hexColor.get()))
-    os.system('bash /home/$USER/Hyprland2.0/Scripts/Bash/updateColors')
+    os.system('sed -i "s/currentColor=\\"{}\\"/currentColor=\\"{}\\"/g" /home/$USER/.config/hypr/currentVariables'.format(currentColor, hexColor.get()))
+    os.system('bash /home/$USER/Hyprland2.0/Scripts/Bash/updateColors updateColors {}'.format(hexColor.get()))
 
     quit()
 
