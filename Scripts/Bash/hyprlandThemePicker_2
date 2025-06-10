@@ -1,0 +1,68 @@
+#!/bin/bash
+
+source ~/.config/hypr/currentVariables
+
+echo $currentTheme
+
+if [[ "$1" == "switchTheme" ]]; then
+    if [[ $currentTheme == "Dark" ]]; then
+        bash /home/$USER/Hyprland2.0/Scripts/Themes/Light
+        sed -i 's/currentTheme="Dark"/currentTheme="Light"/' ~/.config/hypr/currentVariables
+    elif [ "$currentTheme" == "Light" ]; then
+        bash /home/$USER/Hyprland2.0/Scripts/Themes/Dark
+        sed -i 's/currentTheme="Light"/currentTheme="Dark"/' ~/.config/hypr/currentVariables
+    else
+        echo "Kk bye"
+    fi
+elif [[ "$1" == "switchLanguage" ]]; then
+    hyprctl switchxkblayout $currentKeyboard next
+else
+    bash /home/$USER/Hyprland2.0/Scripts/Themes/Dark
+    sed -i 's/currentTheme="Light"/currentTheme="Dark"/' ~/.config/hypr/currentVariables
+fi
+
+TOOLTIP='------------------\n'\
+'Move Things Around\n'\
+'------------------\n'\
+'SUPER + # = Change Workspace\n'\
+'SUPER + ALT + # = Move to Workspace\n'\
+'ALT + # = Change/Move to Workspace\n'\
+'ALT + TAB = Toggle Waybar\n'\
+'-------------------\n'\
+'Open and Close Apps\n'\
+'-------------------\n'\
+'ALT + A = Audacity\n'\
+'ALT + B = Blender\n'\
+'ALT + C = Calculator (galculator)\n'\
+'ALT + D = Discord (webcord)\n'\
+'ALT + E = File Manager (Thunar)\n'\
+'ALT + F = Firefox\n'\
+'ALT + G = Gimp\n'\
+'ALT + M = Mail/Calendar (Evolution)\n'\
+'ALT + N = Notes (Zim)\n'\
+'ALT + Q = Close Window\n'\
+'ALT + S = Steam\n'\
+'ALT + T = Terminal (Kitty)\n'\
+'ALT + V = VSCode\n'\
+'ALT + W = Background (waypaper)\n'\
+'----------\n'\
+'Main Tools\n'\
+'----------\n'\
+'SUPER + C = Open clipboard manager\n'\
+'SUPER + L = Lock Screen\n'\
+'SUPER + M = Logout menu\n'\
+'SUPER + Q = Screenshot\n'\
+'SUPER + T = Light/Dark Mode\n'\
+'SUPER + V = Toggle Float\n'\
+'SUPER + SPACE = App Launcher\n'\
+'ALT + L = Toggle Hidden Workspace (Playlist)\n'\
+'ALT + K = Move to Hidden Workspace (Playlist)\n'\
+'--------\n'\
+'Playlist\n'\
+'--------\n'\
+'ALT + P = Play Playlist\n'\
+'ALT + [ = Play Previous Song\n'\
+'ALT + ] = Play Next Song\n'\
+'ALT + \\ = Stop Playlist'\
+
+echo '{"text": "Tr3ble", "tooltip": "'$TOOLTIP'"}'

@@ -1,24 +1,81 @@
 #!/bin/bash
 
-source ~/.config/hypr/currentVariables
+# Load current configuration variables
+CONFIG_FILE="$HOME/.config/hypr/currentVariables"
+source "$CONFIG_FILE"
 
-echo $currentTheme
+# Paths
+WAYBAR_STYLE_LINK="$HOME/.config/waybar/style.css"
+WAYBAR_CONFIG_LINK="$HOME/.config/waybar/config.jsonc"
+LIGHT_SCRIPT="$HOME/Hyprland2.0/Scripts/Themes/Light"
+DARK_SCRIPT="$HOME/Hyprland2.0/Scripts/Themes/Dark"
 
-if [[ "$1" == "switchTheme" ]]; then
-    if [[ $currentTheme == "Dark" ]]; then
-        bash /home/$USER/Hyprland2.0/Scripts/Themes/Light
-        sed -i 's/currentTheme="Dark"/currentTheme="Light"/' ~/.config/hypr/currentVariables
-    elif [ "$currentTheme" == "Light" ]; then
-        bash /home/$USER/Hyprland2.0/Scripts/Themes/Dark
-        sed -i 's/currentTheme="Light"/currentTheme="Dark"/' ~/.config/hypr/currentVariables
+get_current_theme() {
+    local theme_file
+    theme_file=$(readlink -f "$WAYBAR_STYLE_LINK")
+    current_theme_file=$(basename "$theme_file")  # Extract filename only
+
+    if [[ "$current_theme_file" == "waybar_dark.css" ]]; then
+        next_theme="light"
     else
-        echo "Kk bye"
+        next_theme="dark"
     fi
-elif [[ "$1" == "switchLanguage" ]]; then
-    hyprctl switchxkblayout $currentKeyboard next
-else
-    bash /home/$USER/Hyprland2.0/Scripts/Themes/Dark
-    sed -i 's/currentTheme="Light"/currentTheme="Dark"/' ~/.config/hypr/currentVariables
+}
+
+get_waybar_version() {
+    local config_file
+    config_file=$(readlink -f "$WAYBAR_CONFIG_LINK")
+    waybar_version=$(basename "$config_file" | cut -d '_' -f1)
+}
+
+# restart_waybar() {
+#     echo "Restarting Waybar..."
+#     pkill waybar
+#     sleep 0.5
+
+#     if [[ "$waybar_version" == "waybar" ]]; then
+#         waybar --config "$HOME/.config/HyprV/waybar/conf/waybar_top.jsonc" &
+#         waybar --config "$HOME/.config/HyprV/waybar/conf/waybar_bottom.jsonc" &
+#     else
+#         waybar &
+#     fi
+# }
+
+switch_theme() {
+    get_current_theme
+    get_waybar_version
+
+    case "$current_theme_file" in
+        waybar_light.css)
+            echo "Switching to dark theme..."
+            bash "$DARK_SCRIPT"
+            sed -i 's/currentTheme="Light"/currentTheme="Dark"/' "$CONFIG_FILE"
+            ;;
+
+        waybar_dark.css)
+            echo "Switching to light theme..."
+            bash "$LIGHT_SCRIPT"
+            sed -i 's/currentTheme="Dark"/currentTheme="Light"/' "$CONFIG_FILE"
+            ;;
+
+        *)
+            echo "Unknown current theme: $current_theme_file"
+            exit 1
+            ;;
+    esac
+}
+
+switch_keyboard_layout() {
+    echo "Switching keyboard layout for: $currentKeyboard"
+    hyprctl switchxkblayout "$currentKeyboard" next
+}
+
+if [[ "$1" == "vswitch" ]]; then
+    switch_theme
+    exit 0
+elif [[ "$1" == "swkb" ]]; then
+    switch_keyboard_layout
+    exit 0
 fi
 
 TOOLTIP='------------------\n'\
@@ -65,4 +122,5 @@ TOOLTIP='------------------\n'\
 'ALT + ] = Play Next Song\n'\
 'ALT + \\ = Stop Playlist'\
 
+# echo '{"text": "'$VER'", "tooltip": "'$TOOLTIP'"}'
 echo '{"text": "Tr3ble", "tooltip": "'$TOOLTIP'"}'

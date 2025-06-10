@@ -1,0 +1,111 @@
+#!/bin/bash
+
+source ~/.config/hypr/currentVariables
+
+get_theme() {
+    # Check which waybar theme is set
+    THEMEIS=$(readlink -f ~/.config/waybar/style.css | cut -d '/' -f8) #Return waybar_dark.css
+
+    #if the theme is not dark then we need to switch to it
+    if [[ $THEMEIS == "waybar_dark.css" ]]; then
+        MODESTR="light"
+    else
+        MODESTR="dark"
+    fi
+}
+
+get_ver() {
+    VER=$(readlink -f ~/.config/waybar/config.jsonc | cut -d '_' -f1 | cut -d '/' -f8) #returns waybar
+}
+
+restart_waybar() {
+    #restart waybar
+    pkill waybar
+    waybar &
+
+    if [[ $VER == "waybar" ]]; then
+        waybar --config ~/.config/HyprV/waybar/conf/waybar_bottom.jsonc
+    fi
+}
+
+switch_version() {
+    get_theme #Return waybar_dark.css
+    get_ver #returns waybar
+    case $THEMEIS in
+        waybar_light.css)
+            #we are on waybar_light so switch to waybar_dark
+            VERTO="waybar_dark"
+            bash /home/$USER/Hyprland2.0/Scripts/Themes/Light
+            sed -i 's/currentTheme="Dark"/currentTheme="Light"/' ~/.config/hypr/currentVariables
+        ;;
+
+        waybar_dark.css)
+            #we are on waybar_dark so switch to waybar_light
+            VERTO="waybar_light"
+            bash /home/$USER/Hyprland2.0/Scripts/Themes/Dark
+            sed -i 's/currentTheme="Light"/currentTheme="Dark"/' ~/.config/hypr/currentVariables
+        ;;
+    esac
+}
+
+switch_keyboard() {
+    hyprctl switchxkblayout $currentKeyboard next
+}
+
+if [[ "$1" == "vswitch" ]]; then
+    switch_version
+    restart_waybar
+elif [[ "$1" == "swkb" ]]; then
+    switch_keyboard
+    restart_waybar
+fi
+
+# need to show the version and tooltip
+get_ver
+
+TOOLTIP='------------------\n'\
+'Move Things Around\n'\
+'------------------\n'\
+'SUPER + # = Change Workspace\n'\
+'SUPER + ALT + # = Move to Workspace\n'\
+'ALT + # = Change/Move to Workspace\n'\
+'ALT + TAB = Toggle Waybar\n'\
+'-------------------\n'\
+'Open and Close Apps\n'\
+'-------------------\n'\
+'ALT + A = Audacity\n'\
+'ALT + B = Blender\n'\
+'ALT + C = Calculator (galculator)\n'\
+'ALT + D = Discord (webcord)\n'\
+'ALT + E = File Manager (Thunar)\n'\
+'ALT + F = Firefox\n'\
+'ALT + G = Gimp\n'\
+'ALT + M = Mail/Calendar (Evolution)\n'\
+'ALT + N = Notes (Zim)\n'\
+'ALT + Q = Close Window\n'\
+'ALT + S = Steam\n'\
+'ALT + T = Terminal (Kitty)\n'\
+'ALT + V = VSCode\n'\
+'ALT + W = Background (waypaper)\n'\
+'----------\n'\
+'Main Tools\n'\
+'----------\n'\
+'SUPER + C = Open clipboard manager\n'\
+'SUPER + L = Lock Screen\n'\
+'SUPER + M = Logout menu\n'\
+'SUPER + Q = Screenshot\n'\
+'SUPER + T = Light/Dark Mode\n'\
+'SUPER + V = Toggle Float\n'\
+'SUPER + SPACE = App Launcher\n'\
+'ALT + L = Toggle Hidden Workspace (Playlist)\n'\
+'ALT + K = Move to Hidden Workspace (Playlist)\n'\
+'--------\n'\
+'Playlist\n'\
+'--------\n'\
+'ALT + P = Play Playlist\n'\
+'ALT + [ = Play Previous Song\n'\
+'ALT + ] = Play Next Song\n'\
+'ALT + \\ = Stop Playlist'\
+
+# echo '{"text": "'$VER'", "tooltip": "'$TOOLTIP'"}'
+echo '{"text": "Tr3ble", "tooltip": "'$TOOLTIP'"}'
