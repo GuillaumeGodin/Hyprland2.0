@@ -50,7 +50,7 @@
         "format-fr":"Fr(CAD)",
         /*libinput or hyprctl devices to get keyboard name (listed under main/yes)*/
         "keyboard-name": "logitech-logitech-g710-keyboard",
-        "on-click": "/home/gg/Hyprland2.0/Scripts/Bash/hyprlandThemePicker swkb",
+        "on-click": "/home/gg/Hyprland2.0/Scripts/Bash/hyprlandThemePicker switchLanguage",
         "signal": 8
     },
 
@@ -61,7 +61,7 @@
         "interval": 30,
         "format": "{}",
         // "on-click": "~/.config/HyprV/hyprv_util_2 vswitch",
-        "on-click": "/home/gg/Hyprland2.0/Scripts/Bash/hyprlandThemePicker vswitch",
+        "on-click": "/home/gg/Hyprland2.0/Scripts/Bash/hyprlandThemePicker switchTheme",
         "tooltip": true
     },
 

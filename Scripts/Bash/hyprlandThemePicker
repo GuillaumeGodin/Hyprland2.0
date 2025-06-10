@@ -70,10 +70,10 @@ switch_keyboard_layout() {
     hyprctl switchxkblayout "$currentKeyboard" next
 }
 
-if [[ "$1" == "vswitch" ]]; then
+if [[ "$1" == "switchTheme" ]]; then
     switch_theme
     exit 0
-elif [[ "$1" == "swkb" ]]; then
+elif [[ "$1" == "switchLanguage" ]]; then
     switch_keyboard_layout
     exit 0
 fi
