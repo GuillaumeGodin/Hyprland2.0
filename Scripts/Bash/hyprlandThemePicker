@@ -17,7 +17,8 @@ if [[ "$1" == "switchTheme" ]]; then
 elif [[ "$1" == "switchLanguage" ]]; then
     hyprctl switchxkblayout $currentKeyboard next
 else
-    echo "Kk bye"
+    bash /home/$USER/Hyprland2.0/Scripts/Themes/Dark
+    sed -i 's/currentTheme="Light"/currentTheme="Dark"/' ~/.config/hypr/currentVariables
 fi
 
 TOOLTIP='------------------\n'\

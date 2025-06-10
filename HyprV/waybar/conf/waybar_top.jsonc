@@ -50,7 +50,7 @@
         "format-fr":"Fr(CAD)",
         /*libinput or hyprctl devices to get keyboard name (listed under main/yes)*/
         "keyboard-name": "currentKeyboard",
-        "on-click": "~/.config/HyprV/Scripts/hyprlandThemePicker switchLanguage",
+        "on-click": "/home/gg/Hyprland2.0/Scripts/Bash/hyprlandThemePicker switchTheme",
         "signal": 8
     },
 
@@ -61,7 +61,7 @@
         "interval": 30,
         "format": "{}",
         //"on-click": "~/.config/HyprV/hyprv_util vswitch",
-        "on-click": "~/.config/HyprV/Scripts/hyprlandThemePicker switchTheme",
+        "on-click": "/home/gg/Hyprland2.0/Scripts/Bash/hyprlandThemePicker switchTheme",
         "tooltip": true
     },
 
