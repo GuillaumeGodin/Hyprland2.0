@@ -1,0 +1,28 @@
+#!/bin/bash
+
+notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Switching to Light Theme"
+#set waybar theme
+ln -sf ~/.config/HyprV/waybar/conf/waybar_top.jsonc ~/.config/waybar/config.jsonc
+#set waybar theme
+ln -sf ~/.config/HyprV/waybar/style/waybar_light.css ~/.config/waybar/style.css
+#set wofi theme
+ln -sf ~/.config/HyprV/wofi/style/wofi_light.css ~/.config/wofi/style.css
+#set wlogout theme
+ln -sf ~/.config/HyprV/wlogout/style/wlogout_light.css ~/.config/wlogout/style.css
+#set starship shell theme
+ln -sf ~/.config/HyprV/starship/starship.toml ~/.config/starship.toml
+#set mako theme
+ln -sf ~/.config/HyprV/mako/conf/mako_light ~/.config/mako/config
+#set kitty Theme
+ln -sf ~/.config/HyprV/kitty/kitty_light.conf ~/.config/kitty/kitty.conf
+kill -SIGUSR1 $(pidof kitty)
+#set icon themes
+xfconf-query -c xsettings -p /Net/IconThemeName -s "Papirus-Light"
+gsettings set org.gnome.desktop.interface icon-theme "Papirus-Light"
+xfconf-query -c xsettings -p /Net/ThemeName -s "Adwaita"
+gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
+
+# reload configs
+bash /home/$USER/Hyprland2.0/Scripts/Bash/archReload
+
+# waybar --config ~/.config/HyprV/waybar/conf/waybar_bottom.jsonc

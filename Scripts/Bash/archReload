@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#sudo chmod u+x fileName.sh
+
+# reload mako
+makoctl reload
+
+# reload waybar
+pkill waybar
+waybar & 
+
+# reload hyprland
+hyprctl reload
