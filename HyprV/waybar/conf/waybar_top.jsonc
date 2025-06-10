@@ -50,18 +50,18 @@
         "format-fr":"Fr(CAD)",
         /*libinput or hyprctl devices to get keyboard name (listed under main/yes)*/
         "keyboard-name": "logitech-logitech-g710-keyboard",
-        "on-click": "/home/gg/Hyprland2.0/Scripts/Bash/hyprlandThemePicker switchLanguage",
+        "on-click": "/home/$USER/Hyprland2.0/Scripts/Bash/hyprlandThemePicker switchLanguage",
         "signal": 8
     },
 
     "custom/myhyprv": {
         //shows the current power profile and switches to next on click
-        "exec": "/home/gg/Hyprland2.0/Scripts/Bash/hyprlandThemePicker",
+        "exec": "/home/$USER/Hyprland2.0/Scripts/Bash/hyprlandThemePicker",
         "return-type" : "json",
         "interval": 30,
         "format": "{}",
         // "on-click": "~/.config/HyprV/hyprv_util_2 vswitch",
-        "on-click": "/home/gg/Hyprland2.0/Scripts/Bash/hyprlandThemePicker switchTheme",
+        "on-click": "/home/$USER/Hyprland2.0/Scripts/Bash/hyprlandThemePicker switchTheme",
         "tooltip": true
     },
 
