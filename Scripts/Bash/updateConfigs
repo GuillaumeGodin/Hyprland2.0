@@ -15,18 +15,18 @@ var1="$1"
 newColor="$2"
 
 updateKeyboard=(
-    /home/$USER/.config/HyprV/current/currentKeyboard
+    # /home/$USER/.config/HyprV/current/currentKeyboard
     /home/$USER/.config/HyprV/waybar/conf/waybar_top.jsonc
 )
 
 updateMonitor=(
-    /home/$USER/.config/HyprV/current/currentMonitor
+    # /home/$USER/.config/HyprV/current/currentMonitor
     /home/$USER/.config/HyprV/waybar/conf/waybar_top.jsonc
     /home/$USER/.config/HyprV/waybar/conf/waybar_bottom.jsonc
 )
 
 updateColors=(
-    /home/$USER/.config/HyprV/current/currentColor
+    # /home/$USER/.config/HyprV/current/currentColor
     # gtk (thunar)
     /home/$USER/.config/gtk-3.0/gtk.css
     # wofi
@@ -58,6 +58,13 @@ updateColors=(
     /home/$USER/.config/HyprV/hypr/hyprland.conf
 )
 
+updateDarkLight=(
+    /home/$USER/.config/waybar/buttonApps.py
+    /home/$USER/.config/waybar/buttonScripts.py
+    /home/$USER/.config/waybar/buttonFiles.py
+    /home/$USER/.config/waybar/buttonPower.py
+)
+
 if [ "$var1" == updateConfigs ]; then
 
     echo "Updating Configs"
@@ -82,6 +89,26 @@ elif [ "$var1" == updateColors ]; then
     for CONFIGS in ${updateColors[@]}; do
         sed -i "s/$currentColor/$newColor/g" $CONFIGS
     done
+
+elif [ "$var1" == updateDark ]; then
+
+    echo "Updating to dark backgrounds"
+    
+    for CONFIGS in ${updateDarkLight[@]}; do
+        sed -i "s/$currentDarkLight/$defaultDark/g" $CONFIGS
+    done
+    
+    sed -i "s/currentDarkLight=\"$currentDarkLight\"/currentDarkLight=\"$defaultDark\"/" /home/$USER/.config/HyprV/current/currentVariables
+
+elif [ "$var1" == updateLight ]; then
+
+    echo "Updating to light backgrounds"
+
+    for CONFIGS in ${updateDarkLight[@]}; do
+        sed -i "s/$currentDarkLight/$defaultLight/g" $CONFIGS
+    done
+
+    sed -i "s/currentDarkLight=\"$currentDarkLight\"/currentDarkLight=\"$defaultLight\"/" /home/$USER/.config/HyprV/current/currentVariables
 
 else
     echo "OK bye"

@@ -1,16 +1,15 @@
 #!/bin/bash
 
 currentColor="ffbb00"
-currentDark="222222" #not yet used
-currentWhite="EEEEFF" #not yet used
+currentDarkLight="222222"
 currentKeyboard="currentMonitor"
 currentMonitor="currentKeyboard"
 currentTheme="Dark" #not yet used
 
 # dont touch default variables
 defaultColor="ffbb00"
-defaultDark="222222" #not yet used
-defaultWhite="EEEEFF" #not yet used
+defaultDark="222222"
+defaultWhite="EEEEFF"
 defaultMonitor="currentMonitor"
 defaultKeyboard="currentKeyboard"
 defaultTheme="Dark" #not yet used
