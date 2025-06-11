@@ -49,7 +49,7 @@
         "format-en":"En(US)",
         "format-fr":"Fr(CAD)",
         /*libinput or hyprctl devices to get keyboard name (listed under main/yes)*/
-        "keyboard-name": "logitech-logitech-g710-keyboard",
+        "keyboard-name": "currentKeyboard",
         "on-click": "/home/$USER/Hyprland2.0/Scripts/Bash/hyprlandThemePicker switchLanguage",
         "signal": 8
     },

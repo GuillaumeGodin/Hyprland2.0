@@ -17,7 +17,6 @@ newColor="$2"
 updateKeyboard=(
     /home/$USER/.config/HyprV/current/currentKeyboard
     /home/$USER/.config/HyprV/waybar/conf/waybar_top.jsonc
-    /home/$USER/.config/HyprV/hyprv_util
 )
 
 updateMonitor=(
