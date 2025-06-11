@@ -95,7 +95,7 @@ elif [ "$var1" == updateDark ]; then
     echo "Updating to dark backgrounds"
     
     for CONFIGS in ${updateDarkLight[@]}; do
-        sed -i "s/$currentDarkLight/$defaultDark/g" $CONFIGS
+        sed -i "s/FFFFFF/000000/g" $CONFIGS
         sed -i "s/$currentDarkLight/$defaultLight/g" $CONFIGS
     done
 
@@ -106,7 +106,7 @@ elif [ "$var1" == updateLight ]; then
     echo "Updating to light backgrounds"
 
     for CONFIGS in ${updateDarkLight[@]}; do
-        sed -i "s/$currentDarkLight/$defaultLight/g" $CONFIGS
+        sed -i "s/000000/FFFFFF/g" $CONFIGS
         sed -i "s/$currentDarkLight/$defaulDark/g" $CONFIGS
     done
 
