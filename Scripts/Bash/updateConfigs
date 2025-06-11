@@ -95,22 +95,22 @@ elif [ "$var1" == updateDark ]; then
     echo "Updating to dark backgrounds"
     
     for CONFIGS in ${updateDarkLight[@]}; do
-        sed -i "s/FFFFFF/000000/g" $CONFIGS
-        sed -i "s/$currentDarkLight/$defaultLight/g" $CONFIGS
+        sed -i 's/bg="#EEEEFF"/bg="#222222"/' $CONFIGS
+        sed -i 's/fg="#222222"/fg="#EEEEFF"/' $CONFIGS
     done
 
-    sed -i "s/currentDarkLight=\"$currentDarkLight\"/currentDarkLight=\"$defaultDark\"/" /home/$USER/.config/HyprV/current/currentVariables
+    sed -i "s/currentDarkLight=\"$currentDarkLight\"/currentDarkLight=\"$defaultDark\"/" /home/$USER/.config/hypr/currentVariables
 
 elif [ "$var1" == updateLight ]; then
 
     echo "Updating to light backgrounds"
 
     for CONFIGS in ${updateDarkLight[@]}; do
-        sed -i "s/000000/FFFFFF/g" $CONFIGS
-        sed -i "s/$currentDarkLight/$defaulDark/g" $CONFIGS
+        sed -i 's/bg="#222222"/bg="#EEEEFF"/' $CONFIGS
+        sed -i 's/fg="#EEEEFF"/fg="#222222"/' $CONFIGS
     done
 
-    sed -i "s/currentDarkLight=\"$currentDarkLight\"/currentDarkLight=\"$defaultLight\"/" /home/$USER/.config/HyprV/current/currentVariables
+    sed -i "s/currentDarkLight=\"$currentDarkLight\"/currentDarkLight=\"$defaultLight\"/" /home/$USER/.config/hypr/currentVariables
 
 else
     echo "OK bye"
