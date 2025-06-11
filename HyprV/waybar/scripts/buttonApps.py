@@ -8,7 +8,7 @@ from pathlib import Path
 
 root = tk.Tk()
 root.title("Apps")
-root.geometry('+150+1135')
+root.geometry('+150+557')
 # root.resizable(height = None, width = None)
 root.resizable(0, 0)
 root.bind_all("<Escape>", lambda event: clean_exit())
@@ -68,11 +68,11 @@ class ButtonSelectorWidget(tk.Frame):
             label = btn.cget("text")
             if i == self.selected_index:
                 if label == "   Firefox":  # Optional condition for Firefox button customization
-                    btn.configure(bg="#ffbb00", fg="#EEEEFF")  # Text black for Firefox
+                    btn.configure(bg="#ffbb00", fg="#222222")  # Text black for Firefox
                 else:
-                    btn.configure(bg="#ffbb00", fg="#EEEEFF")  # Text black for other selected buttons
+                    btn.configure(bg="#ffbb00", fg="#222222")  # Text black for other selected buttons
             else:
-                btn.configure(bg="#222222", fg="#FFFFFF")  # Default white text for unselected buttons
+                btn.configure(bg="#222222", fg="#EEEEFF")  # Default white text for unselected buttons
 
     def create_buttons(self, labels):
         for i, label in enumerate(labels):
@@ -83,10 +83,10 @@ class ButtonSelectorWidget(tk.Frame):
                 width=20,
                 anchor="sw",
                 bg="#222222",  # unselected background color
-                fg="#FFFFFF",  # unselected writing color
+                fg="#EEEEFF",  # unselected writing color
                 highlightthickness=0, 
                 activebackground="#ffbb00", 
-                activeforeground="#EEEEFF",
+                activeforeground="#222222",
                 relief=GROOVE,
             )
             

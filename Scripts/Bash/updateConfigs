@@ -96,8 +96,9 @@ elif [ "$var1" == updateDark ]; then
     
     for CONFIGS in ${updateDarkLight[@]}; do
         sed -i "s/$currentDarkLight/$defaultDark/g" $CONFIGS
+        sed -i "s/$currentDarkLight/$defaultLight/g" $CONFIGS
     done
-    
+
     sed -i "s/currentDarkLight=\"$currentDarkLight\"/currentDarkLight=\"$defaultDark\"/" /home/$USER/.config/HyprV/current/currentVariables
 
 elif [ "$var1" == updateLight ]; then
@@ -106,6 +107,7 @@ elif [ "$var1" == updateLight ]; then
 
     for CONFIGS in ${updateDarkLight[@]}; do
         sed -i "s/$currentDarkLight/$defaultLight/g" $CONFIGS
+        sed -i "s/$currentDarkLight/$defaulDark/g" $CONFIGS
     done
 
     sed -i "s/currentDarkLight=\"$currentDarkLight\"/currentDarkLight=\"$defaultLight\"/" /home/$USER/.config/HyprV/current/currentVariables
