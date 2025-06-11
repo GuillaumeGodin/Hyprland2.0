@@ -53,9 +53,9 @@ class ButtonSelectorWidget(tk.Frame):
             label = btn.cget("text")
             if i == self.selected_index:
                 if label == "󰍃   Logout":  # Optional condition for Firefox button customization
-                    btn.configure(bg="#ffbb00", fg="#222222")  # Text black for Firefox
+                    btn.configure(bg="#ffbb00", fg="#000000")  # Text black for Firefox
                 else:
-                    btn.configure(bg="#ffbb00", fg="#222222")  # Text black for other selected buttons
+                    btn.configure(bg="#ffbb00", fg="#000000")  # Text black for other selected buttons
             else:
                 btn.configure(bg="#222222", fg="#EEEEFF")  # Default white text for unselected buttons
 
@@ -71,7 +71,7 @@ class ButtonSelectorWidget(tk.Frame):
                 fg="#EEEEFF",  # unselected writing color
                 highlightthickness=0, 
                 activebackground="#ffbb00", 
-                activeforeground="#222222",
+                activeforeground="#000000",
                 relief=GROOVE,
             )
             
