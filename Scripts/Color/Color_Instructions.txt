@@ -15,3 +15,7 @@ toolkit.legacyUserProfileCustomizations.stylesheets
 remove alt menu pop up
 about:config
 ui.key.menuAccessKeyFocuses = false
+
+remove side bar
+about:config
+sidebar.revamp = false
