@@ -49,12 +49,14 @@ switch_theme() {
         waybar_light.css)
             echo "Switching to dark theme..."
             bash "$DARK_SCRIPT"
+            bash $HOME/Hyprland2.0/Scripts/Bash/updateConfigs updateDark
             sed -i 's/currentTheme="Light"/currentTheme="Dark"/' "$CONFIG_FILE"
             ;;
 
         waybar_dark.css)
             echo "Switching to light theme..."
             bash "$LIGHT_SCRIPT"
+            bash $HOME/Hyprland2.0/Scripts/Bash/updateConfigs updateLight
             sed -i 's/currentTheme="Dark"/currentTheme="Light"/' "$CONFIG_FILE"
             ;;
 
