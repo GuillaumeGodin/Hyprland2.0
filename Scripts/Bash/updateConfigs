@@ -95,8 +95,8 @@ elif [ "$var1" == updateDark ]; then
     echo "Updating to dark backgrounds"
     
     for CONFIGS in ${updateDarkLight[@]}; do
-        sed -i 's/bg="#EEEEFF"/bg="#222222"/' $CONFIGS
-        sed -i 's/fg="#222222"/fg="#EEEEFF"/' $CONFIGS
+        sed -i "s/bg=\"#$defaultLight\"/bg=\"#$defaultDark\"/" $CONFIGS
+        sed -i "s/fg=\"#$defaultDark\"/fg=\"#$defaultLight\"/" $CONFIGS
     done
 
     sed -i "s/currentDarkLight=\"$currentDarkLight\"/currentDarkLight=\"$defaultDark\"/" /home/$USER/.config/hypr/currentVariables
@@ -106,8 +106,8 @@ elif [ "$var1" == updateLight ]; then
     echo "Updating to light backgrounds"
 
     for CONFIGS in ${updateDarkLight[@]}; do
-        sed -i 's/bg="#222222"/bg="#EEEEFF"/' $CONFIGS
-        sed -i 's/fg="#EEEEFF"/fg="#222222"/' $CONFIGS
+        sed -i "s/bg=\"#$defaultDark\"/bg=\"#$defaultLight\"/" $CONFIGS
+        sed -i "s/fg=\"#$defaultLight\"/fg=\"#$defaultDark\"/" $CONFIGS
     done
 
     sed -i "s/currentDarkLight=\"$currentDarkLight\"/currentDarkLight=\"$defaultLight\"/" /home/$USER/.config/hypr/currentVariables
