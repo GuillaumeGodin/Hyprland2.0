@@ -1,33 +1,20 @@
 #!/bin/bash
 
 var=$(hyprctl activewindow -j | jq -r '.class')
+
 if [ "$var" == Tk ]; then
-    # hyprctl dispatch killwindow class:Tk
     hyprctl dispatch killactive
-
-    hyprctl keyword unbind , mouse:273
-    hyprctl keyword unbind , escape
-
-    hyprctl keyword unbind CONTROL, CONTROL_L
-    hyprctl keyword unbind SUPER, SUPER_L
-    hyprctl keyword unbind ALT, ALT_L
-
-    hyprctl keyword bind CONTROL, CONTROL_L, exec, bash "/home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttons" Scripts
-    hyprctl keyword bind SUPER, SUPER_L, exec, bash "/home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttons" Apps
-    hyprctl keyword bind ALT, ALT_L, exec, bash "/home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttons" Files
-
 else
     hyprctl dispatch killwindow class:Tk
-    # hyprctl dispatch killactive
-
-    hyprctl keyword unbind , mouse:273
-    hyprctl keyword unbind , escape
-
-    hyprctl keyword unbind CONTROL, CONTROL_L
-    hyprctl keyword unbind SUPER, SUPER_L
-    hyprctl keyword unbind ALT, ALT_L
-
-    hyprctl keyword bind CONTROL, CONTROL_L, exec, bash "/home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttons" Scripts
-    hyprctl keyword bind SUPER, SUPER_L, exec, bash "/home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttons" Apps
-    hyprctl keyword bind ALT, ALT_L, exec, bash "/home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttons" Files
 fi
+
+hyprctl keyword unbind , mouse:273
+hyprctl keyword unbind , escape
+
+hyprctl keyword unbind CONTROL, CONTROL_L
+hyprctl keyword unbind SUPER, SUPER_L
+hyprctl keyword unbind ALT, ALT_L
+
+hyprctl keyword bind CONTROL, CONTROL_L, exec, bash "/home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttons" Scripts
+hyprctl keyword bind SUPER, SUPER_L, exec, bash "/home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttons" Apps
+hyprctl keyword bind ALT, ALT_L, exec, bash "/home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttons" Files
