@@ -1,0 +1,13 @@
+#!/bin/bash
+
+source /home/$USER/.config/hypr/currentVariables
+
+if [ "$buttons" == on ]; then
+    echo "Toggleing off"
+    sed -i 's/buttons="on"/buttons="off"/g' /home/$USER/.config/hypr/currentVariables
+elif [ "$buttons" == off ]; then
+    echo "Toggleing on"
+    sed -i 's/buttons="off"/buttons="on"/g' /home/$USER/.config/hypr/currentVariables
+else
+    echo "K bye"
+fi
