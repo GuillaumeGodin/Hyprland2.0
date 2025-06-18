@@ -26,6 +26,10 @@ if [ "$var1" == Apps ]; then
 
         sed -i "11s/.*/$newLine/" /home/$USER/.config/waybar/buttonApps.py
 
+        hyprctl keyword bind , mouse:273, exec, bash "/home/$USER/Hyprland2.0/Scripts/Bash/hyprlandKillDropdowns" kill
+        hyprctl keyword unbind SUPER, SUPER_L
+        hyprctl keyword bind SUPER, SUPER_L, exec, bash "/home/$USER/Hyprland2.0/Scripts/Bash/hyprlandKillDropdowns" kill
+
     else
         cp /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonApps.py /home/$USER/.config/waybar/buttonApps.py
 
@@ -50,6 +54,10 @@ elif [ "$var1" == Scripts ]; then
         echo $newLine
 
         sed -i "11s/.*/$newLine/" /home/$USER/.config/waybar/buttonScripts.py
+
+        hyprctl keyword bind , mouse:273, exec, bash "/home/$USER/Hyprland2.0/Bash/killDropdowns" kill
+        hyprctl keyword unbind CONTROL, CONTROL_L
+        hyprctl keyword bind CONTROL, CONTROL_L, exec, bash "/home/$USER/Hyprland2.0/Bash/killDropdowns" kill
 
     else
         cp /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonScripts.py /home/$USER/.config/waybar/buttonScripts.py
@@ -83,6 +91,10 @@ elif [ "$var1" == Files ]; then
         # sed -i "11s/.*/$newLine/" /home/$USER/.config/waybar/buttonFiles.py
         sed -i "11s|.*|$newLine|" /home/$USER/.config/waybar/buttonFiles.py
 
+        hyprctl keyword bind , mouse:273, exec, bash Hyprland2.0/Bash/killDropdowns kill
+        hyprctl keyword unbind ALT, ALT_L
+        hyprctl keyword bind ALT, ALT_L, exec, bash Hyprland2.0/Bash/killDropdowns kill
+
     else
         cp /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonFiles.py /home/$USER/.config/waybar/buttonFiles.py
 
@@ -111,6 +123,8 @@ elif [ "$var1" == Power ]; then
         echo $newLine
 
         sed -i "11s/.*/$newLine/" /home/$USER/.config/waybar/buttonPower.py
+
+        hyprctl keyword bind , mouse:273, exec, bash "/home/$USER/Hyprland2.0/Bash/killDropdowns" kill
 
     else
         cp /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonPower.py /home/$USER/.config/waybar/buttonPower.py

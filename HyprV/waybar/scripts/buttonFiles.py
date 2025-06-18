@@ -17,13 +17,13 @@ root.bind_all("<Alt_L>", lambda x: clean_exit())
 # Key names
 # https://anzeljg.github.io/rin2/book2/2405/docs/tkinter/key-names.html
 
-os.system('bash Hyprland2.0/Bash/killDropdowns kill')
+os.system('bash "/home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonsKill" kill')
 
 # os.system('hyprctl keyword unbind , mouse:273')
-os.system('hyprctl keyword bind , mouse:273, exec, bash Hyprland2.0/Bash/killDropdowns kill')
+# os.system('hyprctl keyword bind , mouse:273, exec, bash Hyprland2.0/Bash/killDropdowns kill')
 
-os.system('hyprctl keyword unbind ALT, ALT_L')
-os.system('hyprctl keyword bind ALT, ALT_L, exec, bash Hyprland2.0/Bash/killDropdowns kill')
+# os.system('hyprctl keyword unbind ALT, ALT_L')
+# os.system('hyprctl keyword bind ALT, ALT_L, exec, bash Hyprland2.0/Bash/killDropdowns kill')
 
 # os.system('hyprctl keyword unbind , escape')
 # os.system('hyprctl keyword bind , escape, exec, bash Hyprland2.0/Bash/killDropdowns kill')
