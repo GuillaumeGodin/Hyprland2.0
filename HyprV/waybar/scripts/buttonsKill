@@ -10,7 +10,6 @@ fi
 
 hyprctl keyword unbind , mouse:273
 hyprctl keyword unbind , escape
-
 hyprctl keyword unbind CONTROL, CONTROL_L
 hyprctl keyword unbind SUPER, SUPER_L
 hyprctl keyword unbind ALT, ALT_L
