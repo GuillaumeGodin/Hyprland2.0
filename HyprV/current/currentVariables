@@ -2,14 +2,15 @@
 
 currentColor="ffbb00"
 currentDarkLight="222222"
-currentKeyboard="currentMonitor"
-currentMonitor="currentKeyboard"
+currentMonitor="currentMonitor"
+currentKeyboard="currentKeyboard"
+buttons="on"
 currentTheme="Dark" #not yet used
 
 # dont touch default variables
 defaultColor="ffbb00"
 defaultDark="222222"
-defaultWhite="EEEEFF"
+defaultLight="EEEEFF"
 defaultMonitor="currentMonitor"
 defaultKeyboard="currentKeyboard"
 defaultTheme="Dark" #not yet used

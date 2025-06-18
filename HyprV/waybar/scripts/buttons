@@ -1,11 +1,10 @@
 #!/bin/bash
 
-# make file executable
-#sudo chmod u+x fileName.sh
+source /home/$USER/.config/hypr/currentVariables
+
+echo "$buttons" # returns on or off
 
 var1="$1"
-
-# echo "$var1"
 
 if [ "$var1" == Apps ]; then
 
