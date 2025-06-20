@@ -3,11 +3,27 @@
 source /home/$USER/.config/hypr/currentVariables
 
 if [ "$buttons" == on ]; then
+
     echo "Toggleing off"
     sed -i 's/buttons="on"/buttons="off"/g' /home/$USER/.config/hypr/currentVariables
+
+    hyprctl keyword unbind , mouse:273
+    hyprctl keyword unbind , escape
+    hyprctl keyword unbind CONTROL, CONTROL_L
+    hyprctl keyword unbind SUPER, SUPER_L
+    hyprctl keyword unbind ALT, ALT_L
+
 elif [ "$buttons" == off ]; then
+
     echo "Toggleing on"
     sed -i 's/buttons="off"/buttons="on"/g' /home/$USER/.config/hypr/currentVariables
+
+    hyprctl keyword bind CONTROL, CONTROL_L, exec, bash "/home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttons" Scripts
+    hyprctl keyword bind SUPER, SUPER_L, exec, bash "/home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttons" Apps
+    hyprctl keyword bind ALT, ALT_L, exec, bash "/home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttons" Files
+
 else
+
     echo "K bye"
+    
 fi

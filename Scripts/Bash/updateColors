@@ -1,31 +1,6 @@
 #!/bin/bash
 
-VARS_FILE="/home/$USER/.config/hypr/currentVariables"
-BACKUP_VARS_FILE="/home/$USER/Hyprland2.0/HyprV/current/currentVariables"
-
-# Check if vars.sh exists
-if [[ ! -f "$VARS_FILE" ]]; then
-    echo "currentVariables not found. Copying from backup..."
-    cp "$BACKUP_VARS_FILE" "$VARS_FILE" || {
-        echo "Failed to copy currentVariables. Exiting."
-        exit 1
-    }
-fi
-
 source /home/$USER/.config/hypr/currentVariables
-
-sudo su <<HERE
-rm -r /home/$USER/Hyprland2.0
-HERE
-
-notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Updating config files"
-
-git clone https://github.com/GuillaumeGodin/Hyprland2.0
-
-sleep 1
-
-rm -r /home/$USER/.config/HyprV
-cp -r /home/$USER/Hyprland2.0/HyprV /home/$USER/.config/HyprV
 
 # gtk (thunar)
 sed -i "s/$defaultColor/$currentColor/g" /home/$USER/.config/gtk-3.0/gtk.css
