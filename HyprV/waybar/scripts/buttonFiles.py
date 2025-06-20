@@ -110,52 +110,52 @@ class ButtonSelectorWidget(tk.Frame):
 # md0_ET-------------------------------------------------------------------------------
         if label == "md0_ET":
             os.system('thunar /home/$USER/mnt/md0/Emma/ 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # md0_GG-------------------------------------------------------------------------------
         if label == "md0_GG":
             os.system('thunar /home/$USER/mnt/md0/Guillaume/ 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # md0_Media-------------------------------------------------------------------------------
         if label == "md0_Media":
             os.system('thunar /home/$USER/mnt/md0/Media/ 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Desktop-------------------------------------------------------------------------------
         if label == "   Desktop":
             os.system('thunar /home/$USER/Desktop 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Documents-------------------------------------------------------------------------------
         if label == "󰈙   Documents":
             os.system('thunar /home/$USER/Documents 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Downloads-------------------------------------------------------------------------------
         if label == "   Downloads":
             os.system('thunar /home/$USER/Downloads 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Music-------------------------------------------------------------------------------
         if label == "   Music":
             os.system('thunar /home/$USER/Music 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Pictures-------------------------------------------------------------------------------
         if label == "   Pictures":
             os.system('thunar /home/$USER/Pictures 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Videos-------------------------------------------------------------------------------
         if label == "   Videos":
             os.system('thunar /home/$USER/Videos 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Trash-------------------------------------------------------------------------------
         if label == "   Trash":
             os.system('thunar trash:/// 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 
         if self.command:

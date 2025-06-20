@@ -101,27 +101,27 @@ class ButtonSelectorWidget(tk.Frame):
 # Update Packages-------------------------------------------------------------------------------
         if label == "󰇚   Update Packages":
             os.system('kitty --title update-sys sh -c "yay -Syu" && pkill -RTMIN+8 waybar 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Update Configs-------------------------------------------------------------------------------
         if label == "󰇚   Update Configs":
             os.system('kitty bash /home/$USER/Hyprland2.0/Bash/hyprlandConfigUpdate 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Logout-------------------------------------------------------------------------------
         if label == "󰍃   Logout":
             os.system('hyprctl dispatch exit 0')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Restart-------------------------------------------------------------------------------
         if label == "   Restart":
             os.system('systemctl reboot')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Shutdown-------------------------------------------------------------------------------
         if label == "   Shutdown":
             os.system('systemctl poweroff')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 
         if self.command:

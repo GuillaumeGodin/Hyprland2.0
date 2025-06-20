@@ -115,84 +115,84 @@ class ButtonSelectorWidget(tk.Frame):
 # Notes-------------------------------------------------------------------------------
         if label == "Notes":
             os.system('zim --geometry 1000x600 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Calculator-------------------------------------------------------------------------------
         if label == "Calculator":
             os.system('galculator 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # LibreOffice-------------------------------------------------------------------------------
         if label == "LibreOffice":
             os.system('libreoffice 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Audacity-------------------------------------------------------------------------------
         if label == "Audacity":
             os.system('audacity 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Handbrake-------------------------------------------------------------------------------
         if label == "Handbrake":
             os.system('ghb 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # MediaInfo-------------------------------------------------------------------------------
         if label == "MediaInfo":
             os.system('mediainfo-gui 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # MkvTool-------------------------------------------------------------------------------
         if label == "MkvTool":
             os.system('mkvtoolnix-gui 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # MkvToolBatch-------------------------------------------------------------------------------
         if label == "MkvToolBatch":
             os.system('python Documents/MKV_Batch/main.py 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Work_Mode-------------------------------------------------------------------------------
         if label == "Work_Mode":
             os.system('lan-mouse 1>/dev/null &')
             os.system('onedrivegui 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Firefox-------------------------------------------------------------------------------
         if label == "   Firefox":
             os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Mail_Evolution-------------------------------------------------------------------------------
         if label == "󰇰   Mail_Evolution":
             os.system('evolution 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Steam-------------------------------------------------------------------------------
         if label == "   Steam":
             os.system('steam 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Discord-------------------------------------------------------------------------------
         if label == "   Discord":
             os.system('discord 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Gimp-------------------------------------------------------------------------------
         if label == "   Gimp":
             os.system('gimp 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Blender-------------------------------------------------------------------------------
         if label == "   Blender":
             os.system('blender -p 1920 1080 1280 720 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Terminal_Kitty-------------------------------------------------------------------------------
         if label == "   Terminal_Kitty":
             os.system('kitty 1>/dev/null &')
-            os.system('bash Hyprland2.0/Bash/killDropdowns')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 
         if self.command:
@@ -204,7 +204,7 @@ class ButtonSelectorWidget(tk.Frame):
         self.press_selected()
     
 def clean_exit():
-    # os.system('bash Hyprland2.0/Bash/killDropdowns')
+    # os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
     # os.system('hyprctl dispatch killwindow class:Tk')
     root.destroy()
     # sys.exit()
