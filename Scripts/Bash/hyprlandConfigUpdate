@@ -4,4 +4,4 @@ bash /home/$USER/Hyprland2.0/Scripts/Bash/updateVariables
 
 bash /home/$USER/Hyprland2.0/Scripts/Bash/updateGithubRepo
 
-bash /home/$USER/Hyprland2.0/Scripts/Bash/updateColors
+bash /home/$USER/Hyprland2.0/Scripts/Bash/updateColors updateConfigs
