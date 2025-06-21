@@ -105,7 +105,7 @@ class ButtonSelectorWidget(tk.Frame):
             # clean_exit()
 # Update Configs-------------------------------------------------------------------------------
         if label == "󰇚   Update Configs":
-            os.system('kitty bash /home/$USER/Hyprland2.0/Bash/hyprlandConfigUpdate 1>/dev/null &')
+            os.system('kitty bash /home/$USER/Hyprland2.0/Scripts/Bash/hyprlandConfigUpdate 1>/dev/null &')
             os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Logout-------------------------------------------------------------------------------
