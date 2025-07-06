@@ -1,0 +1,34 @@
+#!/bin/bash
+
+#see dispatcher
+#https://wiki.hyprland.org/Configuring/Dispatchers/
+
+num_monitors=$(xrandr | grep " connected" | wc -l)
+echo "Number of active monitor(s) =" "$num_monitors"
+
+floatValue=$(hyprctl activewindow -j)
+floatValue2=$(cut -d',' -f1 <<< "$floatValue" | sed -n '/"floating"/p' | sed 's/^.\{16\}//')
+echo "Floating state is =" "$floatValue2"
+
+if $floatValue2; then
+    bash Hyprland2.0/Scripts/Bash/hyprlandToggleWaybar
+    hyprctl dispatch togglefloating
+    hyprctl dispatch setprop active opaque toggle
+elif [ "$num_monitors" == 1 ]; then
+    hyprctl dispatch fullscreen toggle
+elif [ "$num_monitors" == 2 ]; then
+    bash Hyprland2.0/Scripts/Bash/hyprlandToggleWaybar
+    hyprctl dispatch togglefloating
+    hyprctl dispatch resizeactive exact 3840 1080
+    hyprctl dispatch moveactive exact 0 0
+    hyprctl dispatch pin
+    hyprctl dispatch setprop active opaque toggle
+    # hyprctl dispatch centerwindow
+else
+    hyprctl dispatch togglefloating
+    hyprctl dispatch resizeactive exact 1920 1080
+    hyprctl dispatch moveactive exact 0 0
+    hyprctl dispatch pin
+    hyprctl dispatch setprop active opaque toggle
+    # hyprctl dispatch centerwindow
+fi
