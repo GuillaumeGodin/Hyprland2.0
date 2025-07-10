@@ -54,6 +54,8 @@ install_stage=(
     #librewolf-bin #Browser
     mpv #Media Player
     mpv-mpris #needed for playerctl
+    vlc
+    vlc-plugins-all
     pamixer 
     pavucontrol 
     brightnessctl 
