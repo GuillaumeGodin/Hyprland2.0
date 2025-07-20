@@ -4,6 +4,7 @@ pkill waybar
 
 hyprctl dispatch workspace 1
 
-waybar --config ~/.config/HyprV/waybar/conf/waybar_bottom.jsonc
-# sleep 1s
-waybar --config ~/.config/HyprV/waybar/conf/waybar_top.jsonc
+sleep 0.5
+
+waybar --config ~/.config/HyprV/waybar/conf/waybar_bottom.jsonc &
+waybar --config ~/.config/HyprV/waybar/conf/waybar_top.jsonc &
