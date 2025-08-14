@@ -150,7 +150,7 @@ class ButtonSelectorWidget(tk.Frame):
             # clean_exit()
 # MkvToolBatch-------------------------------------------------------------------------------
         if label == "MkvToolBatch":
-            os.system('python Documents/MKV_Batch/main.py 1>/dev/null &')
+            os.system('python /home/$USER/mnt/md0/Guillaume/Computers/Programs/MKV_Batch/main.py 1>/dev/null &')
             os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Work_Mode-------------------------------------------------------------------------------
