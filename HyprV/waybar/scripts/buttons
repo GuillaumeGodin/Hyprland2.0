@@ -123,7 +123,7 @@ elif [ "$var1" == Power ]; then
 
         sed -i "11s/.*/$newLine/" /home/$USER/.config/waybar/buttonPower.py
 
-        hyprctl keyword bind , mouse:273, exec, bash "/home/$USER/Hyprland2.0/Bash/killDropdowns" kill
+        hyprctl keyword bind , mouse:273, exec, bash "/home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonsKill" kill
 
     else
         cp /home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonPower.py /home/$USER/.config/waybar/buttonPower.py
