@@ -43,41 +43,45 @@ def Widgets():
     # 1st Row Header----------------------------------------------------------------------------------
     head_label = Label(pane, text="YouTube Downloader", bg="red", fg="white", font="SegoeUI 14", width=55)
 #    head_label.pack(fill=X, expand=False, side=TOP)
-    head_label.grid(row=0, column=0, columnspan=3, sticky="n")
+    head_label.grid(row=0, column=0, columnspan=4, sticky="n")
 
     # 2nd Row Link------------------------------------------------------------------------------------
     link_label = Label(pane, text="YouTube link :", bg="white", font="Arial")
     link_label.grid(row=1, column=0, sticky="enw")
     root.linkText = Entry(pane, font="Arial", textvariable=video_Link)
-    root.linkText.grid(row=1, column=1, sticky="wne", columnspan=2)
+    root.linkText.grid(row=1, column=1, sticky="wne", columnspan=3)
 
     # 3rd Row File Name-------------------------------------------------------------------------------
     link_name = Label(pane, text="File Name :", bg="white", font="Arial")
     link_name.grid(row=2, column=0, sticky="enw")
     root.linkName = Entry(pane, font="Arial", textvariable=video_Name)
     root.linkName.insert(0, "%(title)s")
-    root.linkName.grid(row=2, column=1, sticky="wne", columnspan=2)
+    root.linkName.grid(row=2, column=1, sticky="wne", columnspan=3)
 
     # 4th Row Destination-----------------------------------------------------------------------------
     destination_label = Label(pane, text="Destination :", bg="white", font="Arial")
     destination_label.grid(row=3, column=0, sticky="enw")
     root.destinationText = Entry(pane, font="Arial", textvariable=download_Path)
     root.destinationText.insert(0, "/home/$USER/Music/") 
-    root.destinationText.grid(row=3, column=1, sticky="new")
+    root.destinationText.grid(row=3, column=1, sticky="new", columnspan=2)
     browse_B = Button(pane, text="Browse", bg="bisque", font="Arial", command=Browse, pady=0, relief=GROOVE)
-    browse_B.grid(row=3, column=2, sticky="wne")
+    browse_B.grid(row=3, column=3, sticky="wne")
     
     # 5th Row Button Video----------------------------------------------------------------------------
     Download_Video = Button(pane, text="Video", bg="thistle1", font="Arial", command=DownloadVideo, relief=GROOVE, pady=0)
     Download_Video.grid(row=4, column=0, sticky="enw", padx=30, pady=5)
     
+    # 5th Row Button Video Playlist-------------------------------------------------------------------
+    Download_Video = Button(pane, text="V_Playlist", bg="thistle1", font="Arial", command=DownloadVideoPlaylist, relief=GROOVE, pady=0)
+    Download_Video.grid(row=4, column=1, sticky="enw", padx=30, pady=5)
+
     # 5th Row Button Audio----------------------------------------------------------------------------
     Download_Audio = Button(pane, text="Audio", bg="thistle1", font="Arial", command=DownloadAudio, relief=GROOVE, pady=0)
-    Download_Audio.grid(row=4, column=1, sticky="new", padx=60, pady=5)
+    Download_Audio.grid(row=4, column=2, sticky="new", padx=60, pady=5)
     
     # 5th Row Button Playlist-------------------------------------------------------------------------
-    Download_Playlist = Button(pane, text="Playlist", bg="thistle1", font="Arial", command=DownloadPlaylist, relief=GROOVE, pady=0)
-    Download_Playlist.grid(row=4, column=2, sticky="enw", padx=30, pady=5)
+    Download_Playlist = Button(pane, text="A_Playlist", bg="thistle1", font="Arial", command=DownloadPlaylist, relief=GROOVE, pady=0)
+    Download_Playlist.grid(row=4, column=3, sticky="enw", padx=30, pady=5)
 
 def Browse():
     download_Directory = filedialog.askdirectory(
@@ -89,13 +93,15 @@ def Browse():
 def DownloadVideo():
     
     os.system(
-        'yt-dlp -f "bestvideo[height<=1080]+bestaudio[ext=m4a]/bestvideo+bestaudio" --merge-output-format mp4 -o "{}/{}.mp4" {}'.format(download_Path.get(), video_Name.get(), video_Link.get())
-    )
+        'yt-dlp -f "bestvideo[height<=1080]+bestaudio[ext=m4a]/bestvideo+bestaudio" --merge-output-format mp4 -o "{}/{}.mp4" {}'.format(download_Path.get(), video_Name.get(), video_Link.get()))
 
     # os.system(
-    #     'yt-dlp -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio" --merge-output-format mp4 -o "{}/{}.mp4" {}'.format(download_Path.get(), video_Name.get(), video_Link.get())
-    # )
+    #     'yt-dlp -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio" --merge-output-format mp4 -o "{}/{}.mp4" {}'.format(download_Path.get(), video_Name.get(), video_Link.get()))
 
+def DownloadVideoPlaylist():
+    
+    os.system(
+        'yt-dlp -f "bestvideo[height<=1080]+bestaudio[ext=m4a]/bestvideo+bestaudio" --merge-output-format mp4 -o "{}/%(title)s.%(ext)s" --yes-playlist {}'.format(download_Path.get(), video_Link.get()))
 
 def DownloadAudio():
 
