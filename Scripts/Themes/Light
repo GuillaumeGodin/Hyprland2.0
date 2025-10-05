@@ -21,6 +21,8 @@ xfconf-query -c xsettings -p /Net/IconThemeName -s "Papirus-Light"
 gsettings set org.gnome.desktop.interface icon-theme "Papirus-Light"
 xfconf-query -c xsettings -p /Net/ThemeName -s "Adwaita"
 gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
+#firefox
+gsettings set org.gnome.desktop.interface color-scheme prefer-light
 
 # reload configs
 bash /home/$USER/Hyprland2.0/Scripts/Bash/archReload

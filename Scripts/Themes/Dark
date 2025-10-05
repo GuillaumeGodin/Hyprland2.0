@@ -21,6 +21,8 @@ xfconf-query -c xsettings -p /Net/IconThemeName -s "Papirus-Dark"
 gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark"
 xfconf-query -c xsettings -p /Net/ThemeName -s "Adwaita-dark"
 gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
+#firefox
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 
 # reload configs
 bash /home/$USER/Hyprland2.0/Scripts/Bash/archReload
