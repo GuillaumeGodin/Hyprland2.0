@@ -161,7 +161,7 @@ class ButtonSelectorWidget(tk.Frame):
             # clean_exit()
 # Firefox-------------------------------------------------------------------------------
         if label == "   Firefox":
-            os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window &')
+            os.system('firefox --no-terminal 2>/dev/null 1>/dev/null --new-window &')
             os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Mail_Evolution-------------------------------------------------------------------------------

@@ -141,32 +141,32 @@ class ButtonSelectorWidget(tk.Frame):
             # clean_exit()
 # Server-------------------------------------------------------------------------------
         if label == "Server":
-            os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window http://192.168.111.100:81/#/ &')
+            os.system('firefox --no-terminal 2>/dev/null 1>/dev/null --new-window http://192.168.111.100:81/#/ &')
             os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Jellyfin-------------------------------------------------------------------------------
         if label == "Jellyfin":
-            os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window http://192.168.111.100:8097/web/#/home.html &')
+            os.system('firefox --no-terminal 2>/dev/null 1>/dev/null --new-window http://192.168.111.100:8097/web/#/home.html &')
             os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # MotionEye-------------------------------------------------------------------------------
         if label == "MotionEye":
-            os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window http://192.168.111.100:8765/ &')
+            os.system('firefox --no-terminal 2>/dev/null 1>/dev/null --new-window http://192.168.111.100:8765/ &')
             os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # PhotoPrism-------------------------------------------------------------------------------
         if label == "PhotoPrism":
-            os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window http://192.168.111.100:2342/library/browse &')
+            os.system('firefox --no-terminal 2>/dev/null 1>/dev/null --new-window http://192.168.111.100:2342/library/browse &')
             os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Navidrome-------------------------------------------------------------------------------
         if label == "Navidrome":
-            os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window http://192.168.111.100:4533/app/#/album/recentlyAdded?sort=recently_added&order=DESC&filter={} &')
+            os.system('firefox --no-terminal 2>/dev/null 1>/dev/null --new-window http://192.168.111.100:4533/app/#/album/recentlyAdded?sort=recently_added&order=DESC&filter={} &')
             os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Tandoor-------------------------------------------------------------------------------
         if label == "Tandoor":
-            os.system('firefox --no-terminal 2&>1 1>/dev/null --new-window http://192.168.111.100:8090/search/ &')
+            os.system('firefox --no-terminal 2>/dev/null 1>/dev/null --new-window http://192.168.111.100:8090/search/ &')
             os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Youtube-DL-------------------------------------------------------------------------------
