@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-mpv --no-terminal 2&>1 1>/dev/null --volume=75 --shuffle /home/$USER/Music/Playlist/* &
+mpv --no-terminal 2>/dev/null 1>/dev/null --volume=75 --shuffle /home/$USER/Music/Playlist/* &
 
 sleep 2
 

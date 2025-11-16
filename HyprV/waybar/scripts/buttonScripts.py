@@ -136,7 +136,7 @@ class ButtonSelectorWidget(tk.Frame):
             # clean_exit()
 # Play_Music-------------------------------------------------------------------------------
         if label == "Play_Music":
-            os.system('./.config/HyprV/waybar/scripts/mediaSwitch')
+            os.system('bash Hyprland2.0/HyprV/waybar/scripts/mediaSwitch')
             os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Server-------------------------------------------------------------------------------

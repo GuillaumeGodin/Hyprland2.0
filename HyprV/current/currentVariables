@@ -5,6 +5,7 @@ currentDarkLight="222222"
 currentMonitor="currentMonitor"
 currentKeyboard="currentKeyboard"
 buttons="on"
+offGithub="offGithub" #not yet used
 currentTheme="Dark" #not yet used
 
 # dont touch default variables
