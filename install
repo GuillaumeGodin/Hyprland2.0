@@ -128,8 +128,9 @@ install_stage3=(
     steamlink
     discord # webcord, vesktop
     obs-studio
-    mangohud #gaming overlay like MSI Afterburner
+    mangohud # gaming overlay like MSI Afterburner
     goverlay # GUI for mangohud
+    game-devices-udev # Needed to make switch controller work via bluetoon
 )
 
 for str in ${myArray[@]}; do
