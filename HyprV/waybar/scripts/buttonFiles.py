@@ -8,8 +8,7 @@ from pathlib import Path
 
 root = tk.Tk()
 root.title("Files")
-root.geometry('+225+731')
-# root.resizable(height = None, width = None)
+root.geometry('+225+806')
 root.resizable(0, 0)
 root.bind_all("<Escape>", lambda event: clean_exit())
 root.bind_all("<Alt_L>", lambda x: clean_exit())
@@ -19,34 +18,22 @@ root.bind_all("<Alt_L>", lambda x: clean_exit())
 
 os.system('bash "/home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonsKill" kill')
 
-# os.system('hyprctl keyword unbind , mouse:273')
-# os.system('hyprctl keyword bind , mouse:273, exec, bash Hyprland2.0/Bash/killDropdowns kill')
-
-# os.system('hyprctl keyword unbind ALT, ALT_L')
-# os.system('hyprctl keyword bind ALT, ALT_L, exec, bash Hyprland2.0/Bash/killDropdowns kill')
-
-# os.system('hyprctl keyword unbind , escape')
-# os.system('hyprctl keyword bind , escape, exec, bash Hyprland2.0/Bash/killDropdowns kill')
-
 class ButtonSelectorWidget(tk.Frame):
     def __init__(self, parent, button_labels=None, command=None, **kwargs):
-        super().__init__(parent, bg="#ffbb00", **kwargs)
+        super().__init__(parent, bg="#69878E", **kwargs)
         self.command = command
         self.buttons = []
-        self.selected_index = 3
+        self.selected_index = 0 #Change this for default selected
 
         if button_labels is None:
-            button_labels = [f"Button {i+1}" for i in range(10)]
-            button_labels[0] = "md0_ET"
-            button_labels[1] = "md0_GG"
-            button_labels[2] = "md0_Media"
-            button_labels[3] = "   Desktop"
-            button_labels[4] = "󰈙   Documents"
-            button_labels[5] = "   Downloads"
-            button_labels[6] = "   Music"
-            button_labels[7] = "   Pictures"
-            button_labels[8] = "   Videos"
-            button_labels[9] = "   Trash"
+            button_labels = [f"Button {i+1}" for i in range(7)] #Make sure this matches the selected labels
+            button_labels[0] = "   Desktop"
+            button_labels[1] = "󰈙   Documents"
+            button_labels[2] = "   Downloads"
+            button_labels[3] = "󰝚   Music"
+            button_labels[4] = "   Pictures"
+            button_labels[5] = "   Videos"
+            button_labels[6] = "   Trash"
 
         self.create_buttons(button_labels)
         self.highlight_selected()
@@ -62,9 +49,9 @@ class ButtonSelectorWidget(tk.Frame):
             label = btn.cget("text")
             if i == self.selected_index:
                 if label == "   Firefox":  # Optional condition for Firefox button customization
-                    btn.configure(bg="#ffbb00", fg="#000000")  # Text black for Firefox
+                    btn.configure(bg="#69878E", fg="#000000")  # Text black for Firefox
                 else:
-                    btn.configure(bg="#ffbb00", fg="#000000")  # Text black for other selected buttons
+                    btn.configure(bg="#69878E", fg="#000000")  # Text black for other selected buttons
             else:
                 btn.configure(bg="#222222", fg="#EEEEFF")  # Default white text for unselected buttons
 
@@ -79,13 +66,13 @@ class ButtonSelectorWidget(tk.Frame):
                 bg="#222222",  # unselected background color
                 fg="#EEEEFF",  # unselected writing color
                 highlightthickness=0, 
-                activebackground="#ffbb00", 
+                activebackground="#69878E", 
                 activeforeground="#000000",
                 relief=GROOVE,
             )
             
             # Apply custom padding for specific buttons
-            if label == "   Desktop" or label == "   Trash":
+            if label == "   Trash":
                 btn.pack(pady=(2, 0))
             else:
                 btn.pack(pady=0)
@@ -107,21 +94,6 @@ class ButtonSelectorWidget(tk.Frame):
         label = self.buttons[self.selected_index].cget("text")
         print(f"You pressed {label}")
 
-# md0_ET-------------------------------------------------------------------------------
-        if label == "md0_ET":
-            os.system('thunar /home/$USER/mnt/md0/Emma/ 1>/dev/null &')
-            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
-            # clean_exit()
-# md0_GG-------------------------------------------------------------------------------
-        if label == "md0_GG":
-            os.system('thunar /home/$USER/mnt/md0/Guillaume/ 1>/dev/null &')
-            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
-            # clean_exit()
-# md0_Media-------------------------------------------------------------------------------
-        if label == "md0_Media":
-            os.system('thunar /home/$USER/mnt/md0/Media/ 1>/dev/null &')
-            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
-            # clean_exit()
 # Desktop-------------------------------------------------------------------------------
         if label == "   Desktop":
             os.system('thunar /home/$USER/Desktop 1>/dev/null &')
@@ -138,7 +110,7 @@ class ButtonSelectorWidget(tk.Frame):
             os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
 # Music-------------------------------------------------------------------------------
-        if label == "   Music":
+        if label == "󰝚   Music":
             os.system('thunar /home/$USER/Music 1>/dev/null &')
             os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
@@ -167,10 +139,7 @@ class ButtonSelectorWidget(tk.Frame):
         self.press_selected()
     
 def clean_exit():
-    # os.system('bash Hyprland2.0/Bash/killDropdowns both')
-    # os.system('hyprctl dispatch killwindow class:Tk')
     root.destroy()
-    # sys.exit()
 
 # --- Example usage ---
 def on_button_pressed(label):

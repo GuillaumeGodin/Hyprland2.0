@@ -8,8 +8,7 @@ from pathlib import Path
 
 root = tk.Tk()
 root.title("Apps")
-root.geometry('+150+557')
-# root.resizable(height = None, width = None)
+root.geometry('+150+587')
 root.resizable(0, 0)
 root.bind_all("<Escape>", lambda event: clean_exit())
 root.bind_all("<Super_L>", lambda x: clean_exit())
@@ -19,24 +18,15 @@ root.bind_all("<Super_L>", lambda x: clean_exit())
 
 os.system('bash "/home/$USER/Hyprland2.0/HyprV/waybar/scripts/buttonsKill" kill')
 
-# os.system('hyprctl keyword unbind , mouse:273')
-# os.system('hyprctl keyword bind , mouse:273, exec, bash "/home/$USER/Hyprland2.0/Bash/killDropdowns" kill')
-
-# os.system('hyprctl keyword unbind SUPER, SUPER_L')
-# os.system('hyprctl keyword bind SUPER, SUPER_L, exec, bash "/home/$USER/Hyprland2.0/Bash/killDropdowns" kill')
-
-# os.system('hyprctl keyword unbind , escape')
-# os.system('hyprctl keyword bind , escape, exec, bash "/home/$USER/Hyprland2.0/Bash/killDropdowns" kill')
-
 class ButtonSelectorWidget(tk.Frame):
     def __init__(self, parent, button_labels=None, command=None, **kwargs):
-        super().__init__(parent, bg="#ffbb00", **kwargs)
+        super().__init__(parent, bg="#69878E", **kwargs)
         self.command = command
         self.buttons = []
-        self.selected_index = 9
+        self.selected_index = 7 #Change this for default selected
 
         if button_labels is None:
-            button_labels = [f"Button {i+1}" for i in range(16)]
+            button_labels = [f"Button {i+1}" for i in range(14)] #Make sure this matches the selected labels
             button_labels[0] = "Notes"
             button_labels[1] = "Calculator"
             button_labels[2] = "LibreOffice"
@@ -44,15 +34,13 @@ class ButtonSelectorWidget(tk.Frame):
             button_labels[4] = "Handbrake"
             button_labels[5] = "MediaInfo"
             button_labels[6] = "MkvTool"
-            button_labels[7] = "MkvToolBatch"
-            button_labels[8] = "Work_Mode"
-            button_labels[9] = "   Firefox"
-            button_labels[10] = "󰇰   Mail_Evolution"
-            button_labels[11] = "   Steam"
-            button_labels[12] = "   Discord"
-            button_labels[13] = "   Gimp"
-            button_labels[14] = "   Blender"
-            button_labels[15] = "   Terminal_Kitty"
+            button_labels[7] = "   Firefox"
+            button_labels[8] = "󰇰   Mail_Evolution"
+            button_labels[9] = "   Steam"
+            button_labels[10] = "   Discord"
+            button_labels[11] = "   Gimp"
+            button_labels[12] = "   Blender"
+            button_labels[13] = "   Terminal_Kitty"
 
         self.create_buttons(button_labels)
         self.highlight_selected()
@@ -68,9 +56,9 @@ class ButtonSelectorWidget(tk.Frame):
             label = btn.cget("text")
             if i == self.selected_index:
                 if label == "   Firefox":  # Optional condition for Firefox button customization
-                    btn.configure(bg="#ffbb00", fg="#000000")  # Text black for Firefox
+                    btn.configure(bg="#69878E", fg="#000000")  # Text black for Firefox
                 else:
-                    btn.configure(bg="#ffbb00", fg="#000000")  # Text black for other selected buttons
+                    btn.configure(bg="#69878E", fg="#000000")  # Text black for other selected buttons
             else:
                 btn.configure(bg="#222222", fg="#EEEEFF")  # Default white text for unselected buttons
 
@@ -85,7 +73,7 @@ class ButtonSelectorWidget(tk.Frame):
                 bg="#222222",  # unselected background color
                 fg="#EEEEFF",  # unselected writing color
                 highlightthickness=0, 
-                activebackground="#ffbb00", 
+                activebackground="#69878E", 
                 activeforeground="#000000",
                 relief=GROOVE,
             )
@@ -148,17 +136,6 @@ class ButtonSelectorWidget(tk.Frame):
             os.system('mkvtoolnix-gui 1>/dev/null &')
             os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
             # clean_exit()
-# MkvToolBatch-------------------------------------------------------------------------------
-        if label == "MkvToolBatch":
-            os.system('python /home/$USER/mnt/md0/Guillaume/Computers/Programs/MKV_Batch/main.py 1>/dev/null &')
-            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
-            # clean_exit()
-# Work_Mode-------------------------------------------------------------------------------
-        if label == "Work_Mode":
-            os.system('lan-mouse 1>/dev/null &')
-            os.system('onedrivegui 1>/dev/null &')
-            os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
-            # clean_exit()
 # Firefox-------------------------------------------------------------------------------
         if label == "   Firefox":
             os.system('firefox --no-terminal 2>/dev/null 1>/dev/null --new-window &')
@@ -204,10 +181,7 @@ class ButtonSelectorWidget(tk.Frame):
         self.press_selected()
     
 def clean_exit():
-    # os.system('bash Hyprland2.0/HyprV/waybar/scripts/buttonsKill')
-    # os.system('hyprctl dispatch killwindow class:Tk')
     root.destroy()
-    # sys.exit()
 
 # --- Example usage ---
 def on_button_pressed(label):
