@@ -71,7 +71,8 @@
             "Lan Mouse",
             "OneDriveGUI",
             "python3",
-            "Tk"
+            "Tk",
+            "steam"
         ],
 	    "app_ids-mapping": {
 	        "steam_app_39210": "Final Fantasy 14"
