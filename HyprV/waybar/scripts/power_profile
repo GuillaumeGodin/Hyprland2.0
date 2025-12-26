@@ -1,27 +1,50 @@
 #!/bin/bash
 
-get_pwr() {
-#    PWR=$(asusctl profile -p | sed s:'Active profile is'::)
+# 1. Get current Power Profile from asusctl
+get_status() {
     PWR=$(asusctl profile -p | sed -n -e 's/^.*Active profile is //p')
 }
 
-get_pwr
+get_status
 
-if [ "$PWR" == Balanced ]; then
-    text="󰾅"
-    tooltip="Balanced"
-elif [ "$PWR" == Performance ]; then
-    text="󰓅"
-    tooltip="Performance"
-elif [ "$PWR" == Quiet ]; then
+# 2. Logic for Display (Waybar)
+if [ "$PWR" == "Quiet" ]; then
     text="󰾆"
-    tooltip="Quiet"
+    tooltip="Quiet Mode + Integrated GPU"
+elif [ "$PWR" == "Balanced" ]; then
+    text="󰾅"
+    tooltip="Balanced Mode + Hybrid GPU"
+elif [ "$PWR" == "Performance" ]; then
+    text="󰓅"
+    tooltip="Performance Mode + Dedicated GPU"
 fi
 
 echo '{"text": "'$text'", "tooltip": "'$tooltip'"}'
 
+# 3. Toggle Logic
 if [[ "$1" == "next" ]]; then
-    asusctl profile -n; pkill -SIGRTMIN+8 waybar
-    get_pwr
-    notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "$PWR Power Profile"
+    # Cycle the asusctl profile first
+    asusctl profile -n
+    get_status # Refresh the PWR variable with the new profile
+    
+    # Apply the corresponding GPU mode
+    case "$PWR" in
+        "Quiet")
+            supergfxctl -m Integrated
+            GPU_MSG="Integrated GPU"
+            ;;
+        "Balanced")
+            supergfxctl -m Hybrid
+            GPU_MSG="Hybrid GPU"
+            ;;
+        "Performance")
+            supergfxctl -m AsusMuxDgpu # or 'Dedicated' depending on your model
+            GPU_MSG="Dedicated GPU"
+            ;;
+    esac
+
+    # Update Waybar and Notify
+    pkill -SIGRTMIN+8 waybar
+    notify-send -h string:x-canonical-private-synchronous:sys-notify -u normal \
+        "Profile: $PWR" "GPU switched to $GPU_MSG"
 fi
