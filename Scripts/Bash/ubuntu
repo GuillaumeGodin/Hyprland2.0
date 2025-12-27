@@ -7,21 +7,28 @@ case "$1" in
         echo "Commands:"
         echo "  installDocker       Installs Docker Engine and Compose"
         echo "  removeDocker        Completely removes Docker from system"
-        echo "  installRadarr       Setup Radarr (Movies) on port 5050"
-        echo "  removeRadarr        Stop and remove Radarr container"
-        echo "  installSonarr       Setup Sonarr (TV Shows) on port 5051"
-        echo "  removeSonarr        Stop and remove Sonarr container"
-        echo "  installProwlarr     Setup Prowlarr (Indexers) on port 5003"
-        echo "  removeProwlarr      Stop and remove Prowlarr container"
-        echo "  installPhotoPrism   Setup PhotoPrism on port 5000"
+        echo "  installJellyfin     Setup Jellyfin (VAAPI) on port 5000"
+        echo "  removeJellyfin      Stop and remove Jellyfin container"
+        echo "  installPhotoPrism   Setup PhotoPrism on port 5001"
         echo "  removePhotoPrism    Stop and remove PhotoPrism container"
-        echo "  installNavidrome    Setup Navidrome (Music) on port 5006"
+        echo "  installNavidrome    Setup Navidrome (Music) on port 5002"
         echo "  removeNavidrome     Stop and remove Navidrome container"
+        echo "  installJackett      Setup Jackett (Indexers) on port 5050"
+        echo "  removeJackett       Stop and remove Jackett container"
+        echo "  installProwlarr     Setup Prowlarr (Indexers) on port 5051"
+        echo "  removeProwlarr      Stop and remove Prowlarr container"
+        echo "  installSabnzbd      Setup Sabnzbd (Usenet) on port 5052"
+        echo "  removeSabnzbd       Stop and remove Sabnzbd container"
+        echo "  installRadarr       Setup Radarr (Movies) on port 5053"
+        echo "  removeRadarr        Stop and remove Radarr container"
+        echo "  installSonarr       Setup Sonarr (TV Shows) on port 5054"
+        echo "  removeSonarr        Stop and remove Sonarr container"
+        echo "  installQbittorrent  Setup qBittorrent on port 5080"
+        echo "  removeQbittorrent   Stop and remove qBittorrent container"
         ;;
 
     installDocker)
         echo "Installing Docker Engine..."
-
         sudo apt update
         sudo apt install -y ca-certificates curl gnupg
         sudo install -m 0755 -d /etc/apt/keyrings
@@ -38,7 +45,6 @@ case "$1" in
 
     removeDocker)
         echo "Removing Docker..."
-
         docker stop $(docker ps -aq) 2>/dev/null
         docker system prune -a --volumes --force 2>/dev/null
         sudo apt-get purge -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
@@ -48,63 +54,104 @@ case "$1" in
         echo "Docker removed."
         ;;
 
-    installRadarr)
-        echo "Setting up Radarr..."
+    installJellyfin)
+        echo "Setting up Jellyfin (VAAPI) on 5000..."
+        mkdir -p /home/$USER/Docker/jellyfin/{config,cache,media}
+        sudo docker run -d \
+          --name jellyfin \
+          --privileged \
+          -e PUID=$(id -u) \
+          -e PGID=$(id -g) \
+          -e GROUP_ADD=110,44 \
+          -e JELLYFIN_VAAPI_DEVICE=/dev/dri/renderD128 \
+          --device /dev/dri:/dev/dri \
+          --device /dev/dri/renderD128:/dev/dri/renderD128 \
+          --device /dev/dri/card1:/dev/dri/card1 \
+          -p 5000:8096 \
+          -v /home/$USER/Docker/jellyfin/config:/config \
+          -v /home/$USER/Docker/jellyfin/cache:/cache \
+          -v /home/$USER/Docker/jellyfin/media:/media \
+          -v /media/md0:/GG \
+          --restart unless-stopped \
+          jellyfin/jellyfin:latest
+        echo "Jellyfin running on port 5000!"
+        ;;
 
-        mkdir -p /home/$USER/Docker/radarr/{config,movies}
+    removeJellyfin)
+        docker stop jellyfin 2>/dev/null && docker rm jellyfin 2>/dev/null
+        echo "Jellyfin container removed."
+        ;;
 
+    installPhotoPrism)
+        echo "Setting up PhotoPrism on 5001..."
+        mkdir -p /home/$USER/Docker/photoprism/{photos,storage}
         docker run -d \
-          --name radarr \
-          -p 5050:7878 \
+          --name photoprism \
+          -p 5001:2342 \
+          -e PHOTOPRISM_ADMIN_PASSWORD="yourpassword" \
+          -e PHOTOPRISM_DEBUG="false" \
+          -e PHOTOPRISM_PUBLIC="false" \
+          -v /home/$USER/Docker/photoprism/photos:/photoprism/originals \
+          -v /home/$USER/Docker/photoprism/storage:/photoprism/storage \
+          -v /media/md0:/md0 \
+          --restart=unless-stopped \
+          photoprism/photoprism:latest
+        echo "PhotoPrism running on port 5001!"
+        ;;
+
+    removePhotoPrism)
+        docker stop photoprism 2>/dev/null && docker rm photoprism 2>/dev/null
+        echo "PhotoPrism container removed."
+        ;;
+
+    installNavidrome)
+        echo "Setting up Navidrome on 5002..."
+        mkdir -p /home/$USER/Docker/navidrome/{music,config}
+        docker run -d \
+          --name navidrome \
+          -p 5002:4533 \
+          -e ND_LOGLEVEL=info \
+          -v /media/md0:/music \
+          -v /home/$USER/Docker/navidrome/config:/config \
+          -v /media/md0:/md0 \
+          --restart=unless-stopped \
+          deluan/navidrome:latest
+        echo "Navidrome running on port 5002!"
+        ;;
+
+    removeNavidrome)
+        docker stop navidrome 2>/dev/null && docker rm navidrome 2>/dev/null
+        echo "Navidrome container removed."
+        ;;
+
+    installJackett)
+        echo "Setting up Jackett on 5050..."
+        mkdir -p /home/$USER/Docker/jackett/{config,downloads}
+        docker run -d \
+          --name jackett \
+          -p 5050:9117 \
           -e PUID=1000 \
           -e PGID=1000 \
-          -v /home/$USER/Docker/radarr/config:/config \
-          -v /home/$USER/Docker/radarr/movies:/movies \
-          -v /media/md0:/md0 \
-          -v /media/md0/Media/Media_Arr/Deluge:/Deluge \
-          --restart=unless-stopped \
-          linuxserver/radarr:latest
-        echo "Radarr running on port 5050!"
+          -e TZ="America/Toronto" \
+          -v /home/$USER/Docker/jackett/config:/config \
+          -v /home/$USER/Docker/jackett/downloads:/downloads \
+          --restart unless-stopped \
+          lscr.io/linuxserver/jackett:latest
+        echo "Jackett running on port 5050!"
         ;;
 
-    removeRadarr)
-        docker stop radarr 2>/dev/null && docker rm radarr 2>/dev/null
-        echo "Radarr container removed."
-        ;;
-
-    installSonarr)
-        echo "Setting up Sonarr..."
-
-        mkdir -p /home/$USER/Docker/sonarr/{config,tv}
-
-        docker run -d \
-          --name sonarr \
-          -p 5051:8989 \
-          -e PUID=1000 \
-          -e PGID=1000 \
-          -v /home/$USER/Docker/sonarr/config:/config \
-          -v /home/$USER/Docker/sonarr/tv:/tv \
-          -v /media/md0:/md0 \
-          -v /media/md0/Media/Media_Arr/Deluge:/Deluge \
-          --restart=unless-stopped \
-          linuxserver/sonarr:latest
-        echo "Sonarr running on port 5051!"
-        ;;
-
-    removeSonarr)
-        docker stop sonarr 2>/dev/null && docker rm sonarr 2>/dev/null
-        echo "Sonarr container removed."
+    removeJackett)
+        docker stop jackett 2>/dev/null && docker rm jackett 2>/dev/null
+        echo "Jackett container removed."
         ;;
 
     installProwlarr)
-        echo "Setting up Prowlarr..."
-
+        echo "Setting up Prowlarr on 5051..."
         mkdir -p /home/$USER/Docker/prowlarr/{config,downloads,media}
-
         docker run -d \
           --name prowlarr \
           --network=bridge \
-          -p 5003:9696 \
+          -p 5051:9696 \
           -e PUID=1000 \
           -e PGID=1000 \
           -e TZ="America/Toronto" \
@@ -114,7 +161,7 @@ case "$1" in
           -v /media/md0:/md0 \
           --restart unless-stopped \
           linuxserver/prowlarr
-        echo "Prowlarr running on port 5003!"
+        echo "Prowlarr running on port 5051!"
         ;;
 
     removeProwlarr)
@@ -122,52 +169,120 @@ case "$1" in
         echo "Prowlarr container removed."
         ;;
 
-    installPhotoPrism)
-        echo "Setting up PhotoPrism on 5000..."
+    installSabnzbd)
+        echo "Setting up Sabnzbd on 5052..."
+        mkdir -p /home/$USER/Docker/sabnzbd/{config,downloads,incomplete}
+        docker run -d \
+          --name sabnzbd \
+          --network=bridge \
+          -p 5052:8080 \
+          -e PUID=1000 \
+          -e PGID=1000 \
+          -e TZ="America/Toronto" \
+          -v /home/$USER/Docker/sabnzbd/config:/config \
+          -v /home/$USER/Docker/sabnzbd/downloads:/downloads \
+          -v /home/$USER/Docker/sabnzbd/incomplete:/incomplete \
+          -v /media/md0:/md0 \
+          --restart unless-stopped \
+          linuxserver/sabnzbd
+        echo "Sabnzbd running on port 5052!"
+        ;;
 
-        mkdir -p /home/$USER/Docker/photoprism/{photos,storage}
+    removeSabnzbd)
+        docker stop sabnzbd 2>/dev/null && docker rm sabnzbd 2>/dev/null
+        echo "Sabnzbd container removed."
+        ;;
+
+    installRadarr)
+        echo "Setting up Radarr on 5053..."
+        mkdir -p /home/$USER/Docker/radarr/{config,movies}
+        docker run -d \
+          --name radarr \
+          -p 5053:7878 \
+          -e PUID=1000 \
+          -e PGID=1000 \
+          -v /home/$USER/Docker/radarr/config:/config \
+          -v /home/$USER/Docker/radarr/movies:/movies \
+          -v /media/md0:/md0 \
+          -v /media/md0/Media/Media_Arr/Deluge:/Deluge \
+          --restart=unless-stopped \
+          linuxserver/radarr:latest
+        echo "Radarr running on port 5053!"
+        ;;
+
+    removeRadarr)
+        docker stop radarr 2>/dev/null && docker rm radarr 2>/dev/null
+        echo "Radarr container removed."
+        ;;
+
+    installSonarr)
+        echo "Setting up Sonarr on 5054..."
+        mkdir -p /home/$USER/Docker/sonarr/{config,tv}
+        docker run -d \
+          --name sonarr \
+          -p 5054:8989 \
+          -e PUID=1000 \
+          -e PGID=1000 \
+          -v /home/$USER/Docker/sonarr/config:/config \
+          -v /home/$USER/Docker/sonarr/tv:/tv \
+          -v /media/md0:/md0 \
+          -v /media/md0/Media/Media_Arr/Deluge:/Deluge \
+          --restart=unless-stopped \
+          linuxserver/sonarr:latest
+        echo "Sonarr running on port 5054!"
+        ;;
+
+    removeSonarr)
+        docker stop sonarr 2>/dev/null && docker rm sonarr 2>/dev/null
+        echo "Sonarr container removed."
+        ;;
+
+    installQbittorrent)
+        echo "Setting up qBittorrent on 5080..."
+
+        # Create config directory structure
+        mkdir -p /home/$USER/Docker/qbittorrent/config/qBittorrent/
 
         docker run -d \
-          --name photoprism \
-          -p 5000:2342 \
-          -e PHOTOPRISM_ADMIN_PASSWORD="yourpassword" \
-          -e PHOTOPRISM_DEBUG="false" \
-          -e PHOTOPRISM_PUBLIC="false" \
-          -v /home/$USER/Docker/photoprism/photos:/photoprism/originals \
-          -v /home/$USER/Docker/photoprism/storage:/photoprism/storage \
-          -v /media/md0:/md0 \
-          --restart=unless-stopped \
-          photoprism/photoprism:latest
+          --name qbittorrent \
+          -p 5080:8080 \
+          -p 6881:6881 \
+          -p 6881:6881/udp \
+          -e PUID=1000 \
+          -e PGID=1000 \
+          -e TZ="America/Toronto" \
+          -e WEBUI_PORT=8080 \
+          -v /home/$USER/Docker/qbittorrent/config:/config \
+          -v /home/$USER/Docker/qbittorrent/downloads:/downloads \
+          -v /media/md0/Media/Media_Arr/Deluge:/Deluge \
+          --restart unless-stopped \
+          lscr.io/linuxserver/qbittorrent:latest
 
-        echo "PhotoPrism running on port 5000!"
+        echo "Waiting for qBittorrent to initialize..."
+        sleep 8
+        
+        # Modify the .conf file automatically
+        CONF_FILE="/home/$USER/Docker/qbittorrent/config/qBittorrent/qBittorrent.conf"
+        if [ ! -f "$CONF_FILE" ]; then
+            echo "[Preferences]" > "$CONF_FILE"
+        fi
+
+        sed -i '/WebUI\\HostHeaderValidation/d' "$CONF_FILE"
+        sed -i '/WebUI\\CSRFProtection/d' "$CONF_FILE"
+        sed -i '/\[Preferences\]/a WebUI\\HostHeaderValidation=false\nWebUI\\CSRFProtection=false' "$CONF_FILE"
+
+        docker restart qbittorrent
+        echo "Config updated and container restarted."
+        echo ""
+        echo "--------------------------------------------------------"
+        echo "QBITTORRENT TEMPORARY PASSWORD:"
+        docker logs qbittorrent 2>&1 | grep "password is:" | cut -d ":" -f 4
+        echo "--------------------------------------------------------"
         ;;
 
-    removePhotoPrism)
-        docker stop photoprism 2>/dev/null && docker rm photoprism 2>/dev/null
-        echo "PhotoPrism container removed."
-        ;;
-
-    installNavidrome)
-        echo "Setting up Navidrome on 5006..."
-
-        mkdir -p /home/$USER/Docker/navidrome/{music,config}
-
-        docker run -d \
-          --name navidrome \
-          -p 5006:4533 \
-          -e ND_LOGLEVEL=info \
-          -v /media/md0:/music \
-          -v /home/$USER/Docker/navidrome/config:/config \
-          -v /media/md0:/md0 \
-          --restart=unless-stopped \
-          deluan/navidrome:latest
-
-        echo "Navidrome running on port 5006!"
-        ;;
-
-    removeNavidrome)
-        docker stop navidrome 2>/dev/null && docker rm navidrome 2>/dev/null
-        echo "Navidrome container removed."
+    removeQbittorrent)
+        docker stop qbittorrent 2>/dev/null && docker rm qbittorrent 2>/dev/null
+        echo "qBittorrent container removed."
         ;;
 
     *)
