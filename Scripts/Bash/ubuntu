@@ -13,7 +13,7 @@ case "$1" in
         echo "  removeSonarr        Stop and remove Sonarr container"
         echo "  installProwlarr     Setup Prowlarr (Indexers) on port 5003"
         echo "  removeProwlarr      Stop and remove Prowlarr container"
-        echo "  installPhotoPrism   Setup PhotoPrism on port 2342"
+        echo "  installPhotoPrism   Setup PhotoPrism on port 5000"
         echo "  removePhotoPrism    Stop and remove PhotoPrism container"
         echo "  installNavidrome    Setup Navidrome (Music) on port 5006"
         echo "  removeNavidrome     Stop and remove Navidrome container"
@@ -123,13 +123,13 @@ case "$1" in
         ;;
 
     installPhotoPrism)
-        echo "Setting up PhotoPrism..."
+        echo "Setting up PhotoPrism on 5000..."
 
         mkdir -p /home/$USER/Docker/photoprism/{photos,storage}
 
         docker run -d \
           --name photoprism \
-          -p 2342:2342 \
+          -p 5000:2342 \
           -e PHOTOPRISM_ADMIN_PASSWORD="yourpassword" \
           -e PHOTOPRISM_DEBUG="false" \
           -e PHOTOPRISM_PUBLIC="false" \
@@ -138,7 +138,8 @@ case "$1" in
           -v /media/md0:/md0 \
           --restart=unless-stopped \
           photoprism/photoprism:latest
-        echo "PhotoPrism running on port 2342!"
+
+        echo "PhotoPrism running on port 5000!"
         ;;
 
     removePhotoPrism)
@@ -147,7 +148,7 @@ case "$1" in
         ;;
 
     installNavidrome)
-        echo "Setting up Navidrome..."
+        echo "Setting up Navidrome on 5006..."
 
         mkdir -p /home/$USER/Docker/navidrome/{music,config}
 
@@ -160,6 +161,7 @@ case "$1" in
           -v /media/md0:/md0 \
           --restart=unless-stopped \
           deluan/navidrome:latest
+
         echo "Navidrome running on port 5006!"
         ;;
 
