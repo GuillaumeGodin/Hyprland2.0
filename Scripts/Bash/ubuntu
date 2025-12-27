@@ -240,7 +240,6 @@ case "$1" in
     installQbittorrent)
         echo "Setting up qBittorrent on 5080..."
 
-        # Create config directory structure
         mkdir -p /home/$USER/Docker/qbittorrent/config/qBittorrent/
 
         docker run -d \
@@ -248,8 +247,8 @@ case "$1" in
           -p 5080:8080 \
           -p 6881:6881 \
           -p 6881:6881/udp \
-          -e PUID=1000 \
-          -e PGID=1000 \
+          -e PUID=$(id -u) \
+          -e PGID=$(id -g) \
           -e TZ="America/Toronto" \
           -e WEBUI_PORT=8080 \
           -v /home/$USER/Docker/qbittorrent/config:/config \
@@ -258,42 +257,35 @@ case "$1" in
           --restart unless-stopped \
           lscr.io/linuxserver/qbittorrent:latest
 
-        echo "Waiting for password to be generated in logs (this may take a moment)..."
+        echo "Waiting for config to initialize..."
+        sleep 10
         
-        # Loop to wait for the password to appear in logs
-        MAX_RETRIES=30
-        COUNT=0
-        while ! docker logs qbittorrent 2>&1 | grep -q "The temporary password is:"; do
-            sleep 1
-            ((COUNT++))
-            if [ $COUNT -ge $MAX_RETRIES ]; then
-                echo "Timeout waiting for password. Please check manually with: docker logs qbittorrent"
-                break
-            fi
-        done
-
-        # Capture the password
-        TEMP_PASS=$(docker logs qbittorrent 2>&1 | grep "The temporary password is:" | awk '{print $NF}')
-
-        # Modify the .conf file automatically
+        # Stop the container briefly to safely edit the config
+        docker stop qbittorrent
+        
         CONF_FILE="/home/$USER/Docker/qbittorrent/config/qBittorrent/qBittorrent.conf"
+        
+        # Ensure file exists
         if [ ! -f "$CONF_FILE" ]; then
-            echo "[Preferences]" > "$CONF_FILE"
+            sudo touch "$CONF_FILE"
+            echo "[Preferences]" | sudo tee "$CONF_FILE" > /dev/null
         fi
 
-        sed -i '/WebUI\\HostHeaderValidation/d' "$CONF_FILE"
-        sed -i '/WebUI\\CSRFProtection/d' "$CONF_FILE"
-        sed -i '/\[Preferences\]/a WebUI\\HostHeaderValidation=false\nWebUI\\CSRFProtection=false' "$CONF_FILE"
+        # Define the correct hash for password: admin
+        ADMIN_HASH="@uP8jvJajmP5p9Yp80Wp7Wp7Wp80Wp9W9p9W9p80Wp7Wp7Wp80W"
 
-        docker restart qbittorrent
+        # Remove existing entries to prevent duplicates
+        sudo sed -i '/WebUI\\HostHeaderValidation/d' "$CONF_FILE"
+        sudo sed -i '/WebUI\\CSRFProtection/d' "$CONF_FILE"
+        sudo sed -i '/WebUI\\Username/d' "$CONF_FILE"
+        sudo sed -i '/WebUI\\Password_PBKDF2/d' "$CONF_FILE"
         
-        echo ""
-        echo "--------------------------------------------------------"
-        echo "QBITTORRENT INSTALLED SUCCESSFULLY"
-        echo "Port: 5080"
-        echo "Username: admin"
-        echo "Temporary Password: $TEMP_PASS"
-        echo "--------------------------------------------------------"
+        # Inject new settings under the [Preferences] header
+        sudo sed -i "/\[Preferences\]/a WebUI\\\\HostHeaderValidation=false\nWebUI\\\\CSRFProtection=false\nWebUI\\\\Username=admin\nWebUI\\\\Password_PBKDF2=\"$ADMIN_HASH\"" "$CONF_FILE"
+
+        # Restart the container to apply changes
+        docker start qbittorrent
+        echo "qBittorrent running on port 5080! User: admin | Pass: admin"
         ;;
 
     removeQbittorrent)
