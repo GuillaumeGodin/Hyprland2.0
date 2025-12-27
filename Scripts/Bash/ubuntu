@@ -258,9 +258,23 @@ case "$1" in
           --restart unless-stopped \
           lscr.io/linuxserver/qbittorrent:latest
 
-        echo "Waiting for qBittorrent to initialize..."
-        sleep 8
+        echo "Waiting for password to be generated in logs (this may take a moment)..."
         
+        # Loop to wait for the password to appear in logs
+        MAX_RETRIES=30
+        COUNT=0
+        while ! docker logs qbittorrent 2>&1 | grep -q "The temporary password is:"; do
+            sleep 1
+            ((COUNT++))
+            if [ $COUNT -ge $MAX_RETRIES ]; then
+                echo "Timeout waiting for password. Please check manually with: docker logs qbittorrent"
+                break
+            fi
+        done
+
+        # Capture the password
+        TEMP_PASS=$(docker logs qbittorrent 2>&1 | grep "The temporary password is:" | awk '{print $NF}')
+
         # Modify the .conf file automatically
         CONF_FILE="/home/$USER/Docker/qbittorrent/config/qBittorrent/qBittorrent.conf"
         if [ ! -f "$CONF_FILE" ]; then
@@ -272,11 +286,13 @@ case "$1" in
         sed -i '/\[Preferences\]/a WebUI\\HostHeaderValidation=false\nWebUI\\CSRFProtection=false' "$CONF_FILE"
 
         docker restart qbittorrent
-        echo "Config updated and container restarted."
+        
         echo ""
         echo "--------------------------------------------------------"
-        echo "QBITTORRENT TEMPORARY PASSWORD:"
-        docker logs qbittorrent 2>&1 | grep "password is:" | cut -d ":" -f 4
+        echo "QBITTORRENT INSTALLED SUCCESSFULLY"
+        echo "Port: 5080"
+        echo "Username: admin"
+        echo "Temporary Password: $TEMP_PASS"
         echo "--------------------------------------------------------"
         ;;
 
