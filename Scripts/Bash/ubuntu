@@ -254,6 +254,14 @@ case "$1" in
           -v /media/md0/Media/Media_Arr/Deluge:/Deluge \
           --restart unless-stopped \
           lscr.io/linuxserver/qbittorrent:latest
+        
+        echo "Waiting 10 seconds for password generation..."
+        sleep 10
+        
+        # Extracts the line containing the temporary password from logs
+        echo "----------------------------------------"
+        docker logs qbittorrent 2>&1 | grep "temporary password"
+        echo "----------------------------------------"
         echo "qBittorrent running on port 5080!"
         ;;
 
