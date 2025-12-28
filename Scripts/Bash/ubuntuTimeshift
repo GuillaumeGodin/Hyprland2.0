@@ -18,16 +18,30 @@ remove_timeshift() {
     echo "------------------------------------------"
     echo "  Removing Timeshift..."
     echo "------------------------------------------"
-    # 'purge' removes the app and its config files
     sudo apt purge -y timeshift
-    
-    # Optional: Remove the PPA to keep your system sources clean
-    echo "Removing PPA repository..."
     sudo add-apt-repository --remove -y ppa:teejee2008/timeshift
-    
-    # Clean up unused dependencies
     sudo apt autoremove -y
     echo "Timeshift has been removed."
+}
+
+setup_daily_backups() {
+    echo "------------------------------------------"
+    echo "  Setting up Daily Schedule (Keep 7)"
+    echo "------------------------------------------"
+    
+    # Check if timeshift is installed first
+    if ! command -v timeshift &> /dev/null; then
+        echo "Error: Timeshift is not installed. Run installTimeshift first."
+        exit 1
+    fi
+
+    # Set schedule: Daily, Keep 7
+    # Note: This assumes you are using RSYNC (the default for most Ubuntu users)
+    sudo timeshift --rsync
+    sudo timeshift --schedule-daily --count 7
+    
+    echo "Success: Scheduled to keep the last 7 daily snapshots."
+    sudo timeshift --check
 }
 
 # --- Command Logic ---
@@ -39,8 +53,11 @@ case "$1" in
     removeTimeshift)
         remove_timeshift
         ;;
+    Daily)
+        setup_daily_backups
+        ;;
     *)
-        echo "Usage: $0 {installTimeshift|removeTimeshift}"
+        echo "Usage: $0 {installTimeshift|removeTimeshift|Daily}"
         exit 1
         ;;
 esac
