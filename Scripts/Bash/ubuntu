@@ -238,13 +238,13 @@ case "$1" in
         ;;
 
     installQbittorrent)
-        echo "Pre-configuring qBittorrent..."
+        echo "Pre-configuring qBittorrent environment..."
         mkdir -p /home/$USER/Docker/qbittorrent/config/qBittorrent/
         mkdir -p /home/$USER/Docker/qbittorrent/downloads
         
         CONF_FILE="/home/$USER/Docker/qbittorrent/config/qBittorrent/qBittorrent.conf"
         
-        # Create config file if it doesn't exist and add bypasses immediately
+        # Create config file with [Preferences] if it doesn't exist
         if [ ! -f "$CONF_FILE" ]; then
             echo "[Preferences]" > "$CONF_FILE"
         fi
@@ -268,8 +268,9 @@ case "$1" in
         echo "Waiting for security mods (5s)..."
         sleep 5
 
-        sed -i '/\[Preferences\]/a WebUI\\HostHeaderValidation=false\nWebUI\\CSRFProtection=false' "$CONF_FILE"
-        
+        sed -i '/\[Preferences\]/a WebUI\\CSRFProtection=false' "$CONF_FILE"
+        sed -i '/\[Preferences\]/a WebUI\\HostHeaderValidation=false' "$CONF_FILE"
+
         echo "Waiting for password generation (10s)..."
         sleep 10
         
