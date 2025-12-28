@@ -7,6 +7,7 @@ case "$1" in
         echo "Commands:"
         echo "  installDocker       Installs Docker Engine and Compose"
         echo "  removeDocker        Completely removes Docker from system"
+        echo "  removeDockerApps    Stops and removes ALL app containers in this script"
         echo "  installQDirStat     Setup QDirStat (Storage Visualizer) on port 3000"
         echo "  removeQDirStat      Stop and remove QDirStat container"
         echo "  installJellyfin     Setup Jellyfin (VAAPI) on port 5000"
@@ -60,14 +61,31 @@ case "$1" in
         ;;
 
     removeDocker)
-        echo "Removing Docker..."
+        echo "Removing Docker Engine and all data..."
         docker stop $(docker ps -aq) 2>/dev/null
         docker system prune -a --volumes --force 2>/dev/null
         sudo apt-get purge -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
         sudo rm -rf /var/lib/docker /var/lib/containerd /etc/docker ~/.docker
         sudo rm /etc/apt/sources.list.d/docker.list /etc/apt/keyrings/docker.gpg 2>/dev/null
         sudo apt-get autoremove -y
-        echo "Docker removed."
+        echo "Docker Engine removed."
+        ;;
+
+    removeDockerApps)
+        echo "Stopping and removing all containers defined in this script..."
+        # List of all container names used in the script
+        APPS="qdirstat jellyfin photoprism navidrome tandoor db_recipes calibre-web-automated caliber-web-automated-downloader jackett prowlarr sabnzbd radarr sonarr lidarr bazarr qbittorrent deluge homeassistant"
+        
+        for app in $APPS; do
+            if [ "$(docker ps -aq -f name=^/${app}$)" ]; then
+                echo "Removing $app..."
+                docker stop $app 2>/dev/null
+                docker rm $app 2>/dev/null
+            fi
+        done
+        
+        docker network rm tandoor_network 2>/dev/null
+        echo "All app containers have been removed. (Data in /home/$USER/Docker and /media/md0 was preserved)"
         ;;
 
     installQDirStat)
