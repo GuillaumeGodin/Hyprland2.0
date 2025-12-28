@@ -238,17 +238,16 @@ case "$1" in
         ;;
 
     installQbittorrent)
-        echo "Preparing qBittorrent environment..."
+        echo "Pre-configuring qBittorrent..."
         mkdir -p /home/$USER/Docker/qbittorrent/config/qBittorrent/
         mkdir -p /home/$USER/Docker/qbittorrent/downloads
         
         CONF_FILE="/home/$USER/Docker/qbittorrent/config/qBittorrent/qBittorrent.conf"
         
-        # Pre-create config file with WebUI settings so we don't have to restart it
+        # Create config file if it doesn't exist and add bypasses immediately
         if [ ! -f "$CONF_FILE" ]; then
             echo "[Preferences]" > "$CONF_FILE"
         fi
-        sudo sed -i '/\[Preferences\]/a WebUI\\HostHeaderValidation=false\nWebUI\\CSRFProtection=false' "$CONF_FILE"
 
         echo "Starting qBittorrent on port 5080..."
         docker run -d \
@@ -265,12 +264,17 @@ case "$1" in
           -v /media/md0/Media/Media_Arr/Deluge:/Deluge \
           --restart unless-stopped \
           lscr.io/linuxserver/qbittorrent:latest
+
+        echo "Waiting for security mods (5s)..."
+        sleep 5
+
+        sed -i '/\[Preferences\]/a WebUI\\HostHeaderValidation=false\nWebUI\\CSRFProtection=false' "$CONF_FILE"
         
-        echo "Waiting for password generation (20s)..."
-        sleep 20
+        echo "Waiting for password generation (10s)..."
+        sleep 10
         
         echo "----------------------------------------"
-        echo "SUCCESS: qBittorrent running on port 5080"
+        echo "qBittorrent is ready at http://localhost:5080"
         docker logs qbittorrent 2>&1 | grep "temporary password"
         echo "----------------------------------------"
         ;;
