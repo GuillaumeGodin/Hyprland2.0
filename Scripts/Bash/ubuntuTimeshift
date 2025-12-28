@@ -2,7 +2,20 @@
 
 # --- Functions ---
 
-# Function to install Timeshift and its dependencies
+# Displays help information
+show_help() {
+    echo "Usage: ./ubuntuTimeshift [COMMAND]"
+    echo ""
+    echo "Commands:"
+    echo "  installTimeshift   Installs Timeshift via official PPA."
+    echo "  removeTimeshift    Completely removes Timeshift and its PPA."
+    echo "  Daily              Sets up a daily backup schedule (keeps last 7)."
+    echo "  Status             Shows current snapshots and disk space."
+    echo "  -h, --help         Displays this help message."
+    echo ""
+}
+
+# Installs Timeshift and its dependencies
 install_timeshift() {
     echo "------------------------------------------"
     echo "  Installing Timeshift..."
@@ -17,7 +30,7 @@ install_timeshift() {
     echo "------------------------------------------"
 }
 
-# Function to remove Timeshift and clean up the PPA
+# Removes Timeshift and cleans up the PPA
 remove_timeshift() {
     echo "------------------------------------------"
     echo "  Removing Timeshift..."
@@ -31,38 +44,40 @@ remove_timeshift() {
     echo "------------------------------------------"
 }
 
-# Function to configure 7-day daily backups via JSON config
+# Configures 7-day daily backups via JSON config
 setup_daily_backups() {
     echo "------------------------------------------"
     echo "  Configuring Daily Schedule (Keep 7)"
     echo "------------------------------------------"
     
-    # Check if timeshift is installed
     if ! command -v timeshift &> /dev/null; then
         echo "Error: Timeshift is not installed. Run 'installTimeshift' first."
         exit 1
     fi
 
-    # Initialize the config file if it's a fresh install
     sudo timeshift --check > /dev/null 2>&1
-
-    # Edit the JSON config directly
-    # 1. Enable daily snapshots
     sudo sed -i 's/"schedule_daily" : "false"/"schedule_daily" : "true"/' /etc/timeshift/timeshift.json
-    # 2. Set retention count to 7
-    # We use a flexible regex for count to catch whatever the default was (usually 5)
     sudo sed -i 's/"count_daily" : "[0-9]*"/"count_daily" : "7"/' /etc/timeshift/timeshift.json
-    
-    # Run a check to apply changes and initialize cron tasks
     sudo timeshift --check
 
     echo "------------------------------------------"
     echo "  Success! Daily backups are enabled."
-    echo "  Retention Policy: 7 snapshots."
     echo "------------------------------------------"
 }
 
-# --- Command Logic (Positional Parameters) ---
+# Shows the status of current snapshots
+show_status() {
+    echo "------------------------------------------"
+    echo "  Current Snapshot Status"
+    echo "------------------------------------------"
+    if ! command -v timeshift &> /dev/null; then
+        echo "Timeshift is not installed."
+    else
+        sudo timeshift --list
+    fi
+}
+
+# --- Command Logic ---
 
 case "$1" in
     installTimeshift)
@@ -74,9 +89,15 @@ case "$1" in
     Daily)
         setup_daily_backups
         ;;
+    Status)
+        show_status
+        ;;
+    -h|--help)
+        show_help
+        ;;
     *)
-        echo "Usage: $0 {installTimeshift|removeTimeshift|Daily}"
-        echo "Example: ./ubuntuTimeshift Daily"
+        echo "Invalid option: $1"
+        show_help
         exit 1
         ;;
 esac
