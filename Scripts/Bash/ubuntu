@@ -238,18 +238,10 @@ case "$1" in
         ;;
 
     installQbittorrent)
-        echo "Pre-configuring qBittorrent environment..."
+        echo "Starting qBittorrent to generate initial files..."
         mkdir -p /home/$USER/Docker/qbittorrent/config/qBittorrent/
         mkdir -p /home/$USER/Docker/qbittorrent/downloads
         
-        CONF_FILE="/home/$USER/Docker/qbittorrent/config/qBittorrent/qBittorrent.conf"
-        
-        # Create config file with [Preferences] if it doesn't exist
-        if [ ! -f "$CONF_FILE" ]; then
-            echo "[Preferences]" > "$CONF_FILE"
-        fi
-
-        echo "Starting qBittorrent on port 5080..."
         docker run -d \
           --name qbittorrent \
           -p 5080:8080 \
@@ -265,19 +257,32 @@ case "$1" in
           --restart unless-stopped \
           lscr.io/linuxserver/qbittorrent:latest
 
-        echo "Waiting for security mods (5s)..."
-        sleep 5
+        echo "Waiting for config initialization (10s)..."
+        sleep 10
 
-        sed -i '/\[Preferences\]/a WebUI\\CSRFProtection=false' "$CONF_FILE"
-        sed -i '/\[Preferences\]/a WebUI\\HostHeaderValidation=false' "$CONF_FILE"
+        echo "Stopping container to apply .conf modifications..."
+        docker stop qbittorrent
 
-        echo "Waiting for password generation (10s)..."
+        CONF_FILE="/home/$USER/Docker/qbittorrent/config/qBittorrent/qBittorrent.conf"
+        
+        # Ensure [Preferences] exists and inject the lines
+        if grep -q "\[Preferences\]" "$CONF_FILE"; then
+            sudo sed -i '/\[Preferences\]/a WebUI\\HostHeaderValidation=false\nWebUI\\CSRFProtection=false' "$CONF_FILE"
+        else
+            echo -e "\n[Preferences]\nWebUI\\HostHeaderValidation=false\nWebUI\\CSRFProtection=false" | sudo tee -a "$CONF_FILE" > /dev/null
+        fi
+
+        echo "Restarting qBittorrent with security bypasses..."
+        docker start qbittorrent
+
+        echo "Waiting for final password generation (10s)..."
         sleep 10
         
-        echo "----------------------------------------"
+        echo "------------------------------------------------------------"
         echo "qBittorrent is ready at http://localhost:5080"
-        docker logs qbittorrent 2>&1 | grep "temporary password"
-        echo "----------------------------------------"
+        # We use tail -n 1 to get the most recent password after the restart
+        docker logs qbittorrent 2>&1 | grep "temporary password" | tail -n 1
+        echo "------------------------------------------------------------"
         ;;
 
     removeQbittorrent)
