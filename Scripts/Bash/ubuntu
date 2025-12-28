@@ -8,6 +8,8 @@ case "$1" in
         echo "  installDocker       Installs Docker Engine and Compose"
         echo "  removeDocker        Completely removes Docker from system"
         echo "  removeDockerApps    Stops and removes ALL app containers in this script"
+        echo "  installPortainer    Setup Portainer (GUI) on port 8000 & 9443"
+        echo "  removePortainer     Stop and remove Portainer container"
         echo "  installQDirStat     Setup QDirStat (Storage Visualizer) on port 3000"
         echo "  removeQDirStat      Stop and remove QDirStat container"
         echo "  installJellyfin     Setup Jellyfin (VAAPI) on port 5000"
@@ -76,7 +78,7 @@ case "$1" in
     removeDockerApps)
         echo "Stopping and removing all containers defined in this script..."
         
-        APPS="qdirstat jellyfin photoprism navidrome tandoor db_recipes calibre-web-automated caliber-web-automated-downloader jackett prowlarr sabnzbd radarr sonarr lidarr bazarr qbittorrent deluge homeassistant motioneye"
+        APPS="portainer qdirstat jellyfin photoprism navidrome tandoor db_recipes calibre-web-automated caliber-web-automated-downloader jackett prowlarr sabnzbd radarr sonarr lidarr bazarr qbittorrent deluge homeassistant motioneye"
         
         for app in $APPS; do
             if [ "$(docker ps -aq -f name=^/${app}$)" ]; then
@@ -87,7 +89,28 @@ case "$1" in
         done
         
         docker network rm tandoor_network 2>/dev/null
-        echo "All app containers have been removed. (Config data in /home/$USER/Docker and Media on /media/md0 preserved)"
+        echo "All app containers have been removed."
+        ;;
+
+    installPortainer)
+        echo "Setting up Portainer on ports 8000 and 9443..."
+        sudo docker volume create portainer_data
+
+        docker run -d \
+          --name portainer \
+          -p 8000:8000 \
+          -p 9443:9443 \
+          -v /var/run/docker.sock:/var/run/docker.sock \
+          -v portainer_data:/data \
+          --restart=always \
+          portainer/portainer-ce:latest
+
+        echo "Portainer ready! Access HTTP on 8000 or HTTPS on 9443."
+        ;;
+
+    removePortainer)
+        docker stop portainer 2>/dev/null && docker rm portainer 2>/dev/null
+        echo "Portainer container removed."
         ;;
 
     installQDirStat)
