@@ -7,6 +7,8 @@ case "$1" in
         echo "Commands:"
         echo "  installDocker       Installs Docker Engine and Compose"
         echo "  removeDocker        Completely removes Docker from system"
+        echo "  installQDirStat     Setup QDirStat (Storage Visualizer) on port 3000"
+        echo "  removeQDirStat      Stop and remove QDirStat container"
         echo "  installJellyfin     Setup Jellyfin (VAAPI) on port 5000"
         echo "  removeJellyfin      Stop and remove Jellyfin container"
         echo "  installPhotoPrism   Setup PhotoPrism on port 5001"
@@ -54,6 +56,31 @@ case "$1" in
         sudo rm /etc/apt/sources.list.d/docker.list /etc/apt/keyrings/docker.gpg 2>/dev/null
         sudo apt-get autoremove -y
         echo "Docker removed."
+        ;;
+
+    installQDirStat)
+        echo "Setting up QDirStat on port 3000..."
+        mkdir -p /home/$USER/Docker/qdirstat/config
+
+        docker run -d \
+          --name=qdirstat \
+          -e PUID=1000 \
+          -e PGID=1000 \
+          -e TZ="America/Toronto" \
+          -p 3000:3000 \
+          -p 3001:3001 \
+          -v /home/$USER/Docker/qdirstat/config:/config \
+          -v /media/md0:/data \
+          --shm-size="1gb" \
+          --restart unless-stopped \
+          lscr.io/linuxserver/qdirstat:latest
+          
+        echo "QDirStat running on port 3000 (HTTP) and 3001 (HTTPS)!"
+        ;;
+
+    removeQDirStat)
+        docker stop qdirstat 2>/dev/null && docker rm qdirstat 2>/dev/null
+        echo "QDirStat container removed."
         ;;
 
     installJellyfin)
@@ -302,7 +329,7 @@ case "$1" in
     installDeluge)
         echo "Setting up Deluge on port 5090..."
         mkdir -p /home/$USER/Docker/deluge/{config,downloads}
-        
+
         docker run -d \
           --name=deluge \
           --restart unless-stopped \
@@ -316,6 +343,7 @@ case "$1" in
           -v /home/$USER/Docker/deluge/downloads:/downloads \
           -v /media/md0/Media/Media_Arr/Deluge:/Deluge \
           lscr.io/linuxserver/deluge:latest
+          
         echo "Deluge running on port 5090! (Incoming port: 55555)"
         echo "Default WebUI Password is: deluge"
         ;;
