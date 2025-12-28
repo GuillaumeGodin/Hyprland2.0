@@ -25,6 +25,8 @@ case "$1" in
         echo "  removeSonarr        Stop and remove Sonarr container"
         echo "  installQbittorrent  Setup qBittorrent on port 5080"
         echo "  removeQbittorrent   Stop and remove qBittorrent container"
+        echo "  installDeluge       Setup Deluge on port 5090"
+        echo "  removeDeluge        Stop and remove Deluge container"
         ;;
 
     installDocker)
@@ -57,6 +59,7 @@ case "$1" in
     installJellyfin)
         echo "Setting up Jellyfin (VAAPI) on 5000..."
         mkdir -p /home/$USER/Docker/jellyfin/{config,cache,media}
+        
         sudo docker run -d \
           --name jellyfin \
           --privileged \
@@ -85,6 +88,7 @@ case "$1" in
     installPhotoPrism)
         echo "Setting up PhotoPrism on 5001..."
         mkdir -p /home/$USER/Docker/photoprism/{photos,storage}
+
         docker run -d \
           --name photoprism \
           -p 5001:2342 \
@@ -107,6 +111,7 @@ case "$1" in
     installNavidrome)
         echo "Setting up Navidrome on 5002..."
         mkdir -p /home/$USER/Docker/navidrome/{music,config}
+
         docker run -d \
           --name navidrome \
           -p 5002:4533 \
@@ -127,6 +132,7 @@ case "$1" in
     installJackett)
         echo "Setting up Jackett on 5050..."
         mkdir -p /home/$USER/Docker/jackett/{config,downloads}
+
         docker run -d \
           --name jackett \
           -p 5050:9117 \
@@ -148,6 +154,7 @@ case "$1" in
     installProwlarr)
         echo "Setting up Prowlarr on 5051..."
         mkdir -p /home/$USER/Docker/prowlarr/{config,downloads,media}
+
         docker run -d \
           --name prowlarr \
           --network=bridge \
@@ -172,6 +179,7 @@ case "$1" in
     installSabnzbd)
         echo "Setting up Sabnzbd on 5052..."
         mkdir -p /home/$USER/Docker/sabnzbd/{config,downloads,incomplete}
+
         docker run -d \
           --name sabnzbd \
           --network=bridge \
@@ -196,6 +204,7 @@ case "$1" in
     installRadarr)
         echo "Setting up Radarr on 5053..."
         mkdir -p /home/$USER/Docker/radarr/{config,movies}
+
         docker run -d \
           --name radarr \
           -p 5053:7878 \
@@ -218,6 +227,7 @@ case "$1" in
     installSonarr)
         echo "Setting up Sonarr on 5054..."
         mkdir -p /home/$USER/Docker/sonarr/{config,tv}
+
         docker run -d \
           --name sonarr \
           -p 5054:8989 \
@@ -265,7 +275,6 @@ case "$1" in
 
         CONF_FILE="/home/$USER/Docker/qbittorrent/config/qBittorrent/qBittorrent.conf"
         
-        # Ensure [Preferences] exists and inject the lines
         if grep -q "\[Preferences\]" "$CONF_FILE"; then
             sudo sed -i '/\[Preferences\]/a WebUI\\HostHeaderValidation=false\nWebUI\\CSRFProtection=false' "$CONF_FILE"
         else
@@ -280,14 +289,40 @@ case "$1" in
         
         echo "------------------------------------------------------------"
         echo "qBittorrent is ready at http://localhost:5080"
-        # We use tail -n 1 to get the most recent password after the restart
         docker logs qbittorrent 2>&1 | grep "temporary password" | tail -n 1
+        echo "Please change the default password in the settings!"
         echo "------------------------------------------------------------"
         ;;
 
     removeQbittorrent)
         docker stop qbittorrent 2>/dev/null && docker rm qbittorrent 2>/dev/null
         echo "qBittorrent container removed."
+        ;;
+
+    installDeluge)
+        echo "Setting up Deluge on port 5090..."
+        mkdir -p /home/$USER/Docker/deluge/{config,downloads}
+        
+        docker run -d \
+          --name=deluge \
+          --restart unless-stopped \
+          -p 5090:8112 \
+          -p 55555:6881 \
+          -p 55555:6881/udp \
+          -e PUID=1000 \
+          -e PGID=1000 \
+          -e TZ="America/Toronto" \
+          -v /home/$USER/Docker/deluge/config:/config \
+          -v /home/$USER/Docker/deluge/downloads:/downloads \
+          -v /media/md0/Media/Media_Arr/Deluge:/Deluge \
+          lscr.io/linuxserver/deluge:latest
+        echo "Deluge running on port 5090! (Incoming port: 55555)"
+        echo "Default WebUI Password is: deluge"
+        ;;
+
+    removeDeluge)
+        docker stop deluge 2>/dev/null && docker rm deluge 2>/dev/null
+        echo "Deluge container removed."
         ;;
 
     *)
