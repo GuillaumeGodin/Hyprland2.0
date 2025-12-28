@@ -2,6 +2,7 @@
 
 # --- Functions ---
 
+# Function to install Timeshift and its dependencies
 install_timeshift() {
     echo "------------------------------------------"
     echo "  Installing Timeshift..."
@@ -11,40 +12,57 @@ install_timeshift() {
     sudo add-apt-repository -y ppa:teejee2008/timeshift
     sudo apt update -y
     sudo apt install -y timeshift
-    echo "Finished!"
+    echo "------------------------------------------"
+    echo "  Installation Complete!"
+    echo "------------------------------------------"
 }
 
+# Function to remove Timeshift and clean up the PPA
 remove_timeshift() {
     echo "------------------------------------------"
     echo "  Removing Timeshift..."
     echo "------------------------------------------"
     sudo apt purge -y timeshift
+    echo "Removing PPA repository..."
     sudo add-apt-repository --remove -y ppa:teejee2008/timeshift
     sudo apt autoremove -y
-    echo "Timeshift has been removed."
+    echo "------------------------------------------"
+    echo "  Timeshift has been fully removed."
+    echo "------------------------------------------"
 }
 
+# Function to configure 7-day daily backups via JSON config
 setup_daily_backups() {
     echo "------------------------------------------"
-    echo "  Setting up Daily Schedule (Keep 7)"
+    echo "  Configuring Daily Schedule (Keep 7)"
     echo "------------------------------------------"
     
-    # Check if timeshift is installed first
+    # Check if timeshift is installed
     if ! command -v timeshift &> /dev/null; then
-        echo "Error: Timeshift is not installed. Run installTimeshift first."
+        echo "Error: Timeshift is not installed. Run 'installTimeshift' first."
         exit 1
     fi
 
-    # Set schedule: Daily, Keep 7
-    # Note: This assumes you are using RSYNC (the default for most Ubuntu users)
-    sudo timeshift --rsync
-    sudo timeshift --schedule-daily --count 7
+    # Initialize the config file if it's a fresh install
+    sudo timeshift --check > /dev/null 2>&1
+
+    # Edit the JSON config directly
+    # 1. Enable daily snapshots
+    sudo sed -i 's/"schedule_daily" : "false"/"schedule_daily" : "true"/' /etc/timeshift/timeshift.json
+    # 2. Set retention count to 7
+    # We use a flexible regex for count to catch whatever the default was (usually 5)
+    sudo sed -i 's/"count_daily" : "[0-9]*"/"count_daily" : "7"/' /etc/timeshift/timeshift.json
     
-    echo "Success: Scheduled to keep the last 7 daily snapshots."
+    # Run a check to apply changes and initialize cron tasks
     sudo timeshift --check
+
+    echo "------------------------------------------"
+    echo "  Success! Daily backups are enabled."
+    echo "  Retention Policy: 7 snapshots."
+    echo "------------------------------------------"
 }
 
-# --- Command Logic ---
+# --- Command Logic (Positional Parameters) ---
 
 case "$1" in
     installTimeshift)
@@ -58,6 +76,7 @@ case "$1" in
         ;;
     *)
         echo "Usage: $0 {installTimeshift|removeTimeshift|Daily}"
+        echo "Example: ./ubuntuTimeshift Daily"
         exit 1
         ;;
 esac
