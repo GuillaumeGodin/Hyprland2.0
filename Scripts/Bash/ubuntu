@@ -29,6 +29,8 @@ case "$1" in
         echo "  removeQbittorrent   Stop and remove qBittorrent container"
         echo "  installDeluge       Setup Deluge on port 5090"
         echo "  removeDeluge        Stop and remove Deluge container"
+        echo "  installHomeAssistant Setup Home Assistant on port 8123"
+        echo "  removeHomeAssistant  Stop and remove Home Assistant container"
         ;;
 
     installDocker)
@@ -351,6 +353,27 @@ case "$1" in
     removeDeluge)
         docker stop deluge 2>/dev/null && docker rm deluge 2>/dev/null
         echo "Deluge container removed."
+        ;;
+
+    installHomeAssistant)
+        echo "Setting up Home Assistant on port 8123..."
+        mkdir -p /home/$USER/Docker/homeassistant/config
+
+        docker run -d \
+          --name homeassistant \
+          --network=host \
+          -e TZ="America/Toronto" \
+          -v /home/$USER/Docker/homeassistant/config:/config \
+          --privileged \
+          --restart unless-stopped \
+          ghcr.io/home-assistant/home-assistant:stable
+
+        echo "Home Assistant running on port 8123!"
+        ;;
+
+    removeHomeAssistant)
+        docker stop homeassistant 2>/dev/null && docker rm homeassistant 2>/dev/null
+        echo "Home Assistant container removed."
         ;;
 
     *)
