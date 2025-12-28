@@ -9,8 +9,9 @@ show_help() {
     echo "Commands:"
     echo "  installTimeshift   Installs Timeshift via official PPA."
     echo "  removeTimeshift    Completely removes Timeshift and its PPA."
-    echo "  Daily              Sets up a daily backup schedule (keeps last 7)."
-    echo "  Status             Shows current snapshots and disk space."
+    echo "  daily              Sets up a daily backup schedule (keeps last 7)."
+    echo "  status             Shows current snapshots and disk space."
+    echo "  create             Manually creates a new snapshot immediately."
     echo "  -h, --help         Displays this help message."
     echo ""
 }
@@ -77,6 +78,17 @@ show_status() {
     fi
 }
 
+# Manually creates a snapshot
+create_snapshot() {
+    echo "------------------------------------------"
+    echo "  Creating Manual Snapshot..."
+    echo "------------------------------------------"
+    sudo timeshift --create --comments "Manual Backup" --tags O
+    echo "------------------------------------------"
+    echo "  Snapshot Created Successfully!"
+    echo "------------------------------------------"
+}
+
 # --- Command Logic ---
 
 case "$1" in
@@ -86,11 +98,14 @@ case "$1" in
     removeTimeshift)
         remove_timeshift
         ;;
-    Daily)
+    daily)
         setup_daily_backups
         ;;
-    Status)
+    status)
         show_status
+        ;;
+    create)
+        create_snapshot
         ;;
     -h|--help)
         show_help
