@@ -238,7 +238,7 @@ case "$1" in
         ;;
 
     installQbittorrent)
-        echo "Initial start for qBittorrent on 5080..."
+        echo "Setting up qBittorrent on port 5080..."
         mkdir -p /home/$USER/Docker/qbittorrent/{config,downloads}
         docker run -d \
           --name qbittorrent \
@@ -255,29 +255,23 @@ case "$1" in
           --restart unless-stopped \
           lscr.io/linuxserver/qbittorrent:latest
         
-        echo "Waiting for temporary password generation (15s)..."
+        echo "Waiting 15 seconds for config generation..."
         sleep 15
         
-        echo "----------------------------------------"
-        echo "YOUR TEMPORARY LOGIN CREDENTIALS:"
-        docker logs qbittorrent 2>&1 | grep "temporary password"
-        echo "----------------------------------------"
-        
-        echo "Stopping container to apply WebUI security bypasses..."
+        echo "Applying WebUI security bypasses..."
         docker stop qbittorrent
-        
         CONF_FILE="/home/$USER/Docker/qbittorrent/config/qBittorrent/qBittorrent.conf"
         
-        # Ensure the directory and file exist before sed
-        if [ -f "$CONF_FILE" ]; then
-            sudo sed -i '/\[Preferences\]/a WebUI\\HostHeaderValidation=false\nWebUI\\CSRFProtection=false' "$CONF_FILE"
-            echo "Config modified."
-        else
-            echo "Error: Config file not found at $CONF_FILE"
-        fi
+        # Injects the lines into the [Preferences] section
+        sudo sed -i '/\[Preferences\]/a WebUI\\HostHeaderValidation=false\nWebUI\\CSRFProtection=false' "$CONF_FILE"
         
         docker start qbittorrent
-        echo "qBittorrent is back up and running on port 5080!"
+        
+        echo "----------------------------------------"
+        echo "Temporary login credentials:"
+        docker logs qbittorrent 2>&1 | grep "temporary password"
+        echo "----------------------------------------"
+        echo "qBittorrent running on port 5080!"
         ;;
 
     removeQbittorrent)
