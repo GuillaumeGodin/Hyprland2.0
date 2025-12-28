@@ -238,39 +238,23 @@ case "$1" in
         ;;
 
     installQbittorrent)
-        echo "Setting up qBittorrent..."
-
-        # 1. Create directory and start container to generate default files
-        mkdir -p /home/$USER/Docker/qbittorrent/config/qBittorrent/
+        echo "Setting up qBittorrent on port 5080..."
+        mkdir -p /home/$USER/Docker/qbittorrent/{config,downloads}
         docker run -d \
           --name qbittorrent \
-          -p 5080:8080 -p 6881:6881 -p 6881:6881/udp \
-          -e PUID=$(id -u) -e PGID=$(id -g) \
+          -p 5080:8080 \
+          -p 6881:6881 \
+          -p 6881:6881/udp \
+          -e PUID=1000 \
+          -e PGID=1000 \
+          -e TZ="America/Toronto" \
+          -e WEBUI_PORT=8080 \
           -v /home/$USER/Docker/qbittorrent/config:/config \
           -v /home/$USER/Docker/qbittorrent/downloads:/downloads \
+          -v /media/md0/Media/Media_Arr/Deluge:/Deluge \
           --restart unless-stopped \
           lscr.io/linuxserver/qbittorrent:latest
-
-        echo "Initializing (10s)..."
-        sleep 10
-        
-        # 2. CRITICAL: Stop the container before editing the file
-        docker stop qbittorrent
-        
-        CONF_FILE="/home/$USER/Docker/qbittorrent/config/qBittorrent/qBittorrent.conf"
-        ADMIN_HASH="@uP8jvJajmP5p9Yp80Wp7Wp7Wp80Wp9W9p9W9p80Wp7Wp7Wp80W"
-
-        # 3. Wipe existing WebUI lines and inject fresh ones
-        # We use sudo because Docker volumes are often root-owned
-        sudo sed -i '/WebUI\\/d' "$CONF_FILE"
-
-        # Inject the settings you listed
-        # Note the double-slashes for the file, and quadruple for the script
-        sudo sed -i "/\[Preferences\]/a WebUI\\\\Username=admin\nWebUI\\\\Password_PBKDF2=\"$ADMIN_HASH\"\nWebUI\\\\HostHeaderValidation=false\nWebUI\\\\CSRFProtection=false\nWebUI\\\\Address=*\nWebUI\\\\ServerDomains=*" "$CONF_FILE"
-
-        # 4. Start it back up
-        docker start qbittorrent
-        echo "Done! Login with admin / admin"
+        echo "qBittorrent running on port 5080!"
         ;;
 
     removeQbittorrent)
