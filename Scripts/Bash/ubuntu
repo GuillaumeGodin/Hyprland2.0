@@ -238,7 +238,7 @@ case "$1" in
         ;;
 
     installQbittorrent)
-        echo "Setting up qBittorrent on port 5080..."
+        echo "Initial start for qBittorrent on 5080..."
         mkdir -p /home/$USER/Docker/qbittorrent/{config,downloads}
         docker run -d \
           --name qbittorrent \
@@ -255,14 +255,29 @@ case "$1" in
           --restart unless-stopped \
           lscr.io/linuxserver/qbittorrent:latest
         
-        echo "Waiting 10 seconds for password generation..."
-        sleep 10
+        echo "Waiting for temporary password generation (15s)..."
+        sleep 15
         
-        # Extracts the line containing the temporary password from logs
         echo "----------------------------------------"
+        echo "YOUR TEMPORARY LOGIN CREDENTIALS:"
         docker logs qbittorrent 2>&1 | grep "temporary password"
         echo "----------------------------------------"
-        echo "qBittorrent running on port 5080!"
+        
+        echo "Stopping container to apply WebUI security bypasses..."
+        docker stop qbittorrent
+        
+        CONF_FILE="/home/$USER/Docker/qbittorrent/config/qBittorrent/qBittorrent.conf"
+        
+        # Ensure the directory and file exist before sed
+        if [ -f "$CONF_FILE" ]; then
+            sudo sed -i '/\[Preferences\]/a WebUI\\HostHeaderValidation=false\nWebUI\\CSRFProtection=false' "$CONF_FILE"
+            echo "Config modified."
+        else
+            echo "Error: Config file not found at $CONF_FILE"
+        fi
+        
+        docker start qbittorrent
+        echo "qBittorrent is back up and running on port 5080!"
         ;;
 
     removeQbittorrent)
