@@ -42,6 +42,8 @@ case "$1" in
         echo "  removeDeluge        Stop and remove Deluge container"
         echo "  installHomeAssistant Setup Home Assistant on port 8123"
         echo "  removeHomeAssistant  Stop and remove Home Assistant container"
+        echo "  installMotionEye    Setup motionEye (CCTV) on port 8765"
+        echo "  removeMotionEye     Stop and remove motionEye container"
         ;;
 
     installDocker)
@@ -73,8 +75,8 @@ case "$1" in
 
     removeDockerApps)
         echo "Stopping and removing all containers defined in this script..."
-        # List of all container names used in the script
-        APPS="qdirstat jellyfin photoprism navidrome tandoor db_recipes calibre-web-automated caliber-web-automated-downloader jackett prowlarr sabnzbd radarr sonarr lidarr bazarr qbittorrent deluge homeassistant"
+        
+        APPS="qdirstat jellyfin photoprism navidrome tandoor db_recipes calibre-web-automated caliber-web-automated-downloader jackett prowlarr sabnzbd radarr sonarr lidarr bazarr qbittorrent deluge homeassistant motioneye"
         
         for app in $APPS; do
             if [ "$(docker ps -aq -f name=^/${app}$)" ]; then
@@ -85,12 +87,13 @@ case "$1" in
         done
         
         docker network rm tandoor_network 2>/dev/null
-        echo "All app containers have been removed. (Data in /home/$USER/Docker and /media/md0 was preserved)"
+        echo "All app containers have been removed. (Config data in /home/$USER/Docker and Media on /media/md0 preserved)"
         ;;
 
     installQDirStat)
         echo "Setting up QDirStat on port 3000..."
         mkdir -p /home/$USER/Docker/qdirstat/config
+
         docker run -d \
           --name=qdirstat \
           -e PUID=1000 \
@@ -103,6 +106,7 @@ case "$1" in
           --shm-size="1gb" \
           --restart unless-stopped \
           lscr.io/linuxserver/qdirstat:latest
+
         echo "QDirStat running on port 3000!"
         ;;
 
@@ -114,6 +118,7 @@ case "$1" in
     installJellyfin)
         echo "Setting up Jellyfin (VAAPI) on 5000..."
         mkdir -p /home/$USER/Docker/jellyfin/{config,cache,media}
+        
         sudo docker run -d \
           --name jellyfin \
           --privileged \
@@ -131,6 +136,7 @@ case "$1" in
           -v /media/md0:/md0 \
           --restart unless-stopped \
           jellyfin/jellyfin:latest
+          
         echo "Jellyfin running on port 5000!"
         ;;
 
@@ -142,6 +148,7 @@ case "$1" in
     installPhotoPrism)
         echo "Setting up PhotoPrism on 5001..."
         mkdir -p /home/$USER/Docker/photoprism/{photos,storage}
+
         docker run -d \
           --name photoprism \
           -p 5001:2342 \
@@ -153,6 +160,7 @@ case "$1" in
           -v /media/md0:/md0 \
           --restart=unless-stopped \
           photoprism/photoprism:latest
+
         echo "PhotoPrism running on port 5001!"
         ;;
 
@@ -164,6 +172,7 @@ case "$1" in
     installNavidrome)
         echo "Setting up Navidrome on 5002..."
         mkdir -p /home/$USER/Docker/navidrome/{music,config}
+
         docker run -d \
           --name navidrome \
           -p 5002:4533 \
@@ -173,6 +182,7 @@ case "$1" in
           -v /media/md0:/md0 \
           --restart=unless-stopped \
           deluan/navidrome:latest
+
         echo "Navidrome running on port 5002!"
         ;;
 
@@ -185,6 +195,7 @@ case "$1" in
         echo "Setting up Tandoor Recipes..."
         mkdir -p /home/$USER/Docker/tandoor/{staticfiles,mediafiles,postgresql}
         docker network create tandoor_network 2>/dev/null
+
         docker run -d \
             --name db_recipes \
             --network tandoor_network \
@@ -195,6 +206,7 @@ case "$1" in
             -v /home/$USER/Docker/tandoor/postgresql:/var/lib/postgresql/data \
             --restart unless-stopped \
             postgres:14
+
         docker run -d \
             --name tandoor \
             --network tandoor_network \
@@ -210,6 +222,7 @@ case "$1" in
             -v /home/$USER/Docker/tandoor/mediafiles:/opt/recipes/mediafiles \
             --restart unless-stopped \
             vabene1111/recipes
+
         echo "Tandoor is ready! WebUI on port 5004, DB on port 5003."
         ;;
 
@@ -217,12 +230,13 @@ case "$1" in
         docker stop tandoor db_recipes 2>/dev/null
         docker rm tandoor db_recipes 2>/dev/null
         docker network rm tandoor_network 2>/dev/null
-        echo "Tandoor containers removed."
+        echo "Tandoor containers and network removed."
         ;;
 
     installCalibre)
         echo "Setting up Calibre-Web-Automated on port 5005..."
         mkdir -p /home/$USER/Docker/calibre-web-automated/{config,calibre-library,ingest}
+
         docker run -d \
           --name=calibre-web-automated \
           --network=bridge \
@@ -235,7 +249,10 @@ case "$1" in
           -v /home/$USER/Docker/calibre-web-automated/ingest:/cwa-book-ingest \
           --restart unless-stopped \
           crocodilestick/calibre-web-automated:latest
+
         echo "Calibre-Web-Automated running on port 5005!"
+        echo "User: admin"
+        echo "Password: admin123"
         ;;
 
     removeCalibre)
@@ -246,6 +263,7 @@ case "$1" in
     installCalibreDL)
         echo "Setting up Calibre Downloader on port 5006..."
         mkdir -p /home/$USER/Docker/calibre-web-automated/ingest
+
         docker run -d \
           --name=caliber-web-automated-downloader \
           --network=bridge \
@@ -259,6 +277,7 @@ case "$1" in
           -v /home/$USER/Docker/calibre-web-automated/ingest:/cwa-book-ingest \
           --restart unless-stopped \
           ghcr.io/calibrain/calibre-web-automated-book-downloader:latest
+
         echo "Calibre Downloader running on port 5006!"
         ;;
 
@@ -270,6 +289,7 @@ case "$1" in
     installJackett)
         echo "Setting up Jackett on 5050..."
         mkdir -p /home/$USER/Docker/jackett/{config,downloads}
+
         docker run -d \
           --name jackett \
           -p 5050:9117 \
@@ -280,6 +300,7 @@ case "$1" in
           -v /home/$USER/Docker/jackett/downloads:/downloads \
           --restart unless-stopped \
           lscr.io/linuxserver/jackett:latest
+
         echo "Jackett running on port 5050!"
         ;;
 
@@ -291,6 +312,7 @@ case "$1" in
     installProwlarr)
         echo "Setting up Prowlarr on 5051..."
         mkdir -p /home/$USER/Docker/prowlarr/{config,downloads,media}
+
         docker run -d \
           --name prowlarr \
           --network=bridge \
@@ -304,6 +326,7 @@ case "$1" in
           -v /media/md0:/md0 \
           --restart unless-stopped \
           linuxserver/prowlarr
+
         echo "Prowlarr running on port 5051!"
         ;;
 
@@ -315,6 +338,7 @@ case "$1" in
     installSabnzbd)
         echo "Setting up Sabnzbd on 5052..."
         mkdir -p /home/$USER/Docker/sabnzbd/{config,downloads,incomplete}
+
         docker run -d \
           --name sabnzbd \
           --network=bridge \
@@ -328,6 +352,7 @@ case "$1" in
           -v /media/md0:/md0 \
           --restart unless-stopped \
           linuxserver/sabnzbd
+
         echo "Sabnzbd running on port 5052!"
         ;;
 
@@ -339,6 +364,7 @@ case "$1" in
     installRadarr)
         echo "Setting up Radarr on 5053..."
         mkdir -p /home/$USER/Docker/radarr/{config,movies}
+
         docker run -d \
           --name radarr \
           -p 5053:7878 \
@@ -350,6 +376,7 @@ case "$1" in
           -v /media/md0/Media/Media_Arr/Deluge:/Deluge \
           --restart=unless-stopped \
           linuxserver/radarr:latest
+
         echo "Radarr running on port 5053!"
         ;;
 
@@ -361,6 +388,7 @@ case "$1" in
     installSonarr)
         echo "Setting up Sonarr on 5054..."
         mkdir -p /home/$USER/Docker/sonarr/{config,tv}
+
         docker run -d \
           --name sonarr \
           -p 5054:8989 \
@@ -372,6 +400,7 @@ case "$1" in
           -v /media/md0/Media/Media_Arr/Deluge:/Deluge \
           --restart=unless-stopped \
           linuxserver/sonarr:latest
+
         echo "Sonarr running on port 5054!"
         ;;
 
@@ -383,20 +412,22 @@ case "$1" in
     installLidarr)
         echo "Setting up Lidarr on port 5055..."
         mkdir -p /home/$USER/Docker/lidarr/{config,music,downloads}
+
         docker run -d \
-            --name=lidarr \
-            --network=bridge \
-            -p 5055:8686 \
-            -e PUID=1000 \
-            -e PGID=1000 \
-            -e TZ="America/Toronto" \
-            -v /home/$USER/Docker/lidarr/config:/config \
-            -v /home/$USER/Docker/lidarr/music:/music \
-            -v /home/$USER/Docker/lidarr/downloads:/downloads \
-            -v /media/md0:/md0 \
-            -v /media/md0/Media/Media_Arr/Deluge:/Deluge \
-            --restart unless-stopped \
-            linuxserver/lidarr:latest
+          --name=lidarr \
+          --network=bridge \
+          -p 5055:8686 \
+          -e PUID=1000 \
+          -e PGID=1000 \
+          -e TZ="America/Toronto" \
+          -v /home/$USER/Docker/lidarr/config:/config \
+          -v /home/$USER/Docker/lidarr/music:/music \
+          -v /home/$USER/Docker/lidarr/downloads:/downloads \
+          -v /media/md0:/md0 \
+          -v /media/md0/Media/Media_Arr/Deluge:/Deluge \
+          --restart unless-stopped \
+          linuxserver/lidarr:latest
+
         echo "Lidarr running on port 5055!"
         ;;
 
@@ -408,19 +439,21 @@ case "$1" in
     installBazarr)
         echo "Setting up Bazarr on port 5056..."
         mkdir -p /home/$USER/Docker/bazarr/{config,downloads,media}
+
         docker run -d \
-            --name=bazarr \
-            --network=bridge \
-            -p 5056:6767 \
-            -e PUID=1000 \
-            -e PGID=1000 \
-            -e TZ="America/Toronto" \
-            -v /home/$USER/Docker/bazarr/config:/config \
-            -v /home/$USER/Docker/bazarr/downloads:/downloads \
-            -v /home/$USER/Docker/bazarr/media:/media \
-            -v /media/md0:/md0 \
-            --restart unless-stopped \
-            linuxserver/bazarr:latest
+          --name=bazarr \
+          --network=bridge \
+          -p 5056:6767 \
+          -e PUID=1000 \
+          -e PGID=1000 \
+          -e TZ="America/Toronto" \
+          -v /home/$USER/Docker/bazarr/config:/config \
+          -v /home/$USER/Docker/bazarr/downloads:/downloads \
+          -v /home/$USER/Docker/bazarr/media:/media \
+          -v /media/md0:/md0 \
+          --restart unless-stopped \
+          linuxserver/bazarr:latest
+
         echo "Bazarr running on port 5056!"
         ;;
 
@@ -433,6 +466,7 @@ case "$1" in
         echo "Starting qBittorrent to generate initial files..."
         mkdir -p /home/$USER/Docker/qbittorrent/config/qBittorrent/
         mkdir -p /home/$USER/Docker/qbittorrent/downloads
+        
         docker run -d \
           --name qbittorrent \
           -p 5080:8080 \
@@ -441,21 +475,26 @@ case "$1" in
           -e PUID=1000 \
           -e PGID=1000 \
           -e TZ="America/Toronto" \
+          -e WEBUI_PORT=8080 \
           -v /home/$USER/Docker/qbittorrent/config:/config \
           -v /home/$USER/Docker/qbittorrent/downloads:/downloads \
           -v /media/md0/Media/Media_Arr/Deluge:/Deluge \
           --restart unless-stopped \
           lscr.io/linuxserver/qbittorrent:latest
+
+        echo "Waiting for config (10s)..."
         sleep 10
         docker stop qbittorrent
+
         CONF_FILE="/home/$USER/Docker/qbittorrent/config/qBittorrent/qBittorrent.conf"
         if grep -q "\[Preferences\]" "$CONF_FILE"; then
             sudo sed -i '/\[Preferences\]/a WebUI\\HostHeaderValidation=false\nWebUI\\CSRFProtection=false' "$CONF_FILE"
         else
             echo -e "\n[Preferences]\nWebUI\\HostHeaderValidation=false\nWebUI\\CSRFProtection=false" | sudo tee -a "$CONF_FILE" > /dev/null
         fi
+
         docker start qbittorrent
-        echo "qBittorrent is ready at http://localhost:5080"
+        echo "qBittorrent ready on port 5080!"
         ;;
 
     removeQbittorrent)
@@ -466,6 +505,7 @@ case "$1" in
     installDeluge)
         echo "Setting up Deluge on port 5090..."
         mkdir -p /home/$USER/Docker/deluge/{config,downloads}
+
         docker run -d \
           --name=deluge \
           --restart unless-stopped \
@@ -479,6 +519,7 @@ case "$1" in
           -v /home/$USER/Docker/deluge/downloads:/downloads \
           -v /media/md0/Media/Media_Arr/Deluge:/Deluge \
           lscr.io/linuxserver/deluge:latest
+          
         echo "Deluge running on port 5090!"
         ;;
 
@@ -490,6 +531,7 @@ case "$1" in
     installHomeAssistant)
         echo "Setting up Home Assistant on port 8123..."
         mkdir -p /home/$USER/Docker/homeassistant/config
+
         docker run -d \
           --name homeassistant \
           --network=host \
@@ -498,12 +540,37 @@ case "$1" in
           --privileged \
           --restart unless-stopped \
           ghcr.io/home-assistant/home-assistant:stable
+
         echo "Home Assistant running on port 8123!"
         ;;
 
     removeHomeAssistant)
         docker stop homeassistant 2>/dev/null && docker rm homeassistant 2>/dev/null
         echo "Home Assistant container removed."
+        ;;
+
+    installMotionEye)
+        echo "Setting up motionEye on port 8765..."
+        mkdir -p /home/$USER/Docker/motioneye/MotionEye
+        mkdir -p /home/$USER/Docker/motioneye/MotionEye/etc
+
+        docker run -d \
+          --name=motioneye \
+          --restart=always \
+          -p 8765:8765 \
+          -v /home/$USER/Docker/motioneye/MotionEye:/MotionEye \
+          -v /home/$USER/Docker/motioneye/MotionEye/etc:/etc/motioneye \
+          -v /etc/localtime:/etc/localtime:ro \
+          ghcr.io/motioneye-project/motioneye:edge
+
+        echo "motionEye running on port 8765!"
+        echo "User: admin"
+        echo "Password: leave blank"
+        ;;
+
+    removeMotionEye)
+        docker stop motioneye 2>/dev/null && docker rm motioneye 2>/dev/null
+        echo "motionEye container removed."
         ;;
 
     *)
