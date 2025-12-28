@@ -15,6 +15,8 @@ case "$1" in
         echo "  removePhotoPrism    Stop and remove PhotoPrism container"
         echo "  installNavidrome    Setup Navidrome (Music) on port 5002"
         echo "  removeNavidrome     Stop and remove Navidrome container"
+        echo "  installTandoor      Setup Tandoor Recipes on port 5003 (DB) & 5004 (Web)"
+        echo "  removeTandoor       Stop and remove Tandoor & Postgres containers"
         echo "  installJackett      Setup Jackett (Indexers) on port 5050"
         echo "  removeJackett       Stop and remove Jackett container"
         echo "  installProwlarr     Setup Prowlarr (Indexers) on port 5051"
@@ -156,6 +158,47 @@ case "$1" in
     removeNavidrome)
         docker stop navidrome 2>/dev/null && docker rm navidrome 2>/dev/null
         echo "Navidrome container removed."
+        ;;
+
+    installTandoor)
+        echo "Setting up Tandoor Recipes..."
+        mkdir -p /home/$USER/Docker/tandoor/{staticfiles,mediafiles,postgresql}
+        docker network create tandoor_network 2>/dev/null
+
+        docker run -d \
+            --name db_recipes \
+            --network tandoor_network \
+            -p 5003:5432 \
+            -e POSTGRES_USER=gg \
+            -e POSTGRES_PASSWORD="z230" \
+            -e POSTGRES_DB=djangodb \
+            -v /home/$USER/Docker/tandoor/postgresql:/var/lib/postgresql/data \
+            --restart unless-stopped \
+            postgres:14
+
+        docker run -d \
+            --name tandoor \
+            --network tandoor_network \
+            -p 5004:80 \
+            -e SECRET_KEY="Ko6EaBPDROfILwNzeENdDVDTBo_SrdsGE0goTo0F3AiFSDCpf0uTlgWzv11HMSZGdhs" \
+            -e DB_ENGINE=django.db.backends.postgresql \
+            -e POSTGRES_HOST=db_recipes \
+            -e POSTGRES_PORT=5432 \
+            -e POSTGRES_USER=gg \
+            -e POSTGRES_PASSWORD="z230" \
+            -e POSTGRES_DB=djangodb \
+            -v /home/$USER/Docker/tandoor/staticfiles:/opt/recipes/staticfiles \
+            -v /home/$USER/Docker/tandoor/mediafiles:/opt/recipes/mediafiles \
+            --restart unless-stopped \
+            vabene1111/recipes
+        echo "Tandoor is ready! WebUI on port 5004, DB on port 5003."
+        ;;
+
+    removeTandoor)
+        docker stop tandoor db_recipes 2>/dev/null
+        docker rm tandoor db_recipes 2>/dev/null
+        docker network rm tandoor_network 2>/dev/null
+        echo "Tandoor containers and network removed."
         ;;
 
     installJackett)
