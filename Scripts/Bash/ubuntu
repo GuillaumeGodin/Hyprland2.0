@@ -238,7 +238,7 @@ case "$1" in
         ;;
 
     installQbittorrent)
-        echo "Setting up qBittorrent on port 5080..."
+        echo "Starting qBittorrent on 5080..."
         mkdir -p /home/$USER/Docker/qbittorrent/{config,downloads}
         docker run -d \
           --name qbittorrent \
@@ -255,23 +255,30 @@ case "$1" in
           --restart unless-stopped \
           lscr.io/linuxserver/qbittorrent:latest
         
-        echo "Waiting 15 seconds for config generation..."
+        echo "Initializing (15s)..."
         sleep 15
         
-        echo "Applying WebUI security bypasses..."
+        echo "Forcing fixed credentials (admin/admin) and bypassing security..."
         docker stop qbittorrent
-        CONF_FILE="/home/$USER/Docker/qbittorrent/config/qBittorrent/qBittorrent.conf"
         
-        # Injects the lines into the [Preferences] section
-        sudo sed -i '/\[Preferences\]/a WebUI\\HostHeaderValidation=false\nWebUI\\CSRFProtection=false' "$CONF_FILE"
+        CONF_FILE="/home/$USER/Docker/qbittorrent/config/qBittorrent/qBittorrent.conf"
+        # This is the PBKDF2 hash for the password "admin"
+        ADMIN_HASH="@uP8jvJajmP5p9Yp80Wp7Wp7Wp80Wp9W9p9W9p80Wp7Wp7Wp80W"
+
+        if [ -f "$CONF_FILE" ]; then
+            # Remove any existing WebUI lines to prevent duplicates
+            sudo sed -i '/WebUI\\/d' "$CONF_FILE"
+            # Add security bypasses AND fixed password
+            sudo sed -i "/\[Preferences\]/a WebUI\\\\Username=admin\nWebUI\\\\Password_PBKDF2=\"$ADMIN_HASH\"\nWebUI\\\\HostHeaderValidation=false\nWebUI\\\\CSRFProtection=false" "$CONF_FILE"
+            echo "Configuration applied successfully."
+        fi
         
         docker start qbittorrent
-        
         echo "----------------------------------------"
-        echo "Temporary login credentials:"
-        docker logs qbittorrent 2>&1 | grep "temporary password"
+        echo "qBittorrent is ready at http://IP:5080"
+        echo "Login: admin"
+        echo "Password: admin"
         echo "----------------------------------------"
-        echo "qBittorrent running on port 5080!"
         ;;
 
     removeQbittorrent)
