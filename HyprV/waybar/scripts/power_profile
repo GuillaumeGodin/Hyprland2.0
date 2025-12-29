@@ -1,52 +1,41 @@
 #!/bin/bash
 
-# 1. Get current Power Profile from asusctl
-get_status() {
-    PWR=$(asusctl profile -p | sed -n -e 's/^.*Active profile is //p')
+get_pwr() {
+    # Extract just the profile name (Quiet, Balanced, or Performance)
+    PWR=$(asusctl profile -p | grep "Active profile is" | awk '{print $NF}')
 }
 
-get_status
+get_pwr
 
-# 2. Logic for Display (Waybar)
-if [ "$PWR" == "Quiet" ]; then
-    text="󰾆"
-    tooltip="Quiet Mode + Integrated GPU"
-elif [ "$PWR" == "Balanced" ]; then
-    text="󰾅"
-    tooltip="Balanced Mode + Hybrid GPU"
-elif [ "$PWR" == "Performance" ]; then
-    text="󰓅"
-    tooltip="Performance Mode + Dedicated GPU"
-fi
+# 1. Logic for Waybar Display
+case "$PWR" in
+    "Quiet")
+        text="󰾆"
+        tooltip="Quiet Mode (CPU Throttled)"
+        ;;
+    "Balanced")
+        text="󰾅"
+        tooltip="Balanced Mode"
+        ;;
+    "Performance")
+        text="󰓅"
+        tooltip="Performance Mode (High Fans)"
+        ;;
+    *)
+        text="󰠠"
+        tooltip="Unknown Profile"
+        ;;
+esac
 
 echo '{"text": "'$text'", "tooltip": "'$tooltip'"}'
 
-# 3. Toggle Logic
+# 2. Toggle Logic
 if [[ "$1" == "next" ]]; then
-    # Cycle the asusctl profile first
+    # Cycle profile
     asusctl profile -n
-    get_status # Refresh the PWR variable with the new profile
-    
-    # Apply the corresponding GPU mode
-    case "$PWR" in
-        "Quiet")
-            # This runs the command in the background, independent of this script
-            systemd-run --user --machine=%u /usr/bin/supergfxctl -m Integrated
-            GPU_MSG="Integrated GPU"
-            ;;
-        "Balanced")
-            systemd-run --user --machine=%u /usr/bin/supergfxctl -m Hybrid
-            GPU_MSG="Hybrid GPU"
-            ;;
-        "Performance")
-            # WARNING: This might still trigger a reboot if your laptop has a MUX
-            systemd-run --user --machine=%u /usr/bin/supergfxctl -m AsusMuxDgpu
-            GPU_MSG="Dedicated GPU"
-            ;;
-    esac
-
-    # Update Waybar and Notify
+    get_pwr
+    # Refresh Waybar
     pkill -SIGRTMIN+8 waybar
-    notify-send -h string:x-canonical-private-synchronous:sys-notify -u normal \
-        "Profile: $PWR" "GPU switched to $GPU_MSG"
+    # Notify user
+    notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Asus Profile: $PWR"
 fi
