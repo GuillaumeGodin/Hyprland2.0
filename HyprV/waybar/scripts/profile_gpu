@@ -25,27 +25,14 @@ case "${1,,}" in
     integrated)
         echo "Switching to Integrated... Please wait."
         sudo supergfxctl -m Integrated
-        
-        echo "Hardware ready. Logging out now..."
-        sleep 2
-        echo "This is where it would reboot..."
-        # hyprctl dispatch exit 0 || loginctl terminate-user $USER
         ;;
     hybrid)
         echo "Switching to Hybrid... Please wait."
         sudo supergfxctl -m Hybrid
-        
-        echo "Hardware ready. Logging out now..."
-        sleep 2
-        echo "This is where it would reboot..."
-        # hyprctl dispatch exit 0 || loginctl terminate-user $USER
         ;;
     mux)
         echo "Switching to MUX (Ultimate) mode..."
         sudo supergfxctl -m AsusMuxDgpu
-        echo "REBOOTING in 5 seconds..."
-        sleep 5
-        systemctl reboot
         ;;
     *)
         echo -e "\e[1;31mError: Invalid option '$1'\e[0m"
