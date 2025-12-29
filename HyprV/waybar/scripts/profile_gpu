@@ -2,35 +2,58 @@
 
 MODE=$1
 
+# Help function to display usage
+show_help() {
+    echo -e "\e[1;34mAsus GPU Mode Switcher\e[0m"
+    echo "---------------------------"
+    echo "Usage: set-gpu [OPTION]"
+    echo ""
+    echo "Options:"
+    echo "  integrated    Switch to iGPU only (Saves battery, requires Logout)"
+    echo "  hybrid        Switch to iGPU + dGPU (Standard, requires Logout)"
+    echo "  mux           Switch to Dedicated GPU only (Max FPS, requires REBOOT)"
+    echo "  -h, --help    Show this help message"
+    echo ""
+    echo -e "Current Status: \e[1;32m$(supergfxctl -g)\e[0m"
+}
+
+# Check if no arguments were provided or if -h/--help was used
+if [[ -z "$MODE" || "$MODE" == "-h" || "$MODE" == "--help" ]]; then
+    show_help
+    exit 0
+fi
+
 # Convert input to lowercase to be flexible
 case "${MODE,,}" in
     integrated)
-        echo "Switching to Integrated mode..."
+        echo -e "\e[1;33mSwitching to Integrated mode...\e[0m"
         sudo supergfxctl -m Integrated
         echo "Logging out in 3 seconds..."
         sleep 3
-        # Standard command to log out of KDE/GNOME/Hyprland
-        loginctl terminate-user $USER
+        hyprctl dispatch exit 0
         ;;
         
     hybrid)
-        echo "Switching to Hybrid mode..."
+        echo -e "\e[1;33mSwitching to Hybrid mode...\e[0m"
         sudo supergfxctl -m Hybrid
         echo "Logging out in 3 seconds..."
         sleep 3
-        loginctl terminate-user $USER
+        hyprctl dispatch exit 0
         ;;
         
     mux|dedicated|asuxmuxdgpu)
-        echo "Switching to MUX (Ultimate) mode..."
+        echo -e "\e[1;31mSwitching to MUX (Ultimate) mode...\e[0m"
         sudo supergfxctl -m AsusMuxDgpu
-        echo "REBOOTING in 5 seconds... Save your work!"
+        echo "----------------------------------------------------"
+        echo "REBOOTING in 5 seconds... PLEASE SAVE YOUR WORK!"
+        echo "----------------------------------------------------"
         sleep 5
         systemctl reboot
         ;;
         
     *)
-        echo "Usage: ./set-gpu [integrated | hybrid | mux]"
-        echo "Current Mode: $(supergfxctl -g)"
+        echo -e "\e[1;31mError: Invalid option '$MODE'\e[0m"
+        show_help
+        exit 1
         ;;
 esac
