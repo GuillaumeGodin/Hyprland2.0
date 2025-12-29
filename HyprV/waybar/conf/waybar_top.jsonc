@@ -167,7 +167,7 @@
 
     "custom/power_profile": {
     //shows the current power profile and switches to next on click
-    "exec": "~/.config/HyprV/waybar/scripts/power_profile",
+    "exec": "~/.config/HyprV/waybar/scripts/profile_power",
     "return-type": "json",
     "interval": 20,
     "format": "{}",
