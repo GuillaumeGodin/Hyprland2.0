@@ -1,7 +1,6 @@
 #!/bin/bash
 
-MODE=$1
-
+# Help function for easy maintenance
 show_help() {
     echo -e "\e[1;34mAsus GPU Mode Switcher\e[0m"
     echo "---------------------------"
@@ -16,56 +15,40 @@ show_help() {
     echo -e "Current Status: \e[1;32m$(supergfxctl -g)\e[0m"
 }
 
-if [[ -z "$MODE" || "$MODE" == "-h" || "$MODE" == "--help" ]]; then
+# Check if help is requested or no argument is provided
+if [[ "$1" == "-h" || "$1" == "--help" || -z "$1" ]]; then
     show_help
     exit 0
 fi
 
-safe_logout() {
-    TARGET_MODE=$1
-    echo -e "\e[1;33mPreparing GPU and HDMI Audio for $TARGET_MODE mode...\e[0m"
-    
-    # 1. Trigger the switch
-    sudo supergfxctl -m "$TARGET_MODE"
-    
-    # 2. Kill processes using the GPU
-    sudo fuser -kv /dev/nvidia* 2>/dev/null
-    
-    # 3. Detach Nvidia Audio to prevent the "Logout Hang"
-    # This loop finds the Nvidia Audio PCI address and tells the kernel to "remove" it
-    for dev in $(lspci -D | grep -i "Audio device" | grep -i "NVIDIA" | cut -d' ' -f1); do
-        echo "Forcing detachment of HDMI Audio: $dev"
-        echo 1 | sudo tee /sys/bus/pci/devices/$dev/remove > /dev/null
-    done
-
-    # 4. Unload Nvidia kernel modules
-    sudo modprobe -r nvidia_drm nvidia_modeset nvidia 2>/dev/null
-    
-    echo "Exiting session in 2 seconds..."
-    sleep 2
-    
-    # 5. Exit Hyprland and clean up user session
-    hyprctl dispatch exit 0 2>/dev/null
-    sleep 1
-    loginctl terminate-user $USER
-}
-
-case "${MODE,,}" in
+case "${1,,}" in
     integrated)
-        safe_logout "Integrated"
+        echo "Switching to Integrated... Please wait."
+        sudo supergfxctl -m Integrated
+        
+        echo "Hardware ready. Logging out now..."
+        sleep 2
+        echo "This is where it would reboot..."
+        # hyprctl dispatch exit 0 || loginctl terminate-user $USER
         ;;
     hybrid)
-        safe_logout "Hybrid"
+        echo "Switching to Hybrid... Please wait."
+        sudo supergfxctl -m Hybrid
+        
+        echo "Hardware ready. Logging out now..."
+        sleep 2
+        echo "This is where it would reboot..."
+        # hyprctl dispatch exit 0 || loginctl terminate-user $USER
         ;;
-    mux|dedicated|asuxmuxdgpu)
-        echo -e "\e[1;31mSwitching to MUX (Ultimate) mode...\e[0m"
+    mux)
+        echo "Switching to MUX (Ultimate) mode..."
         sudo supergfxctl -m AsusMuxDgpu
-        echo "REBOOTING in 5 seconds... Save your work!"
+        echo "REBOOTING in 5 seconds..."
         sleep 5
         systemctl reboot
         ;;
     *)
-        echo -e "\e[1;31mError: Invalid option '$MODE'\e[0m"
+        echo -e "\e[1;31mError: Invalid option '$1'\e[0m"
         show_help
         exit 1
         ;;
