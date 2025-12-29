@@ -171,7 +171,7 @@
     "return-type": "json",
     "interval": 20,
     "format": "{}",
-    "on-click": "~/.config/HyprV/waybar/scripts/power_profile next",
+    "on-click": "~/.config/HyprV/waybar/scripts/profile_power next",
     "signal": 8
     },
 
