@@ -30,15 +30,17 @@ if [[ "$1" == "next" ]]; then
     # Apply the corresponding GPU mode
     case "$PWR" in
         "Quiet")
-            supergfxctl -m Integrated
+            # This runs the command in the background, independent of this script
+            systemd-run --user --machine=%u /usr/bin/supergfxctl -m Integrated
             GPU_MSG="Integrated GPU"
             ;;
         "Balanced")
-            supergfxctl -m Hybrid
+            systemd-run --user --machine=%u /usr/bin/supergfxctl -m Hybrid
             GPU_MSG="Hybrid GPU"
             ;;
         "Performance")
-            supergfxctl -m AsusMuxDgpu # or 'Dedicated' depending on your model
+            # WARNING: This might still trigger a reboot if your laptop has a MUX
+            systemd-run --user --machine=%u /usr/bin/supergfxctl -m AsusMuxDgpu
             GPU_MSG="Dedicated GPU"
             ;;
     esac
