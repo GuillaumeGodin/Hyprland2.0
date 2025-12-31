@@ -97,5 +97,5 @@ ln -sf /home/$USER/.config/HyprV/hypr/hyprland.conf /home/$USER/.config/hypr/hyp
 
 sleep 1
 
-makoctl reload
-hyprctl reload
+# makoctl reload
+# hyprctl reload
