@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# HyprV4 By SolDoesTech - https://www.youtube.com/@SolDoesTech
-
-# Define the software that would be inbstalled 
-#Need some prep work
 prep_stage=(
     qt5-wayland 
     qt5ct
@@ -23,7 +19,6 @@ prep_stage=(
     pacman-contrib
 )
 
-#software for nvidia GPU only
 nvidia_stage=(
     linux-headers 
     nvidia-dkms 
@@ -32,13 +27,12 @@ nvidia_stage=(
     libva-nvidia-driver-git
 )
 
-#the main packages
 install_stage=(
     kitty #Terminal
     mako #Notification
     waybar
-    #swww #Alternative to hyprpaper
-    #hyprpaper #Alternative to swww
+    # swww #Alternative to hyprpaper
+    # hyprpaper #Alternative to swww
     swaylock-effects 
     wofi 
     wlogout 
@@ -51,7 +45,7 @@ install_stage=(
     thunar #File browser
     btop
     firefox #Browser
-    #librewolf-bin #Browser
+    # librewolf-bin #Browser
     mpv #Media Player
     mpv-mpris #needed for playerctl
     vlc
@@ -86,13 +80,11 @@ install_stage=(
     breezex-cursor-theme #nice breezex cursors
 )
 
-#Office packages------------------------------------------------------------------------------------------------------
-install_stage2=(
+office_stage=(
     libreoffice
     zim #note taking app
     blender #3D Modeling software
     gimp #Image editor
-    #code
     visual-studio-code-bin #Code editor
     okular #PDF Viewer
     timeshift #Back up tool
@@ -123,7 +115,7 @@ install_stage2=(
 )
 
 #Game packages--------------------------------------------------------------------------------------------------------
-install_stage3=(
+gaming_stage=(
     steam
     steamlink
     discord # webcord, vesktop
@@ -291,10 +283,8 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     fi
 
     # Install the correct hyprland version
-    echo -e "$CNT - Installing Hyprland, this may take a while..."   
-    #install_software hyprland
-    #install_software hyprlang-git #Needed to install hyprland-git after aquamarine
-    #install_software hyprland-git
+    echo -e "$CNT - Installing Hyprland, this may take a while..."
+    # install_software hyprland-git
     install_software hyprland
 
     # Stage 1 - main components
@@ -318,24 +308,28 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk &>> $INSTLOG
 fi
 
-#Install office softwares------------------------------------------------------------------------------------------------------------
+# ------------------------
+# Install office softwares
+# ------------------------
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install office softwares? (y,n) ' INST
 if [[ $INST == "Y" || $INST == "y" ]]; then
 
     # Stage 2 - office softwares
     echo -e "$CNT - Installing office softwares, this may take a while..."
-    for SOFTWR in ${install_stage2[@]}; do
+    for SOFTWR in ${office_stage[@]}; do
         install_software $SOFTWR 
     done
 fi
 
-#Install gaming softwares------------------------------------------------------------------------------------------------------------
+# ------------------------
+# Install gaming softwares
+# ------------------------
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install gaming softwares? (y,n) ' INST
 if [[ $INST == "Y" || $INST == "y" ]]; then
 
     # Stage 3 - gaming softwares
     echo -e "$CNT - Installing gaming softwares, this may take a while..."
-    for SOFTWR in ${install_stage3[@]}; do
+    for SOFTWR in ${gaming_stage[@]}; do
         install_software $SOFTWR 
     done
 fi
@@ -408,11 +402,10 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
 fi
 
 # Bash scripts-----------------------------------------------------------------------------------------------------------
-bash /home/$USER/Hyprland2.0/Bash/CreateDirectories
-sudo bash /home/$USER/Hyprland2.0/Bash/MoveLspApplications
-# bash /home/$USER/Hyprland2.0/Bash/AutoStartSDDM
-# bash /home/$USER/Hyprland2.0/Bash/archBashrc
-# bash /home/$USER/Hyprland2.0/Bash/XboxDongleDrivers
+bash /home/$USER/Hyprland2.0/Scripts/Bash/archCreateDirectories
+sudo bash /home/$USER/Hyprland2.0/Scripts/Bash/MoveLspApplications
+bash /home/$USER/Hyprland2.0/Scripts/Bash/archBashrc
+# bash /home/$USER/Hyprland2.0/Scripts/Bash/sddmAutostart
 
 #Set measurement unit------------------------------------------------------------------------------------------------------
 #read -rep $'[\e[1;33mACTION\e[0m] - Select measurement units, (m) for metric or (i) for imperial? (m.i) ' INST
