@@ -3,6 +3,8 @@
 import json
 import requests
 from datetime import datetime
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 # Location
 CITY = "Ottawa"
@@ -60,9 +62,19 @@ WEATHER_CODES = {
 
 data = {}
 
-# Fetch weather with f-string for City and Error Handling
+def get_weather(city):
+    session = requests.Session()
+    retries = Retry(total=5, backoff_factor=1, status_forcelist=[500, 502, 503, 504])
+    session.mount('https://', HTTPAdapter(max_retries=retries))
+    
+    headers = {'User-Agent': 'Mozilla/5.0'}
+    
+    response = session.get(f"https://wttr.in/{city}?format=j1", headers=headers, timeout=15)
+    response.raise_for_status()
+    return response.json()
+
 try:
-    weather = requests.get(f"https://wttr.in/{CITY}?format=j1").json()
+    weather = get_weather(CITY)
 except Exception as e:
     print(json.dumps({"text": "Err", "tooltip": str(e)}))
     exit()
@@ -71,7 +83,6 @@ def format_time(time):
     return time.replace("00", "").zfill(2)
 
 def format_temp(temp):
-    # Using the passed temp variable directly
     return (temp + "°").ljust(3)
 
 def format_chances(hour):
@@ -92,14 +103,14 @@ def format_chances(hour):
             conditions.append(chances[event]+" "+hour[event]+"%")
     return ", ".join(conditions)
 
-# Current conditions logic
+# Current conditions logic (Fahrenheit)
 curr_cond = weather['current_condition'][0]
 tempint = int(curr_cond['FeelsLikeF'])
 extrachar = ''
 if 0 < tempint < 10:
     extrachar = '+'
 
-# Output for Waybar (Preserving your exact original formatting)
+# Output for Waybar
 data['text'] = ' ' + WEATHER_CODES[curr_cond['weatherCode']] + \
     " " + extrachar + curr_cond['FeelsLikeF'] + "°"
 
@@ -112,4 +123,15 @@ for i, day in enumerate(weather['weather']):
     data['tooltip'] += f"\n<b>"
     if i == 0:
         data['tooltip'] += "Today, "
-    if i ==
+    elif i == 1:
+        data['tooltip'] += "Tomorrow, "
+    data['tooltip'] += f"{day['date']}</b>\n"
+    data['tooltip'] += f"⬆️ {day['maxtempF']}° ⬇️ {day['mintempF']}° "
+    data['tooltip'] += f"🌅 {day['astronomy'][0]['sunrise']} 🌇 {day['astronomy'][0]['sunset']}\n"
+    for hour in day['hourly']:
+        if i == 0:
+            if int(format_time(hour['time'])) < datetime.now().hour - 2:
+                continue
+        data['tooltip'] += f"{format_time(hour['time'])} {WEATHER_CODES[hour['weatherCode']]} {format_temp(hour['FeelsLikeF'])} {hour['weatherDesc'][0]['value']}, {format_chances(hour)}\n"
+
+print(json.dumps(data))
