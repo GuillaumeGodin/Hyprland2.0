@@ -1,48 +1,60 @@
 #!/bin/bash
 
+# --- YOUR ORIGINAL LOCATION STUFF (UNTOUCHED) ---
 token1=57f92d8d69a152
 token2=8b928b8ffd980d
-
-#get private ip
-privateIP=$(curl ifconfig.co)
-
-#get geo location from private ip
-url=$(curl ipinfo.io/$privateIP?token=$token2)
-#store info in newUrl variable
+privateIP=$(curl -s ifconfig.co)
+url=$(curl -s ipinfo.io/$privateIP?token=$token2)
 newUrl=$url
-
-#cut newUrl into list (cut -d',' -f1 <<< "$newUrl")
-#select line (sed -n '/"city"/p')
-#trim bigining (sed 's/^.\{11\}//')
-#trim end (sed 's/.\{1\}$//')
 city=$(cut -d',' -f1 <<< "$newUrl" | sed -n '/"city"/p' | sed 's/^.\{11\}//' | sed 's/.\{1\}$//')
 region=$(cut -d',' -f1 <<< "$newUrl" | sed -n '/"region"/p' | sed 's/^.\{13\}//' | sed 's/.\{1\}$//')
 country=$(cut -d',' -f1 <<< "$newUrl" | sed -n '/"country"/p' | sed 's/^.\{14\}//' | sed 's/.\{1\}$//')
 
-#get local IP information
+# --- LOCAL NETWORK INFO ---
 connectionName=$(nmcli device show | grep -o 'GENERAL.DEVICE.*' | cut -d: -f2 | awk '{print $1}' | head -1)
 connectionIP=$(nmcli device show | grep -o 'IP4.ADDRESS.*' | cut -d: -f2 | awk '{print $1}' | head -1)
 
-#to show all markets
-#curl terminal-stocks.dev/market-summary
-spyPrice=$(curl terminal-stocks.dev/market-summary | sed -n '5p' | awk '{print $5}' | sed 's/^.\{5\}//' | sed 's/.\{5\}$//')
-spyPercent=$(curl terminal-stocks.dev/market-summary | sed -n '5p' | awk '{print $9}' | sed 's/^.\{5\}//' | sed 's/.\{5\}$//')
-dowPrice=$(curl terminal-stocks.dev/market-summary | sed -n '7p' | awk '{print $7}' | sed 's/^.\{5\}//' | sed 's/.\{5\}$//')
-dowPercent=$(curl terminal-stocks.dev/market-summary | sed -n '7p' | awk '{print $11}' | sed 's/^.\{5\}//' | sed 's/.\{5\}$//')
-nasdaqPrice=$(curl terminal-stocks.dev/market-summary | sed -n '9p' | awk '{print $5}' | sed 's/^.\{5\}//' | sed 's/.\{5\}$//')
-nasdaqPercent=$(curl terminal-stocks.dev/market-summary | sed -n '9p' | awk '{print $9}' | sed 's/^.\{5\}//' | sed 's/.\{5\}$//')
-tsxPrice=$(curl terminal-stocks.dev/^gsptse | sed -n '5p' | awk '{print $6}' | sed 's/^.\{5\}//' | sed 's/.\{5\}$//')
-tsxPercent=$(curl terminal-stocks.dev/^gsptse | sed -n '5p' | awk '{print $10}' | sed 's/^.\{5\}//' | sed 's/.\{5\}$//')
+# --- MARKET DATA SECTION ---
+get_stock() {
+    # Added -L to follow redirects and a more specific User-Agent
+    data=$(curl -s -L -H "User-Agent: Mozilla/5.0" "https://query1.finance.yahoo.com/v8/finance/chart/$1?interval=1d&range=1d")
+    # Use jq to ensure we get valid numbers or 0
+    price=$(echo "$data" | jq -r '.chart.result[0].meta.regularMarketPrice // 0')
+    prev=$(echo "$data" | jq -r '.chart.result[0].meta.chartPreviousClose // 0')
+    echo "$price $prev"
+}
 
-TOOLTIP='Network:\n'\
-'Public IP = '$privateIP'\n'\
-$city', '$region', '$country'\n'\
-'Private IP = '$connectionName' ('$connectionIP')\n\n'\
-'Markets:\n'\
-'SPY = '$spyPrice' ('$spyPercent')\n'\
-'DOW = '$dowPrice' ('$dowPercent')\n'\
-'NASDAQ = '$nasdaqPrice' ('$nasdaqPercent')\n'\
-'TSX = '$tsxPrice' ('$tsxPercent'%)'\
+# Fetching markets: ^NDX is the ticker for Nasdaq 100
+read spyPrice spyPrev < <(get_stock "^GSPC")
+read dowPrice dowPrev < <(get_stock "^DJI")
+read ndxPrice ndxPrev < <(get_stock "^NDX")
+read tsxPrice tsxPrev < <(get_stock "^GSPTSE")
 
-#echo '{"text": "'Info'", "tooltip": "'$TOOLTIP'"}'
-echo '{"text": "'$city', '$region', '$country'", "tooltip": "'$TOOLTIP'"}'
+# Improved calc_pct to handle potential empty/zero values
+calc_pct() {
+    if [[ -z "$1" || -z "$2" || "$1" == "0" || "$2" == "0" ]]; then
+        echo "0.00%"
+    else
+        awk "BEGIN {printf \"%.2f%%\", (($1-$2)/$2)*100}"
+    fi
+}
+
+spyPct=$(calc_pct "$spyPrice" "$spyPrev")
+dowPct=$(calc_pct "$dowPrice" "$dowPrev")
+ndxPct=$(calc_pct "$ndxPrice" "$ndxPrev")
+tsxPct=$(calc_pct "$tsxPrice" "$tsxPrev")
+
+# --- TOOLTIP GENERATION ---
+# Using \r for carriage returns often works better in Waybar tooltips
+TOOLTIP="Network:\r"\
+"Public IP = $privateIP\r"\
+"$city, $region, $country\r"\
+"Private IP = $connectionName ($connectionIP)\r\r"\
+"Markets:\r"\
+"SPY    = $spyPrice ($spyPct)\r"\
+"DOW    = $dowPrice ($dowPct)\r"\
+"NDX    = $ndxPrice ($ndxPct)\r"\
+"TSX    = $tsxPrice ($tsxPct)"
+
+# Final JSON for Waybar
+echo "{\"text\": \"$city, $region, $country\", \"tooltip\": \"$TOOLTIP\"}"
