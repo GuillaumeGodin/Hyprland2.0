@@ -3,6 +3,8 @@
 import json
 import requests
 from datetime import datetime
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 # Location
 CITY = "Ottawa"
@@ -60,11 +62,20 @@ WEATHER_CODES = {
 
 data = {}
 
-# Using f-string to inject the CITY variable into the request
+def get_weather(city):
+    session = requests.Session()
+    retries = Retry(total=5, backoff_factor=1, status_forcelist=[500, 502, 503, 504])
+    session.mount('https://', HTTPAdapter(max_retries=retries))
+    
+    headers = {'User-Agent': 'Mozilla/5.0'}
+    
+    response = session.get(f"https://wttr.in/{city}?format=j1", headers=headers, timeout=15)
+    response.raise_for_status()
+    return response.json()
+
 try:
-    weather = requests.get(f"https://wttr.in/{CITY}?format=j1").json()
+    weather = get_weather(CITY)
 except Exception as e:
-    # Fallback in case of network issues
     print(json.dumps({"text": "Err", "tooltip": str(e)}))
     exit()
 
