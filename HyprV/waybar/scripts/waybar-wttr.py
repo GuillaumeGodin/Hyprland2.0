@@ -4,6 +4,9 @@ import json
 import requests
 from datetime import datetime
 
+# Location
+CITY = "Ottawa"
+
 WEATHER_CODES = {
     '113': '☀️ ',
     '116': '⛅ ',
@@ -57,17 +60,19 @@ WEATHER_CODES = {
 
 data = {}
 
-
-weather = requests.get("https://wttr.in/?format=j1").json()
-
+# Fetch weather with f-string for City and Error Handling
+try:
+    weather = requests.get(f"https://wttr.in/{CITY}?format=j1").json()
+except Exception as e:
+    print(json.dumps({"text": "Err", "tooltip": str(e)}))
+    exit()
 
 def format_time(time):
     return time.replace("00", "").zfill(2)
 
-
 def format_temp(temp):
-    return (hour['FeelsLikeF']+"°").ljust(3)
-
+    # Using the passed temp variable directly
+    return (temp + "°").ljust(3)
 
 def format_chances(hour):
     chances = {
@@ -87,33 +92,24 @@ def format_chances(hour):
             conditions.append(chances[event]+" "+hour[event]+"%")
     return ", ".join(conditions)
 
-tempint = int(weather['current_condition'][0]['FeelsLikeF'])
+# Current conditions logic
+curr_cond = weather['current_condition'][0]
+tempint = int(curr_cond['FeelsLikeF'])
 extrachar = ''
-if tempint > 0 and tempint < 10:
+if 0 < tempint < 10:
     extrachar = '+'
 
+# Output for Waybar (Preserving your exact original formatting)
+data['text'] = ' ' + WEATHER_CODES[curr_cond['weatherCode']] + \
+    " " + extrachar + curr_cond['FeelsLikeF'] + "°"
 
-data['text'] = ' '+WEATHER_CODES[weather['current_condition'][0]['weatherCode']] + \
-    " "+extrachar+weather['current_condition'][0]['FeelsLikeF']+"°"
+data['tooltip'] = f"<b>{CITY}: {curr_cond['weatherDesc'][0]['value']} {curr_cond['temp_F']}°</b>\n"
+data['tooltip'] += f"Feels like: {curr_cond['FeelsLikeF']}°\n"
+data['tooltip'] += f"Wind: {curr_cond['windspeedKmph']}Km/h\n"
+data['tooltip'] += f"Humidity: {curr_cond['humidity']}%\n"
 
-data['tooltip'] = f"<b>{weather['current_condition'][0]['weatherDesc'][0]['value']} {weather['current_condition'][0]['temp_F']}°</b>\n"
-data['tooltip'] += f"Feels like: {weather['current_condition'][0]['FeelsLikeF']}°\n"
-data['tooltip'] += f"Wind: {weather['current_condition'][0]['windspeedKmph']}Km/h\n"
-data['tooltip'] += f"Humidity: {weather['current_condition'][0]['humidity']}%\n"
 for i, day in enumerate(weather['weather']):
     data['tooltip'] += f"\n<b>"
     if i == 0:
         data['tooltip'] += "Today, "
-    if i == 1:
-        data['tooltip'] += "Tomorrow, "
-    data['tooltip'] += f"{day['date']}</b>\n"
-    data['tooltip'] += f"⬆️ {day['maxtempF']}° ⬇️ {day['mintempF']}° "
-    data['tooltip'] += f"🌅 {day['astronomy'][0]['sunrise']} 🌇 {day['astronomy'][0]['sunset']}\n"
-    for hour in day['hourly']:
-        if i == 0:
-            if int(format_time(hour['time'])) < datetime.now().hour-2:
-                continue
-        data['tooltip'] += f"{format_time(hour['time'])} {WEATHER_CODES[hour['weatherCode']]} {format_temp(hour['FeelsLikeF'])} {hour['weatherDesc'][0]['value']}, {format_chances(hour)}\n"
-
-
-print(json.dumps(data))
+    if i ==
