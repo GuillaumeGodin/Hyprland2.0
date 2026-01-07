@@ -169,20 +169,34 @@ case "$1" in
         ;;
 
     installPhotoPrism)
-        echo "Setting up PhotoPrism on 5001..."
-        mkdir -p /home/$USER/Docker/photoprism/{photos,storage}
+        echo "Setting up Minimal PhotoPrism + MariaDB..."
+        mkdir -p /home/$USER/Docker/photoprism/{photos,storage,database}
 
         docker run -d \
-          --name photoprism \
-          -p 5001:2342 \
-          -e PHOTOPRISM_ADMIN_PASSWORD="yourpassword" \
-          -e PHOTOPRISM_DEBUG="false" \
-          -e PHOTOPRISM_PUBLIC="false" \
-          -v /home/$USER/Docker/photoprism/photos:/photoprism/originals \
-          -v /home/$USER/Docker/photoprism/storage:/photoprism/storage \
-          -v /media/md0:/md0 \
-          --restart=unless-stopped \
-          photoprism/photoprism:latest
+        --name photoprism-db \
+        --restart=unless-stopped \
+        -e MARIADB_DATABASE=photoprism \
+        -e MARIADB_USER=photoprism \
+        -e MARIADB_PASSWORD=photoprismlocal \
+        -e MARIADB_ROOT_PASSWORD=photoprismlocal \
+        -v /home/$USER/Docker/photoprism/database:/var/lib/mysql \
+        mariadb:11
+
+        docker run -d \
+        --name photoprism \
+        -p 5001:2342 \
+        --link photoprism-db \
+        -e PHOTOPRISM_ADMIN_PASSWORD="admin" \
+        -e PHOTOPRISM_DATABASE_DRIVER="mysql" \
+        -e PHOTOPRISM_DATABASE_SERVER="photoprism-db:3306" \
+        -e PHOTOPRISM_DATABASE_NAME="photoprism" \
+        -e PHOTOPRISM_DATABASE_USER="photoprism" \
+        -e PHOTOPRISM_DATABASE_PASSWORD="photoprismlocal" \
+        -v /home/$USER/Docker/photoprism/photos:/photoprism/originals \
+        -v /home/$USER/Docker/photoprism/storage:/photoprism/storage \
+        -v /media/md0:/md0 \
+        --restart=unless-stopped \
+        photoprism/photoprism:latest
 
         echo "PhotoPrism running on port 5001!"
         ;;
