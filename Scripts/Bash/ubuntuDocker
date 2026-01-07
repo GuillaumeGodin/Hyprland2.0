@@ -202,8 +202,10 @@ case "$1" in
         ;;
 
     removePhotoPrism)
-        docker stop photoprism 2>/dev/null && docker rm photoprism 2>/dev/null
-        echo "PhotoPrism container removed."
+        echo "Stopping and removing PhotoPrism and MariaDB..."
+        docker stop photoprism photoprism-db 2>/dev/null
+        docker rm photoprism photoprism-db 2>/dev/null
+        echo "Cleanup complete. Containers removed."
         ;;
 
     installNavidrome)
