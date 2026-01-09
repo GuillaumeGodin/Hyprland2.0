@@ -19,13 +19,13 @@ elif [ "$num_monitors" == 2 ]; then
     hyprctl dispatch resizeactive exact 480 270
     hyprctl dispatch moveactive exact 3360 0
     hyprctl dispatch pin
-    hyprctl setprop active opaque toggle
+    hyprctl dispatch setprop active opaque toggle
     # hyprctl dispatch centerwindow
 else
     hyprctl dispatch togglefloating
     hyprctl dispatch resizeactive exact 480 270
     hyprctl dispatch moveactive exact 1440 0
     hyprctl dispatch pin
-    hyprctl setprop active opaque toggle
+    hyprctl dispatch setprop active opaque toggle
     # hyprctl dispatch centerwindow
 fi
