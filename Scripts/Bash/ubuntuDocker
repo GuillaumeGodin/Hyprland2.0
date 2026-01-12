@@ -549,6 +549,10 @@ case "$1" in
         # Create directories
         mkdir -p /home/$USER/Docker/qbittorrent-vpn/{config,downloads,gluetun}
 
+        # Connect to a specific location
+        # -e VPN_COUNTRY="US"
+        # -e VPN_CITY="New York"
+
         # Gluetun (Privado VPN)
         docker run -d \
           --name gluetun \
