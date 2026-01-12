@@ -553,7 +553,7 @@ case "$1" in
         # -e VPN_COUNTRY="US"
         # -e VPN_CITY="New York"
         # or
-        # -e VPN_SERVER="us-ny-01.privado.io"
+        # -e VPN_SERVER="us-ny-01.privado.io"cd
 
         # Gluetun (Privado VPN)
         docker run -d \
