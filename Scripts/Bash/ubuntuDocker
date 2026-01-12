@@ -604,6 +604,7 @@ case "$1" in
 
     removeQbittorrentVPN)
         docker stop qbittorrent-vpn 2>/dev/null && docker rm qbittorrent-vpn 2>/dev/null
+        docker stop gluetun 2>/dev/null && docker rm gluetun 2>/dev/null
         echo "qBittorrent VPN container removed."
         ;;
 
