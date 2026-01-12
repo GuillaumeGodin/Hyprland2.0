@@ -41,7 +41,7 @@ case "$1" in
         echo "  installQbittorrent  Setup qBittorrent on port 5080"
         echo "  removeQbittorrent   Stop and remove qBittorrent container"
         echo "  installQbittorrentVPN  Setup qBittorrent on port 5081"
-        echo "  installQbittorrentVPN   Stop and remove qBittorrent container"
+        echo "  removeQbittorrentVPN   Stop and remove qBittorrent container"
         echo "  installDeluge       Setup Deluge on port 5090"
         echo "  removeDeluge        Stop and remove Deluge container"
         echo "  installHomeAssistant Setup Home Assistant on port 8123"
@@ -544,60 +544,63 @@ case "$1" in
         ;;
         
     installQbittorrentVPN)
-        echo "Setting up qBittorrent with Privado VPN..."
-        
+        echo "Setting up qBittorrent with Privado VPN via Gluetun..."
+
         # Create directories
-        mkdir -p /home/$USER/Docker/qbittorrent-vpn/{config,downloads,vpn}
+        mkdir -p /home/$USER/Docker/qbittorrent-vpn/{config,downloads,gluetun}
 
-        # Download and prepare VPN configs
-        wget -q -O /home/$USER/Docker/qbittorrent-vpn/vpn/configs.zip https://privadovpn.com/apps/ovpn_configs.zip
-        unzip -q /home/$USER/Docker/qbittorrent-vpn/vpn/configs.zip -d /home/$USER/Docker/qbittorrent-vpn/vpn
-        rm /home/$USER/Docker/qbittorrent-vpn/vpn/configs.zip
-        rename 's/default/udp/' /home/$USER/Docker/qbittorrent-vpn/vpn/*default*
-        rename 's/tcp-scramble/tcp/' /home/$USER/Docker/qbittorrent-vpn/vpn/*scramble*
-        sed -i 's/scramble/#scramble/g' /home/$USER/Docker/qbittorrent-vpn/vpn/*tcp*
-        sed -i 's/3074/443/g' /home/$USER/Docker/qbittorrent-vpn/vpn/*tcp*
-
-        # Pick first UDP config automatically to avoid manual edits
-        VPN_CONFIG=$(ls /home/$USER/Docker/qbittorrent-vpn/vpn/*udp.ovpn | head -n1)
-        VPN_FILE=$(basename "$VPN_CONFIG")
-
-        # Run container
+        # Gluetun (Privado VPN)
         docker run -d \
-          --name qbittorrent-vpn \
+          --name gluetun \
           --cap-add=NET_ADMIN \
           -p 5081:8080 \
+          -e VPN_SERVICE_PROVIDER=privado \
+          -e OPENVPN_USER="Username" \
+          -e OPENVPN_PASSWORD="Password" \
+          -e TZ=America/Toronto \
+          -v /home/$USER/Docker/qbittorrent-vpn/gluetun:/gluetun \
+          --restart unless-stopped \
+          qmcgaw/gluetun
+
+        echo "Waiting for VPN tunnel to establish..."
+        sleep 15
+
+        # qBittorrent
+        docker run -d \
+          --name qbittorrent-vpn \
+          --network container:gluetun \
           -e PUID=1000 \
           -e PGID=1000 \
           -e TZ="America/Toronto" \
           -e WEBUI_PORT=8080 \
-          -e VPN_ENABLED=yes \
-          -e VPN_USER=username \
-          -e VPN_PASS=password \
-          -e VPN_PROV=custom \
-          -e VPN_CONFIG="$VPN_FILE" \
-          -e LAN_NETWORK=192.168.111.0/24 \
           -v /home/$USER/Docker/qbittorrent-vpn/config:/config \
           -v /home/$USER/Docker/qbittorrent-vpn/downloads:/downloads \
-          -v /home/$USER/Docker/qbittorrent-vpn/vpn:/etc/openvpn/custom \
           --restart unless-stopped \
           lscr.io/linuxserver/qbittorrent:latest
 
-        # Wait for config generation
-        echo "Waiting 10s for initial qBittorrent config..."
+        # Patch qBittorrent WebUI
+        echo "Waiting for qBittorrent config (10s)..."
         sleep 10
+        docker stop qbittorrent-vpn
 
-        # Patch WebUI settings
         CONF_FILE="/home/$USER/Docker/qbittorrent-vpn/config/qBittorrent/qBittorrent.conf"
         if grep -q "\[Preferences\]" "$CONF_FILE"; then
-            sudo sed -i '/\[Preferences\]/a WebUI\\HostHeaderValidation=false\nWebUI\\CSRFProtection=false' "$CONF_FILE"
+            sed -i '/\[Preferences\]/a WebUI\\HostHeaderValidation=false\nWebUI\\CSRFProtection=false' "$CONF_FILE"
         else
-            echo -e "\n[Preferences]\nWebUI\\HostHeaderValidation=false\nWebUI\\CSRFProtection=false" | sudo tee -a "$CONF_FILE" > /dev/null
+            echo -e "\n[Preferences]\nWebUI\\HostHeaderValidation=false\nWebUI\\CSRFProtection=false" >> "$CONF_FILE"
         fi
 
         docker start qbittorrent-vpn
-        echo "qBittorrent VPN ready on port 5081! All traffic goes through Privado."
+
+        echo "qBittorrent VPN ready on port 5081!"
+        echo "Traffic is LOCKED behind Gluetun (kill-switch active)."
         ;;
+
+        # check the login password
+        # docker logs qbittorrent-vpn
+
+        # check if it works
+        # docker exec -it qbittorrent-vpn curl -s https://ipinfo.io
 
     removeQbittorrentVPN)
         docker stop qbittorrent-vpn 2>/dev/null && docker rm qbittorrent-vpn 2>/dev/null
