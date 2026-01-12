@@ -80,7 +80,7 @@ case "$1" in
     removeDockerApps)
         echo "Stopping and removing all containers defined in this script..."
         
-        APPS="portainer qdirstat jellyfin photoprism navidrome tandoor db_recipes calibre-web-automated caliber-web-automated-downloader jackett prowlarr sabnzbd radarr sonarr lidarr bazarr qbittorrent deluge homeassistant motioneye"
+        APPS="portainer qdirstat jellyfin photoprism navidrome tandoor db_recipes calibre-web-automated caliber-web-automated-downloader jackett prowlarr sabnzbd radarr sonarr lidarr bazarr qbittorrent qbittorrentVPN deluge homeassistant motioneye"
         
         for app in $APPS; do
             if [ "$(docker ps -aq -f name=^/${app}$)" ]; then
@@ -564,24 +564,24 @@ case "$1" in
 
         # Run container
         docker run -d \
-        --name qbittorrent-vpn \
-        --cap-add=NET_ADMIN \
-        -p 5081:8080 \
-        -e PUID=1000 \
-        -e PGID=1000 \
-        -e TZ="America/Toronto" \
-        -e WEBUI_PORT=8080 \
-        -e VPN_ENABLED=yes \
-        -e VPN_USER=username \
-        -e VPN_PASS=password \
-        -e VPN_PROV=custom \
-        -e VPN_CONFIG="$VPN_FILE" \
-        -e LAN_NETWORK=192.168.111.0/24 \
-        -v /home/$USER/Docker/qbittorrent-vpn/config:/config \
-        -v /home/$USER/Docker/qbittorrent-vpn/downloads:/downloads \
-        -v /home/$USER/Docker/qbittorrent-vpn/vpn:/etc/openvpn/custom \
-        --restart unless-stopped \
-        lscr.io/linuxserver/qbittorrent:latest
+          --name qbittorrent-vpn \
+          --cap-add=NET_ADMIN \
+          -p 5081:8080 \
+          -e PUID=1000 \
+          -e PGID=1000 \
+          -e TZ="America/Toronto" \
+          -e WEBUI_PORT=8080 \
+          -e VPN_ENABLED=yes \
+          -e VPN_USER=username \
+          -e VPN_PASS=password \
+          -e VPN_PROV=custom \
+          -e VPN_CONFIG="$VPN_FILE" \
+          -e LAN_NETWORK=192.168.111.0/24 \
+          -v /home/$USER/Docker/qbittorrent-vpn/config:/config \
+          -v /home/$USER/Docker/qbittorrent-vpn/downloads:/downloads \
+          -v /home/$USER/Docker/qbittorrent-vpn/vpn:/etc/openvpn/custom \
+          --restart unless-stopped \
+          lscr.io/linuxserver/qbittorrent:latest
 
         # Wait for config generation
         echo "Waiting 10s for initial qBittorrent config..."
