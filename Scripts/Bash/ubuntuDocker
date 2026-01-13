@@ -559,7 +559,7 @@ case "$1" in
 
         # Gluetun (Privado VPN)
         docker run -d \
-          --name gluetun \
+          --name qbittorrent-vpn-gluetun \
           --cap-add=NET_ADMIN \
           -p 5081:8080 \
           -e VPN_SERVICE_PROVIDER=privado \
@@ -576,7 +576,7 @@ case "$1" in
         # qBittorrent
         docker run -d \
           --name qbittorrent-vpn \
-          --network container:gluetun \
+          --network container:qbittorrent-vpn-gluetun \
           -e PUID=1000 \
           -e PGID=1000 \
           -e TZ="America/Toronto" \
