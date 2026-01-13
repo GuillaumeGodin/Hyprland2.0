@@ -414,7 +414,8 @@ case "$1" in
           -v /home/$USER/Docker/radarr/config:/config \
           -v /home/$USER/Docker/radarr/movies:/movies \
           -v /media/md0:/md0 \
-          -v /media/md0/Media/Media_Arr/Deluge:/Deluge \
+          -v /media/md0/Media/1_Downloads/qbittorrent:/qbittorrent \
+          -v /media/md0/Media/1_Downloads/qbittorrent-vpn:/qbittorrent-vpn \
           --restart=unless-stopped \
           linuxserver/radarr:latest
 
@@ -438,7 +439,8 @@ case "$1" in
           -v /home/$USER/Docker/sonarr/config:/config \
           -v /home/$USER/Docker/sonarr/tv:/tv \
           -v /media/md0:/md0 \
-          -v /media/md0/Media/Media_Arr/Deluge:/Deluge \
+          -v /media/md0/Media/1_Downloads/qbittorrent:/qbittorrent \
+          -v /media/md0/Media/1_Downloads/qbittorrent-vpn:/qbittorrent-vpn \
           --restart=unless-stopped \
           linuxserver/sonarr:latest
 
@@ -465,7 +467,8 @@ case "$1" in
           -v /home/$USER/Docker/lidarr/music:/music \
           -v /home/$USER/Docker/lidarr/downloads:/downloads \
           -v /media/md0:/md0 \
-          -v /media/md0/Media/Media_Arr/Deluge:/Deluge \
+          -v /media/md0/Media/1_Downloads/qbittorrent:/qbittorrent \
+          -v /media/md0/Media/1_Downloads/qbittorrent-vpn:/qbittorrent-vpn \
           --restart unless-stopped \
           linuxserver/lidarr:latest
 
@@ -518,8 +521,7 @@ case "$1" in
           -e TZ="America/Toronto" \
           -e WEBUI_PORT=8080 \
           -v /home/$USER/Docker/qbittorrent/config:/config \
-          -v /home/$USER/Docker/qbittorrent/downloads:/downloads \
-          -v /media/md0/Media/Media_Arr/Deluge:/Deluge \
+          -v /media/md0/Media/1_Downloads/qbittorrent-vpn:/qbittorrent-vpn \
           --restart unless-stopped \
           lscr.io/linuxserver/qbittorrent:latest
 
@@ -580,7 +582,7 @@ case "$1" in
           -e TZ="America/Toronto" \
           -e WEBUI_PORT=8080 \
           -v /home/$USER/Docker/qbittorrent-vpn/config:/config \
-          -v /home/$USER/Docker/qbittorrent-vpn/downloads:/downloads \
+          -v /media/md0/Media/1_Downloads/qbittorrent-vpn:/qbittorrent-vpn \
           --restart unless-stopped \
           lscr.io/linuxserver/qbittorrent:latest
 
