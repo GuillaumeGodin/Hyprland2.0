@@ -328,6 +328,7 @@ case "$1" in
         ;;
 
     installJackett)
+        # prowlarr is better
         echo "Setting up Jackett on 5050..."
         mkdir -p /home/$USER/Docker/jackett/{config,downloads}
 
@@ -352,7 +353,7 @@ case "$1" in
 
     installProwlarr)
         echo "Setting up Prowlarr on 5051..."
-        mkdir -p /home/$USER/Docker/prowlarr/{config,downloads,media}
+        mkdir -p /home/$USER/Docker/prowlarr/config
 
         docker run -d \
           --name prowlarr \
@@ -362,8 +363,6 @@ case "$1" in
           -e PGID=1000 \
           -e TZ="America/Toronto" \
           -v /home/$USER/Docker/prowlarr/config:/config \
-          -v /home/$USER/Docker/prowlarr/downloads:/downloads \
-          -v /home/$USER/Docker/prowlarr/media:/media \
           -v /media/md0:/md0 \
           --restart unless-stopped \
           linuxserver/prowlarr
@@ -404,7 +403,7 @@ case "$1" in
 
     installRadarr)
         echo "Setting up Radarr on 5053..."
-        mkdir -p /home/$USER/Docker/radarr/{config,movies}
+        mkdir -p /home/$USER/Docker/radarr/config
 
         docker run -d \
           --name radarr \
@@ -412,10 +411,7 @@ case "$1" in
           -e PUID=1000 \
           -e PGID=1000 \
           -v /home/$USER/Docker/radarr/config:/config \
-          -v /home/$USER/Docker/radarr/movies:/movies \
           -v /media/md0:/md0 \
-          -v /media/md0/Media/1_Downloads/qbittorrent:/qbittorrent \
-          -v /media/md0/Media/1_Downloads/qbittorrent-vpn:/qbittorrent-vpn \
           --restart=unless-stopped \
           linuxserver/radarr:latest
 
@@ -429,7 +425,7 @@ case "$1" in
 
     installSonarr)
         echo "Setting up Sonarr on 5054..."
-        mkdir -p /home/$USER/Docker/sonarr/{config,tv}
+        mkdir -p /home/$USER/Docker/sonarr/config
 
         docker run -d \
           --name sonarr \
@@ -437,10 +433,7 @@ case "$1" in
           -e PUID=1000 \
           -e PGID=1000 \
           -v /home/$USER/Docker/sonarr/config:/config \
-          -v /home/$USER/Docker/sonarr/tv:/tv \
           -v /media/md0:/md0 \
-          -v /media/md0/Media/1_Downloads/qbittorrent:/qbittorrent \
-          -v /media/md0/Media/1_Downloads/qbittorrent-vpn:/qbittorrent-vpn \
           --restart=unless-stopped \
           linuxserver/sonarr:latest
 
@@ -454,7 +447,7 @@ case "$1" in
 
     installLidarr)
         echo "Setting up Lidarr on port 5055..."
-        mkdir -p /home/$USER/Docker/lidarr/{config,music,downloads}
+        mkdir -p /home/$USER/Docker/lidarr/config
 
         docker run -d \
           --name=lidarr \
@@ -464,11 +457,7 @@ case "$1" in
           -e PGID=1000 \
           -e TZ="America/Toronto" \
           -v /home/$USER/Docker/lidarr/config:/config \
-          -v /home/$USER/Docker/lidarr/music:/music \
-          -v /home/$USER/Docker/lidarr/downloads:/downloads \
           -v /media/md0:/md0 \
-          -v /media/md0/Media/1_Downloads/qbittorrent:/qbittorrent \
-          -v /media/md0/Media/1_Downloads/qbittorrent-vpn:/qbittorrent-vpn \
           --restart unless-stopped \
           linuxserver/lidarr:latest
 
@@ -521,7 +510,7 @@ case "$1" in
           -e TZ="America/Toronto" \
           -e WEBUI_PORT=8080 \
           -v /home/$USER/Docker/qbittorrent/config:/config \
-          -v /media/md0/Media/1_Downloads/qbittorrent-vpn:/qbittorrent-vpn \
+          -v /media/md0:/md0 \
           --restart unless-stopped \
           lscr.io/linuxserver/qbittorrent:latest
 
@@ -549,7 +538,7 @@ case "$1" in
         echo "Setting up qBittorrent with Privado VPN via Gluetun..."
 
         # Create directories
-        mkdir -p /home/$USER/Docker/qbittorrent-vpn/{config,downloads,gluetun}
+        mkdir -p /home/$USER/Docker/qbittorrent-vpn/{config,gluetun}
 
         # Connect to a specific location
         # -e VPN_COUNTRY="US"
@@ -582,7 +571,7 @@ case "$1" in
           -e TZ="America/Toronto" \
           -e WEBUI_PORT=8080 \
           -v /home/$USER/Docker/qbittorrent-vpn/config:/config \
-          -v /media/md0/Media/1_Downloads/qbittorrent-vpn:/qbittorrent-vpn \
+          -v /media/md0:/md0 \
           --restart unless-stopped \
           lscr.io/linuxserver/qbittorrent:latest
 
@@ -609,6 +598,9 @@ case "$1" in
 
         # check if it works
         # docker exec -it qbittorrent-vpn curl -s https://ipinfo.io
+
+        # make sure to settings-advanced-networkInterval = tun0
+        # make sure to settings-Downloads-defaultSavePath = /md0/Media/1_Downloads/qbittorrent-vpn
 
     removeQbittorrentVPN)
         docker stop qbittorrent-vpn 2>/dev/null && docker rm qbittorrent-vpn 2>/dev/null
