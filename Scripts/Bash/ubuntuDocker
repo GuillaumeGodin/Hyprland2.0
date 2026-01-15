@@ -201,9 +201,8 @@ case "$1" in
         -e PHOTOPRISM_DATABASE_NAME="photoprism" \
         -e PHOTOPRISM_DATABASE_USER="photoprism" \
         -e PHOTOPRISM_DATABASE_PASSWORD="photoprismlocal" \
-        -v /home/$USER/Docker/photoprism/photos:/photoprism/originals \
+        -v "/link/to/your/photos":/photoprism/originals:ro \
         -v /home/$USER/Docker/photoprism/storage:/photoprism/storage \
-        -v /link/to/library:/photoprism/import \
         photoprism/photoprism:latest
 
         echo "PhotoPrism running on port 5001!"
@@ -213,6 +212,7 @@ case "$1" in
         echo "Stopping and removing PhotoPrism and MariaDB..."
         docker stop photoprism photoprism-db 2>/dev/null
         docker rm photoprism photoprism-db 2>/dev/null
+        docker network rm photoprism-net 2>/dev/null
         echo "Cleanup complete. Containers removed."
         ;;
 
