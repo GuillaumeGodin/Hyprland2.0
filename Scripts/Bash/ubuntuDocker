@@ -48,6 +48,8 @@ case "$1" in
         echo "  removeHomeAssistant  Stop and remove Home Assistant container"
         echo "  installMotionEye    Setup motionEye (CCTV) on port 8765"
         echo "  removeMotionEye     Stop and remove motionEye container"
+        echo "  installWgEasy       Setup WireGuard VPN Dashboard on port 51821"
+        echo "  removeWgEasy        Stop and remove wg-easy container"
         ;;
 
     installDocker)
@@ -80,7 +82,7 @@ case "$1" in
     removeDockerApps)
         echo "Stopping and removing all containers defined in this script..."
         
-        APPS="portainer qdirstat jellyfin photoprism navidrome tandoor db_recipes calibre-web-automated caliber-web-automated-downloader jackett prowlarr sabnzbd radarr sonarr lidarr bazarr qbittorrent qbittorrentVPN deluge homeassistant motioneye"
+        APPS="portainer qdirstat jellyfin photoprism navidrome tandoor db_recipes calibre-web-automated caliber-web-automated-downloader jackett prowlarr sabnzbd radarr sonarr lidarr bazarr qbittorrent qbittorrentVPN deluge homeassistant motioneye wg-easy"
         
         for app in $APPS; do
             if [ "$(docker ps -aq -f name=^/${app}$)" ]; then
@@ -91,6 +93,7 @@ case "$1" in
         done
         
         docker network rm tandoor_network 2>/dev/null
+        docker network rm photoprism-net 2>/dev/null
         echo "All app containers have been removed."
         ;;
 
@@ -174,9 +177,12 @@ case "$1" in
         echo "Setting up Minimal PhotoPrism + MariaDB..."
         mkdir -p /home/$USER/Docker/photoprism/{photos,storage,database}
 
+        docker network create photoprism-net
+
         docker run -d \
         --name photoprism-db \
         --restart=unless-stopped \
+        --network photoprism-net \
         -e MARIADB_DATABASE=photoprism \
         -e MARIADB_USER=photoprism \
         -e MARIADB_PASSWORD=photoprismlocal \
@@ -186,8 +192,9 @@ case "$1" in
 
         docker run -d \
         --name photoprism \
+        --restart=unless-stopped \
+        --network photoprism-net \
         -p 5001:2342 \
-        --link photoprism-db \
         -e PHOTOPRISM_ADMIN_PASSWORD="admin" \
         -e PHOTOPRISM_DATABASE_DRIVER="mysql" \
         -e PHOTOPRISM_DATABASE_SERVER="photoprism-db:3306" \
@@ -196,8 +203,7 @@ case "$1" in
         -e PHOTOPRISM_DATABASE_PASSWORD="photoprismlocal" \
         -v /home/$USER/Docker/photoprism/photos:/photoprism/originals \
         -v /home/$USER/Docker/photoprism/storage:/photoprism/storage \
-        -v /media/md0:/md0 \
-        --restart=unless-stopped \
+        -v /link/to/library:/photoprism/import \
         photoprism/photoprism:latest
 
         echo "PhotoPrism running on port 5001!"
@@ -677,6 +683,38 @@ case "$1" in
     removeMotionEye)
         docker stop motioneye 2>/dev/null && docker rm motioneye 2>/dev/null
         echo "motionEye container removed."
+        ;;
+
+    installWgEasy)
+# Run as normal user
+        echo "Setting up wg-easy (WireGuard) on Host Network..."
+        mkdir -p /home/$USER/Docker/.wg-easy
+
+# Password must be hash
+# https://bcrypt-generator.com/
+        docker run -d \
+          --name=wg-easy \
+          --network host \
+          -e WG_HOST=picklevpn.ddns.net \
+          -e PASSWORD_HASH='hash' \
+          -e WG_DEFAULT_ADDRESS=10.8.0.1 \
+          -e WG_DEFAULT_DNS=1.1.1.1 \
+          -e WG_ALLOWED_IPS=192.168.1.0/24,0.0.0.0/0 \
+          -v /home/$USER/Docker/.wg-easy:/etc/wireguard \
+          --cap-add=NET_ADMIN \
+          --cap-add=SYS_MODULE \
+          --restart unless-stopped \
+          ghcr.io/wg-easy/wg-easy:latest
+
+        echo "wg-easy is ready!"
+        echo "Access the Web UI at http://YOUR_SERVER_IP:51821"
+        ;;
+
+    removeWgEasy)
+        echo "Stopping and removing wg-easy..."
+        docker stop wg-easy 2>/dev/null && docker rm wg-easy 2>/dev/null
+# rm -rf ~/Docker/.wg-easy
+        echo "wg-easy container removed."
         ;;
 
     *)
