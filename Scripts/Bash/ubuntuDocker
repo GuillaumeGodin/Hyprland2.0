@@ -699,10 +699,13 @@ case "$1" in
           -e PASSWORD_HASH='hash' \
           -e WG_DEFAULT_ADDRESS=10.8.0.1 \
           -e WG_DEFAULT_DNS=1.1.1.1 \
-          -e WG_ALLOWED_IPS=192.168.1.0/24,0.0.0.0/0 \
+          -e WG_ALLOWED_IPS=0.0.0.0/0 \
+          -e WG_DEVICE=$(ip route get 8.8.8.8 | grep -oP 'dev \K\S+') \
           -v /home/$USER/Docker/.wg-easy:/etc/wireguard \
           --cap-add=NET_ADMIN \
           --cap-add=SYS_MODULE \
+          --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
+          --sysctl="net.ipv4.ip_forward=1" \
           --restart unless-stopped \
           ghcr.io/wg-easy/wg-easy:latest
 
