@@ -692,10 +692,12 @@ case "$1" in
 
 # Password must be hash
 # https://bcrypt-generator.com/
+# add WG_host.ddns.net
+
         docker run -d \
           --name=wg-easy \
           --network host \
-          -e WG_HOST=picklevpn.ddns.net \
+          -e WG_HOST= \
           -e PASSWORD_HASH='hash' \
           -e WG_DEFAULT_ADDRESS=10.8.0.1 \
           -e WG_DEFAULT_DNS=1.1.1.1 \
@@ -704,8 +706,6 @@ case "$1" in
           -v /home/$USER/Docker/.wg-easy:/etc/wireguard \
           --cap-add=NET_ADMIN \
           --cap-add=SYS_MODULE \
-          --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
-          --sysctl="net.ipv4.ip_forward=1" \
           --restart unless-stopped \
           ghcr.io/wg-easy/wg-easy:latest
 
